@@ -1,0 +1,72 @@
+:root{--bg-primary:#fff;--bg-secondary:#f8f9fa;--text-primary:#2c3e50;--text-secondary:#5a6c7d;--border-color:#dee2e6;--accent-color:#3498db;--shadow:0 2px 8px rgba(0,0,0,0.1)}
+[data-theme="dark"]{--bg-primary:#1a1a2e;--bg-secondary:#16213e;--text-primary:#eaeaea;--text-secondary:#b8b8b8;--border-color:#2c3e50;--accent-color:#5dade2;--shadow:0 2px 8px rgba(0,0,0,0.3)}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;line-height:1.6;color:var(--text-primary);background:var(--bg-primary);transition:background-color 0.3s ease, color 0.3s ease}
+.container{max-width:1200px;margin:0 auto;padding:0 2rem}
+a{text-decoration:none;color:var(--accent-color);transition:color .3s}
+.navbar{position:fixed;top:0;left:0;right:0;background:var(--bg-primary);border-bottom:1px solid var(--border-color);z-index:1000;transition:all 0.3s ease}
+.nav-container{max-width:1400px;margin:0 auto;padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center}
+.nav-brand{font-size:1.5rem;font-weight:700}
+.nav-links{display:flex;list-style:none;gap:2rem}
+.nav-link{color:var(--text-secondary);font-weight:500;padding:.5rem 0;position:relative}
+.nav-link.active{color:var(--accent-color)}
+.nav-link.active::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--accent-color)}
+.nav-controls{display:flex;gap:1rem}
+.search-btn,.theme-toggle,.lang-toggle,.admin-btn{background:none;border:none;color:var(--text-secondary);cursor:pointer;padding:.5rem;transition:color .3s}
+.search-btn:hover,.theme-toggle:hover,.lang-toggle:hover,.admin-btn:hover{color:var(--accent-color)}
+.search-bar{display:none;background:var(--bg-secondary);border-bottom:1px solid var(--border-color);padding:1rem 0}
+.search-bar.active{display:block}
+.search-bar input{flex:1;padding:.75rem;border:2px solid var(--border-color);border-radius:8px;font-size:1rem}
+.section{min-height:100vh;padding:6rem 0 4rem;display:flex;align-items:center}
+.section-alt{background:var(--bg-secondary)}
+.section-title{font-size:2.5rem;margin-bottom:3rem;text-align:center}
+.home-grid{display:grid;grid-template-columns:350px 1fr;gap:4rem;align-items:start}
+.profile-sidebar{position:sticky;top:120px;text-align:center}
+.profile-image{width:300px;height:300px;margin:0 auto 1.5rem;border-radius:50%;overflow:hidden;box-shadow:var(--shadow)}
+.profile-image img{width:100%;height:100%;object-fit:cover}
+.profile-name{font-size:1.8rem;margin-bottom:.5rem}
+.profile-title{font-size:1rem;color:var(--text-secondary);margin-bottom:.5rem}
+.profile-affiliation{font-size:.95rem;color:var(--text-secondary);margin-bottom:1.5rem}
+.profile-social{display:flex;gap:1rem;justify-content:center}
+.profile-social a{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--bg-secondary);font-size:1.2rem;transition:all .3s}
+.profile-social a:hover{background:var(--accent-color);color:#fff;transform:translateY(-3px)}
+.profile-content h2{font-size:2rem;margin-bottom:1.5rem}
+.profile-content p{margin-bottom:1.5rem;color:var(--text-secondary);font-size:1.05rem;line-height:1.8}
+.btn-download{display:inline-flex;align-items:center;gap:.5rem;padding:.75rem 1.5rem;background:var(--accent-color);color:#fff;border-radius:8px;font-weight:600;transition:all .3s}
+.btn-download:hover{transform:translateY(-2px)}
+.info-columns{display:grid;grid-template-columns:1fr 1fr;gap:3rem;margin-top:3rem}
+.info-col h3{font-size:1.3rem;margin-bottom:1rem}
+.info-col ul{list-style:none}
+.education-list li{display:flex;gap:1rem;margin-bottom:1rem}
+.education-list i{color:var(--accent-color)}
+.education-list strong{display:block}
+.education-list span{display:block;font-size:.9rem;color:var(--text-secondary)}
+.publications-list{max-width:1000px;margin:0 auto}
+.publication-item{display:grid;grid-template-columns:80px 1fr;gap:2rem;padding:2rem 0;border-bottom:1px solid var(--border-color)}
+.pub-year{font-size:1.5rem;font-weight:700;color:var(--accent-color)}
+.pub-content h4{font-size:1.2rem;margin-bottom:.5rem}
+.pub-authors{color:var(--text-secondary)}
+.pub-venue{font-style:italic;color:var(--text-secondary);margin-bottom:1rem}
+.pub-links{display:flex;gap:1rem}
+.pub-link{display:inline-flex;align-items:center;gap:.5rem;padding:.5rem 1rem;background:var(--bg-secondary);border-radius:6px;font-size:.9rem;transition:all .3s}
+.pub-link:hover{background:var(--accent-color);color:#fff}
+.projects-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2rem;max-width:1000px;margin:0 auto}
+.project-main{grid-column:span 2}
+.project-card{background:var(--bg-primary);border-radius:12px;overflow:hidden;box-shadow:var(--shadow);transition:all .3s;cursor:pointer}
+.project-card:hover{transform:translateY(-5px);box-shadow:0 8px 24px rgba(0,0,0,0.15)}
+.project-image{width:100%;height:250px;object-fit:cover}
+.project-content{padding:2rem}
+.project-badges{display:flex;gap:.5rem;margin-bottom:1rem}
+.badge{padding:.25rem .75rem;background:var(--accent-color);color:#fff;border-radius:15px;font-size:.85rem}
+.project-content h3{font-size:1.5rem;margin-bottom:1rem}
+.project-content p{color:var(--text-secondary);margin-bottom:1.5rem}
+.tag{padding:.25rem .75rem;background:var(--bg-secondary);color:var(--text-secondary);border-radius:15px;font-size:.85rem}
+.contact-grid{max-width:600px;margin:0 auto}
+.contact-info{display:flex;flex-direction:column;gap:1.5rem}
+.contact-item{display:flex;align-items:center;gap:1rem;font-size:1.1rem}
+.contact-item i{width:40px;height:40px;display:flex;align-items:center;justify-content:center;background:var(--bg-secondary);border-radius:50%;color:var(--accent-color)}
+.footer{background:var(--bg-secondary);padding:2rem 0;text-align:center;color:var(--text-secondary);border-top:1px solid var(--border-color)}
+@media (max-width:1200px){.home-grid{grid-template-columns:1fr}.profile-sidebar{position:relative;top:0}.project-main{grid-column:span 1}}
+@media (max-width:768px){.nav-links{display:none}.projects-grid{grid-template-columns:1fr}.info-columns{grid-template-columns:1fr}.publication-item{grid-template-columns:1fr}}
+@keyframes slideIn{from{transform:translateX(100%);opacity:0}to{transform:translateX(0);opacity:1}}
