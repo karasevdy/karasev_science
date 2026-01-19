@@ -1,14 +1,9 @@
 // ============================================
-// КОНФИДУРАЦИЯ API
+// КОНФИГУРАЦИЯ API
 // ============================================
 
-// Автоматическое определение среды
-const API_URL = window.location.hostname.includes('github.io')
-  ? 'https://karasev-backend.onrender.com/api'  // Продакшн - ваш Render бэкенд
-  : 'http://127.0.0.1:5001/api';                // Локальная разработка
-
-console.log('🌍 API URL:', API_URL);
-console.log('📍 Текущий хост:', window.location.hostname);
+const API_URL = 'https://karasev-backend.onrender.com/api';  // Для локальной разработки
+// const API_URL = '/api';  // Для Render (раскомментируй при деплое)
 
 // ============================================
 // ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ
@@ -86,13 +81,7 @@ async function loadCase1Visualization() {
     `;
 
     try {
-        console.log('🔄 Запрос к API:', `${API_URL}/deputies`);
         const response = await fetch(`${API_URL}/deputies`);
-
-        if (!response.ok) {
-            throw new Error(`HTTP ошибка: ${response.status} ${response.statusText}`);
-        }
-
         const data = await response.json();
 
         if (!data.success) {
@@ -100,20 +89,15 @@ async function loadCase1Visualization() {
             return;
         }
 
-        console.log('✅ Данные получены:', data.deputies?.length, 'депутатов');
         displayCase1Charts(data.deputies);
 
     } catch (error) {
-        console.error('❌ Ошибка загрузки:', error);
+        console.error('Ошибка загрузки:', error);
         resultsDiv.innerHTML = `
             <div style="background: #fee; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #e74c3c;">
                 <h3 style="color: #e74c3c;">Ошибка подключения</h3>
                 <p><strong>Сообщение:</strong> ${error.message}</p>
-                <p style="margin-top: 0.5rem;"><strong>API URL:</strong> ${API_URL}</p>
-                <p style="margin-top: 0.5rem;">Убедитесь что backend запущен на Render</p>
-                <button onclick="window.open('${API_URL}/deputies', '_blank')" class="btn-secondary" style="margin-top: 1rem;">
-                    <i class="fas fa-external-link-alt"></i> Проверить API
-                </button>
+                <p style="margin-top: 0.5rem;">Убедитесь что backend запущен: <code>python3 backend/app.py</code></p>
             </div>
         `;
     }
@@ -287,18 +271,11 @@ function openCase2() {
 
 async function loadCase2DeputiesList() {
     try {
-        console.log('🔄 Загрузка списка депутатов...');
         const response = await fetch(`${API_URL}/deputies/list`);
-
-        if (!response.ok) {
-            throw new Error(`HTTP ошибка: ${response.status}`);
-        }
-
         const data = await response.json();
 
         if (data.success) {
             case2AllDeputies = data.deputies;
-            console.log('✅ Получено депутатов:', case2AllDeputies.length);
 
             const select = document.getElementById('case2-deputy-select');
             select.innerHTML = '<option value="all">Все депутаты</option>';
@@ -309,13 +286,9 @@ async function loadCase2DeputiesList() {
                 option.textContent = deputy;
                 select.appendChild(option);
             });
-        } else {
-            console.error('❌ Ошибка API:', data.error);
         }
     } catch (error) {
-        console.error('❌ Ошибка загрузки списка депутатов:', error);
-        const select = document.getElementById('case2-deputy-select');
-        select.innerHTML = '<option value="">Ошибка загрузки списка</option>';
+        console.error('Ошибка загрузки списка депутатов:', error);
     }
 }
 
@@ -333,31 +306,23 @@ async function loadCase2DeputyGraph() {
         <div style="text-align: center; padding: 3rem;">
             <div class="spinner"></div>
             <p style="margin-top: 1rem;">Загрузка данных графа...</p>
-            <p style="color: #666; font-size: 0.9rem;">Запрос к: ${API_URL}/graph/real/${encodeURIComponent(deputyName)}</p>
         </div>
     `;
 
     try {
-        console.log('🔄 Запрос графа для:', deputyName);
         const response = await fetch(`${API_URL}/graph/real/${encodeURIComponent(deputyName)}`);
-
-        if (!response.ok) {
-            throw new Error(`HTTP ошибка: ${response.status}`);
-        }
-
         const data = await response.json();
 
         if (!data.success) {
             resultsDiv.innerHTML = `
                 <div style="background: #fee; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #e74c3c;">
-                    <h3 style="color: #e74c3c;">Ошибка API</h3>
-                    <p>${data.error || 'Неизвестная ошибка'}</p>
+                    <h3 style="color: #e74c3c;">Ошибка</h3>
+                    <p>${data.error}</p>
                 </div>
             `;
             return;
         }
 
-        console.log('✅ Данные графа получены:', data.nodes?.length, 'узлов,', data.edges?.length, 'связей');
         document.getElementById('case2-graph-container').style.display = 'block';
         document.getElementById('case2-filters').style.display = 'block';
         resultsDiv.innerHTML = '';
@@ -366,15 +331,11 @@ async function loadCase2DeputyGraph() {
         case2DisplayStats(data.stats);
 
     } catch (error) {
-        console.error('❌ Ошибка загрузки графа:', error);
+        console.error('Ошибка:', error);
         resultsDiv.innerHTML = `
             <div style="background: #fee; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #e74c3c;">
                 <h3 style="color: #e74c3c;">Ошибка подключения</h3>
-                <p><strong>Сообщение:</strong> ${error.message}</p>
-                <p><strong>URL:</strong> ${API_URL}/graph/real/${encodeURIComponent(deputyName)}</p>
-                <button onclick="window.open('${API_URL}/graph/real/${encodeURIComponent(deputyName)}', '_blank')" class="btn-secondary" style="margin-top: 1rem;">
-                    <i class="fas fa-external-link-alt"></i> Проверить API
-                </button>
+                <p>${error.message}</p>
             </div>
         `;
     }
@@ -405,7 +366,7 @@ async function loadCase2CoauthorshipGraph() {
             </div>
 
             <div style="text-align: center; margin: 2rem 0;">
-                <img src="images/coauthorship_graph.png" 
+                <img src="../../images/coauthorship_graph.png" 
                      alt="Граф соавторства депутатов" 
                      style="max-width: 100%; height: auto; border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); cursor: pointer;"
                      onclick="window.open(this.src, '_blank')"
@@ -413,7 +374,7 @@ async function loadCase2CoauthorshipGraph() {
                 <div style="display: none; padding: 3rem; background: #fff3cd; border: 2px dashed #ffc107; border-radius: 8px; margin-top: 1rem;">
                     <i class="fas fa-exclamation-triangle" style="font-size: 3rem; color: #ff9800;"></i>
                     <h4>Изображение не найдено</h4>
-                    <p>Пожалуйста, поместите файл <code>coauthorship_graph.png</code> в папку <code>images/</code></p>
+                    <p>Пожалуйста, поместите файл <code>coauthorship_graph.png</code> в папку <code>static/images/</code></p>
                     <p style="font-size: 0.9rem; color: #666; margin-top: 1rem;">
                         Вы можете использовать любое изображение графа соавторства в формате PNG или JPG.
                     </p>
@@ -454,7 +415,7 @@ function case2CreateGraph(nodes, edges) {
 
     nodes.forEach(node => {
         // Формируем путь к фото депутата
-        let photoUrl = 'images/deputies/default.jpg';
+        let photoUrl = 'static/images/deputies/default.jpg';
 
         if (node.type === 'deputy' && node.label) {
             // Убираем фракцию в скобках если есть
@@ -463,9 +424,9 @@ function case2CreateGraph(nodes, edges) {
                 cleanName = cleanName.substring(0, cleanName.indexOf('(')).trim();
             }
 
-            // Кодируем кириллицу для URL
+            // Кодируем кириллицу для URL (браузер сам разберётся)
             const encodedName = encodeURIComponent(cleanName + '.jpg');
-            photoUrl = `images/deputies/${encodedName}`;
+            photoUrl = `static/images/deputies/${encodedName}`;
 
             console.log(`Deputy: ${cleanName} → Photo: ${photoUrl}`);
         }
@@ -794,29 +755,18 @@ function openCase3() {
 
 async function loadVotingsList() {
     try {
-        console.log('🔄 Загрузка списка голосований...');
         const response = await fetch(`${API_URL}/votings_list`);
-
-        if (!response.ok) {
-            throw new Error(`HTTP ошибка: ${response.status}`);
-        }
-
         const data = await response.json();
 
         if (data.success) {
-            console.log('✅ Получено голосований:', data.votings?.length);
             const select = document.getElementById('case3-voting-select');
             select.innerHTML = data.votings.map(v => `
                 <option value="${v.id}">${v.date} - ${v.name}</option>
             `).join('');
-            case3CurrentVoting = data.votings[0]?.id || '94008';
-        } else {
-            console.error('❌ Ошибка API:', data.error);
+            case3CurrentVoting = data.votings[0].id;
         }
     } catch (error) {
-        console.error('❌ Ошибка загрузки списка голосований:', error);
-        const select = document.getElementById('case3-voting-select');
-        select.innerHTML = '<option value="94008">08.04.2016 - Законопроект № 2273 (по умолчанию)</option>';
+        console.error('Ошибка:', error);
     }
 }
 
@@ -835,51 +785,35 @@ async function loadCase3Data() {
             <div class="spinner"></div>
             <p style="margin-top: 1rem;">Загрузка данных и расчёт прогнозов...</p>
             <p style="color: #666; font-size: 0.9rem; margin-top: 0.5rem;">Это может занять 10-15 секунд</p>
-            <p style="color: #667eea; font-size: 0.85rem; margin-top: 0.5rem;">
-                Запрос к: ${API_URL}/predict_voting/${votingId}
-            </p>
         </div>
     `;
 
     try {
-        console.log('🔄 Запрос прогноза для голосования:', votingId);
         const response = await fetch(`${API_URL}/predict_voting/${votingId}`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            }
+            method: 'POST'
         });
-
-        if (!response.ok) {
-            throw new Error(`HTTP ошибка: ${response.status}`);
-        }
 
         const data = await response.json();
 
         if (!data.success) {
             resultsDiv.innerHTML = `
                 <div style="background: #fee; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #e74c3c;">
-                    <h3 style="color: #e74c3c;">Ошибка API</h3>
-                    <p>${data.error || 'Неизвестная ошибка'}</p>
+                    <h3 style="color: #e74c3c;">Ошибка</h3>
+                    <p>${data.error}</p>
                 </div>
             `;
             return;
         }
 
-        console.log('✅ Прогноз получен:', data.deputies?.length, 'депутатов');
         case3CurrentData = data.deputies;
         displayCase3Results(data);
 
     } catch (error) {
-        console.error('❌ Ошибка загрузки прогноза:', error);
+        console.error('Ошибка:', error);
         resultsDiv.innerHTML = `
             <div style="background: #fee; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #e74c3c;">
                 <h3 style="color: #e74c3c;">Ошибка подключения</h3>
                 <p><strong>Сообщение:</strong> ${error.message}</p>
-                <p><strong>URL:</strong> ${API_URL}/predict_voting/${votingId}</p>
-                <button onclick="window.open('${API_URL}/predict_voting/${votingId}', '_blank')" class="btn-secondary" style="margin-top: 1rem;">
-                    <i class="fas fa-external-link-alt"></i> Проверить API
-                </button>
             </div>
         `;
     }
@@ -1356,14 +1290,10 @@ async function simulateVoting(e) {
             <p style="color: #667eea; font-size: 0.85rem; margin-top: 0.5rem;">
                 ℹ️ mp_law_same_com: ${mp_law_same_com === 1 ? 'Совпадает ✓' : 'Не совпадает ✗'} (${mainExecutives} vs ${initiators_sort})
             </p>
-            <p style="color: #3498db; font-size: 0.85rem; margin-top: 0.5rem;">
-                🔗 API: ${API_URL}/simulate
-            </p>
         </div>
     `;
 
     try {
-        console.log('🔄 Отправка данных для симуляции:', params);
         const response = await fetch(`${API_URL}/simulate`, {
             method: 'POST',
             headers: {
@@ -1371,10 +1301,6 @@ async function simulateVoting(e) {
             },
             body: JSON.stringify(params)
         });
-
-        if (!response.ok) {
-            throw new Error(`HTTP ошибка: ${response.status}`);
-        }
 
         const data = await response.json();
 
@@ -1387,16 +1313,14 @@ async function simulateVoting(e) {
             return;
         }
 
-        console.log('✅ Результат симуляции:', data);
         case4SimulationResults = data;
         displaySimulationResults(data);
 
     } catch (error) {
-        console.error('❌ Ошибка симуляции:', error);
+        console.error('Ошибка симуляции:', error);
         resultsDiv.innerHTML = `
             <div style="background: #fee; padding: 1rem; border-radius: 8px; margin-top: 2rem; border-left: 4px solid #e74c3c;">
                 <strong style="color: #e74c3c;">Ошибка:</strong> ${error.message}
-                <p style="font-size: 0.9rem; margin-top: 0.5rem;">URL: ${API_URL}/simulate</p>
             </div>
         `;
     }
@@ -1462,45 +1386,32 @@ async function showRealVotingComparison() {
         <div id="real-voting-section" style="margin-top: 2rem; padding: 2rem; background: #f8f9fa; border-radius: 12px; text-align: center;">
             <div class="spinner"></div>
             <p style="margin-top: 1rem;">Загрузка реальных данных голосования...</p>
-            <p style="color: #667eea; font-size: 0.85rem; margin-top: 0.5rem;">
-                🔗 API: ${API_URL}/predict_voting/94008
-            </p>
         </div>
     `;
 
     try {
-        console.log('🔄 Загрузка реального голосования...');
         const response = await fetch(`${API_URL}/predict_voting/94008`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            }
+            method: 'POST'
         });
-
-        if (!response.ok) {
-            throw new Error(`HTTP ошибка: ${response.status}`);
-        }
 
         const realData = await response.json();
 
         if (!realData.success) {
             document.getElementById('real-voting-section').innerHTML = `
                 <div style="background: #fee; padding: 1rem; border-radius: 8px; border-left: 4px solid #e74c3c;">
-                    <strong style="color: #e74c3c;">Ошибка API:</strong> ${realData.error}
+                    <strong style="color: #e74c3c;">Ошибка:</strong> ${realData.error}
                 </div>
             `;
             return;
         }
 
-        console.log('✅ Реальные данные получены:', realData.deputies?.length, 'депутатов');
         displayVotingComparison(case4SimulationResults, realData);
 
     } catch (error) {
-        console.error('❌ Ошибка загрузки реального голосования:', error);
+        console.error('Ошибка загрузки реального голосования:', error);
         document.getElementById('real-voting-section').innerHTML = `
             <div style="background: #fee; padding: 1rem; border-radius: 8px; border-left: 4px solid #e74c3c;">
                 <strong style="color: #e74c3c;">Ошибка подключения:</strong> ${error.message}
-                <p style="font-size: 0.9rem; margin-top: 0.5rem;">URL: ${API_URL}/predict_voting/94008</p>
             </div>
         `;
     }
@@ -2065,12 +1976,6 @@ style.textContent = `
         .bill-params-grid {
             grid-template-columns: 1fr;
         }
-        .case3-stats-grid {
-            grid-template-columns: repeat(2, 1fr);
-        }
-        .case3-comparison {
-            grid-template-columns: 1fr;
-        }
     }
     
     .param-card {
@@ -2198,5 +2103,3 @@ document.head.appendChild(style);
 
 console.log('✅ Cases.js загружен успешно');
 console.log('📡 API URL:', API_URL);
-console.log('📍 Текущий хост:', window.location.hostname);
-console.log('🚀 Бэкенд на Render: https://karasev-backend.onrender.com');
