@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ML Portfolio - Документация</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+            background: #fafafa;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* ====================================== */
+        /* ТРЁХКОЛОНОЧНАЯ СТРУКТУРА */
+        /* ====================================== */
+
+        .page-container {
+            display: grid;
+            grid-template-columns: 280px 1fr 320px;
+            min-height: 100vh;
+        }
+
+        /* ====================================== */
+        /* ЛЕВАЯ КОЛОНКА - ОГЛАВЛЕНИЕ */
+        /* ====================================== */
+
+        .left-sidebar {
+            background: white;
+            border-right: 1px solid #e0e0e0;
+            padding: 1.5rem;
+            overflow-y: auto;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+        }
+
+        .site-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .site-title i {
+            color: #667eea;
+        }
+
+        .site-subtitle {
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Поиск */
+        .search-box {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 0.6rem 0.6rem 0.6rem 2.2rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #999;
+        }
+
+        /* Оглавление */
+        .toc-title {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .toc-list {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .toc-item {
+            margin-bottom: 0.25rem;
+        }
+
+        .toc-link {
+            display: block;
+            color: #555;
+            text-decoration: none;
+            padding: 0.4rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            transition: all 0.15s;
+            position: relative;
+        }
+
+        .toc-link:hover {
+            background: #f5f5f5;
+            color: #667eea;
+            padding-left: 1rem;
+        }
+
+        .toc-link.active {
+            background: #eef2ff;
+            color: #667eea;
+            font-weight: 600;
+        }
+
+        .toc-link.active::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: #667eea;
+            border-radius: 0 3px 3px 0;
+        }
+
+        .toc-number {
+            display: inline-block;
+            width: 20px;
+            color: #999;
+            font-size: 0.85rem;
+        }
+
+        /* Дополнительные блоки */
+        .sidebar-section {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .sidebar-section-title {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #999;
+            margin-bottom: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .sidebar-link {
+            display: block;
+            color: #555;
+            text-decoration: none;
+            padding: 0.4rem 0.5rem;
+            font-size: 0.9rem;
+            border-radius: 4px;
+            transition: all 0.15s;
+            margin-bottom: 0.25rem;
+        }
+
+        .sidebar-link:hover {
+            background: #f5f5f5;
+            color: #667eea;
+        }
+
+        /* ====================================== */
+        /* ЦЕНТРАЛЬНАЯ КОЛОНКА - КОНТЕНТ */
+        /* ====================================== */
+
+        .main-content {
+            background: white;
+            padding: 3rem 4rem;
+            overflow-y: auto;
+        }
+
+        .content-header {
+            margin-bottom: 2rem;
+        }
+
+        .breadcrumb {
+            font-size: 0.85rem;
+            color: #999;
+            margin-bottom: 0.5rem;
+        }
+
+        .breadcrumb a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .page-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 0.5rem;
+        }
+
+        .page-subtitle {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .author-info {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        .author-label {
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            color: #999;
+        }
+
+        /* Контент книги */
+        .book-content {
+            max-width: 680px;
+        }
+
+        .content-section {
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .subsection-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin: 2rem 0 1rem 0;
+        }
+
+        .book-content p {
+            margin-bottom: 1.25rem;
+            line-height: 1.8;
+            color: #333;
+        }
+
+        .book-content strong {
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+
+        .book-content em {
+            font-style: italic;
+            color: #555;
+        }
+
+        .highlight-box {
+            background: #f8f9ff;
+            border-left: 4px solid #667eea;
+            padding: 1.25rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+        }
+
+        .highlight-box p {
+            margin: 0;
+        }
+
+        .info-box {
+            background: #f0f9ff;
+            border-left: 4px solid #3498db;
+            padding: 1.25rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+        }
+
+        .warning-box {
+            background: #fff8f0;
+            border-left: 4px solid #f39c12;
+            padding: 1.25rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+        }
+
+        /* Списки */
+        .book-content ul {
+            margin: 1rem 0 1.5rem 1.5rem;
+            list-style: none;
+        }
+
+        .book-content ul li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .book-content ul li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* Изображение книги */
+        .book-cover {
+            float: right;
+            margin: 0 0 1.5rem 1.5rem;
+            max-width: 250px;
+        }
+
+        .book-cover img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        /* ====================================== */
+        /* ПРАВАЯ КОЛОНКА - КЕЙСЫ */
+        /* ====================================== */
+
+        .right-sidebar {
+            background: #fafafa;
+            border-left: 1px solid #e0e0e0;
+            padding: 1.5rem;
+            overflow-y: auto;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+        }
+
+        .right-sidebar-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 0.5rem;
+        }
+
+        .right-sidebar-subtitle {
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Карточки кейсов */
+        .cases-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .case-card-mini {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .case-card-mini:hover {
+            border-color: #667eea;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .case-card-mini-header {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 0.5rem;
+        }
+
+        .case-card-mini-desc {
+            font-size: 0.8rem;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .case-badge {
+            display: inline-block;
+            padding: 0.2rem 0.6rem;
+            background: #f0f0f0;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #555;
+            margin-top: 0.5rem;
+        }
+
+        .case1 .case-badge { background: #e3f2fd; color: #1976d2; }
+        .case2 .case-badge { background: #ffebee; color: #c62828; }
+        .case3 .case-badge { background: #e8f5e9; color: #2e7d32; }
+        .case4 .case-badge { background: #f3e5f5; color: #7b1fa2; }
+        .case5 .case-badge { background: #fff3e0; color: #e65100; }
+
+        /* Дополнительный блок */
+        .sidebar-info {
+            margin-top: 2rem;
+            padding: 1rem;
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+        }
+
+        .sidebar-info-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 0.5rem;
+        }
+
+        .sidebar-info p {
+            font-size: 0.8rem;
+            color: #666;
+            line-height: 1.5;
+            margin-bottom: 0.75rem;
+        }
+
+        .sidebar-info a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .sidebar-info a:hover {
+            text-decoration: underline;
+        }
+
+        /* ====================================== */
+        /* АДАПТИВНОСТЬ */
+        /* ====================================== */
+
+        @media (max-width: 1400px) {
+            .page-container {
+                grid-template-columns: 260px 1fr 280px;
+            }
+            .main-content {
+                padding: 2rem 3rem;
+            }
+        }
+
+        @media (max-width: 1200px) {
+            .page-container {
+                grid-template-columns: 240px 1fr;
+            }
+            .right-sidebar {
+                display: none;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .page-container {
+                grid-template-columns: 1fr;
+            }
+            .left-sidebar {
+                display: none;
+            }
+            .main-content {
+                padding: 1.5rem;
+            }
+        }
+
+        /* ====================================== */
+        /* МОДАЛЬНОЕ ОКНО */
+        /* ====================================== */
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.7);
+            animation: fadeIn 0.3s;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            border-radius: 16px;
+            width: 100%;
+            max-width: 900px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            animation: slideUp 0.3s;
+            position: relative;
+        }
+
+        .modal-header {
+            padding: 2rem;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-radius: 16px 16px 0 0;
+            position: relative;
+        }
+
+        .modal-header i {
+            font-size: 2.5rem;
+        }
+
+        .modal-header h2 {
+            font-size: 1.8rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .modal-header p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .modal-body {
+            padding: 2rem;
+        }
+
+        .close-modal {
+            position: absolute;
+            right: 1.5rem;
+            top: 1.5rem;
+            color: white;
+            font-size: 2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s;
+            z-index: 1001;
+        }
+
+        .close-modal:hover {
+            transform: scale(1.2);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-container">
+        <!-- ====================================== -->
+        <!-- ЛЕВАЯ КОЛОНКА - ОГЛАВЛЕНИЕ -->
+        <!-- ====================================== -->
+        <aside class="left-sidebar">
+            <div class="site-title">
+                <i class="fas fa-book-open"></i>
+                ML Portfolio
+            </div>
+            <div class="site-subtitle">Документация и интерактивные кейсы</div>
+
+            <!-- Поиск -->
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Текстовый поиск" id="searchInput">
+            </div>
+
+            <!-- Оглавление -->
+            <div class="toc-title">Оглавление (гиперссылки)</div>
+            <ul class="toc-list">
+                <li class="toc-item">
+                    <a href="#introduction" class="toc-link active">
+                        <span class="toc-number">1</span> Introduction
+                    </a>
+                </li>
+                <li class="toc-item">
+                    <a href="#interpretability" class="toc-link">
+                        <span class="toc-number">2</span> Interpretability
+                    </a>
+                </li>
+                <li class="toc-item">
+                    <a href="#goals" class="toc-link">
+                        <span class="toc-number">3</span> Goals of Interpretability
+                    </a>
+                </li>
+                <li class="toc-item">
+                    <a href="#methods" class="toc-link">
+                        <span class="toc-number">4</span> Methods Overview
+                    </a>
+                </li>
+                <li class="toc-item">
+                    <a href="#data" class="toc-link">
+                        <span class="toc-number">5</span> Data and Models
+                    </a>
+                </li>
+                <li class="toc-item">
+                    <a href="#interpretable-models" class="toc-link">
+                        <span class="toc-number">6</span> Interpretable Models
+                    </a>
+                </li>
+            </ul>
+
+            <!-- Дополнительный раздел -->
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">Стилистка и шрифты</div>
+                <a href="#" class="sidebar-link">
+                    <i class="fas fa-font"></i> Настройки текста
+                </a>
+                <a href="#" class="sidebar-link">
+                    <i class="fas fa-palette"></i> Цветовая схема
+                </a>
+            </div>
+
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">Навигация</div>
+                <a href="../../index.html" class="sidebar-link">
+                    <i class="fas fa-home"></i> Главная страница
+                </a>
+                <a href="#" class="sidebar-link">
+                    <i class="fas fa-cog"></i> Настройки
+                </a>
+            </div>
+        </aside>
+
+        <!-- ====================================== -->
+        <!-- ЦЕНТРАЛЬНАЯ КОЛОНКА - КОНТЕНТ -->
+        <!-- ====================================== -->
+        <main class="main-content">
+            <div class="content-header">
+                <div class="breadcrumb">
+                    <a href="../../index.html">Главная</a> / Документация
+                </div>
+                <h1 class="page-title">Interpretable Machine Learning</h1>
+                <p class="page-subtitle">A Guide for Making Black Box Models Explainable</p>
+                <div class="author-info">
+                    <span class="author-label">AUTHOR</span>
+                    <span>Christoph Molnar</span>
+                </div>
+            </div>
+
+            <div class="book-content">
+                <!-- Обложка книги справа -->
+                <div class="book-cover">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='350'%3E%3Crect fill='%23667eea' width='250' height='350'/%3E%3Ctext fill='%23ffffff' font-family='Arial' font-size='20' font-weight='bold' text-anchor='middle' x='125' y='175'%3EInterpretable%3C/text%3E%3Ctext fill='%23ffffff' font-family='Arial' font-size='20' font-weight='bold' text-anchor='middle' x='125' y='200'%3EMachine Learning%3C/text%3E%3C/svg%3E" alt="Book Cover">
+                </div>
+
+                <!-- Подраздел 1 -->
+                <section class="content-section" id="introduction">
+                    <h2 class="section-title">Подраздел 1</h2>
+
+                    <p>
+                        Machine learning is part of our products, processes, and research. But <strong>computers usually explain their predictions</strong>, which can cause many problems, ranging from trust issues to undetected bugs. This book is about making machine learning models interpretable.
+                    </p>
+
+                    <p>
+                        After exploring the concepts of interpretability, you will learn about simple, <em>interpretable models</em> such as decision trees and linear regression. The focus of the book is on model-agnostic methods for <strong>interpreting black box models</strong>. Some model-agnostic methods like LIME and Shapley values can be used to explain individual predictions, while other methods like permutation feature importance and accumulated local effects can be used to gain insights about the more general relations between features and predictions.
+                    </p>
+
+                    <div class="highlight-box">
+                        <p>
+                            <strong>Важно:</strong> In addition, the book presents methods specific to deep neural networks.
+                        </p>
+                    </div>
+
+                    <p>
+                        All interpretation methods are explained in depth and discussed critically. How do they work? What are their strengths and weaknesses? How do you interpret them? This book will enable you to select and correctly apply the interpretation method that is most suitable for your machine learning application. Reading the book is recommended for machine learning practitioners, data scientists, statisticians, and anyone else interested in making machine learning models interpretable.
+                    </p>
+                </section>
+
+                <!-- Отображение содержания подраздела -->
+                <section class="content-section">
+                    <h3 class="subsection-title">Отображение содержания подраздела из оглавления (текст и картинки)</h3>
+
+                    <ul>
+                        <li>Структурированное отображение контента</li>
+                        <li>Поддержка изображений и диаграмм</li>
+                        <li>Интерактивные элементы</li>
+                        <li>Примеры кода и визуализации</li>
+                    </ul>
+
+                    <div class="info-box">
+                        <p>
+                            <i class="fas fa-info-circle"></i> <strong>Информация:</strong> Возможность пролистывать вниз текст подраздела в зависимости от его длины.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Дополнительная секция -->
+                <section class="content-section" id="interpretability">
+                    <h2 class="section-title">What is Interpretability?</h2>
+
+                    <p>
+                        Interpretability is the degree to which a human can understand the cause of a decision. Another one is: Interpretability is the degree to which a human can consistently predict the model's result.
+                    </p>
+
+                    <div class="warning-box">
+                        <p>
+                            <i class="fas fa-exclamation-triangle"></i> <strong>Внимание:</strong> The higher the interpretability of a machine learning model, the easier it is for someone to comprehend why certain decisions or predictions have been made.
+                        </p>
+                    </div>
+
+                    <p>
+                        A model is better interpretable than another model if its decisions are easier for a human to comprehend than decisions from the other model. I will use both variants interchangeably.
+                    </p>
+                </section>
+            </div>
+        </main>
+
+        <!-- ====================================== -->
+        <!-- ПРАВАЯ КОЛОНКА - КЕЙСЫ -->
+        <!-- ====================================== -->
+        <aside class="right-sidebar">
+            <div class="right-sidebar-title">Кейсы и данные</div>
+            <div class="right-sidebar-subtitle">(список ссылок на интерактив с данными)</div>
+
+            <div class="cases-list">
+                <!-- Кейс 1 -->
+                <div class="case-card-mini case1" onclick="openCase1()">
+                    <div class="case-card-mini-header">Кейс_1</div>
+                    <div class="case-card-mini-desc">(табличные данные, .csv)</div>
+                    <span class="case-badge">Анализ данных</span>
+                </div>
+
+                <!-- Кейс 2 -->
+                <div class="case-card-mini case2" onclick="openCase2()">
+                    <div class="case-card-mini-header">Кейс_2</div>
+                    <div class="case-card-mini-desc">(сетевой граф, .gexf)</div>
+                    <span class="case-badge">Визуализация</span>
+                </div>
+
+                <!-- Кейс 3 -->
+                <div class="case-card-mini case3" onclick="openCase3()">
+                    <div class="case-card-mini-header">Кейс_3</div>
+                    <div class="case-card-mini-desc">(запуск модели для прогнозирования одного события с возможностью глазами сравнить с группой (hui))</div>
+                    <span class="case-badge">ML модель</span>
+                </div>
+
+                <!-- Кейс 4 -->
+                <div class="case-card-mini case4" onclick="openCase4()">
+                    <div class="case-card-mini-header">Кейс_4</div>
+                    <div class="case-card-mini-desc">(запуск модели для прогнозирования сгруппированных по признаку событий с возможностью сравнить глазами + по группе событий (целом))</div>
+                    <span class="case-badge">Групповой анализ</span>
+                </div>
+            </div>
+
+            <!-- Дополнительная информация -->
+            <div class="sidebar-info">
+                <div class="sidebar-info-title">Нужны ли вложенной странице для каждого интерактива?</div>
+                <p>
+                    Краткая всплывающая страница с кейсом
+                </p>
+                <a href="#"><i class="fas fa-question-circle"></i> Подробнее о кейсах</a>
+            </div>
+
+            <div class="sidebar-info" style="margin-top: 1rem;">
+                <div class="sidebar-info-title">О кейсах статично</div>
+                <p>Описание доступных интерактивных кейсов и их возможностей.</p>
+            </div>
+        </aside>
+    </div>
+
+    <!-- МОДАЛЬНОЕ ОКНО -->
+    <div id="modal" class="modal"></div>
+
+    <!-- Plotly для графиков -->
+    <script src="https://cdn.plot.ly/plotly-2.26.0.min.js"></script>
+
+    <!-- Cytoscape.js для сетевых графов (КЕЙС 2) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.26.0/cytoscape.min.js"></script>
+
+    <!-- Основные скрипты кейсов -->
+    <script src="js/cases.js"></script>
+
+    <script>
+        // Поиск по тексту
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            const searchText = e.target.value.toLowerCase();
+            const content = document.querySelector('.book-content');
+
+            if (searchText.length > 2) {
+                // Простой поиск (можно улучшить)
+                const paragraphs = content.querySelectorAll('p');
+                paragraphs.forEach(p => {
+                    if (p.textContent.toLowerCase().includes(searchText)) {
+                        p.style.background = '#ffeb3b';
+                    } else {
+                        p.style.background = 'transparent';
+                    }
+                });
+            } else {
+                // Убрать подсветку
+                const paragraphs = content.querySelectorAll('p');
+                paragraphs.forEach(p => {
+                    p.style.background = 'transparent';
+                });
+            }
+        });
+
+        // Активная ссылка при скролле
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('.content-section');
+            const links = document.querySelectorAll('.toc-link');
+
+            let current = '';
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (window.scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            links.forEach(link => {
+                link.classList.remove('active');
+                const href = link.getAttribute('href');
+                if (href && href.substring(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
