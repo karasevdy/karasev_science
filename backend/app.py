@@ -1,12 +1,9 @@
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, jsonify
 from flask_cors import CORS
 import os
 from collections import defaultdict
 
-app = Flask(__name__,
-            static_folder='static',
-            template_folder='templates')
-
+app = Flask(__name__)
 CORS(app)
 
 # ============================================
@@ -51,17 +48,33 @@ except ImportError:
 
 
 # ============================================
-# FRONTEND ROUTES
+# ROOT ENDPOINT
 # ============================================
 
 @app.route('/')
 def index():
-    return render_template('index.html')
-
-
-@app.route('/projects/main-project/index.html')
-def main_project():
-    return render_template('projects/main-project/index.html')
+    """API информация"""
+    return jsonify({
+        'status': 'ok',
+        'message': 'Legislative Behaviour Modeling API',
+        'version': '1.0',
+        'endpoints': {
+            'health': '/api/health',
+            'deputies_list': '/api/deputies/list',
+            'votings_list': '/api/votings_list',
+            'predict': '/api/predict (POST)',
+            'predict_all': '/api/predict_all (POST)',
+            'simulate': '/api/simulate (POST)',
+            'predict_voting': '/api/predict_voting/<voting_id> (POST)',
+            'graph_real': '/api/graph/real/<deputy_name>',
+            'graph_coauthorship': '/api/graph/coauthorship'
+        },
+        'models': {
+            'catboost_loaded': MODEL_LOADED,
+            'pandas_loaded': PANDAS_LOADED,
+            'sklearn_loaded': SKLEARN_LOADED
+        }
+    })
 
 
 # ============================================
@@ -73,7 +86,8 @@ def health():
     return jsonify({
         'status': 'ok',
         'model_loaded': MODEL_LOADED,
-        'pandas_loaded': PANDAS_LOADED
+        'pandas_loaded': PANDAS_LOADED,
+        'sklearn_loaded': SKLEARN_LOADED
     })
 
 
@@ -566,7 +580,6 @@ SPECIALIZATION_KEYWORDS = {
 
 
 def map_activity(activity):
-    """Мапит детальную КВЭД активность на крупные категории"""
     if not PANDAS_LOADED or pd.isna(activity) or activity == '':
         return 'Не указана'
 
@@ -581,7 +594,6 @@ def map_activity(activity):
 
 
 def calculate_graph_stats(nodes, edges):
-    """Вычисляет статистику графа"""
     nodes_count = len(nodes)
     edges_count = len(edges)
 
@@ -602,7 +614,6 @@ def calculate_graph_stats(nodes, edges):
 
 
 def build_graph_from_dataframe(df):
-    """Создаёт трёхдольный граф: Депутат → Область → Отрасль"""
     nodes = []
     edges = []
 
@@ -624,7 +635,6 @@ def build_graph_from_dataframe(df):
         deputy_activity_count[deputy][activity_mapped] += 1
         region_activity_count[region][activity_mapped] += 1
 
-    # Узлы: Депутаты
     deputy_ids = {}
     for deputy in deputy_region_count.keys():
         deputy_id = f"dep_{len(deputy_ids)}"
@@ -640,7 +650,6 @@ def build_graph_from_dataframe(df):
             'data': {'companies_count': total_companies}
         })
 
-    # Узлы: Регионы
     region_ids = {}
     for deputy in deputy_region_count:
         for region in deputy_region_count[deputy]:
@@ -656,7 +665,6 @@ def build_graph_from_dataframe(df):
                     'data': {}
                 })
 
-    # Узлы: Отрасли
     activity_ids = {}
     all_activities = set()
     for activities in deputy_activity_count.values():
@@ -677,10 +685,8 @@ def build_graph_from_dataframe(df):
                 'data': {}
             })
 
-    # Рёбра
     edge_id = 0
 
-    # Депутат → Регион
     for deputy, regions in deputy_region_count.items():
         for region, count in regions.items():
             if count > 0:
@@ -693,7 +699,6 @@ def build_graph_from_dataframe(df):
                 })
                 edge_id += 1
 
-    # Регион → Отрасль
     for region, activities in region_activity_count.items():
         for activity, count in activities.items():
             if count > 0 and activity in activity_ids:
@@ -706,7 +711,6 @@ def build_graph_from_dataframe(df):
                 })
                 edge_id += 1
 
-    # Депутат → Отрасль
     for deputy, activities in deputy_activity_count.items():
         for activity, count in activities.items():
             if count > 0 and activity in activity_ids:
@@ -719,7 +723,6 @@ def build_graph_from_dataframe(df):
                 })
                 edge_id += 1
 
-    # Вычисляем степени узлов
     degree_count = defaultdict(int)
     for edge in edges:
         degree_count[edge['source']] += 1
@@ -733,7 +736,6 @@ def build_graph_from_dataframe(df):
 
 @app.route('/api/deputies/list', methods=['GET'])
 def get_deputies_list():
-    """Возвращает список всех депутатов из CSV"""
     if not PANDAS_LOADED:
         return jsonify({'success': False, 'error': 'Pandas не установлен'}), 500
 
@@ -790,7 +792,6 @@ def get_deputies_list():
 
 @app.route('/api/graph/real/<deputy_name>', methods=['GET'])
 def get_real_graph(deputy_name):
-    """Загружает граф для конкретного депутата из CSV"""
     if not PANDAS_LOADED:
         return jsonify({'success': False, 'error': 'Pandas не установлен'}), 500
 
@@ -846,7 +847,6 @@ def get_real_graph(deputy_name):
 
 @app.route('/api/graph/coauthorship', methods=['GET'])
 def get_coauthorship_graph():
-    """Создаёт граф соавторства на основе общих отраслей"""
     if not PANDAS_LOADED:
         return jsonify({'success': False, 'error': 'Pandas не установлен'}), 500
 
