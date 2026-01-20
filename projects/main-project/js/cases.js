@@ -2,18 +2,13 @@
 // КОНФИГУРАЦИЯ API
 // ============================================
 
-const API_URL = 'https://karasev-backend.onrender.com/api';  // Для локальной разработки
-// const API_URL = '/api';  // Для Render (раскомментируй при деплое)
+const API_URL = 'https://karasev-backend.onrender.com/api';
 
-// ============================================
-// ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ
-// ============================================
 
 let case3CurrentData = [];
 let case3CurrentVoting = '94008';
 let case4SimulationResults = null;
 
-// Глобальные переменные для Кейса 2
 let cy = null;
 let case2CurrentGraph = 'real';
 let case2AllDeputies = [];

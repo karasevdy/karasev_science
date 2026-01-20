@@ -4,12 +4,22 @@ import os
 from collections import defaultdict
 
 app = Flask(__name__)
-CORS(app)
+
+
+CORS(app, resources={
+    r"/*": {
+        "origins": [
+            "https://karasevdy.github.io",      # твой GitHub Pages
+            "https://*.github.io",              # все поддомены github.io
+            "http://localhost:*",               # для локальной разработки
+            "http://127.0.0.1:*"
+        ]
+    }
+})
 
 # ============================================
 # ЗАГРУЗКА ML МОДЕЛИ
 # ============================================
-
 MODEL_LOADED = False
 PANDAS_LOADED = False
 SKLEARN_LOADED = False
