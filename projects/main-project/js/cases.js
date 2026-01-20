@@ -875,6 +875,7 @@ function displayCase3Results(data) {
                 </div>
             </div>
             
+            
             <div class="comparison-block">
                 <h3><i class="fas fa-robot"></i> Прогноз модели</h3>
                 <div class="vote-breakdown">
