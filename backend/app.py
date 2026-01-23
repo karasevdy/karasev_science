@@ -297,9 +297,8 @@ def simulate_voting():
             'initiators_sort': float(data.get('initiators_sort', 0)),
             'N_initiators': float(data.get('N_initiators', 5)),
             'Session': float(data.get('Session', 4)),
-            'law_circ': float(data.get('law_circ', 0)),
             'ammendments_authors_sorted': float(data.get('ammendments_authors_sorted', 1.634)),
-            'meta_type_name_eng': float(data.get('meta_type_name_eng', 0))
+            'meta_type_name_eng': data.get('meta_type_name_eng', 'not_classified')
         }
 
         deputies_df = pd.read_csv('../data/for_interact_when_user_chooses.csv')
@@ -322,7 +321,7 @@ def simulate_voting():
             'meta_type_name_eng'
         ]
 
-        numerical_features = ['N_initiators', 'law_circ']
+        numerical_features = ['N_initiators']
 
         try:
             encoder_path = 'CatBoostEncoder_for_case_5.pkl'

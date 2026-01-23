@@ -1080,7 +1080,7 @@ function openCase4() {
                 <form id="billForm">
                     <div style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
                         <h3 style="margin-top: 0; margin-bottom: 2rem; color: #2c3e50; font-size: 1.4rem;">
-                            <i class="fas fa-file-alt"></i> Параметры законопроекта
+                            <i class="fas fa-file-alt"></i> Параметры законопроекта (8 параметров)
                         </h3>
                         
                         <div class="bill-params-grid">
@@ -1199,38 +1199,27 @@ function openCase4() {
                                 <label class="param-label">
                                     <i class="fas fa-edit"></i> Количество поправок
                                 </label>
-                                <input type="number" name="ammendments_authors_sorted" min="100" max="1000" value="200" required class="param-select">
+                                <input type="number" name="ammendments_authors_sorted" min="0" max="1000" value="200" required class="param-select">
                                 <small style="color: #7f8c8d; font-size: 0.85rem; margin-top: 0.25rem; display: block;">
-                                    От 100 до 1000 поправок
+                                    От 0 до 1000 поправок
                                 </small>
                             </div>
                             
                             <div class="param-card">
                                 <div class="param-number">8</div>
                                 <label class="param-label">
-                                    <i class="fas fa-redo"></i> Номер циркуляции закона
-                                </label>
-                                <input type="number" name="law_circ" min="1" max="2500" value="1" required class="param-select">
-                                <small style="color: #7f8c8d; font-size: 0.85rem; margin-top: 0.25rem; display: block;">
-                                    От 1 до 2500
-                                </small>
-                            </div>
-                            
-                            <div class="param-card">
-                                <div class="param-number">9</div>
-                                <label class="param-label">
                                     <i class="fas fa-vote-yea"></i> Тип процедуры голосования
                                 </label>
                                 <select name="meta_type_name_eng" required class="param-select">
-                                    <option value="0">Постановка на голосование (первое чтение)</option>
-                                    <option value="1">Голосование по президентскому законопроекту</option>
-                                    <option value="2">Второе чтение законопроекта</option>
-                                    <option value="3">Третье чтение законопроекта (финальное)</option>
-                                    <option value="4">Голосование по поправкам</option>
-                                    <option value="5">Сигнальное голосование</option>
-                                    <option value="6">Голосование по отмене закона</option>
-                                    <option value="7">Не классифицировано</option>
-                                    <option value="8">Сокращенная процедура</option>
+                                    <option value="agenda">Постановка на голосование (первое чтение)</option>
+                                    <option value="president">Голосование по президентскому законопроекту</option>
+                                    <option value="second_voting">Второе чтение законопроекта</option>
+                                    <option value="final_voting">Третье чтение (финальное)</option>
+                                    <option value="ammendments">Голосование по поправкам</option>
+                                    <option value="signal_voting">Сигнальное голосование</option>
+                                    <option value="cancel">Голосование по отмене закона</option>
+                                    <option value="not_classified">Не классифицировано</option>
+                                    <option value="short_procedure">Сокращенная процедура</option>
                                 </select>
                             </div>
                         </div>
@@ -1270,8 +1259,7 @@ async function simulateVoting(e) {
         N_initiators: parseFloat(formData.get('N_initiators')),
         Session: parseFloat(formData.get('Session')),
         ammendments_authors_sorted: parseFloat(formData.get('ammendments_authors_sorted')),
-        law_circ: parseFloat(formData.get('law_circ')),
-        meta_type_name_eng: parseFloat(formData.get('meta_type_name_eng')),
+        meta_type_name_eng: formData.get('meta_type_name_eng'),
         mp_law_same_com: mp_law_same_com
     };
 
@@ -1284,7 +1272,7 @@ async function simulateVoting(e) {
                 ⏰ Первый запрос может занять до 60 секунд
             </p>
             <p style="color: #667eea; font-size: 0.85rem; margin-top: 0.5rem;">
-                ℹ️ mp_law_same_com: ${mp_law_same_com === 1 ? 'Совпадает ✓' : 'Не совпадает ✗'} (${mainExecutives} vs ${initiators_sort})
+                ℹ️ mp_law_same_com: ${mp_law_same_com === 1 ? 'Совпадает ✓' : 'Не совпадает ✗'}
             </p>
         </div>
     `;
@@ -1729,11 +1717,9 @@ function generateFactionTable(factionVotes) {
 
     return html;
 }
-
 // ============================================
 // СТИЛИ
 // ============================================
-
 const style = document.createElement('style');
 style.textContent = `
     .spinner {
