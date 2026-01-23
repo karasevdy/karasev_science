@@ -302,6 +302,7 @@ def simulate_voting():
             'meta_type_name_eng': float(data.get('meta_type_name_eng', 0))
         }
 
+
         deputies_df = pd.read_csv('../data/for_interact_when_user_chooses.csv')
 
         for param, value in bill_params.items():
