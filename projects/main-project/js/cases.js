@@ -1211,15 +1211,15 @@ function openCase4() {
                                     <i class="fas fa-vote-yea"></i> Тип процедуры голосования
                                 </label>
                                 <select name="meta_type_name_eng" required class="param-select">
-                                    <option value="agenda">Постановка на голосование (первое чтение)</option>
-                                    <option value="president">Голосование по президентскому законопроекту</option>
-                                    <option value="second_voting">Второе чтение законопроекта</option>
-                                    <option value="final_voting">Третье чтение (финальное)</option>
-                                    <option value="ammendments">Голосование по поправкам</option>
-                                    <option value="signal_voting">Сигнальное голосование</option>
-                                    <option value="cancel">Голосование по отмене закона</option>
-                                    <option value="not_classified">Не классифицировано</option>
-                                    <option value="short_procedure">Сокращенная процедура</option>
+                                    <option value="0">Постановка на голосование (первое чтение)</option>
+                                    <option value="1">Голосование по президентскому законопроекту</option>
+                                    <option value="2">Второе чтение законопроекта</option>
+                                    <option value="3">Третье чтение (финальное)</option>
+                                    <option value="4">Голосование по поправкам</option>
+                                    <option value="5">Сигнальное голосование</option>
+                                    <option value="6">Голосование по отмене закона</option>
+                                    <option value="7">Не классифицировано</option>
+                                    <option value="8">Сокращенная процедура</option>
                                 </select>
                             </div>
                         </div>
@@ -1259,7 +1259,7 @@ async function simulateVoting(e) {
         N_initiators: parseFloat(formData.get('N_initiators')),
         Session: parseFloat(formData.get('Session')),
         ammendments_authors_sorted: parseFloat(formData.get('ammendments_authors_sorted')),
-        meta_type_name_eng: formData.get('meta_type_name_eng'),
+        meta_type_name_eng: parseFloat(formData.get('meta_type_name_eng')),  // ← Вернуть parseFloat!
         mp_law_same_com: mp_law_same_com
     };
 

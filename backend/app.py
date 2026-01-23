@@ -292,14 +292,14 @@ def simulate_voting():
 
         # Параметры законопроекта - НЕ конвертируем в float, оставляем как есть
         bill_params = {
-            'mainExecutives': data.get('mainExecutives', 0),
-            'rubric': data.get('rubric', 0),
-            'type': data.get('type', 0),
-            'initiators_sort': data.get('initiators_sort', 0),
-            'N_initiators': data.get('N_initiators', 5),
-            'Session': data.get('Session', 4),
-            'ammendments_authors_sorted': data.get('ammendments_authors_sorted', 1.634),
-            'meta_type_name_eng': data.get('meta_type_name_eng', 'not_classified')
+            'mainExecutives': float(data.get('mainExecutives', 0)),
+            'rubric': float(data.get('rubric', 0)),
+            'type': float(data.get('type', 0)),
+            'initiators_sort': float(data.get('initiators_sort', 0)),
+            'N_initiators': float(data.get('N_initiators', 5)),
+            'Session': float(data.get('Session', 4)),
+            'ammendments_authors_sorted': float(data.get('ammendments_authors_sorted', 1.634)),
+            'meta_type_name_eng': float(data.get('meta_type_name_eng', 0))
         }
 
         deputies_df = pd.read_csv('../data/for_interact_when_user_chooses.csv')
