@@ -17,6 +17,16 @@
             background: #fafafa;
             line-height: 1.6;
             color: #333;
+            scroll-behavior: smooth;
+        }
+
+        /* Отступ для якорей чтобы заголовки не скрывались под sticky элементами */
+        section[id] {
+            scroll-margin-top: 20px;
+        }
+
+        div[id] {
+            scroll-margin-top: 20px;
         }
 
         /* ====================================== */
@@ -589,7 +599,7 @@
         <aside class="left-sidebar">
             <div class="site-title">
                 <i class="fas fa-book-open"></i>
-                ML Portfolio
+                Непредсказуемая Рада?
             </div>
             <div class="site-subtitle">Документация и интерактивные кейсы</div>
 
@@ -599,48 +609,42 @@
                 <input type="text" placeholder="Текстовый поиск" id="searchInput">
             </div>
 
-            <!-- Оглавление -->
             <!-- Оглавление (новое, как на скриншоте) -->
         <div class="toc-title">Оглавление</div>
         <ol class="toc-list" style="list-style: none; padding-left: 0;">
           <li>
-            <a href="#i" class="toc-link">I. Теоретические подходы к политическому процессу и политическому классу</a>
+            <a href="#i" class="toc-link">I. Теоретические подходы к политическому процессу и политическому классу Украины</a>
             <ol>
-              <li><a href="#i-1" class="toc-link">Транзитологический, неопатримониальный и proceduralist подходы — 5</a></li>
-              <li><a href="#i-2" class="toc-link">Бихевиористский подход, legislative behavior studies — 11</a></li>
-              <li><a href="#i-3" class="toc-link">Oligarchs’ studies и принципиал-агентский подход — 45</a></li>
-              <li><a href="#i-4" class="toc-link">Сетевой подход — 75</a></li>
+              <li><a href="#i-1" class="toc-link">1. Транзитологический, неопатримониальный и proceduralist подходы</a></li>
+              <li><a href="#i-2" class="toc-link">2. Бихевиористский подход, legislative behavior studies</a></li>
+              <li><a href="#i-3" class="toc-link">3. Oligarchs' studies и принципал-агентский подход</a></li>
             </ol>
           </li>
 
           <li>
             <a href="#ii" class="toc-link">II. История оформления структур Верховной Рады: политика не отделима от экономики</a>
             <ol>
-              <li><a href="#ii-1" class="toc-link">Приватизация и оформление регионально-олигархических кланов (ВРУ-II,III) — 123</a></li>
-              <li><a href="#ii-2" class="toc-link">«Олигархическая революция»: стратегия прямого участия олигархов в политике, репатриация и реструктуризация (ВРУ-IV,V) — 133</a></li>
-              <li><a href="#ii-3" class="toc-link">Реакционная вертикаль Януковича, «семья» и стратегия косвенного влияния олигархов (ВРУ-VII) — 155</a></li>
+              <li><a href="#ii-1" class="toc-link">1. Приватизация и оформление регионально-олигархических кланов (ВРУ-II,III)</a></li>
+              <li><a href="#ii-2" class="toc-link">2. «Олигархическая революция»: стратегия прямого участия олигархов в политике, репатриация и реструктуризация (ВРУ-IV,V)</a></li>
             </ol>
           </li>
 
           <li>
-            <a href="#iii" class="toc-link">III. Данные, признаки, модель, прогноз и интерпретация</a>
+            <a href="#iii" class="toc-link">III. Данные, признаки, модель, прогнозы и факты</a>
             <ol>
-              <li><a href="#iii-1" class="toc-link">Исходные и требуемые данные и кейсы — 175</a></li>
-              <li><a href="#iii-2" class="toc-link">Признаки депутата — 181</a></li>
-              <li><a href="#iii-3" class="toc-link">EDA, предобработка имеющихся данных, заполнение пропусков — 184</a></li>
-              <li><a href="#iii-4" class="toc-link">Обработка пропущенных значений — 189</a></li>
-              <li><a href="#iii-5" class="toc-link">Сбор дополнительных знаний и генерирование признаков — 199</a></li>
-              <li><a href="#iii-6" class="toc-link">Отраслевые лобби ВРУ-VIII — 199</a></li>
-              <li><a href="#iii-7" class="toc-link">Неформальная структура ВРУ-VIII — 296</a></li>
-              <li><a href="#iii-8" class="toc-link">Проходные и непроходные законопроекты — 214</a></li>
-              <li><a href="#iii-9" class="toc-link">Кейс «людей Коломойского» в ВРУ-VIII — 218</a></li>
-              <li><a href="#iii-10" class="toc-link">Сплочённость 3-й и 6-й фракций ВРУ-VIII — 270</a></li>
-              <li><a href="#iii-11" class="toc-link">Интерпретация полученной модели, качество её прогноза и возможности — 322</a></li>
+              <li><a href="#iii-1" class="toc-link">Исходная модель и требуемые данные</a></li>
+              <li><a href="#iii-2" class="toc-link">Признаки депутата</a></li>
+              <li><a href="#iii-3" class="toc-link">Признаки законопроекта</a></li>
+              <li><a href="#iii-4" class="toc-link">EDA, предобработка данных, импутация пропусков</a></li>
+              <li><a href="#iii-5" class="toc-link">Обработка произведений признаков</a></li>
+              <li><a href="#iii-6" class="toc-link">Сбор дополнительных признаков и генерация признаков</a></li>
+              <li><a href="#iii-7" class="toc-link">Отрезаемые лобби и неформальные законопроекты</a></li>
+              <li><a href="#iii-8" class="toc-link">Неформальная структура Верховной Рады-VIII</a></li>
+              <li><a href="#iii-9" class="toc-link">Сравнение прогнозов с реальностью</a></li>
+              <li><a href="#iii-10" class="toc-link">Фракции и сессии ВРУ-VIII</a></li>
+              <li><a href="#iii-11" class="toc-link">Интерпретация модели, качество прогноза и возможности</a></li>
             </ol>
           </li>
-
-          <li><a href="#zakluchenie" class="toc-link">Заключение — …</a></li>
-          <li><a href="#prilozhenie" class="toc-link">Приложение — 357</a></li>
         </ol>
 
             <!-- Дополнительный раздел -->
@@ -673,8 +677,8 @@
             <div class="breadcrumb">
               <a href="../../index.html">Главная</a> / Документация
             </div>
-            <h1 class="page-title">Unpredictable Rada?:</h1>
-            <p class="page-subtitle">agent-base modeling of legislative behaviour in the Verkhovna Rada of 8th Convocation</p>
+            <h1 class="page-title">Моделирование поведения депутатов при голосовании</h1>
+            <p class="page-subtitle">Мультиагентная ML-модель прогнозирующая поведение депутатов Верховной Раде Украины VIII созыва при голосовании</p>
             <div class="author-info">
               <span class="author-label">Автор</span>
               <span>Dmitry Karasev</span>
@@ -689,21 +693,112 @@
             </div>
 
             <!-- Введение -->
-
-            <section class="content-section">
+            <section class="content-section" id="introduction">
               <h2 class="section-title">Введение</h2>
               <p style="margin-bottom: 1.5rem;">
-
-                В процессе добавления
+                ЗДЕСЬ ВСТАВЬТЕ ТЕКСТ ВВЕДЕНИЯ
               </p>
             </section>
 
+            <!-- I. Теоретические подходы -->
+            <section class="content-section" id="i">
+              <h2 class="section-title">I. Теоретические подходы к политическому процессу и политическому классу Украины</h2>
 
-            <!-- Важный блок (как на скриншоте) -->
+              <div id="i-1" style="margin-top: 2rem;">
+                <h3 class="subsection-title">1. Транзитологический, неопатримониальный и proceduralist подходы</h3>
+                <p>ЗДЕСЬ ВСТАВЬТЕ ТЕКСТ РАЗДЕЛА I.1</p>
+              </div>
+
+              <div id="i-2" style="margin-top: 2rem;">
+                <h3 class="subsection-title">2. Бихевиористский подход, legislative behavior studies</h3>
+                <p>ЗДЕСЬ ВСТАВЬТЕ ТЕКСТ РАЗДЕЛА I.2</p>
+              </div>
+
+              <div id="i-3" style="margin-top: 2rem;">
+                <h3 class="subsection-title">3. Oligarchs' studies и принципал-агентский подход</h3>
+                <p>ЗДЕСЬ ВСТАВЬТЕ ТЕКСТ РАЗДЕЛА I.3</p>
+              </div>
+            </section>
+
+            <!-- II. История оформления структур -->
+            <section class="content-section" id="ii">
+              <h2 class="section-title">II. История оформления структур Верховной Рады: политика не отделима от экономики</h2>
+
+              <div id="ii-1" style="margin-top: 2rem;">
+                <h3 class="subsection-title">1. Приватизация и оформление регионально-олигархических кланов (ВРУ-II,III)</h3>
+                <p>ЗДЕСЬ ВСТАВЬТЕ ТЕКСТ РАЗДЕЛА II.1</p>
+              </div>
+
+              <div id="ii-2" style="margin-top: 2rem;">
+                <h3 class="subsection-title">2. «Олигархическая революция»: стратегия прямого участия олигархов в политике, репатриация и реструктуризация (ВРУ-IV,V)</h3>
+                <p>ЗДЕСЬ ВСТАВЬТЕ ТЕКСТ РАЗДЕЛА II.2</p>
+              </div>
+            </section>
+
+            <!-- III. Данные, признаки, модель -->
+            <section class="content-section" id="iii">
+              <h2 class="section-title">III. Данные, признаки, модель, прогнозы и факты</h2>
+
+              <div id="iii-1" style="margin-top: 2rem;">
+                <h3 class="subsection-title">Исходная модель и требуемые данные</h3>
+                <p>ЗДЕСЬ ВСТАВЬТЕ ТЕКСТ РАЗДЕЛА III.1</p>
+              </div>
+
+              <div id="iii-2" style="margin-top: 2rem;">
+                <h3 class="subsection-title">Признаки депутата</h3>
+                <p>ЗДЕСЬ ВСТАВЬТЕ ТЕКСТ РАЗДЕЛА III.2</p>
+              </div>
+
+              <div id="iii-3" style="margin-top: 2rem;">
+                <h3 class="subsection-title">Признаки законопроекта</h3>
+                <p>ЗДЕСЬ ВСТАВЬТЕ ТЕКСТ РАЗДЕЛА III.3</p>
+              </div>
+
+              <div id="iii-4" style="margin-top: 2rem;">
+                <h3 class="subsection-title">EDA, предобработка данных, импутация пропусков</h3>
+                <p>ЗДЕСЬ ВСТАВЬТЕ ТЕКСТ РАЗДЕЛА III.4</p>
+              </div>
+
+              <div id="iii-5" style="margin-top: 2rem;">
+                <h3 class="subsection-title">Обработка произведений признаков</h3>
+                <p>ЗДЕСЬ ВСТАВЬТЕ ТЕКСТ РАЗДЕЛА III.5</p>
+              </div>
+
+              <div id="iii-6" style="margin-top: 2rem;">
+                <h3 class="subsection-title">Сбор дополнительных признаков и генерация признаков</h3>
+                <p>ЗДЕСЬ ВСТАВЬТЕ ТЕКСТ РАЗДЕЛА III.6</p>
+              </div>
+
+              <div id="iii-7" style="margin-top: 2rem;">
+                <h3 class="subsection-title">Отрезаемые лобби и неформальные законопроекты</h3>
+                <p>ЗДЕСЬ ВСТАВЬТЕ ТЕКСТ РАЗДЕЛА III.7</p>
+              </div>
+
+              <div id="iii-8" style="margin-top: 2rem;">
+                <h3 class="subsection-title">Неформальная структура Верховной Рады-VIII</h3>
+                <p>ЗДЕСЬ ВСТАВЬТЕ ТЕКСТ РАЗДЕЛА III.8</p>
+              </div>
+
+              <div id="iii-9" style="margin-top: 2rem;">
+                <h3 class="subsection-title">Сравнение прогнозов с реальностью</h3>
+                <p>ЗДЕСЬ ВСТАВЬТЕ ТЕКСТ РАЗДЕЛА III.9</p>
+              </div>
+
+              <div id="iii-10" style="margin-top: 2rem;">
+                <h3 class="subsection-title">Фракции и сессии ВРУ-VIII</h3>
+                <p>ЗДЕСЬ ВСТАВЬТЕ ТЕКСТ РАЗДЕЛА III.10</p>
+              </div>
+
+              <div id="iii-11" style="margin-top: 2rem;">
+                <h3 class="subsection-title">Интерпретация модели, качество прогноза и возможности</h3>
+                <p>ЗДЕСЬ ВСТАВЬТЕ ТЕКСТ РАЗДЕЛА III.11</p>
+              </div>
+            </section>
+
+            <!-- Важный блок -->
             <div class="highlight-box" style="margin-top: 2rem; padding: 1.5rem; border-left: 4px solid #667eea; background: #f8f9ff;">
               <p style="margin: 0; font-weight: 600;">
-                Важно: В процессе добавления
-
+                Важно: После вставки текста навигация будет работать корректно. Просто замените текст "ЗДЕСЬ ВСТАВЬТЕ ТЕКСТ..." на ваш контент.
               </p>
             </div>
           </div>
@@ -713,51 +808,37 @@
         <!-- ПРАВАЯ КОЛОНКА - КЕЙСЫ -->
         <!-- ====================================== -->
         <aside class="right-sidebar">
-            <div class="right-sidebar-title">Кейсы и данные</div>
+            <div class="right-sidebar-title">Интерактив с моделью и данными</div>
             <div class="right-sidebar-subtitle">(список ссылок на интерактив с данными)</div>
 
             <div class="cases-list">
-                <!-- Кейс 1 -->
+                <!-- Кейс 1: Вводные визуализации -->
                 <div class="case-card-mini case1" onclick="openCase1()">
-                    <div class="case-card-mini-header">Кейс_1</div>
+                    <div class="case-card-mini-header">Вводные визуализации</div>
                     <div class="case-card-mini-desc">(табличные данные, .csv)</div>
                     <span class="case-badge">Анализ данных</span>
                 </div>
 
-                <!-- Кейс 2 -->
+                <!-- Кейс 2: Сетевые графы -->
                 <div class="case-card-mini case2" onclick="openCase2()">
-                    <div class="case-card-mini-header">Кейс_2</div>
+                    <div class="case-card-mini-header">Сетевые графы</div>
                     <div class="case-card-mini-desc">(сетевой граф, .gexf)</div>
                     <span class="case-badge">Визуализация</span>
                 </div>
 
-                <!-- Кейс 3 -->
+                <!-- Кейс 3: Прогнозы и факты -->
                 <div class="case-card-mini case3" onclick="openCase3()">
-                    <div class="case-card-mini-header">Кейс_3</div>
-                    <div class="case-card-mini-desc">(запуск модели для прогнозирования одного события с возможностью глазами сравнить с группой (hui))</div>
+                    <div class="case-card-mini-header">Прогнозы и факты</div>
+                    <div class="case-card-mini-desc">(на примере голосований по законопроекту № 2273)</div>
                     <span class="case-badge">ML модель</span>
                 </div>
 
-                <!-- Кейс 4 -->
+                <!-- Кейс 4: ML-симулятор голосования -->
                 <div class="case-card-mini case4" onclick="openCase4()">
-                    <div class="case-card-mini-header">Кейс_4</div>
-                    <div class="case-card-mini-desc">(запуск модели для прогнозирования сгруппированных по признаку событий с возможностью сравнить глазами + по группе событий (целом))</div>
+                    <div class="case-card-mini-header">ML-симулятор голосования</div>
+                    <div class="case-card-mini-desc">(задайте свойства законопроекта — модель спрогнозирует кто поддержит)</div>
                     <span class="case-badge">Групповой анализ</span>
                 </div>
-            </div>
-
-            <!-- Дополнительная информация -->
-            <div class="sidebar-info">
-                <div class="sidebar-info-title">Нужны ли вложенной странице для каждого интерактива?</div>
-                <p>
-                    Краткая всплывающая страница с кейсом
-                </p>
-                <a href="#"><i class="fas fa-question-circle"></i> Подробнее о кейсах</a>
-            </div>
-
-            <div class="sidebar-info" style="margin-top: 1rem;">
-                <div class="sidebar-info-title">О кейсах статично</div>
-                <p>Описание доступных интерактивных кейсов и их возможностей.</p>
             </div>
         </aside>
     </div>

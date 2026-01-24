@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ваше Имя - ML Research</title>
+    <title>Дмитрий Карасев - ML Research</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -40,14 +40,14 @@
                     <div class="profile-image">
                         <img src="images/photo_2026-01-18_20-03-40.jpg" alt="Profile" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22300%22%3E%3Crect fill=%22%232c3e50%22 width=%22300%22 height=%22300%22/%3E%3Ctext fill=%22%23ffffff%22 font-family=%22Arial%22 font-size=%2224%22 text-anchor=%22middle%22 x=%22150%22 y=%22150%22%3EYour Photo%3C/text%3E%3C/svg%3E'">
                     </div>
-                    <h2 class="profile-name">Дмитрий Карасев</h2>
+                    <h2 class="profile-name" data-i18n="profile.name">Дмитрий Карасев</h2>
                     <p class="profile-title" data-i18n="profile.title">Senior Research Fellow</p>
                     <p class="profile-affiliation" data-i18n="profile.affiliation">RANEPA</p>
                     <div class="profile-social">
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-github"></i></a>
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
-                        <a href="#"><i class="fas fa-envelope"></i></a>
+                        <a href="https://github.com/karasevdy" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="https://www.facebook.com/dima.karasev.910777" target="_blank"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.linkedin.com/in/dmitry-karasev" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        <a href="mailto:dk89@mail.ru"><i class="fas fa-envelope"></i></a>
                     </div>
                 </div>
                 <div class="profile-content">
@@ -98,12 +98,12 @@
                     <div class="pub-year">2023</div>
                     <div class="pub-content">
                         <h4>Title of Your Recent Publication</h4>
-                        <p class="pub-authors">Your Name, Co-Author Name</p>
-                        <p class="pub-venue">Conference/Journal Name, 2023</p>
+                        <p>Your Name, Co-Author Name</p>
+                        <p><em>Conference/Journal Name, 2023</em></p>
                         <div class="pub-links">
                             <a href="#" class="pub-link"><i class="fas fa-file-pdf"></i> PDF</a>
-                            <a href="#" class="pub-link"><i class="fas fa-quote-left"></i> Cite</a>
-                            <a href="#" class="pub-link"><i class="fab fa-github"></i> Code</a>
+                            <a href="#" class="pub-link"><i class="fas fa-quote-right"></i> Cite</a>
+                            <a href="#" class="pub-link"><i class="fas fa-code"></i> Code</a>
                         </div>
                     </div>
                 </div>
@@ -116,13 +116,13 @@
             <h2 class="section-title" data-i18n="projects.title">Projects</h2>
             <div class="projects-grid">
                 <div class="project-card project-main" onclick="window.location.href='projects/main-project/index.html'">
-                    <img class="project-image" src="images/main-project.jpg" alt="Legislative Behaviour Modeling" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22600%22 height=%22400%22%3E%3Crect fill=%22%233498db%22 width=%22600%22 height=%22400%22/%3E%3Ctext fill=%22%23ffffff%22 font-family=%22Arial%22 font-size=%2224%22 text-anchor=%22middle%22 x=%22300%22 y=%22200%22%3ELegislative Behaviour Modeling%3C/text%3E%3C/svg%3E'">
+                    <img class="project-image" src="images/vru8_work.jpg" alt="Legislative Behaviour Modeling" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22600%22 height=%22400%22%3E%3Crect fill=%22%233498db%22 width=%22600%22 height=%22400%22/%3E%3Ctext fill=%22%23ffffff%22 font-family=%22Arial%22 font-size=%2224%22 text-anchor=%22middle%22 x=%22300%22 y=%22200%22%3ELegislative Behaviour Modeling%3C/text%3E%3C/svg%3E'">
                     <div class="project-content">
                         <div class="project-badges">
-                            <span class="badge" data-i18n="project.main.badge">Legislative Behaviour Modeling</span>
+                            <span class="badge" data-i18n="project.main.badge">Main Project</span>
                         </div>
-                        <h3 data-i18n="project.main.title">Legislative Behaviour Modeling</h3>
-                        <p data-i18n="project.main.desc">Multi-agent model of legislative behavior in the Verkhovna Rada of Ukraine using ML and network analysis.</p>
+                        <h3 data-i18n="project.main.title">Legislative Behavior Modeling</h3>
+                        <p data-i18n="project.main.desc">Multi-agent ML-model predicting legislative behavior of deputies in the Verkhovna Rada of Ukraine VIII convocation during voting</p>
                         <div>
                             <span class="tag">Python</span>
                             <span class="tag">NetworkX</span>
@@ -141,7 +141,7 @@
                 <div class="contact-info">
                     <div class="contact-item">
                         <i class="fas fa-envelope"></i>
-                        <span>your.email@ranepa.ru</span>
+                        <span>dk89@mail.ru</span>
                     </div>
                     <div class="contact-item">
                         <i class="fas fa-map-marker-alt"></i>
@@ -177,9 +177,9 @@
                 'nav.contact': 'Contact',
 
                 // Profile
+                'profile.name': 'Dmitry Karasev',
                 'profile.title': 'Senior Research Fellow',
                 'profile.affiliation': 'RANEPA',
-
 
                 // Biography
                 'bio.title': 'Biography',
@@ -201,7 +201,7 @@
                 // Projects
                 'projects.title': 'Projects',
                 'project.main.title': 'Legislative Behavior Modeling',
-                'project.main.desc': 'Multi-agent model of legislative behavior in the Verkhovna Rada of Ukraine using ML and network analysis.',
+                'project.main.desc': 'Multi-agent ML-model predicting legislative behavior of deputies in the Verkhovna Rada of Ukraine VIII convocation during voting',
                 'project.main.badge': 'Main Project',
 
                 // Contact
@@ -219,15 +219,15 @@
                 'nav.contact': 'Контакты',
 
                 // Профиль
+                'profile.name': 'Дмитрий Карасев',
                 'profile.title': 'Старший научный сотрудник',
                 'profile.affiliation': 'РАНХиГС',
-                'profile.download': 'Скачать моё резюме',
 
                 // Биография
                 'bio.title': 'Биография',
-                'bio.intro': 'Я имею степень PhD в социологии с 2016 года (МГУ) и практикующий Data Scientist с 2023 года (Яндекс Практикум, Otus). До 2024 года я был научным сотрудником в МГИМО, сейчас я старший научный сотрудник в Российской академии народного хозяйства и государственной службы при Президенте РФ (РАНХиГС).',
-                'bio.current': 'В настоящее время я работаю в области социальных и гуманитарных вычислений: мультиагентное моделирование и вычисления в законодательных исследованиях; автоматизированное конспектирование книг с помощью LLM + LangChain; векторный поиск и моделирование с использованием эмбеддингов.',
-                'bio.project': 'В рамках моего недавнего проекта была разработана современная мультиагентная модель законодательного поведения в Верховной Раде Украины VIII созыва. Общие принципы разработанной и настроенной модели основаны на подходах Д. МакРей и К. Пула, Х. Розенталя и могут быть использованы для прогнозирования поведения членов любого парламента (для которого публично доступны данные о поименных голосованиях).',
+                'bio.intro': 'Я кандидат социологических наук с 2016 года (МГУ) и практикующий Data Scientist с 2023 г. (Яндекс Практикум, Otus). До 2024 года я работал научным сотрудником в МГИМО, сейчас я старший научный сотрудник в Российской академии народного хозяйства и государственной службы при Президенте РФ (РАНХиГС).',
+                'bio.current': 'В настоящее время я работаю в области цифровых социальных и гуманитарных наук: мультиагентное моделирование и рассочеты в законодательных исследованиях; автоматическая суммаризация книг с помощью LLM + LangChain; векторный поиск и моделирование с использованием эмбеддингов.',
+                'bio.project': 'Мой последний проект – современная мультиагентная модель, прогнозирующая поведение депутатов Верховной Рады Украины VIII созыва при голосовании. Разработанная и тонко настроенная модель развивает общие принципы подходов Д. Макрая и К. Пула, Х. Розенталя и могут быть использованы для прогнозирования поведения членов любого парламента (для которого публично доступны данные о поименных',
 
                 // Интересы
                 'interests.title': 'Интересы',
@@ -242,8 +242,8 @@
 
                 // Проекты
                 'projects.title': 'Проекты',
-                'project.main.title': 'Моделирование законодательного поведения',
-                'project.main.desc': 'Мультиагентная модель законодательного поведения в Верховной Раде Украины с использованием ML и сетевого анализа.',
+                'project.main.title': 'Моделирование поведения депутатов при голосовании',
+                'project.main.desc': 'Мультиагентная ML-модель прогнозирующая поведение депутатов Верховной Раде Украины VIII созыва при голосовании',
                 'project.main.badge': 'Основной проект',
 
                 // Контакты
@@ -279,191 +279,58 @@
             console.log('🔍 toggleSearch() вызвана');
             const searchBar = document.getElementById('search-bar');
             if (searchBar) {
-                searchBar.classList.toggle('active');
-                if (searchBar.classList.contains('active')) {
-                    const input = document.getElementById('search-input');
-                    if (input) input.focus();
+                searchBar.style.display = searchBar.style.display === 'block' ? 'none' : 'block';
+                if (searchBar.style.display === 'block') {
+                    document.getElementById('search-input').focus();
                 }
             }
         }
 
         // ПЕРЕКЛЮЧЕНИЕ ТЕМЫ
         function toggleTheme() {
-            console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
-            console.log('🌙 toggleTheme() ВЫЗВАНА!');
-            console.log('Текущая тема (переменная):', currentTheme);
-            console.log('Текущая тема (body):', document.body.dataset.theme);
+            console.log('🎨 toggleTheme() вызвана');
+            currentTheme = currentTheme === 'light' ? 'dark' : 'light';
+            document.body.classList.toggle('dark-theme');
 
-            if (document.body.dataset.theme === 'dark') {
-                currentTheme = 'light';
-                document.body.dataset.theme = 'light';
-            } else {
-                currentTheme = 'dark';
-                document.body.dataset.theme = 'dark';
+            const themeIcon = document.querySelector('.theme-toggle i');
+            if (themeIcon) {
+                themeIcon.className = currentTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
             }
 
-            console.log('✅ Новая тема:', currentTheme);
-            console.log('✅ body[data-theme]:', document.body.dataset.theme);
-
-            const themeBtn = document.querySelector('.theme-toggle i');
-            if (themeBtn) {
-                if (currentTheme === 'dark') {
-                    themeBtn.className = 'fas fa-sun';
-                    console.log('✅ Иконка изменена на СОЛНЦЕ');
-                } else {
-                    themeBtn.className = 'fas fa-moon';
-                    console.log('✅ Иконка изменена на ЛУНУ');
-                }
-            } else {
-                console.error('❌ Кнопка темы не найдена!');
-            }
-
-            localStorage.setItem('theme', currentTheme);
-            console.log('✅ Тема сохранена в localStorage');
-
-            showNotification('Тема изменена на ' + (currentTheme === 'dark' ? 'тёмную' : 'светлую'));
-
-            console.log('✅✅✅ ТЕМА УСПЕШНО ИЗМЕНЕНА!');
-            console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+            console.log(`✅ Тема изменена на: ${currentTheme}`);
         }
 
         // ПЕРЕКЛЮЧЕНИЕ ЯЗЫКА
         function toggleLanguage() {
-            console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
-            console.log('🌐 toggleLanguage() ВЫЗВАНА!');
-            console.log('Текущий язык:', currentLang);
-
+            console.log('🌍 toggleLanguage() вызвана');
             currentLang = currentLang === 'en' ? 'ru' : 'en';
-            console.log('✅ Новый язык:', currentLang);
 
-            const currentLangEl = document.getElementById('current-lang');
-            const altLangEl = document.getElementById('alt-lang');
-
-            if (currentLangEl && altLangEl) {
-                if (currentLang === 'en') {
-                    currentLangEl.textContent = 'Eng';
-                    altLangEl.textContent = 'Rus';
-                } else {
-                    currentLangEl.textContent = 'Rus';
-                    altLangEl.textContent = 'Eng';
-                }
-                console.log('✅ Текст кнопки обновлён');
-            } else {
-                console.error('❌ Элементы кнопки языка не найдены!');
-            }
+            // Обновляем кнопку переключения
+            document.getElementById('current-lang').textContent = currentLang === 'en' ? 'Eng' : 'Рус';
+            document.getElementById('alt-lang').textContent = currentLang === 'en' ? 'Rus' : 'Eng';
 
             applyTranslations();
-
-            localStorage.setItem('lang', currentLang);
-            console.log('✅ Язык сохранён в localStorage');
-
-            showNotification('Язык изменён на ' + (currentLang === 'ru' ? 'русский' : 'английский'));
-
-            console.log('✅✅✅ ЯЗЫК УСПЕШНО ИЗМЕНЁН!');
-            console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+            console.log(`✅ Язык изменен на: ${currentLang}`);
         }
 
-        // ПОКАЗ УВЕДОМЛЕНИЯ
-        function showNotification(message) {
-            console.log('📢 Показываю уведомление:', message);
+        // АКТИВАЦИЯ НАВИГАЦИИ
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('📄 DOMContentLoaded запущен');
 
-            const notification = document.createElement('div');
-            notification.style.cssText = `
-                position: fixed;
-                top: 80px;
-                right: 20px;
-                background: #3498db;
-                color: white;
-                padding: 1rem 1.5rem;
-                border-radius: 8px;
-                box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-                z-index: 2000;
-                font-family: Arial, sans-serif;
-                font-size: 1rem;
-                animation: slideIn 0.3s ease;
-            `;
-            notification.textContent = message;
-            document.body.appendChild(notification);
-
-            console.log('✅ Уведомление добавлено в DOM');
-
-            setTimeout(() => {
-                notification.remove();
-                console.log('✅ Уведомление удалено');
-            }, 3000);
-        }
-
-        // НАВИГАЦИЯ ПРИ СКРОЛЛЕ
-        function setupNavigation() {
-            const sections = document.querySelectorAll('section[id]');
+            // Навигация
             const navLinks = document.querySelectorAll('.nav-link');
-
-            window.addEventListener('scroll', () => {
-                let current = '';
-
-                sections.forEach(section => {
-                    const sectionTop = section.offsetTop;
-                    if (window.scrollY >= (sectionTop - 100)) {
-                        current = section.getAttribute('id');
-                    }
-                });
-
-                navLinks.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href') === '#' + current) {
-                        link.classList.add('active');
-                    }
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
                 });
             });
-        }
 
-        // ИНИЦИАЛИЗАЦИЯ
-        document.addEventListener('DOMContentLoaded', () => {
-            console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
-            console.log('✅ DOMContentLoaded - страница загружена!');
+            // Применяем переводы при загрузке
+            applyTranslations();
 
-            const savedTheme = localStorage.getItem('theme');
-            if (savedTheme) {
-                console.log('📦 Найдена сохранённая тема:', savedTheme);
-                currentTheme = savedTheme;
-                document.body.dataset.theme = savedTheme;
-
-                const themeBtn = document.querySelector('.theme-toggle i');
-                if (themeBtn) {
-                    themeBtn.className = savedTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
-                }
-            } else {
-                console.log('📦 Сохранённой темы нет');
-            }
-
-            const savedLang = localStorage.getItem('lang');
-            if (savedLang) {
-                console.log('📦 Найден сохранённый язык:', savedLang);
-                currentLang = savedLang;
-
-                applyTranslations();
-
-                const currentLangEl = document.getElementById('current-lang');
-                const altLangEl = document.getElementById('alt-lang');
-                if (currentLangEl && altLangEl) {
-                    if (currentLang === 'ru') {
-                        currentLangEl.textContent = 'Rus';
-                        altLangEl.textContent = 'Eng';
-                    }
-                }
-            } else {
-                console.log('📦 Сохранённого языка нет');
-                applyTranslations();
-            }
-
-            setupNavigation();
-
-            console.log('✅✅✅ ИНИЦИАЛИЗАЦИЯ ЗАВЕРШЕНА!');
-            console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
-            console.log('🎯 Всё готово! Нажимай кнопки!');
+            console.log('✅ Навигация активирована');
         });
-
-        console.log('✅ Все функции определены');
     </script>
 </body>
 </html>
