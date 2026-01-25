@@ -4,7 +4,6 @@
 
 const API_URL = 'https://karasev-backend.onrender.com/api';
 
-
 let case3CurrentData = [];
 let case3CurrentVoting = '94008';
 let case4SimulationResults = null;
@@ -50,6 +49,87 @@ function openCase1() {
             </div>
             
             <div class="modal-body">
+                <!-- Схема рассадки депутатов (КАРТИНКИ) -->
+                <div style="margin-bottom: 3rem;">
+                    <h3 style="margin-bottom: 1rem; color: #2c3e50;">
+                        <i class="fas fa-users"></i> 0. Схема рассадки депутатов ВРУ-8
+                    </h3>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+                        <div>
+                            <h4 style="text-align: center; margin-bottom: 1rem; color: #2c3e50;">Схема рассадки по фракциям</h4>
+                            <div style="background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); height: 400px; display: flex; align-items: center; justify-content: center;">
+                                <img src="/karasev_science/images/graphs/seating_grid.png" 
+                                     style="max-width: 100%; max-height: 100%; object-fit: contain;"
+                                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" alt="Схема рассадки">
+                                <div style="display: none; flex-direction: column; align-items: center; color: #999;">
+                                    <i class="fas fa-image" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                                    <p>Вставьте картинку: <strong>seating_grid.png</strong></p>
+                                    <small style="margin-top: 0.5rem;">Путь: /images/graphs/seating_grid.png</small>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h4 style="text-align: center; margin-bottom: 1rem; color: #2c3e50;">Распределение мест (450 мест)</h4>
+                            <div style="background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); height: 400px; display: flex; align-items: center; justify-content: center;">
+                                <img src="/karasev_science/images/graphs/seating_semicircle.png" 
+                                     style="max-width: 100%; max-height: 100%; object-fit: contain;"
+                                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" alt="Распределение мест">
+                                <div style="display: none; flex-direction: column; align-items: center; color: #999;">
+                                    <i class="fas fa-image" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                                    <p>Вставьте картинку: <strong>seating_semicircle.png</strong></p>
+                                    <small style="margin-top: 0.5rem;">Путь: /images/graphs/seating_semicircle.png</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="background: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                        <h4 style="margin-top: 0; text-align: center;">Легенда фракций</h4>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                <div style="width: 20px; height: 20px; background: #e74c3c; border-radius: 3px;"></div>
+                                <span>БПП (132)</span>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                <div style="width: 20px; height: 20px; background: #9b59b6; border-radius: 3px;"></div>
+                                <span>НФ (82)</span>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                <div style="width: 20px; height: 20px; background: #f39c12; border-radius: 3px;"></div>
+                                <span>Самопомощ (33)</span>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                <div style="width: 20px; height: 20px; background: #3498db; border-radius: 3px;"></div>
+                                <span>РпОЛ (43)</span>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                <div style="width: 20px; height: 20px; background: #27ae60; border-radius: 3px;"></div>
+                                <span>ВО Батькивщина (19)</span>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                <div style="width: 20px; height: 20px; background: #34495e; border-radius: 3px;"></div>
+                                <span>Опозиційний блок (43)</span>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                <div style="width: 20px; height: 20px; background: #1abc9c; border-radius: 3px;"></div>
+                                <span>Воля народу (20)</span>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                <div style="width: 20px; height: 20px; background: #e67e22; border-radius: 3px;"></div>
+                                <span>Відродження (26)</span>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                <div style="width: 20px; height: 20px; background: #95a5a6; border-radius: 3px;"></div>
+                                <span>Позафракційні (25)</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p style="text-align: center; color: #666; font-size: 0.9rem; margin-top: 0.5rem;">
+                        Визуализация распределения 423 депутатов по 450 местам в зале Верховной Рады
+                    </p>
+                </div>
+
                 <!-- График 1: Сгенерированный график фракций -->
                 <div style="margin-bottom: 3rem;">
                     <h3 style="margin-bottom: 1rem; color: #2c3e50;">
@@ -80,7 +160,7 @@ function openCase1() {
                     <div style="background: white; border-radius: 8px; padding: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); min-height: 400px; display: flex; align-items: center; justify-content: center;">
                         <img src="/karasev_science/images/graphs/median_coauthors.png" 
                              style="max-width: 100%; height: auto;"
-                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" alt="Медианное количество соавторов">
                         <div style="display: none; flex-direction: column; align-items: center; color: #999;">
                             <i class="fas fa-image" style="font-size: 3rem; margin-bottom: 1rem;"></i>
                             <p>Вставьте график: <strong>median_coauthors.png</strong></p>
@@ -100,7 +180,7 @@ function openCase1() {
                     <div style="background: white; border-radius: 8px; padding: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); min-height: 400px; display: flex; align-items: center; justify-content: center;">
                         <img src="/karasev_science/images/graphs/avg_votings.png" 
                              style="max-width: 100%; height: auto;"
-                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" alt="Среднее количество голосований">
                         <div style="display: none; flex-direction: column; align-items: center; color: #999;">
                             <i class="fas fa-image" style="font-size: 3rem; margin-bottom: 1rem;"></i>
                             <p>Вставьте график: <strong>avg_votings.png</strong></p>
@@ -112,16 +192,14 @@ function openCase1() {
                     </p>
                 </div>
 
-                <!-- ТАБЛИЦА 5: Распределение типов голосований (ГЕНЕРИРУЕТСЯ) -->
+                <!-- ТАБЛИЦА 5: Распределение типов голосований -->
                 <div style="margin-bottom: 3rem;">
                     <h3 style="margin-bottom: 1rem; color: #2c3e50;">
                         <i class="fas fa-table"></i> 5. Распределение типов законодательных процедур по сессиям
                     </h3>
-                    <div id="votingTypesTable" style="background: white; border-radius: 8px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); overflow-x: auto;">
-                        <!-- Таблица будет сгенерирована JS -->
-                    </div>
+                    <div id="votingTypesTable" style="background: white; border-radius: 8px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); overflow-x: auto;"></div>
                     <p style="text-align: center; color: #666; font-size: 0.9rem; margin-top: 0.5rem;">
-                        Таблица с распределением типов процедур голосования (agenda, amendments, cancel и т.д.) по сессиям
+                        Таблица с распределением типов процедур голосования по сессиям
                     </p>
                 </div>
 
@@ -130,11 +208,9 @@ function openCase1() {
                     <h3 style="margin-bottom: 1rem; color: #2c3e50;">
                         <i class="fas fa-chart-bar"></i> 6. Отчет о классификации - Обучающая выборка (CatBoost Train)
                     </h3>
-                    <div id="classReportTrain" style="background: white; border-radius: 8px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); overflow-x: auto;">
-                        <!-- Таблица будет сгенерирована JS -->
-                    </div>
+                    <div id="classReportTrain" style="background: white; border-radius: 8px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); overflow-x: auto;"></div>
                     <p style="text-align: center; color: #666; font-size: 0.9rem; margin-top: 0.5rem;">
-                        Classification report отражает качество предсказаний типов поведения ML-моделью на обучающей выборке
+                        Classification report на обучающей выборке
                     </p>
                 </div>
 
@@ -143,11 +219,9 @@ function openCase1() {
                     <h3 style="margin-bottom: 1rem; color: #2c3e50;">
                         <i class="fas fa-chart-bar"></i> 7. Отчет о классификации - Тестовая выборка (CatBoost Test)
                     </h3>
-                    <div id="classReportTest" style="background: white; border-radius: 8px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); overflow-x: auto;">
-                        <!-- Таблица будет сгенерирована JS -->
-                    </div>
+                    <div id="classReportTest" style="background: white; border-radius: 8px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); overflow-x: auto;"></div>
                     <p style="text-align: center; color: #666; font-size: 0.9rem; margin-top: 0.5rem;">
-                        Classification report отражает качество предсказаний типов поведения ML-моделью на тестовой выборке
+                        Classification report на тестовой выборке
                     </p>
                 </div>
 
@@ -156,31 +230,9 @@ function openCase1() {
                     <h3 style="margin-bottom: 1rem; color: #2c3e50;">
                         <i class="fas fa-chart-area"></i> 8. ROC кривые для типов голосования
                     </h3>
-                    <div id="rocCurves" style="background: white; border-radius: 8px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-                        <!-- ROC кривые будут сгенерированы JS -->
-                    </div>
+                    <div id="rocCurves" style="background: white; border-radius: 8px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);"></div>
                     <p style="text-align: center; color: #666; font-size: 0.9rem; margin-top: 0.5rem;">
-                        ROC кривые показывают качество бинарной классификации для каждого типа голосования (One-vs-Rest)
-                    </p>
-                </div>
-
-                <!-- КАРТИНКА 9: Дополнительная визуализация -->
-                <div style="margin-bottom: 3rem;">
-                    <h3 style="margin-bottom: 1rem; color: #2c3e50;">
-                        <i class="fas fa-project-diagram"></i> 9. Дополнительные визуализации
-                    </h3>
-                    <div style="background: white; border-radius: 8px; padding: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); min-height: 400px; display: flex; align-items: center; justify-content: center;">
-                        <img src="/karasev_science/images/graphs/additional_viz.png" 
-                             style="max-width: 100%; height: auto;"
-                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                        <div style="display: none; flex-direction: column; align-items: center; color: #999;">
-                            <i class="fas fa-image" style="font-size: 3rem; margin-bottom: 1rem;"></i>
-                            <p>Вставьте визуализацию: <strong>additional_viz.png</strong></p>
-                            <small style="margin-top: 0.5rem;">Путь: /images/graphs/additional_viz.png</small>
-                        </div>
-                    </div>
-                    <p style="text-align: center; color: #666; font-size: 0.9rem; margin-top: 0.5rem;">
-                        Дополнительные графики, таблицы или визуализации данных
+                        ROC кривые для бинарной классификации
                     </p>
                 </div>
 
@@ -191,8 +243,6 @@ function openCase1() {
         </div>
     `;
     modal.style.display = 'flex';
-
-    // Загружаем данные автоматически
     loadCase1Data();
 }
 
@@ -208,13 +258,58 @@ async function loadCase1Data() {
         console.error('Ошибка загрузки:', error);
     }
 
-    // Генерируем таблицы независимо от API
     generateVotingTypesTable();
     generateClassificationReports();
     generateROCCurves();
 }
 
-// Генерация таблицы типов голосований
+function displayCase1Charts(deputies) {
+    const factionCounts = {};
+    const voteCounts = {'За': 0, 'Против': 0, 'Воздержался': 0, 'Не голосовал': 0, 'Отсутствовал': 0};
+    const voteClasses = ['За', 'Против', 'Воздержался', 'Не голосовал', 'Отсутствовал'];
+
+    deputies.forEach(dep => {
+        factionCounts[dep.faction] = (factionCounts[dep.faction] || 0) + 1;
+        const vote = voteClasses[dep.real_vote];
+        if (vote) voteCounts[vote]++;
+    });
+
+    const factionData = [{
+        x: Object.keys(factionCounts),
+        y: Object.values(factionCounts),
+        type: 'bar',
+        marker: {
+            color: '#3498db',
+            line: { color: '#2980b9', width: 2 }
+        }
+    }];
+
+    const factionLayout = {
+        xaxis: { title: 'Фракция' },
+        yaxis: { title: 'Количество депутатов' },
+        margin: { t: 20, l: 60, r: 20, b: 100 },
+        font: { family: 'Arial, sans-serif' }
+    };
+
+    Plotly.newPlot('factionChart', factionData, factionLayout, {responsive: true});
+
+    const voteData = [{
+        values: Object.values(voteCounts),
+        labels: Object.keys(voteCounts),
+        type: 'pie',
+        marker: { colors: ['#27ae60', '#e74c3c', '#f39c12', '#95a5a6', '#34495e'] },
+        textinfo: 'label+percent',
+        textposition: 'inside'
+    }];
+
+    const voteLayout = {
+        margin: { t: 20, l: 20, r: 20, b: 20 },
+        font: { family: 'Arial, sans-serif' }
+    };
+
+    Plotly.newPlot('voteChart', voteData, voteLayout, {responsive: true});
+}
+
 function generateVotingTypesTable() {
     const tableData = {
         sessions: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
@@ -230,9 +325,6 @@ function generateVotingTypesTable() {
     const container = document.getElementById('votingTypesTable');
 
     let tableHTML = `
-        <div style="text-align: center; margin-bottom: 1rem;">
-            <h4 style="margin: 0; color: #2c3e50;">Распределение типов законодательных процедур по сессиям</h4>
-        </div>
         <table style="width: 100%; border-collapse: collapse; font-size: 0.95rem;">
             <thead>
                 <tr style="background: #ecf0f1;">
@@ -265,17 +357,11 @@ function generateVotingTypesTable() {
         `;
     }
 
-    tableHTML += `
-            </tbody>
-        </table>
-    `;
-
+    tableHTML += '</tbody></table>';
     container.innerHTML = tableHTML;
 }
 
-// Генерация Classification Reports
 function generateClassificationReports() {
-    // Данные для Train
     const trainData = {
         classes: ['Воздержался', 'За', 'Не голосовал', 'Отсутствовал', 'Против'],
         precision: [0.27, 0.70, 0.77, 0.68, 0.09],
@@ -287,7 +373,6 @@ function generateClassificationReports() {
         weighted_avg: {precision: 0.69, recall: 0.60, f1score: 0.63, support: 9149913}
     };
 
-    // Данные для Test
     const testData = {
         classes: ['Воздержался', 'За', 'Не голосовал', 'Отсутствовал', 'Против'],
         precision: [0.21, 0.66, 0.58, 0.44, 0.07],
@@ -299,10 +384,7 @@ function generateClassificationReports() {
         weighted_avg: {precision: 0.56, recall: 0.52, f1score: 0.53, support: 1045656}
     };
 
-    // Генерация Train таблицы
     generateClassReportTable('classReportTrain', trainData, 'CatBoostClassifier - Train');
-
-    // Генерация Test таблицы
     generateClassReportTable('classReportTest', testData, 'CatBoostClassifier - Test');
 }
 
@@ -326,7 +408,6 @@ function generateClassReportTable(containerId, data, title) {
             <tbody>
     `;
 
-    // Добавляем классы
     for (let i = 0; i < data.classes.length; i++) {
         const rowStyle = i % 2 === 0 ? 'background: #f8f9fa;' : 'background: white;';
         tableHTML += `
@@ -340,10 +421,8 @@ function generateClassReportTable(containerId, data, title) {
         `;
     }
 
-    // Добавляем пустую строку
-    tableHTML += `<tr style="background: white;"><td colspan="5" style="padding: 0.25rem; border: none;"></td></tr>`;
+    tableHTML += '<tr style="background: white;"><td colspan="5" style="padding: 0.25rem; border: none;"></td></tr>';
 
-    // Accuracy
     tableHTML += `
         <tr style="background: #e8f5e9;">
             <td style="padding: 0.75rem; border: 1px solid #bdc3c7; font-weight: 600;">accuracy</td>
@@ -352,10 +431,6 @@ function generateClassReportTable(containerId, data, title) {
             <td style="padding: 0.75rem; text-align: center; border: 1px solid #bdc3c7; font-weight: 600;">${data.accuracy.toFixed(2)}</td>
             <td style="padding: 0.75rem; text-align: center; border: 1px solid #bdc3c7; font-weight: 600;">${data.macro_avg.support.toLocaleString()}</td>
         </tr>
-    `;
-
-    // Macro avg
-    tableHTML += `
         <tr style="background: #fff3cd;">
             <td style="padding: 0.75rem; border: 1px solid #bdc3c7; font-weight: 600;">macro avg</td>
             <td style="padding: 0.75rem; text-align: center; border: 1px solid #bdc3c7;">${data.macro_avg.precision.toFixed(2)}</td>
@@ -363,10 +438,6 @@ function generateClassReportTable(containerId, data, title) {
             <td style="padding: 0.75rem; text-align: center; border: 1px solid #bdc3c7;">${data.macro_avg.f1score.toFixed(2)}</td>
             <td style="padding: 0.75rem; text-align: center; border: 1px solid #bdc3c7;">${data.macro_avg.support.toLocaleString()}</td>
         </tr>
-    `;
-
-    // Weighted avg
-    tableHTML += `
         <tr style="background: #d1ecf1;">
             <td style="padding: 0.75rem; border: 1px solid #bdc3c7; font-weight: 600;">weighted avg</td>
             <td style="padding: 0.75rem; text-align: center; border: 1px solid #bdc3c7;">${data.weighted_avg.precision.toFixed(2)}</td>
@@ -376,56 +447,40 @@ function generateClassReportTable(containerId, data, title) {
         </tr>
     `;
 
-    tableHTML += `
-            </tbody>
-        </table>
-    `;
-
+    tableHTML += '</tbody></table>';
     container.innerHTML = tableHTML;
 }
 
-// Генерация ROC кривых
 function generateROCCurves() {
     const container = document.getElementById('rocCurves');
 
-    // Данные для ROC кривых (примерные точки)
     const rocData = {
         'За': {
-            train_auc: 0.88,
-            test_auc: 0.79,
-            color: '#27ae60',
+            train_auc: 0.88, test_auc: 0.79, color: '#27ae60',
             fpr: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
             tpr_train: [0, 0.65, 0.78, 0.85, 0.89, 0.92, 0.94, 0.96, 0.97, 0.98, 1.0],
             tpr_test: [0, 0.55, 0.68, 0.75, 0.80, 0.84, 0.87, 0.90, 0.93, 0.96, 1.0]
         },
         'Воздержался': {
-            train_auc: 0.86,
-            test_auc: 0.70,
-            color: '#f39c12',
+            train_auc: 0.86, test_auc: 0.70, color: '#f39c12',
             fpr: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
             tpr_train: [0, 0.50, 0.68, 0.78, 0.84, 0.88, 0.91, 0.93, 0.95, 0.97, 1.0],
             tpr_test: [0, 0.30, 0.48, 0.60, 0.68, 0.74, 0.80, 0.85, 0.90, 0.95, 1.0]
         },
         'Не голосовал': {
-            train_auc: 0.83,
-            test_auc: 0.72,
-            color: '#95a5a6',
+            train_auc: 0.83, test_auc: 0.72, color: '#95a5a6',
             fpr: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
             tpr_train: [0, 0.48, 0.65, 0.75, 0.81, 0.85, 0.89, 0.92, 0.94, 0.97, 1.0],
             tpr_test: [0, 0.35, 0.52, 0.63, 0.71, 0.77, 0.82, 0.87, 0.91, 0.95, 1.0]
         },
         'Отсутствовал': {
-            train_auc: 0.85,
-            test_auc: 0.71,
-            color: '#34495e',
+            train_auc: 0.85, test_auc: 0.71, color: '#34495e',
             fpr: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
             tpr_train: [0, 0.52, 0.67, 0.77, 0.83, 0.87, 0.90, 0.93, 0.95, 0.97, 1.0],
             tpr_test: [0, 0.38, 0.54, 0.65, 0.73, 0.78, 0.83, 0.88, 0.92, 0.96, 1.0]
         },
         'Против': {
-            train_auc: 0.93,
-            test_auc: 0.83,
-            color: '#e74c3c',
+            train_auc: 0.93, test_auc: 0.83, color: '#e74c3c',
             fpr: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
             tpr_train: [0, 0.75, 0.85, 0.90, 0.93, 0.95, 0.97, 0.98, 0.99, 0.995, 1.0],
             tpr_test: [0, 0.60, 0.73, 0.81, 0.86, 0.89, 0.92, 0.94, 0.96, 0.98, 1.0]
@@ -445,32 +500,25 @@ function generateROCCurves() {
         </div>
     `;
 
-    // Генерируем каждую ROC кривую
     Object.keys(rocData).forEach(voteType => {
         const data = rocData[voteType];
         const divId = `roc-${voteType.replace(/\s/g, '_')}`;
 
         const traces = [
-            // Diagonal line
             {
-                x: [0, 1],
-                y: [0, 1],
+                x: [0, 1], y: [0, 1],
                 mode: 'lines',
                 line: {dash: 'dash', color: 'gray', width: 1},
                 showlegend: false
             },
-            // Train curve
             {
-                x: data.fpr,
-                y: data.tpr_train,
+                x: data.fpr, y: data.tpr_train,
                 mode: 'lines',
                 name: `"${voteType}" vs rest| train (AUC = ${data.train_auc})`,
                 line: {color: data.color, width: 3}
             },
-            // Test curve
             {
-                x: data.fpr,
-                y: data.tpr_test,
+                x: data.fpr, y: data.tpr_test,
                 mode: 'lines',
                 name: `"${voteType}" vs rest| test (AUC = ${data.test_auc})`,
                 line: {color: data.color, width: 2, dash: 'dot'}
@@ -489,72 +537,12 @@ function generateROCCurves() {
                 titlefont: {size: 10}
             },
             margin: {t: 10, l: 80, r: 20, b: 80},
-            legend: {
-                x: 0.5,
-                y: -0.3,
-                xanchor: 'center',
-                orientation: 'v',
-                font: {size: 9}
-            },
+            legend: {x: 0.5, y: -0.3, xanchor: 'center', orientation: 'v', font: {size: 9}},
             font: {family: 'Arial, sans-serif', size: 10}
         };
 
         Plotly.newPlot(divId, traces, layout, {responsive: true});
     });
-}
-
-function displayCase1Charts(deputies) {
-    const factionCounts = {};
-    const voteCounts = {'За': 0, 'Против': 0, 'Воздержался': 0, 'Не голосовал': 0, 'Отсутствовал': 0};
-    const voteClasses = ['За', 'Против', 'Воздержался', 'Не голосовал', 'Отсутствовал'];
-
-    deputies.forEach(dep => {
-        factionCounts[dep.faction] = (factionCounts[dep.faction] || 0) + 1;
-        const vote = voteClasses[dep.real_vote];
-        if (vote) voteCounts[vote]++;
-    });
-
-    // График 1: Фракции
-    const factionData = [{
-        x: Object.keys(factionCounts),
-        y: Object.values(factionCounts),
-        type: 'bar',
-        marker: {
-            color: '#3498db',
-            line: {
-                color: '#2980b9',
-                width: 2
-            }
-        }
-    }];
-
-    const factionLayout = {
-        xaxis: { title: 'Фракция' },
-        yaxis: { title: 'Количество депутатов' },
-        margin: { t: 20, l: 60, r: 20, b: 100 },
-        font: { family: 'Arial, sans-serif' }
-    };
-
-    Plotly.newPlot('factionChart', factionData, factionLayout, {responsive: true});
-
-    // График 2: Голоса
-    const voteData = [{
-        values: Object.values(voteCounts),
-        labels: Object.keys(voteCounts),
-        type: 'pie',
-        marker: {
-            colors: ['#27ae60', '#e74c3c', '#f39c12', '#95a5a6', '#34495e']
-        },
-        textinfo: 'label+percent',
-        textposition: 'inside'
-    }];
-
-    const voteLayout = {
-        margin: { t: 20, l: 20, r: 20, b: 20 },
-        font: { family: 'Arial, sans-serif' }
-    };
-
-    Plotly.newPlot('voteChart', voteData, voteLayout, {responsive: true});
 }
 
 // ============================================
