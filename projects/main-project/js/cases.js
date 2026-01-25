@@ -2071,18 +2071,16 @@ function generateFactionTableFromRealData(deputies) {
             <tbody>
     `;
 
-    for (const [faction, votes] of Object.entries(factionVotes)) {
-        html += `
-            <tr style="border-bottom: 1px solid #ecf0f1;">
-                <td style="padding: 0.75rem; font-weight: 600;">${faction}</td>
-                <td style="padding: 0.75rem; text-align: center; background: ${voteColors['За']}22;">${votes['За']}</td>
-                <td style="padding: 0.75rem; text-align: center; background: ${voteColors['Против']}22;">${votes['Против']}</td>
-                <td style="padding: 0.75rem; text-align: center; background: ${voteColors['Воздержался']}22;">${votes['Воздержался']}</td>
-                <td style="padding: 0.75rem; text-align: center; background: ${voteColors['Не голосовал']}22;">${votes['Не голосовал']}</td>
-                <td style="padding: 0.75rem; text-align: center; background: ${voteColors['Отсутствовал']}22;">${votes['Отсутствовал']}</td>
-            </tr>
-        `;
-    }
+for (const [faction, votes] of Object.entries(factionVotes)) {
+    html += '<tr style="border-bottom: 1px solid #ecf0f1;">';
+    html += '<td style="padding: 0.75rem; font-weight: 600;">' + faction + '</td>';
+    html += '<td style="padding: 0.75rem; text-align: center; background: ' + voteColors['За'] + '22;">' + (votes['За'] || 0) + '</td>';
+    html += '<td style="padding: 0.75rem; text-align: center; background: ' + voteColors['Против'] + '22;">' + (votes['Против'] || 0) + '</td>';
+    html += '<td style="padding: 0.75rem; text-align: center; background: ' + voteColors['Воздержался'] + '22;">' + (votes['Воздержался'] || 0) + '</td>';
+    html += '<td style="padding: 0.75rem; text-align: center; background: ' + voteColors['Не голосовал'] + '22;">' + (votes['Не голосовал'] || 0) + '</td>';
+    html += '<td style="padding: 0.75rem; text-align: center; background: ' + voteColors['Отсутствовал'] + '22;">' + (votes['Отсутствовал'] || 0) + '</td>';
+    html += '</tr>';
+}
 
     html += `</tbody></table>`;
     return html;
