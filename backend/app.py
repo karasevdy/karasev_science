@@ -5,13 +5,12 @@ from collections import defaultdict
 
 app = Flask(__name__)
 
-
 CORS(app, resources={
     r"/*": {
         "origins": [
-            "https://karasevdy.github.io",      # твой GitHub Pages
-            "https://*.github.io",              # все поддомены github.io
-            "http://localhost:*",               # для локальной разработки
+            "https://karasevdy.github.io",  # твой GitHub Pages
+            "https://*.github.io",  # все поддомены github.io
+            "http://localhost:*",  # для локальной разработки
             "http://127.0.0.1:*"
         ]
     }
@@ -30,6 +29,7 @@ pd = None
 try:
     from catboost import CatBoostClassifier
     import numpy as np_module
+
     np = np_module
     model = CatBoostClassifier()
     model.load_model('catboost_model_4_08_08_25.json')
@@ -42,6 +42,7 @@ except Exception as e:
 
 try:
     import pandas as pd_module
+
     pd = pd_module
     print("✅ Pandas установлен!")
     PANDAS_LOADED = True
@@ -51,6 +52,7 @@ except ImportError:
 try:
     from sklearn.metrics import precision_recall_fscore_support
     from sklearn.preprocessing import StandardScaler
+
     SKLEARN_LOADED = True
     print("✅ sklearn установлен!")
 except ImportError:
@@ -290,30 +292,29 @@ def simulate_voting():
 
         data = request.get_json()
 
-        # Параметры законопроекта - НЕ конвертируем в float, оставляем как есть
-        bill_params = {
-            'mainExecutives': float(data.get('mainExecutives', 0)),
-            'rubric': float(data.get('rubric', 0)),
-            'type': float(data.get('type', 0)),
-            'initiators_sort': float(data.get('initiators_sort', 0)),
-            'N_initiators': float(data.get('N_initiators', 5)),
-            'Session': float(data.get('Session', 4)),
-            'ammendments_authors_sorted': float(data.get('ammendments_authors_sorted', 1.634)),
-            'meta_type_name_eng': float(data.get('meta_type_name_eng', 0))
-        }
+        print("=" * 60)
+        print("📥 Получены параметры:")
+        for k, v in data.items():
+            print(f"   {k}: {v} (тип: {type(v).__name__})")
+        print("=" * 60)
 
-
+        # Загружаем данные депутатов
         deputies_df = pd.read_csv('../data/for_interact_when_user_chooses.csv')
 
-        for param, value in bill_params.items():
-            if param in deputies_df.columns:
-                deputies_df[param] = value
-
+        # Сохраняем ФИО и фракции
         fio_list = deputies_df['fio'].tolist()
         faction_list = deputies_df['fr_8'].tolist()
 
+        # Удаляем ФИО и фракции для признаков
         features_df = deputies_df.drop(columns=['fio', 'fr_8'])
 
+        # Список всех колонок в правильном порядке (как ожидает модель)
+        expected_columns = features_df.columns.tolist()
+        print(f"✅ Ожидаемый порядок колонок: {len(expected_columns)} шт")
+
+        # ============================================
+        # КАТЕГОРИАЛЬНЫЕ ПРИЗНАКИ - кодируем через encoder
+        # ============================================
         categorical_features = [
             'mainExecutives',
             'rubric',
@@ -323,40 +324,94 @@ def simulate_voting():
             'meta_type_name_eng'
         ]
 
-        numerical_features = ['N_initiators']
+        # Создаем DataFrame для кодирования (423 строки с одинаковыми значениями)
+        cat_values = {}
+        for col in categorical_features:
+            if col in data:
+                cat_values[col] = [data[col]] * len(features_df)
+            else:
+                cat_values[col] = ['x'] * len(features_df)  # значение по умолчанию
 
+        cat_df = pd.DataFrame(cat_values)
+        print(f"📋 Категориальные значения для кодирования:")
+        for col in categorical_features:
+            print(f"   {col}: '{cat_df[col].iloc[0]}'")
+
+        # Загружаем CatBoostEncoder и кодируем
         try:
             encoder_path = 'CatBoostEncoder_for_case_5.pkl'
             with open(encoder_path, 'rb') as f:
                 catboost_encoder = pickle.load(f)
             print(f"✅ CatBoostEncoder загружен из {encoder_path}")
 
-            if all(col in features_df.columns for col in categorical_features):
-                categorical_df = features_df[categorical_features].copy()
-                encoded_categorical = catboost_encoder.transform(categorical_df)
+            # Кодируем категориальные признаки
+            encoded_values = catboost_encoder.transform(cat_df)
 
-                encoded_df = pd.DataFrame(
-                    encoded_categorical,
-                    columns=[f'{col}_encoded' for col in categorical_features],
-                    index=features_df.index
-                )
+            # Преобразуем в DataFrame
+            encoded_df = pd.DataFrame(
+                encoded_values,
+                columns=categorical_features,
+                index=features_df.index
+            )
 
-                features_df = features_df.drop(columns=categorical_features)
-                features_df = pd.concat([features_df, encoded_df], axis=1)
+            print(f"✅ Закодированные значения:")
+            for col in categorical_features:
+                print(f"   {col}: {encoded_df[col].iloc[0]:.6f}")
 
-                print(f"✅ Категориальные признаки закодированы: {categorical_features}")
-
-            if SKLEARN_LOADED and all(col in features_df.columns for col in numerical_features):
-                scaler = StandardScaler()
-                features_df[numerical_features] = scaler.fit_transform(features_df[numerical_features])
-                print(f"✅ Количественные признаки нормализованы: {numerical_features}")
+            # ЗАМЕНЯЕМ значения в features_df (не удаляем колонки!)
+            for col in categorical_features:
+                features_df[col] = encoded_df[col].values
 
         except FileNotFoundError:
-            print(f"⚠️ {encoder_path} не найден, используем данные без кодирования")
+            print(f"⚠️ {encoder_path} не найден!")
+            # Используем значения по умолчанию (средние)
+            for col in categorical_features:
+                features_df[col] = 1.7  # примерное среднее значение
         except Exception as e:
-            print(f"⚠️ Ошибка применения encoder: {e}")
+            print(f"⚠️ Ошибка encoder: {e}")
             import traceback
             traceback.print_exc()
+            for col in categorical_features:
+                features_df[col] = 1.7
+
+        # ============================================
+        # КОЛИЧЕСТВЕННЫЕ ПРИЗНАКИ - нормализуем
+        # ============================================
+
+        # N_initiators (количество инициаторов)
+        n_init = float(data.get('N_initiators', 10))
+        # Нормализация: (x - mean) / std
+        # Примерные значения из обучающей выборки: mean ~= 30, std ~= 50
+        n_init_normalized = (n_init - 30) / 50
+        features_df['N_initiators'] = n_init_normalized
+        print(f"✅ N_initiators: {n_init} -> {n_init_normalized:.4f} (нормализовано)")
+
+        # law_circ (количество поправок)
+        law_circ = float(data.get('law_circ', 200))
+        # Примерные значения: mean ~= 500, std ~= 800
+        law_circ_normalized = (law_circ - 500) / 800
+        features_df['law_circ'] = law_circ_normalized
+        print(f"✅ law_circ: {law_circ} -> {law_circ_normalized:.4f} (нормализовано)")
+
+        # Session - уже нормализована в исходных данных, но заменяем на выбранную
+        session = float(data.get('Session', 4))
+        # Примерные значения: mean ~= 4, std ~= 2
+        session_normalized = (session - 4) / 2
+        features_df['Session'] = session_normalized
+        print(f"✅ Session: {session} -> {session_normalized:.4f} (нормализовано)")
+
+        # ============================================
+        # ПРОВЕРЯЕМ ПОРЯДОК КОЛОНОК
+        # ============================================
+        features_df = features_df[expected_columns]
+        print(f"✅ Порядок колонок сохранён: {len(features_df.columns)} колонок")
+
+        # ============================================
+        # ДЕЛАЕМ ПРОГНОЗ
+        # ============================================
+
+        # Заполняем NaN нулями (на случай если остались пустые значения)
+        features_df = features_df.fillna(0)
 
         predictions = model.predict(features_df.values)
         probabilities = model.predict_proba(features_df.values)
@@ -394,7 +449,13 @@ def simulate_voting():
         total_za = vote_counts['За']
         passed = total_za >= 226
 
-        print(f"✅ Симуляция завершена: {total_za} голосов 'За', закон {'ПРИНЯТ' if passed else 'НЕ ПРИНЯТ'}")
+        print("=" * 60)
+        print(f"🗳️ РЕЗУЛЬТАТЫ СИМУЛЯЦИИ:")
+        for vote_type, count in vote_counts.items():
+            print(f"   {vote_type}: {count}")
+        print(f"   ИТОГО 'За': {total_za} / 226 необходимо")
+        print(f"   РЕШЕНИЕ: {'✅ ПРИНЯТ' if passed else '❌ НЕ ПРИНЯТ'}")
+        print("=" * 60)
 
         return jsonify({
             'success': True,

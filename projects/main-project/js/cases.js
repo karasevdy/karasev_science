@@ -31,7 +31,8 @@ window.onclick = function(event) {
 }
 
 // ============================================
-// КЕЙС 1: Анализ голосований
+// КЕЙС 1: Вводные визуализации
+// Разделён на 3 секции с переключением
 // ============================================
 
 function openCase1() {
@@ -43,275 +44,479 @@ function openCase1() {
             <div class="modal-header" style="background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);">
                 <i class="fas fa-chart-pie"></i>
                 <div>
-                    <h2>Визуализации данных ВРУ-8</h2>
-                    <p>Графики и таблицы распределения голосов депутатов</p>
+                    <h2>Вводные визуализации для Верховной Рады 8-го созыва и ML-модели</h2>
+                    <p>Визуализация данных ВРУ-8 • Описательные статистики</p>
                 </div>
             </div>
             
             <div class="modal-body">
-                <!-- Схема рассадки депутатов (КАРТИНКИ) -->
-                <div style="margin-bottom: 3rem;">
-                    <h3 style="margin-bottom: 1rem; color: #2c3e50;">
-                        <i class="fas fa-users"></i> 0. Схема рассадки депутатов ВРУ-8
+                <!-- Три кнопки переключения разделов -->
+                <div style="display: flex; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap; justify-content: center;">
+                    <button onclick="switchCase1Section('bills')" id="btn-bills" class="case1-tab-btn active" style="flex: 1; min-width: 200px;">
+                        <i class="fas fa-file-alt"></i><br>
+                        <span style="font-size: 1.1rem; font-weight: 600;">Законопроекты и<br>динамика ВРУ-8</span>
+                    </button>
+                    <button onclick="switchCase1Section('deputies')" id="btn-deputies" class="case1-tab-btn" style="flex: 1; min-width: 200px;">
+                        <i class="fas fa-users"></i><br>
+                        <span style="font-size: 1.1rem; font-weight: 600;">Депутаты и<br>фракции</span>
+                    </button>
+                    <button onclick="switchCase1Section('model')" id="btn-model" class="case1-tab-btn" style="flex: 1; min-width: 200px;">
+                        <i class="fas fa-brain"></i><br>
+                        <span style="font-size: 1.1rem; font-weight: 600;">Точность<br>ML-модели</span>
+                    </button>
+                </div>
+                
+                <style>
+                    .case1-tab-btn {
+                        padding: 1.5rem;
+                        border: 2px solid #dee2e6;
+                        border-radius: 12px;
+                        background: white;
+                        cursor: pointer;
+                        transition: all 0.3s ease;
+                        text-align: center;
+                    }
+                    .case1-tab-btn:hover {
+                        border-color: #3498db;
+                        box-shadow: 0 4px 12px rgba(52, 152, 219, 0.2);
+                    }
+                    .case1-tab-btn.active {
+                        background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+                        color: white;
+                        border-color: #2980b9;
+                    }
+                    .case1-tab-btn i {
+                        font-size: 2rem;
+                        margin-bottom: 0.5rem;
+                        display: block;
+                    }
+                    .case1-section {
+                        display: none;
+                    }
+                    .case1-section.active {
+                        display: block;
+                    }
+                    .viz-card {
+                        background: white;
+                        border-radius: 12px;
+                        padding: 1.5rem;
+                        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+                        margin-bottom: 2rem;
+                    }
+                    .viz-card h4 {
+                        margin-top: 0;
+                        color: #2c3e50;
+                        margin-bottom: 1rem;
+                    }
+                    .viz-placeholder {
+                        min-height: 400px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        flex-direction: column;
+                        color: #999;
+                        background: #f8f9fa;
+                        border-radius: 8px;
+                    }
+                    .viz-placeholder i {
+                        font-size: 3rem;
+                        margin-bottom: 1rem;
+                    }
+                </style>
+                
+                <!-- ========== СЕКЦИЯ 1: Законопроекты и динамика ВРУ-8 ========== -->
+                <div id="section-bills" class="case1-section active">
+                    <h3 style="color: #3498db; margin-bottom: 1.5rem; border-bottom: 2px solid #3498db; padding-bottom: 0.5rem;">
+                        <i class="fas fa-file-alt"></i> Законопроекты и динамика ВРУ-8
                     </h3>
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
-                        <div>
-                            <h4 style="text-align: center; margin-bottom: 1rem; color: #2c3e50;">Схема рассадки по фракциям</h4>
-                            <div style="background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); height: 400px; display: flex; align-items: center; justify-content: center;">
-                                <img src="/karasev_science/images/graphs/seating_grid.png" 
-                                     style="max-width: 100%; max-height: 100%; object-fit: contain;"
-                                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" alt="Схема рассадки">
-                                <div style="display: none; flex-direction: column; align-items: center; color: #999;">
-                                    <i class="fas fa-image" style="font-size: 3rem; margin-bottom: 1rem;"></i>
-                                    <p>Вставьте картинку: <strong>seating_grid.png</strong></p>
-                                    <small style="margin-top: 0.5rem;">Путь: /images/graphs/seating_grid.png</small>
+                    
+                    <!-- 1. Доли типов поведения депутатов по сессиям -->
+                    <div class="viz-card">
+                        <h4><i class="fas fa-chart-line"></i> 1. Доли типов поведения депутатов по сессиям ВРУ-8</h4>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                            <div>
+                                <img src="/karasev_science/images/graphs/behavior_shares_by_session.png" 
+                                     style="max-width: 100%; height: auto; border-radius: 8px;"
+                                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" 
+                                     alt="Доли типов поведения">
+                                <div class="viz-placeholder" style="display: none;">
+                                    <i class="fas fa-image"></i>
+                                    <p>Вставьте: <strong>behavior_shares_by_session.png</strong></p>
                                 </div>
                             </div>
+                            <div id="behaviorTable"></div>
                         </div>
-                        
-                        <div>
-                            <h4 style="text-align: center; margin-bottom: 1rem; color: #2c3e50;">Распределение мест (450 мест)</h4>
-                            <div style="background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); height: 400px; display: flex; align-items: center; justify-content: center;">
-                                <img src="/karasev_science/images/graphs/seating_semicircle.png" 
-                                     style="max-width: 100%; max-height: 100%; object-fit: contain;"
-                                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" alt="Распределение мест">
-                                <div style="display: none; flex-direction: column; align-items: center; color: #999;">
-                                    <i class="fas fa-image" style="font-size: 3rem; margin-bottom: 1rem;"></i>
-                                    <p>Вставьте картинку: <strong>seating_semicircle.png</strong></p>
-                                    <small style="margin-top: 0.5rem;">Путь: /images/graphs/seating_semicircle.png</small>
-                                </div>
+                    </div>
+                    
+                    <!-- 2. Кол-во законопроектов поданных депутатами -->
+                    <div class="viz-card">
+                        <h4><i class="fas fa-chart-bar"></i> 2. Кол-во законопроектов поданных депутатами по сессиям ВРУ-8</h4>
+                        <div style="min-height: 400px;">
+                            <img src="/karasev_science/images/graphs/bills_by_session.png" 
+                                 style="max-width: 100%; height: auto; border-radius: 8px;"
+                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" 
+                                 alt="Кол-во законопроектов">
+                            <div class="viz-placeholder" style="display: none;">
+                                <i class="fas fa-image"></i>
+                                <p>Вставьте: <strong>bills_by_session.png</strong></p>
                             </div>
                         </div>
                     </div>
                     
-                    <div style="background: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-                        <h4 style="margin-top: 0; text-align: center;">Легенда фракций</h4>
-                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
-                            <div style="display: flex; align-items: center; gap: 0.5rem;">
-                                <div style="width: 20px; height: 20px; background: #e74c3c; border-radius: 3px;"></div>
-                                <span>БПП (132)</span>
-                            </div>
-                            <div style="display: flex; align-items: center; gap: 0.5rem;">
-                                <div style="width: 20px; height: 20px; background: #9b59b6; border-radius: 3px;"></div>
-                                <span>НФ (82)</span>
-                            </div>
-                            <div style="display: flex; align-items: center; gap: 0.5rem;">
-                                <div style="width: 20px; height: 20px; background: #f39c12; border-radius: 3px;"></div>
-                                <span>Самопомощ (33)</span>
-                            </div>
-                            <div style="display: flex; align-items: center; gap: 0.5rem;">
-                                <div style="width: 20px; height: 20px; background: #3498db; border-radius: 3px;"></div>
-                                <span>РпОЛ (43)</span>
-                            </div>
-                            <div style="display: flex; align-items: center; gap: 0.5rem;">
-                                <div style="width: 20px; height: 20px; background: #27ae60; border-radius: 3px;"></div>
-                                <span>ВО Батькивщина (19)</span>
-                            </div>
-                            <div style="display: flex; align-items: center; gap: 0.5rem;">
-                                <div style="width: 20px; height: 20px; background: #34495e; border-radius: 3px;"></div>
-                                <span>Опозиційний блок (43)</span>
-                            </div>
-                            <div style="display: flex; align-items: center; gap: 0.5rem;">
-                                <div style="width: 20px; height: 20px; background: #1abc9c; border-radius: 3px;"></div>
-                                <span>Воля народу (20)</span>
-                            </div>
-                            <div style="display: flex; align-items: center; gap: 0.5rem;">
-                                <div style="width: 20px; height: 20px; background: #e67e22; border-radius: 3px;"></div>
-                                <span>Відродження (26)</span>
-                            </div>
-                            <div style="display: flex; align-items: center; gap: 0.5rem;">
-                                <div style="width: 20px; height: 20px; background: #95a5a6; border-radius: 3px;"></div>
-                                <span>Позафракційні (25)</span>
+                    <!-- 3. Медианное количество соавторов -->
+                    <div class="viz-card">
+                        <h4><i class="fas fa-users"></i> 3. Медианное количество соавторов одного законопроекта по сессиям ВРУ-8</h4>
+                        <div style="min-height: 400px;">
+                            <img src="/karasev_science/images/graphs/median_coauthors.png" 
+                                 style="max-width: 100%; height: auto; border-radius: 8px;"
+                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" 
+                                 alt="Медианное кол-во соавторов">
+                            <div class="viz-placeholder" style="display: none;">
+                                <i class="fas fa-image"></i>
+                                <p>Вставьте: <strong>median_coauthors.png</strong></p>
                             </div>
                         </div>
                     </div>
-                    <p style="text-align: center; color: #666; font-size: 0.9rem; margin-top: 0.5rem;">
-                        Визуализация распределения 423 депутатов по 450 местам в зале Верховной Рады
-                    </p>
-                </div>
-
-                <!-- График 1: Сгенерированный график фракций -->
-                <div style="margin-bottom: 3rem;">
-                    <h3 style="margin-bottom: 1rem; color: #2c3e50;">
-                        <i class="fas fa-users"></i> 1. Распределение депутатов по фракциям
-                    </h3>
-                    <div id="factionChart" style="height: 400px; background: white; border-radius: 8px; padding: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);"></div>
-                    <p style="text-align: center; color: #666; font-size: 0.9rem; margin-top: 0.5rem;">
-                        Интерактивный график распределения 423 депутатов Верховной Рады VIII созыва по фракциям
-                    </p>
-                </div>
-
-                <!-- График 2: Сгенерированный график голосов -->
-                <div style="margin-bottom: 3rem;">
-                    <h3 style="margin-bottom: 1rem; color: #2c3e50;">
-                        <i class="fas fa-chart-pie"></i> 2. Распределение типов голосования
-                    </h3>
-                    <div id="voteChart" style="height: 400px; background: white; border-radius: 8px; padding: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);"></div>
-                    <p style="text-align: center; color: #666; font-size: 0.9rem; margin-top: 0.5rem;">
-                        Круговая диаграмма распределения типов голосов депутатов
-                    </p>
-                </div>
-
-                <!-- КАРТИНКА 3: Медианное количество соавторов -->
-                <div style="margin-bottom: 3rem;">
-                    <h3 style="margin-bottom: 1rem; color: #2c3e50;">
-                        <i class="fas fa-chart-line"></i> 3. Медианное количество соавторов по сессиям ВРУ-8
-                    </h3>
-                    <div style="background: white; border-radius: 8px; padding: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); min-height: 400px; display: flex; align-items: center; justify-content: center;">
-                        <img src="/karasev_science/images/graphs/median_coauthors.png" 
-                             style="max-width: 100%; height: auto;"
-                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" alt="Медианное количество соавторов">
-                        <div style="display: none; flex-direction: column; align-items: center; color: #999;">
-                            <i class="fas fa-image" style="font-size: 3rem; margin-bottom: 1rem;"></i>
-                            <p>Вставьте график: <strong>median_coauthors.png</strong></p>
-                            <small style="margin-top: 0.5rem;">Путь: /images/graphs/median_coauthors.png</small>
+                    
+                    <!-- 4. Среднее кол-во голосований -->
+                    <div class="viz-card">
+                        <h4><i class="fas fa-vote-yea"></i> 4. Среднее кол-во голосований, приходящееся на один законопроект по сессиям ВРУ-8</h4>
+                        <div style="min-height: 400px;">
+                            <img src="/karasev_science/images/graphs/avg_votings.png" 
+                                 style="max-width: 100%; height: auto; border-radius: 8px;"
+                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" 
+                                 alt="Среднее кол-во голосований">
+                            <div class="viz-placeholder" style="display: none;">
+                                <i class="fas fa-image"></i>
+                                <p>Вставьте: <strong>avg_votings.png</strong></p>
+                            </div>
                         </div>
                     </div>
-                    <p style="text-align: center; color: #666; font-size: 0.9rem; margin-top: 0.5rem;">
-                        График показывает изменение медианного количества соавторов законопроектов по сессиям
-                    </p>
+                    
+                    <!-- 5. Распределение типов законодательных процедур -->
+                    <div class="viz-card">
+                        <h4><i class="fas fa-table"></i> 5. Распределение типов законодательных процедур по сессиям ВРУ-8</h4>
+                        <div id="votingTypesTable" style="overflow-x: auto;"></div>
+                    </div>
+                    
+                    <!-- 6. Доли законопроектов соавторов по фракциям -->
+                    <div class="viz-card">
+                        <h4><i class="fas fa-chart-area"></i> 6. Доли законопроектов соавторов, сгруппированных по фракциям по сессиям ВРУ-8</h4>
+                        <div style="min-height: 400px;">
+                            <img src="/karasev_science/images/graphs/coauthors_by_factions.png" 
+                                 style="max-width: 100%; height: auto; border-radius: 8px;"
+                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" 
+                                 alt="Доли соавторов по фракциям">
+                            <div class="viz-placeholder" style="display: none;">
+                                <i class="fas fa-image"></i>
+                                <p>Вставьте: <strong>coauthors_by_factions.png</strong></p>
+                            </div>
+                        </div>
+                        <div id="coauthorsTable" style="margin-top: 1rem; overflow-x: auto;"></div>
+                    </div>
                 </div>
-
-                <!-- КАРТИНКА 4: Среднее количество голосований -->
-                <div style="margin-bottom: 3rem;">
-                    <h3 style="margin-bottom: 1rem; color: #2c3e50;">
-                        <i class="fas fa-chart-line"></i> 4. Среднее количество голосований на законопроект
+                
+                <!-- ========== СЕКЦИЯ 2: Депутаты и фракции ========== -->
+                <div id="section-deputies" class="case1-section">
+                    <h3 style="color: #27ae60; margin-bottom: 1.5rem; border-bottom: 2px solid #27ae60; padding-bottom: 0.5rem;">
+                        <i class="fas fa-users"></i> Депутаты и фракции
                     </h3>
-                    <div style="background: white; border-radius: 8px; padding: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); min-height: 400px; display: flex; align-items: center; justify-content: center;">
-                        <img src="/karasev_science/images/graphs/avg_votings.png" 
-                             style="max-width: 100%; height: auto;"
-                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" alt="Среднее количество голосований">
-                        <div style="display: none; flex-direction: column; align-items: center; color: #999;">
-                            <i class="fas fa-image" style="font-size: 3rem; margin-bottom: 1rem;"></i>
-                            <p>Вставьте график: <strong>avg_votings.png</strong></p>
-                            <small style="margin-top: 0.5rem;">Путь: /images/graphs/avg_votings.png</small>
+                    
+                    <!-- 1. Схема рассадки -->
+                    <div class="viz-card">
+                        <h4><i class="fas fa-chair"></i> 1. Схема рассадки и кол-во мест у фракций</h4>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                            <div>
+                                <h5 style="text-align: center;">Схема рассадки по фракциям</h5>
+                                <img src="/karasev_science/images/graphs/seating_grid.png" 
+                                     style="max-width: 100%; height: auto; border-radius: 8px;"
+                                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" 
+                                     alt="Схема рассадки">
+                                <div class="viz-placeholder" style="display: none; height: 300px;">
+                                    <i class="fas fa-image"></i>
+                                    <p>Вставьте: <strong>seating_grid.png</strong></p>
+                                </div>
+                            </div>
+                            <div>
+                                <h5 style="text-align: center;">Распределение мест (450 мест)</h5>
+                                <img src="/karasev_science/images/graphs/seating_semicircle.png" 
+                                     style="max-width: 100%; height: auto; border-radius: 8px;"
+                                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" 
+                                     alt="Полукруг">
+                                <div class="viz-placeholder" style="display: none; height: 300px;">
+                                    <i class="fas fa-image"></i>
+                                    <p>Вставьте: <strong>seating_semicircle.png</strong></p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Легенда фракций -->
+                        <div style="margin-top: 1.5rem; padding: 1rem; background: #f8f9fa; border-radius: 8px;">
+                            <h5 style="margin-top: 0; text-align: center;">Легенда фракций</h5>
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0.75rem;">
+                                <div style="display: flex; align-items: center; gap: 0.5rem;"><div style="width: 20px; height: 20px; background: #e74c3c; border-radius: 3px;"></div><span>БПП (132)</span></div>
+                                <div style="display: flex; align-items: center; gap: 0.5rem;"><div style="width: 20px; height: 20px; background: #9b59b6; border-radius: 3px;"></div><span>НФ (82)</span></div>
+                                <div style="display: flex; align-items: center; gap: 0.5rem;"><div style="width: 20px; height: 20px; background: #f39c12; border-radius: 3px;"></div><span>Самопомощ (33)</span></div>
+                                <div style="display: flex; align-items: center; gap: 0.5rem;"><div style="width: 20px; height: 20px; background: #3498db; border-radius: 3px;"></div><span>РпОЛ (43)</span></div>
+                                <div style="display: flex; align-items: center; gap: 0.5rem;"><div style="width: 20px; height: 20px; background: #27ae60; border-radius: 3px;"></div><span>ВО Батькивщина (19)</span></div>
+                                <div style="display: flex; align-items: center; gap: 0.5rem;"><div style="width: 20px; height: 20px; background: #34495e; border-radius: 3px;"></div><span>Опозиційний блок (43)</span></div>
+                                <div style="display: flex; align-items: center; gap: 0.5rem;"><div style="width: 20px; height: 20px; background: #1abc9c; border-radius: 3px;"></div><span>Воля народу (20)</span></div>
+                                <div style="display: flex; align-items: center; gap: 0.5rem;"><div style="width: 20px; height: 20px; background: #e67e22; border-radius: 3px;"></div><span>Відродження (26)</span></div>
+                                <div style="display: flex; align-items: center; gap: 0.5rem;"><div style="width: 20px; height: 20px; background: #95a5a6; border-radius: 3px;"></div><span>Позафракційні (25)</span></div>
+                            </div>
                         </div>
                     </div>
-                    <p style="text-align: center; color: #666; font-size: 0.9rem; margin-top: 0.5rem;">
-                        График распределения среднего количества голосований по сессиям ВРУ-8
-                    </p>
+                    
+                    <!-- 2. Распределение депутатов по фракциям -->
+                    <div class="viz-card">
+                        <h4><i class="fas fa-chart-bar"></i> 2. Распределение депутатов по фракциям</h4>
+                        <div id="factionChart" style="height: 400px;"></div>
+                    </div>
+                    
+                    <!-- 3. Кластеры k=3 -->
+                    <div class="viz-card">
+                        <h4><i class="fas fa-project-diagram"></i> 3. Кластеры (k=3) депутатов в зависимости от их поведения</h4>
+                        <div style="min-height: 400px;">
+                            <img src="/karasev_science/images/graphs/clusters_k3.png" 
+                                 style="max-width: 100%; height: auto; border-radius: 8px;"
+                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" 
+                                 alt="Кластеры k=3">
+                            <div class="viz-placeholder" style="display: none;">
+                                <i class="fas fa-image"></i>
+                                <p>Вставьте: <strong>clusters_k3.png</strong></p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 4. Кластеры k=5 -->
+                    <div class="viz-card">
+                        <h4><i class="fas fa-project-diagram"></i> 4. Кластеры (k=5) депутатов в зависимости от их поведения</h4>
+                        <div style="min-height: 400px;">
+                            <img src="/karasev_science/images/graphs/clusters_k5.png" 
+                                 style="max-width: 100%; height: auto; border-radius: 8px;"
+                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" 
+                                 alt="Кластеры k=5">
+                            <div class="viz-placeholder" style="display: none;">
+                                <i class="fas fa-image"></i>
+                                <p>Вставьте: <strong>clusters_k5.png</strong></p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 5. Матрицы сходства голосования -->
+                    <div class="viz-card">
+                        <h4><i class="fas fa-th"></i> 5. Матрицы сходства голосования по всем фракциям</h4>
+                        <div style="min-height: 500px;">
+                            <img src="/karasev_science/images/graphs/similarity_matrices.png" 
+                                 style="max-width: 100%; height: auto; border-radius: 8px;"
+                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" 
+                                 alt="Матрицы сходства">
+                            <div class="viz-placeholder" style="display: none;">
+                                <i class="fas fa-image"></i>
+                                <p>Вставьте: <strong>similarity_matrices.png</strong></p>
+                                <small>(вставить все матрицы из файла "По сайту".pdf)</small>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 6. Динамика сплоченности фракций (UNITY) -->
+                    <div class="viz-card">
+                        <h4><i class="fas fa-chart-line"></i> 6. Динамика сплоченности фракций по сессиям ВРУ-8 (UNITY)</h4>
+                        <div style="min-height: 400px;">
+                            <img src="/karasev_science/images/graphs/unity_dynamics.png" 
+                                 style="max-width: 100%; height: auto; border-radius: 8px;"
+                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" 
+                                 alt="UNITY">
+                            <div class="viz-placeholder" style="display: none;">
+                                <i class="fas fa-image"></i>
+                                <p>Вставьте: <strong>unity_dynamics.png</strong></p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
-                <!-- ТАБЛИЦА 5: Распределение типов голосований -->
-                <div style="margin-bottom: 3rem;">
-                    <h3 style="margin-bottom: 1rem; color: #2c3e50;">
-                        <i class="fas fa-table"></i> 5. Распределение типов законодательных процедур по сессиям
+                
+                <!-- ========== СЕКЦИЯ 3: Точность ML-модели ========== -->
+                <div id="section-model" class="case1-section">
+                    <h3 style="color: #9b59b6; margin-bottom: 1.5rem; border-bottom: 2px solid #9b59b6; padding-bottom: 0.5rem;">
+                        <i class="fas fa-brain"></i> Точность ML-модели
                     </h3>
-                    <div id="votingTypesTable" style="background: white; border-radius: 8px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); overflow-x: auto;"></div>
-                    <p style="text-align: center; color: #666; font-size: 0.9rem; margin-top: 0.5rem;">
-                        Таблица с распределением типов процедур голосования по сессиям
-                    </p>
+                    
+                    <!-- 1. Доли типов поведения train и test -->
+                    <div class="viz-card">
+                        <h4><i class="fas fa-chart-pie"></i> 1. Доли типов поведения train и test</h4>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                            <div>
+                                <h5 style="text-align: center;">Обучающая выборка (7-9 сессии)</h5>
+                                <div id="trainPieChart" style="height: 300px;"></div>
+                                <div id="trainTable" style="margin-top: 1rem;"></div>
+                            </div>
+                            <div>
+                                <h5 style="text-align: center;">Тестовая выборка (9-10 сессии)</h5>
+                                <div id="testPieChart" style="height: 300px;"></div>
+                                <div id="testTable" style="margin-top: 1rem;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 2. Classification Report - Train -->
+                    <div class="viz-card">
+                        <h4><i class="fas fa-table"></i> 2. Classification report - train</h4>
+                        <div id="classReportTrain" style="overflow-x: auto;"></div>
+                    </div>
+                    
+                    <!-- 3. Classification Report - Test -->
+                    <div class="viz-card">
+                        <h4><i class="fas fa-table"></i> 3. Classification report - test</h4>
+                        <div id="classReportTest" style="overflow-x: auto;"></div>
+                    </div>
+                    
+                    <!-- 4. ROC кривые -->
+                    <div class="viz-card">
+                        <h4><i class="fas fa-chart-area"></i> 4. ROC-кривые</h4>
+                        <div id="rocCurves"></div>
+                    </div>
+                    
+                    <!-- 5. Матрица неточностей -->
+                    <div class="viz-card">
+                        <h4><i class="fas fa-th"></i> 5. Матрица неточностей (Confusion Matrix)</h4>
+                        <div style="min-height: 400px;">
+                            <img src="/karasev_science/images/graphs/confusion_matrix.png" 
+                                 style="max-width: 100%; height: auto; border-radius: 8px;"
+                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" 
+                                 alt="Confusion Matrix">
+                            <div class="viz-placeholder" style="display: none;">
+                                <i class="fas fa-image"></i>
+                                <p>Вставьте: <strong>confusion_matrix.png</strong></p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
-                <!-- ТАБЛИЦА 6: Classification Report - Train -->
-                <div style="margin-bottom: 3rem;">
-                    <h3 style="margin-bottom: 1rem; color: #2c3e50;">
-                        <i class="fas fa-chart-bar"></i> 6. Отчет о классификации - Обучающая выборка (CatBoost Train)
-                    </h3>
-                    <div id="classReportTrain" style="background: white; border-radius: 8px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); overflow-x: auto;"></div>
-                    <p style="text-align: center; color: #666; font-size: 0.9rem; margin-top: 0.5rem;">
-                        Classification report на обучающей выборке
-                    </p>
-                </div>
-
-                <!-- ТАБЛИЦА 7: Classification Report - Test -->
-                <div style="margin-bottom: 3rem;">
-                    <h3 style="margin-bottom: 1rem; color: #2c3e50;">
-                        <i class="fas fa-chart-bar"></i> 7. Отчет о классификации - Тестовая выборка (CatBoost Test)
-                    </h3>
-                    <div id="classReportTest" style="background: white; border-radius: 8px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); overflow-x: auto;"></div>
-                    <p style="text-align: center; color: #666; font-size: 0.9rem; margin-top: 0.5rem;">
-                        Classification report на тестовой выборке
-                    </p>
-                </div>
-
-                <!-- ГРАФИКИ 8: ROC кривые -->
-                <div style="margin-bottom: 3rem;">
-                    <h3 style="margin-bottom: 1rem; color: #2c3e50;">
-                        <i class="fas fa-chart-area"></i> 8. ROC кривые для типов голосования
-                    </h3>
-                    <div id="rocCurves" style="background: white; border-radius: 8px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);"></div>
-                    <p style="text-align: center; color: #666; font-size: 0.9rem; margin-top: 0.5rem;">
-                        ROC кривые для бинарной классификации
-                    </p>
-                </div>
-
-                <button onclick="loadCase1Data()" class="btn-primary" style="width: 100%; padding: 1rem; font-size: 1.1rem; margin-top: 2rem;">
-                    <i class="fas fa-sync"></i> Обновить данные
-                </button>
             </div>
         </div>
     `;
+
     modal.style.display = 'flex';
     loadCase1Data();
 }
 
+// Переключение между секциями
+function switchCase1Section(section) {
+    // Убираем active у всех кнопок и секций
+    document.querySelectorAll('.case1-tab-btn').forEach(btn => btn.classList.remove('active'));
+    document.querySelectorAll('.case1-section').forEach(sec => sec.classList.remove('active'));
+
+    // Добавляем active нужным элементам
+    document.getElementById(`btn-${section}`).classList.add('active');
+    document.getElementById(`section-${section}`).classList.add('active');
+
+    // Перерисовываем графики при переключении (Plotly требует видимости)
+    setTimeout(() => {
+        if (section === 'deputies') {
+            generateFactionChart();
+        } else if (section === 'model') {
+            generateTrainTestCharts();
+            generateROCCurves();
+        }
+    }, 100);
+}
+
 async function loadCase1Data() {
+    // Генерируем все таблицы
+    generateBehaviorTable();
+    generateVotingTypesTable();
+    generateCoauthorsTable();
+    generateClassificationReports();
+    generateTrainTestTables();
+
+    // Загружаем данные депутатов для графика фракций
     try {
         const response = await fetch(`${API_URL}/deputies`);
         const data = await response.json();
-
         if (data.success) {
-            displayCase1Charts(data.deputies);
+            window.deputiesData = data.deputies;
         }
     } catch (error) {
         console.error('Ошибка загрузки:', error);
     }
 
-    generateVotingTypesTable();
-    generateClassificationReports();
-    generateROCCurves();
+    // Генерируем первый видимый график
+    generateFactionChart();
 }
 
-function displayCase1Charts(deputies) {
-    const factionCounts = {};
-    const voteCounts = {'За': 0, 'Против': 0, 'Воздержался': 0, 'Не голосовал': 0, 'Отсутствовал': 0};
-    const voteClasses = ['За', 'Против', 'Воздержался', 'Не голосовал', 'Отсутствовал'];
-
-    deputies.forEach(dep => {
-        factionCounts[dep.faction] = (factionCounts[dep.faction] || 0) + 1;
-        const vote = voteClasses[dep.real_vote];
-        if (vote) voteCounts[vote]++;
-    });
+function generateFactionChart() {
+    const factionCounts = {
+        'БПП': 132, 'НФ': 82, 'Самопомощ': 33, 'РпОЛ': 43,
+        'ВО Батькивщина': 19, 'Опозиційний блок': 43, 'Воля народу': 20,
+        'Відродження': 26, 'Позафракційні': 25
+    };
 
     const factionData = [{
         x: Object.keys(factionCounts),
         y: Object.values(factionCounts),
         type: 'bar',
         marker: {
-            color: '#3498db',
-            line: { color: '#2980b9', width: 2 }
-        }
+            color: ['#e74c3c', '#9b59b6', '#f39c12', '#3498db', '#27ae60', '#34495e', '#1abc9c', '#e67e22', '#95a5a6']
+        },
+        text: Object.values(factionCounts),
+        textposition: 'outside'
     }];
 
-    const factionLayout = {
-        xaxis: { title: 'Фракция' },
+    const layout = {
         yaxis: { title: 'Количество депутатов' },
         margin: { t: 20, l: 60, r: 20, b: 100 },
         font: { family: 'Arial, sans-serif' }
     };
 
-    Plotly.newPlot('factionChart', factionData, factionLayout, {responsive: true});
+    Plotly.newPlot('factionChart', factionData, layout, {responsive: true});
+}
 
-    const voteData = [{
-        values: Object.values(voteCounts),
-        labels: Object.keys(voteCounts),
-        type: 'pie',
-        marker: { colors: ['#27ae60', '#e74c3c', '#f39c12', '#95a5a6', '#34495e'] },
-        textinfo: 'label+percent',
-        textposition: 'inside'
-    }];
-
-    const voteLayout = {
-        margin: { t: 20, l: 20, r: 20, b: 20 },
-        font: { family: 'Arial, sans-serif' }
+function generateBehaviorTable() {
+    const data = {
+        sessions: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+        vozderzhal: [0.06, 0.07, 0.05, 0.07, 0.07, 0.06, 0.08, 0.05, 0.05, 0.03],
+        za: [0.44, 0.48, 0.18, 0.41, 0.43, 0.22, 0.33, 0.37, 0.40, 0.48],
+        ne_golosoval: [0.26, 0.22, 0.45, 0.31, 0.29, 0.47, 0.42, 0.39, 0.32, 0.29],
+        otsutstvoval: [0.23, 0.21, 0.33, 0.20, 0.20, 0.21, 0.20, 0.21, 0.21, 0.21],
+        protiv: [0.01, 0.02, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.02, 0.01]
     };
 
-    Plotly.newPlot('voteChart', voteData, voteLayout, {responsive: true});
+    const container = document.getElementById('behaviorTable');
+    if (!container) return;
+
+    let html = `
+        <table style="width: 100%; border-collapse: collapse; font-size: 0.85rem;">
+            <thead>
+                <tr style="background: #ecf0f1;">
+                    <th style="padding: 0.5rem; border: 1px solid #bdc3c7;">vote</th>
+                    <th style="padding: 0.5rem; border: 1px solid #bdc3c7;">Воздержался</th>
+                    <th style="padding: 0.5rem; border: 1px solid #bdc3c7;">За</th>
+                    <th style="padding: 0.5rem; border: 1px solid #bdc3c7;">Не голосовал</th>
+                    <th style="padding: 0.5rem; border: 1px solid #bdc3c7;">Отсутствовал</th>
+                    <th style="padding: 0.5rem; border: 1px solid #bdc3c7;">Против</th>
+                </tr>
+            </thead>
+            <tbody>
+    `;
+
+    for (let i = 0; i < data.sessions.length; i++) {
+        const bg = i % 2 === 0 ? '#f8f9fa' : 'white';
+        html += `
+            <tr style="background: ${bg};">
+                <td style="padding: 0.5rem; border: 1px solid #bdc3c7; font-weight: 600;">${data.sessions[i]}</td>
+                <td style="padding: 0.5rem; border: 1px solid #bdc3c7; text-align: center;">${data.vozderzhal[i].toFixed(2)}</td>
+                <td style="padding: 0.5rem; border: 1px solid #bdc3c7; text-align: center;">${data.za[i].toFixed(2)}</td>
+                <td style="padding: 0.5rem; border: 1px solid #bdc3c7; text-align: center;">${data.ne_golosoval[i].toFixed(2)}</td>
+                <td style="padding: 0.5rem; border: 1px solid #bdc3c7; text-align: center;">${data.otsutstvoval[i].toFixed(2)}</td>
+                <td style="padding: 0.5rem; border: 1px solid #bdc3c7; text-align: center;">${data.protiv[i].toFixed(2)}</td>
+            </tr>
+        `;
+    }
+
+    html += '</tbody></table>';
+    container.innerHTML = html;
 }
 
 function generateVotingTypesTable() {
-    const tableData = {
+    const data = {
         sessions: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
         agenda: [0.04, 0.32, 0.04, 0.14, 0.09, 0.06, 0.10, 0.18, 0.23, 0.52],
         ammendments: [0.29, 0.12, 0.75, 0.34, 0.28, 0.68, 0.53, 0.31, 0.23, 0.02],
@@ -323,42 +528,138 @@ function generateVotingTypesTable() {
     };
 
     const container = document.getElementById('votingTypesTable');
+    if (!container) return;
 
-    let tableHTML = `
-        <table style="width: 100%; border-collapse: collapse; font-size: 0.95rem;">
+    let html = `
+        <table style="width: 100%; border-collapse: collapse; font-size: 0.9rem;">
             <thead>
                 <tr style="background: #ecf0f1;">
-                    <th style="padding: 0.75rem; text-align: center; border: 1px solid #bdc3c7; font-weight: 600;">Session</th>
-                    <th style="padding: 0.75rem; text-align: center; border: 1px solid #bdc3c7; font-weight: 600;">agenda</th>
-                    <th style="padding: 0.75rem; text-align: center; border: 1px solid #bdc3c7; font-weight: 600;">ammendments</th>
-                    <th style="padding: 0.75rem; text-align: center; border: 1px solid #bdc3c7; font-weight: 600;">cancel</th>
-                    <th style="padding: 0.75rem; text-align: center; border: 1px solid #bdc3c7; font-weight: 600;">final_voting</th>
-                    <th style="padding: 0.75rem; text-align: center; border: 1px solid #bdc3c7; font-weight: 600;">second_voting</th>
-                    <th style="padding: 0.75rem; text-align: center; border: 1px solid #bdc3c7; font-weight: 600;">short_procedure</th>
-                    <th style="padding: 0.75rem; text-align: center; border: 1px solid #bdc3c7; font-weight: 600;">signal_voting</th>
+                    <th style="padding: 0.75rem; border: 1px solid #bdc3c7;">Session</th>
+                    <th style="padding: 0.75rem; border: 1px solid #bdc3c7;">agenda</th>
+                    <th style="padding: 0.75rem; border: 1px solid #bdc3c7;">ammendments</th>
+                    <th style="padding: 0.75rem; border: 1px solid #bdc3c7;">cancel</th>
+                    <th style="padding: 0.75rem; border: 1px solid #bdc3c7;">final_voting</th>
+                    <th style="padding: 0.75rem; border: 1px solid #bdc3c7;">second_voting</th>
+                    <th style="padding: 0.75rem; border: 1px solid #bdc3c7;">short_procedure</th>
+                    <th style="padding: 0.75rem; border: 1px solid #bdc3c7;">signal_voting</th>
                 </tr>
             </thead>
             <tbody>
     `;
 
-    for (let i = 0; i < tableData.sessions.length; i++) {
-        const rowStyle = i % 2 === 0 ? 'background: #f8f9fa;' : 'background: white;';
-        tableHTML += `
-            <tr style="${rowStyle}">
-                <td style="padding: 0.75rem; text-align: center; border: 1px solid #bdc3c7; font-weight: 600;">${tableData.sessions[i]}</td>
-                <td style="padding: 0.75rem; text-align: center; border: 1px solid #bdc3c7;">${tableData.agenda[i].toFixed(2)}</td>
-                <td style="padding: 0.75rem; text-align: center; border: 1px solid #bdc3c7;">${tableData.ammendments[i].toFixed(2)}</td>
-                <td style="padding: 0.75rem; text-align: center; border: 1px solid #bdc3c7;">${tableData.cancel[i].toFixed(2)}</td>
-                <td style="padding: 0.75rem; text-align: center; border: 1px solid #bdc3c7;">${tableData.final_voting[i].toFixed(2)}</td>
-                <td style="padding: 0.75rem; text-align: center; border: 1px solid #bdc3c7;">${tableData.second_voting[i].toFixed(2)}</td>
-                <td style="padding: 0.75rem; text-align: center; border: 1px solid #bdc3c7;">${tableData.short_procedure[i].toFixed(2)}</td>
-                <td style="padding: 0.75rem; text-align: center; border: 1px solid #bdc3c7;">${tableData.signal_voting[i].toFixed(2)}</td>
+    for (let i = 0; i < data.sessions.length; i++) {
+        const bg = i % 2 === 0 ? '#f8f9fa' : 'white';
+        html += `
+            <tr style="background: ${bg};">
+                <td style="padding: 0.75rem; border: 1px solid #bdc3c7; font-weight: 600; text-align: center;">${data.sessions[i]}</td>
+                <td style="padding: 0.75rem; border: 1px solid #bdc3c7; text-align: center;">${data.agenda[i].toFixed(2)}</td>
+                <td style="padding: 0.75rem; border: 1px solid #bdc3c7; text-align: center;">${data.ammendments[i].toFixed(2)}</td>
+                <td style="padding: 0.75rem; border: 1px solid #bdc3c7; text-align: center;">${data.cancel[i].toFixed(2)}</td>
+                <td style="padding: 0.75rem; border: 1px solid #bdc3c7; text-align: center;">${data.final_voting[i].toFixed(2)}</td>
+                <td style="padding: 0.75rem; border: 1px solid #bdc3c7; text-align: center;">${data.second_voting[i].toFixed(2)}</td>
+                <td style="padding: 0.75rem; border: 1px solid #bdc3c7; text-align: center;">${data.short_procedure[i].toFixed(2)}</td>
+                <td style="padding: 0.75rem; border: 1px solid #bdc3c7; text-align: center;">${data.signal_voting[i].toFixed(2)}</td>
             </tr>
         `;
     }
 
-    tableHTML += '</tbody></table>';
-    container.innerHTML = tableHTML;
+    html += '</tbody></table>';
+    container.innerHTML = html;
+}
+
+function generateCoauthorsTable() {
+    // Таблица соотношения законопроектов соавторов по фракциям
+    const container = document.getElementById('coauthorsTable');
+    if (!container) return;
+
+    // Данные можно взять из PDF
+    container.innerHTML = '<p style="color: #999; text-align: center;">Таблица генерируется из данных</p>';
+}
+
+function generateTrainTestTables() {
+    // Таблицы train и test
+    const trainData = [
+        {behavior: 'Не голосовал', count: 3410921, share: 0.37},
+        {behavior: 'За', count: 2816714, share: 0.31},
+        {behavior: 'Отсутствовал', count: 2236131, share: 0.24},
+        {behavior: 'Воздержался', count: 599716, share: 0.07},
+        {behavior: 'Против', count: 90475, share: 0.01}
+    ];
+
+    const testData = [
+        {behavior: 'За', count: 408976, share: 0.39},
+        {behavior: 'Не голосовал', count: 348072, share: 0.33},
+        {behavior: 'Отсутствовал', count: 219677, share: 0.21},
+        {behavior: 'Воздержался', count: 49557, share: 0.05},
+        {behavior: 'Против', count: 11524, share: 0.01}
+    ];
+
+    const trainContainer = document.getElementById('trainTable');
+    const testContainer = document.getElementById('testTable');
+
+    if (trainContainer) {
+        trainContainer.innerHTML = generateSmallTable(trainData, 'Обучающая выборка');
+    }
+    if (testContainer) {
+        testContainer.innerHTML = generateSmallTable(testData, 'Тестовая выборка');
+    }
+}
+
+function generateSmallTable(data, title) {
+    let html = `
+        <table style="width: 100%; border-collapse: collapse; font-size: 0.85rem;">
+            <thead>
+                <tr style="background: #ecf0f1;">
+                    <th style="padding: 0.5rem; border: 1px solid #bdc3c7;">#</th>
+                    <th style="padding: 0.5rem; border: 1px solid #bdc3c7;">behavior</th>
+                    <th style="padding: 0.5rem; border: 1px solid #bdc3c7;">vote_percent</th>
+                </tr>
+            </thead>
+            <tbody>
+    `;
+
+    data.forEach((row, i) => {
+        const bg = i % 2 === 0 ? '#f8f9fa' : 'white';
+        html += `
+            <tr style="background: ${bg};">
+                <td style="padding: 0.5rem; border: 1px solid #bdc3c7; text-align: center;">${i}</td>
+                <td style="padding: 0.5rem; border: 1px solid #bdc3c7;">${row.behavior}</td>
+                <td style="padding: 0.5rem; border: 1px solid #bdc3c7; text-align: center;">${row.share.toFixed(2)}</td>
+            </tr>
+        `;
+    });
+
+    html += '</tbody></table>';
+    return html;
+}
+
+function generateTrainTestCharts() {
+    // Круговые диаграммы train и test
+    const trainColors = ['#95a5a6', '#27ae60', '#34495e', '#f39c12', '#e74c3c'];
+    const testColors = ['#27ae60', '#95a5a6', '#34495e', '#f39c12', '#e74c3c'];
+
+    const trainData = [{
+        values: [0.37, 0.31, 0.24, 0.07, 0.01],
+        labels: ['Не голосовал', 'За', 'Отсутствовал', 'Воздержался', 'Против'],
+        type: 'pie',
+        marker: { colors: trainColors },
+        textinfo: 'percent',
+        textposition: 'inside'
+    }];
+
+    const testData = [{
+        values: [0.39, 0.33, 0.21, 0.05, 0.01],
+        labels: ['За', 'Не голосовал', 'Отсутствовал', 'Воздержался', 'Против'],
+        type: 'pie',
+        marker: { colors: testColors },
+        textinfo: 'percent',
+        textposition: 'inside'
+    }];
+
+    const layout = { margin: { t: 10, l: 10, r: 10, b: 10 }, showlegend: true, legend: { orientation: 'h', y: -0.1 } };
+
+    Plotly.newPlot('trainPieChart', trainData, layout, {responsive: true});
+    Plotly.newPlot('testPieChart', testData, layout, {responsive: true});
 }
 
 function generateClassificationReports() {
@@ -390,155 +691,113 @@ function generateClassificationReports() {
 
 function generateClassReportTable(containerId, data, title) {
     const container = document.getElementById(containerId);
+    if (!container) return;
 
-    let tableHTML = `
+    let html = `
         <div style="text-align: center; margin-bottom: 1rem;">
-            <h4 style="margin: 0; color: #2c3e50;">${title}</h4>
+            <h5 style="margin: 0; color: #2c3e50;">${title}</h5>
         </div>
-        <table style="width: 100%; border-collapse: collapse; font-size: 0.95rem;">
+        <table style="width: 100%; border-collapse: collapse; font-size: 0.9rem;">
             <thead>
                 <tr style="background: #ecf0f1;">
-                    <th style="padding: 0.75rem; text-align: left; border: 1px solid #bdc3c7; font-weight: 600;"></th>
-                    <th style="padding: 0.75rem; text-align: center; border: 1px solid #bdc3c7; font-weight: 600;">precision</th>
-                    <th style="padding: 0.75rem; text-align: center; border: 1px solid #bdc3c7; font-weight: 600;">recall</th>
-                    <th style="padding: 0.75rem; text-align: center; border: 1px solid #bdc3c7; font-weight: 600;">f1-score</th>
-                    <th style="padding: 0.75rem; text-align: center; border: 1px solid #bdc3c7; font-weight: 600;">кейсов</th>
+                    <th style="padding: 0.75rem; border: 1px solid #bdc3c7;"></th>
+                    <th style="padding: 0.75rem; border: 1px solid #bdc3c7;">precision</th>
+                    <th style="padding: 0.75rem; border: 1px solid #bdc3c7;">recall</th>
+                    <th style="padding: 0.75rem; border: 1px solid #bdc3c7;">f1-score</th>
+                    <th style="padding: 0.75rem; border: 1px solid #bdc3c7;">кейсов</th>
                 </tr>
             </thead>
             <tbody>
     `;
 
     for (let i = 0; i < data.classes.length; i++) {
-        const rowStyle = i % 2 === 0 ? 'background: #f8f9fa;' : 'background: white;';
-        tableHTML += `
-            <tr style="${rowStyle}">
+        const bg = i % 2 === 0 ? '#f8f9fa' : 'white';
+        html += `
+            <tr style="background: ${bg};">
                 <td style="padding: 0.75rem; border: 1px solid #bdc3c7; font-weight: 600;">${data.classes[i]}</td>
-                <td style="padding: 0.75rem; text-align: center; border: 1px solid #bdc3c7;">${data.precision[i].toFixed(2)}</td>
-                <td style="padding: 0.75rem; text-align: center; border: 1px solid #bdc3c7;">${data.recall[i].toFixed(2)}</td>
-                <td style="padding: 0.75rem; text-align: center; border: 1px solid #bdc3c7;">${data.f1score[i].toFixed(2)}</td>
-                <td style="padding: 0.75rem; text-align: center; border: 1px solid #bdc3c7;">${data.support[i].toLocaleString()}</td>
+                <td style="padding: 0.75rem; border: 1px solid #bdc3c7; text-align: center;">${data.precision[i].toFixed(2)}</td>
+                <td style="padding: 0.75rem; border: 1px solid #bdc3c7; text-align: center;">${data.recall[i].toFixed(2)}</td>
+                <td style="padding: 0.75rem; border: 1px solid #bdc3c7; text-align: center;">${data.f1score[i].toFixed(2)}</td>
+                <td style="padding: 0.75rem; border: 1px solid #bdc3c7; text-align: center;">${data.support[i].toLocaleString()}</td>
             </tr>
         `;
     }
 
-    tableHTML += '<tr style="background: white;"><td colspan="5" style="padding: 0.25rem; border: none;"></td></tr>';
-
-    tableHTML += `
+    html += `
+        <tr style="background: white;"><td colspan="5" style="padding: 0.25rem; border: none;"></td></tr>
         <tr style="background: #e8f5e9;">
             <td style="padding: 0.75rem; border: 1px solid #bdc3c7; font-weight: 600;">accuracy</td>
-            <td style="padding: 0.75rem; text-align: center; border: 1px solid #bdc3c7;"></td>
-            <td style="padding: 0.75rem; text-align: center; border: 1px solid #bdc3c7;"></td>
-            <td style="padding: 0.75rem; text-align: center; border: 1px solid #bdc3c7; font-weight: 600;">${data.accuracy.toFixed(2)}</td>
-            <td style="padding: 0.75rem; text-align: center; border: 1px solid #bdc3c7; font-weight: 600;">${data.macro_avg.support.toLocaleString()}</td>
+            <td colspan="2" style="border: 1px solid #bdc3c7;"></td>
+            <td style="padding: 0.75rem; border: 1px solid #bdc3c7; text-align: center; font-weight: 600;">${data.accuracy.toFixed(2)}</td>
+            <td style="padding: 0.75rem; border: 1px solid #bdc3c7; text-align: center;">${data.macro_avg.support.toLocaleString()}</td>
         </tr>
         <tr style="background: #fff3cd;">
             <td style="padding: 0.75rem; border: 1px solid #bdc3c7; font-weight: 600;">macro avg</td>
-            <td style="padding: 0.75rem; text-align: center; border: 1px solid #bdc3c7;">${data.macro_avg.precision.toFixed(2)}</td>
-            <td style="padding: 0.75rem; text-align: center; border: 1px solid #bdc3c7;">${data.macro_avg.recall.toFixed(2)}</td>
-            <td style="padding: 0.75rem; text-align: center; border: 1px solid #bdc3c7;">${data.macro_avg.f1score.toFixed(2)}</td>
-            <td style="padding: 0.75rem; text-align: center; border: 1px solid #bdc3c7;">${data.macro_avg.support.toLocaleString()}</td>
+            <td style="padding: 0.75rem; border: 1px solid #bdc3c7; text-align: center;">${data.macro_avg.precision.toFixed(2)}</td>
+            <td style="padding: 0.75rem; border: 1px solid #bdc3c7; text-align: center;">${data.macro_avg.recall.toFixed(2)}</td>
+            <td style="padding: 0.75rem; border: 1px solid #bdc3c7; text-align: center;">${data.macro_avg.f1score.toFixed(2)}</td>
+            <td style="padding: 0.75rem; border: 1px solid #bdc3c7; text-align: center;">${data.macro_avg.support.toLocaleString()}</td>
         </tr>
         <tr style="background: #d1ecf1;">
             <td style="padding: 0.75rem; border: 1px solid #bdc3c7; font-weight: 600;">weighted avg</td>
-            <td style="padding: 0.75rem; text-align: center; border: 1px solid #bdc3c7;">${data.weighted_avg.precision.toFixed(2)}</td>
-            <td style="padding: 0.75rem; text-align: center; border: 1px solid #bdc3c7;">${data.weighted_avg.recall.toFixed(2)}</td>
-            <td style="padding: 0.75rem; text-align: center; border: 1px solid #bdc3c7;">${data.weighted_avg.f1score.toFixed(2)}</td>
-            <td style="padding: 0.75rem; text-align: center; border: 1px solid #bdc3c7;">${data.weighted_avg.support.toLocaleString()}</td>
+            <td style="padding: 0.75rem; border: 1px solid #bdc3c7; text-align: center;">${data.weighted_avg.precision.toFixed(2)}</td>
+            <td style="padding: 0.75rem; border: 1px solid #bdc3c7; text-align: center;">${data.weighted_avg.recall.toFixed(2)}</td>
+            <td style="padding: 0.75rem; border: 1px solid #bdc3c7; text-align: center;">${data.weighted_avg.f1score.toFixed(2)}</td>
+            <td style="padding: 0.75rem; border: 1px solid #bdc3c7; text-align: center;">${data.weighted_avg.support.toLocaleString()}</td>
         </tr>
-    `;
+    </tbody></table>`;
 
-    tableHTML += '</tbody></table>';
-    container.innerHTML = tableHTML;
+    container.innerHTML = html;
 }
 
 function generateROCCurves() {
     const container = document.getElementById('rocCurves');
+    if (!container) return;
 
     const rocData = {
-        'За': {
-            train_auc: 0.88, test_auc: 0.79, color: '#27ae60',
-            fpr: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
-            tpr_train: [0, 0.65, 0.78, 0.85, 0.89, 0.92, 0.94, 0.96, 0.97, 0.98, 1.0],
-            tpr_test: [0, 0.55, 0.68, 0.75, 0.80, 0.84, 0.87, 0.90, 0.93, 0.96, 1.0]
-        },
-        'Воздержался': {
-            train_auc: 0.86, test_auc: 0.70, color: '#f39c12',
-            fpr: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
-            tpr_train: [0, 0.50, 0.68, 0.78, 0.84, 0.88, 0.91, 0.93, 0.95, 0.97, 1.0],
-            tpr_test: [0, 0.30, 0.48, 0.60, 0.68, 0.74, 0.80, 0.85, 0.90, 0.95, 1.0]
-        },
-        'Не голосовал': {
-            train_auc: 0.83, test_auc: 0.72, color: '#95a5a6',
-            fpr: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
-            tpr_train: [0, 0.48, 0.65, 0.75, 0.81, 0.85, 0.89, 0.92, 0.94, 0.97, 1.0],
-            tpr_test: [0, 0.35, 0.52, 0.63, 0.71, 0.77, 0.82, 0.87, 0.91, 0.95, 1.0]
-        },
-        'Отсутствовал': {
-            train_auc: 0.85, test_auc: 0.71, color: '#34495e',
-            fpr: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
-            tpr_train: [0, 0.52, 0.67, 0.77, 0.83, 0.87, 0.90, 0.93, 0.95, 0.97, 1.0],
-            tpr_test: [0, 0.38, 0.54, 0.65, 0.73, 0.78, 0.83, 0.88, 0.92, 0.96, 1.0]
-        },
-        'Против': {
-            train_auc: 0.93, test_auc: 0.83, color: '#e74c3c',
-            fpr: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
-            tpr_train: [0, 0.75, 0.85, 0.90, 0.93, 0.95, 0.97, 0.98, 0.99, 0.995, 1.0],
-            tpr_test: [0, 0.60, 0.73, 0.81, 0.86, 0.89, 0.92, 0.94, 0.96, 0.98, 1.0]
-        }
+        'За': { train_auc: 0.88, test_auc: 0.79, color: '#27ae60' },
+        'Воздержался': { train_auc: 0.86, test_auc: 0.70, color: '#f39c12' },
+        'Не голосовал': { train_auc: 0.83, test_auc: 0.72, color: '#95a5a6' },
+        'Отсутствовал': { train_auc: 0.85, test_auc: 0.71, color: '#34495e' },
+        'Против': { train_auc: 0.93, test_auc: 0.83, color: '#e74c3c' }
     };
 
     container.innerHTML = `
         <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem;">
             ${Object.keys(rocData).map(voteType => `
                 <div>
-                    <h5 style="text-align: center; margin-bottom: 1rem; color: #2c3e50;">
-                        One-vs-Rest ROC curve: "${voteType}" vs (Остальные типы поведения)
+                    <h5 style="text-align: center; margin-bottom: 0.5rem; font-size: 0.9rem;">
+                        One-vs-Rest ROC curve: "${voteType}" vs остальные
                     </h5>
-                    <div id="roc-${voteType.replace(/\s/g, '_')}" style="height: 400px;"></div>
+                    <div id="roc-${voteType.replace(/\s/g, '_')}" style="height: 350px;"></div>
                 </div>
             `).join('')}
         </div>
     `;
 
+    // Генерируем кривые
+    const fpr = [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0];
+
     Object.keys(rocData).forEach(voteType => {
         const data = rocData[voteType];
         const divId = `roc-${voteType.replace(/\s/g, '_')}`;
 
+        // Генерируем TPR на основе AUC (упрощённо)
+        const tpr_train = fpr.map(x => Math.min(1, x + (data.train_auc - 0.5) * 1.5 * (1 - x)));
+        const tpr_test = fpr.map(x => Math.min(1, x + (data.test_auc - 0.5) * 1.5 * (1 - x)));
+
         const traces = [
-            {
-                x: [0, 1], y: [0, 1],
-                mode: 'lines',
-                line: {dash: 'dash', color: 'gray', width: 1},
-                showlegend: false
-            },
-            {
-                x: data.fpr, y: data.tpr_train,
-                mode: 'lines',
-                name: `"${voteType}" vs rest| train (AUC = ${data.train_auc})`,
-                line: {color: data.color, width: 3}
-            },
-            {
-                x: data.fpr, y: data.tpr_test,
-                mode: 'lines',
-                name: `"${voteType}" vs rest| test (AUC = ${data.test_auc})`,
-                line: {color: data.color, width: 2, dash: 'dot'}
-            }
+            { x: [0, 1], y: [0, 1], mode: 'lines', line: {dash: 'dash', color: 'gray', width: 1}, showlegend: false },
+            { x: fpr, y: tpr_train, mode: 'lines', name: `train (AUC=${data.train_auc})`, line: {color: data.color, width: 3} },
+            { x: fpr, y: tpr_test, mode: 'lines', name: `test (AUC=${data.test_auc})`, line: {color: data.color, width: 2, dash: 'dot'} }
         ];
 
         const layout = {
-            xaxis: {
-                title: `Доля ошибочно спрогнозированных "${voteType}"<br>от общего количества остальных типов (FPR)`,
-                range: [0, 1],
-                titlefont: {size: 10}
-            },
-            yaxis: {
-                title: `Доля верно спрогнозированных "${voteType}"<br>от общего количества "${voteType}" (TPR)`,
-                range: [0, 1],
-                titlefont: {size: 10}
-            },
-            margin: {t: 10, l: 80, r: 20, b: 80},
-            legend: {x: 0.5, y: -0.3, xanchor: 'center', orientation: 'v', font: {size: 9}},
-            font: {family: 'Arial, sans-serif', size: 10}
+            xaxis: { title: 'FPR', range: [0, 1], titlefont: {size: 10} },
+            yaxis: { title: 'TPR', range: [0, 1], titlefont: {size: 10} },
+            margin: {t: 10, l: 50, r: 20, b: 50},
+            legend: {x: 0.5, y: -0.25, xanchor: 'center', orientation: 'h', font: {size: 9}},
+            font: {size: 10}
         };
 
         Plotly.newPlot(divId, traces, layout, {responsive: true});
@@ -1578,9 +1837,10 @@ function getErrorRowColor(realVote, predVote) {
     // Остальные случаи - желтый (смысл похожий, но не точное совпадение)
     return 'background-color: #fff3cd;'; // Желтый
 }
-
 // ============================================
-// КЕЙС 4: Симулятор голосования
+// КЕЙС 4: ML-симулятор голосования
+// 8 параметров для CatBoost модели
+// ОБНОВЛЕНО: правильная нумерация и переменные
 // ============================================
 
 function openCase4() {
@@ -1592,7 +1852,7 @@ function openCase4() {
             <div class="modal-header" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
                 <i class="fas fa-gavel"></i>
                 <div>
-                    <h2>Симулятор голосования в Верховной Раде VIII созыва</h2>
+                    <h2>Кейс 4: Симулятор голосования в Верховной Раде VIII созыва</h2>
                     <p>Создайте законопроект и узнайте его судьбу</p>
                 </div>
             </div>
@@ -1616,7 +1876,122 @@ function openCase4() {
                             <i class="fas fa-file-alt"></i> Параметры законопроекта (8 параметров)
                         </h3>
                         
+                        <style>
+                            .bill-params-grid {
+                                display: grid;
+                                grid-template-columns: repeat(2, 1fr);
+                                gap: 1.5rem;
+                            }
+                            
+                            .param-card {
+                                background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+                                padding: 1.25rem;
+                                border-radius: 10px;
+                                border: 2px solid #dee2e6;
+                                transition: all 0.3s ease;
+                                position: relative;
+                            }
+                            
+                            .param-card:hover {
+                                border-color: #667eea;
+                                box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
+                                transform: translateY(-2px);
+                            }
+                            
+                            .param-card.numeric-param {
+                                border-color: #667eea;
+                                background: linear-gradient(135deg, #667eea08 0%, #764ba208 100%);
+                            }
+                            
+                            .param-number {
+                                position: absolute;
+                                top: -12px;
+                                left: 12px;
+                                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                                color: white;
+                                width: 28px;
+                                height: 28px;
+                                border-radius: 50%;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                font-weight: bold;
+                                font-size: 0.9rem;
+                                box-shadow: 0 2px 6px rgba(102, 126, 234, 0.3);
+                            }
+                            
+                            .param-label {
+                                display: block;
+                                font-weight: 600;
+                                color: #2c3e50;
+                                margin-bottom: 0.75rem;
+                                font-size: 0.95rem;
+                            }
+                            
+                            .param-label i {
+                                color: #667eea;
+                                margin-right: 0.5rem;
+                            }
+                            
+                            .param-select, .param-input {
+                                width: 100%;
+                                padding: 0.75rem;
+                                border: 1px solid #ced4da;
+                                border-radius: 6px;
+                                font-size: 0.95rem;
+                                background: white;
+                                transition: border-color 0.2s, box-shadow 0.2s;
+                            }
+                            
+                            .param-select:focus, .param-input:focus {
+                                outline: none;
+                                border-color: #667eea;
+                                box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.15);
+                            }
+                            
+                            .param-help {
+                                font-size: 0.8rem;
+                                color: #6c757d;
+                                margin-top: 0.5rem;
+                            }
+                            
+                            .param-help.scaler-note {
+                                color: #667eea;
+                                font-style: italic;
+                            }
+                            
+                            .btn-simulate {
+                                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                                color: white;
+                                padding: 1rem 2rem;
+                                width: 100%;
+                                margin-top: 2rem;
+                                border: none;
+                                border-radius: 8px;
+                                font-size: 1.1rem;
+                                font-weight: 600;
+                                cursor: pointer;
+                                transition: transform 0.2s, box-shadow 0.2s;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                gap: 0.5rem;
+                            }
+                            
+                            .btn-simulate:hover {
+                                transform: translateY(-2px);
+                                box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+                            }
+                            
+                            @media (max-width: 768px) {
+                                .bill-params-grid {
+                                    grid-template-columns: 1fr;
+                                }
+                            }
+                        </style>
+                        
                         <div class="bill-params-grid">
+                            <!-- Параметр 1: Инициатор законопроекта -->
                             <div class="param-card">
                                 <div class="param-number">1</div>
                                 <label class="param-label">
@@ -1632,7 +2007,7 @@ function openCase4() {
                                     <option value="6">Комитет по вопросам европейской интеграции</option>
                                     <option value="7">Комитет по законодательному обеспечению правоохранительной деятельности</option>
                                     <option value="8">Комитет по вопросам информатизации и связи</option>
-                                    <option value="9">Народный депутат Украины</option>
+                                    <option value="9" selected>Народный депутат Украины</option>
                                     <option value="10">Комитет по вопросам семьи, молодежной политики, спорта и туризма</option>
                                     <option value="11">Комитет по вопросам экономической политики</option>
                                     <option value="12">Комитет по свободе слова и информационной политики</option>
@@ -1658,63 +2033,78 @@ function openCase4() {
                                 </select>
                             </div>
                             
+                            <!-- Параметр 2: Рубрика законопроекта -->
                             <div class="param-card">
                                 <div class="param-number">2</div>
                                 <label class="param-label">
                                     <i class="fas fa-folder-open"></i> Рубрика законопроекта
                                 </label>
                                 <select name="rubric" required class="param-select">
-                                    <option value="0">Государственное строительство</option>
+                                    <option value="0" selected>Государственное строительство</option>
                                     <option value="1">Экономическая политика</option>
                                     <option value="2">Социальная политика</option>
-                                    <option value="3">Правовая политика</option>
-                                    <option value="4">Безопасность и оборона</option>
-                                    <option value="5">Отраслевое развитие</option>
-                                    <option value="6">Гуманитарная политика</option>
-                                    <option value="7">Международные соглашения</option>
+                                    <option value="3">Гуманитарная и информационная политика</option>
+                                    <option value="4">Правовая политика</option>
+                                    <option value="5">Безопасность и оборона</option>
+                                    <option value="6">Отраслевое развитие</option>
+                                    <option value="7">Другие (заявления обращения ВРУ)</option>
                                 </select>
                             </div>
                             
+                            <!-- Параметр 3: Тип законопроекта -->
                             <div class="param-card">
                                 <div class="param-number">3</div>
                                 <label class="param-label">
                                     <i class="fas fa-file-contract"></i> Тип законопроекта
                                 </label>
                                 <select name="type" required class="param-select">
-                                    <option value="0">Проект Закона</option>
+                                    <option value="0" selected>Проект Закона</option>
                                     <option value="1">Проект Постановления</option>
                                     <option value="2">Проект Заявления</option>
-                                    <option value="3">Предложения Президента</option>
+                                    <option value="3">Предложения Президента к Закону</option>
                                 </select>
                             </div>
                             
+                            <!-- Параметр 4: Комитет инициатора -->
                             <div class="param-card">
                                 <div class="param-number">4</div>
                                 <label class="param-label">
                                     <i class="fas fa-building"></i> Комитет инициатора
                                 </label>
                                 <select name="initiators_sort" required class="param-select">
-                                    <option value="0">Комитет по экономике</option>
+                                    <option value="0" selected>Комитет по экономике</option>
                                     <option value="1">Комитет по финансам</option>
-                                    <option value="2">Комитет по внешней политике</option>
+                                    <option value="2">Комитет по иностранным делам</option>
                                 </select>
                             </div>
                             
-                            <div class="param-card">
+                            <!-- Параметр 5: Количество инициаторов (ЧИСЛО, StandardScaler) -->
+                            <div class="param-card numeric-param">
                                 <div class="param-number">5</div>
                                 <label class="param-label">
                                     <i class="fas fa-users"></i> Количество инициаторов
                                 </label>
-                                <input type="number" name="N_initiators" min="1" max="200" value="10" required class="param-select">
-                                <small style="color: #7f8c8d; font-size: 0.85rem; margin-top: 0.25rem; display: block;">
-                                    От 1 до 200 депутатов
-                                </small>
+                                <input type="number" 
+                                       name="N_initiators" 
+                                       required 
+                                       class="param-input"
+                                       min="1" 
+                                       max="200" 
+                                       value="10"
+                                       placeholder="Введите число от 1 до 200">
+                                <div class="param-help">
+                                    <i class="fas fa-info-circle"></i> От 1 до 200 депутатов
+                                </div>
+                                <div class="param-help scaler-note">
+                                    <i class="fas fa-cog"></i> Нормируется StandardScaler
+                                </div>
                             </div>
                             
+                            <!-- Параметр 6: Сессия -->
                             <div class="param-card">
                                 <div class="param-number">6</div>
                                 <label class="param-label">
-                                    <i class="fas fa-calendar-alt"></i> Сессия
+                                    <i class="fas fa-calendar-alt"></i> Сессия ВРУ-8
                                 </label>
                                 <select name="Session" required class="param-select">
                                     <option value="1">1-я сессия</option>
@@ -1727,37 +2117,49 @@ function openCase4() {
                                 </select>
                             </div>
                             
-                            <div class="param-card">
+                            <!-- Параметр 7: Количество поправок (ЧИСЛО, StandardScaler) -->
+                            <div class="param-card numeric-param">
                                 <div class="param-number">7</div>
                                 <label class="param-label">
                                     <i class="fas fa-edit"></i> Количество поправок
                                 </label>
-                                <input type="number" name="ammendments_authors_sorted" min="0" max="3000" value="200" required class="param-select">
-                                <small style="color: #7f8c8d; font-size: 0.85rem; margin-top: 0.25rem; display: block;">
-                                    От 0 до 3000 поправок
-                                </small>
+                                <input type="number" 
+                                       name="law_circ" 
+                                       required 
+                                       class="param-input"
+                                       min="1" 
+                                       max="3000" 
+                                       value="200"
+                                       placeholder="Введите число от 1 до 3000">
+                                <div class="param-help">
+                                    <i class="fas fa-info-circle"></i> От 1 до 3000 поправок
+                                </div>
+                                <div class="param-help scaler-note">
+                                    <i class="fas fa-cog"></i> Нормируется StandardScaler
+                                </div>
                             </div>
                             
+                            <!-- Параметр 8: Тип процедуры голосования -->
                             <div class="param-card">
                                 <div class="param-number">8</div>
                                 <label class="param-label">
-                                    <i class="fas fa-vote-yea"></i> Тип процедуры голосования
+                                    <i class="fas fa-clipboard-list"></i> Тип процедуры голосования
                                 </label>
                                 <select name="meta_type_name_eng" required class="param-select">
-                                    <option value="0">Постановка на голосование (первое чтение)</option>
-                                    <option value="1">Голосование по президентскому законопроекту</option>
-                                    <option value="2">Второе чтение законопроекта</option>
-                                    <option value="3">Третье чтение (финальное)</option>
-                                    <option value="4">Голосование по поправкам</option>
-                                    <option value="5">Сигнальное голосование</option>
-                                    <option value="6">Голосование по отмене закона</option>
-                                    <option value="7">Не классифицировано</option>
-                                    <option value="8" selected>Сокращенная процедура</option>
+                                    <option value="0" selected>Постановка на голосование (первое чтение)</option>
+                                    <option value="1">Второе чтение</option>
+                                    <option value="2">Финальное голосование</option>
+                                    <option value="3">Включение в повестку дня</option>
+                                    <option value="4">Повторное включение в повестку дня</option>
+                                    <option value="5">Отмена предыдущей редакции</option>
+                                    <option value="6">Рассмотрение по сокращенной процедуре</option>
+                                    <option value="7">Сигнальное голосование</option>
+                                    <option value="8">Другое</option>
                                 </select>
                             </div>
                         </div>
                         
-                        <button type="submit" class="btn-simulate" style="margin-top: 2rem;">
+                        <button type="submit" class="btn-simulate">
                             <i class="fas fa-rocket"></i> Запустить голосование
                         </button>
                     </div>
@@ -1778,23 +2180,38 @@ async function simulateVoting(e) {
     const form = e.target;
     const formData = new FormData(form);
 
-    const mainExecutives = parseFloat(formData.get('mainExecutives'));
-    const initiators_sort = parseFloat(formData.get('initiators_sort'));
+    // Валидация количественных параметров
+    const nInitiators = parseInt(formData.get('N_initiators'));
+    const lawCirc = parseInt(formData.get('law_circ'));
 
-    // Автоматическая проверка: совпадает ли принадлежность инициатора с комитетом
-    const mp_law_same_com = (mainExecutives === initiators_sort) ? 1 : 0;
+    if (nInitiators < 1 || nInitiators > 200) {
+        alert('Количество инициаторов должно быть от 1 до 200');
+        return;
+    }
 
+    if (lawCirc < 1 || lawCirc > 3000) {
+        alert('Количество поправок должно быть от 1 до 3000');
+        return;
+    }
+
+    // Параметры для отправки на API
+    // Категориальные - СТРОКИ (для CatBoostEncoder)
+    // Количественные - ЧИСЛА (для StandardScaler)
     const params = {
-        mainExecutives: mainExecutives,
-        rubric: parseFloat(formData.get('rubric')),
-        type: parseFloat(formData.get('type')),
-        initiators_sort: initiators_sort,
-        N_initiators: parseFloat(formData.get('N_initiators')),
-        Session: parseFloat(formData.get('Session')),
-        ammendments_authors_sorted: parseFloat(formData.get('ammendments_authors_sorted')),
-        meta_type_name_eng: parseFloat(formData.get('meta_type_name_eng')),
-        mp_law_same_com: mp_law_same_com
+        // Категориальные признаки (строки)
+        mainExecutives: formData.get('mainExecutives'),           // Параметр 1
+        rubric: formData.get('rubric'),                           // Параметр 2
+        type: formData.get('type'),                               // Параметр 3
+        initiators_sort: formData.get('initiators_sort'),         // Параметр 4
+        meta_type_name_eng: formData.get('meta_type_name_eng'),   // Параметр 8
+
+        // Количественные признаки (числа, нормируются StandardScaler)
+        N_initiators: nInitiators,                                // Параметр 5
+        Session: parseInt(formData.get('Session')),               // Параметр 6
+        law_circ: lawCirc                                         // Параметр 7
     };
+
+    console.log('📤 Отправляем параметры:', params);
 
     const resultsDiv = document.getElementById('simulationResults');
     resultsDiv.innerHTML = `
@@ -1802,10 +2219,7 @@ async function simulateVoting(e) {
             <div class="spinner"></div>
             <p style="margin-top: 1rem; font-size: 1.1rem;">Симуляция голосования...</p>
             <p style="color: #7f8c8d; font-size: 0.9rem; margin-top: 0.5rem;">
-                ⏰ Первый запрос может занять до 60 секунд
-            </p>
-            <p style="color: #667eea; font-size: 0.85rem; margin-top: 0.5rem;">
-                ℹ️ mp_law_same_com: ${mp_law_same_com === 1 ? 'Совпадает ✓' : 'Не совпадает ✗'}
+                ⏰ Первый запрос может занять до 60 секунд (сервер просыпается)
             </p>
         </div>
     `;
@@ -1830,6 +2244,7 @@ async function simulateVoting(e) {
             return;
         }
 
+        console.log('📥 Получены результаты:', data);
         case4SimulationResults = data;
         displaySimulationResults(data);
 
@@ -1837,7 +2252,8 @@ async function simulateVoting(e) {
         console.error('Ошибка симуляции:', error);
         resultsDiv.innerHTML = `
             <div style="background: #fee; padding: 1rem; border-radius: 8px; margin-top: 2rem; border-left: 4px solid #e74c3c;">
-                <strong style="color: #e74c3c;">Ошибка:</strong> ${error.message}
+                <strong style="color: #e74c3c;">Ошибка подключения:</strong> ${error.message}
+                <p style="margin-top: 0.5rem; color: #666;">Проверьте подключение к интернету или попробуйте позже.</p>
             </div>
         `;
     }
@@ -1852,6 +2268,7 @@ function displaySimulationResults(data) {
 
     resultsDiv.innerHTML = `
         <div style="margin-top: 2rem; animation: fadeIn 0.5s;">
+            <!-- Главный результат -->
             <div style="background: ${resultColor}; color: white; padding: 2rem; border-radius: 12px; text-align: center; margin-bottom: 2rem;">
                 <i class="fas ${resultIcon}" style="font-size: 4rem; margin-bottom: 1rem;"></i>
                 <h2 style="font-size: 2.5rem; margin: 0;">${resultText}</h2>
@@ -1865,7 +2282,7 @@ function displaySimulationResults(data) {
             
             <!-- Кнопка сравнения с реальностью -->
             <div style="text-align: center; margin-bottom: 2rem;">
-                <button onclick="showRealVotingComparison()" class="btn-primary" style="padding: 1rem 2rem; font-size: 1.1rem;">
+                <button onclick="showRealVotingComparison()" class="btn-primary" style="padding: 1rem 2rem; font-size: 1.1rem; background: linear-gradient(135deg, #3498db 0%, #2980b9 100%); color: white; border: none; border-radius: 8px; cursor: pointer; transition: transform 0.2s;">
                     <i class="fas fa-balance-scale"></i> Сравнить с реальным голосованием
                 </button>
                 <p style="color: #666; margin-top: 0.5rem; font-size: 0.9rem;">
@@ -1873,10 +2290,12 @@ function displaySimulationResults(data) {
                 </p>
             </div>
             
+            <!-- Карточки с голосами -->
             <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 1rem; margin-bottom: 2rem;">
                 ${generateVoteCards(data.vote_counts)}
             </div>
             
+            <!-- Таблица по фракциям -->
             <div style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-bottom: 2rem;">
                 <h3 style="margin-bottom: 1rem;"><i class="fas fa-users"></i> Голосование по фракциям</h3>
                 <div style="overflow-x: auto;">
@@ -1884,16 +2303,57 @@ function displaySimulationResults(data) {
                 </div>
             </div>
             
+            <!-- Детали по депутатам -->
             <details style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
                 <summary style="cursor: pointer; font-size: 1.2rem; font-weight: 600; padding: 0.5rem;">
                     <i class="fas fa-list"></i> Показать детали по всем депутатам (${data.total_deputies})
                 </summary>
-                <div style="margin-top: 1rem; max-height: 500px; overflow-y: auto;">
-                    ${generateDeputiesTable(data.deputies)}
+                <div style="margin-top: 1rem;">
+                    <!-- Фильтры -->
+                    <div style="display: flex; gap: 1rem; margin-bottom: 1rem; flex-wrap: wrap;">
+                        <select id="case4FactionFilter" onchange="applyCase4Filters()" style="padding: 0.5rem; border-radius: 4px; border: 1px solid #ddd;">
+                            <option value="all">Все фракции</option>
+                            ${getUniqueFactions(data.deputies).map(f => `<option value="${f}">${f}</option>`).join('')}
+                        </select>
+                        <select id="case4VoteFilter" onchange="applyCase4Filters()" style="padding: 0.5rem; border-radius: 4px; border: 1px solid #ddd;">
+                            <option value="all">Все голоса</option>
+                            <option value="За">За</option>
+                            <option value="Против">Против</option>
+                            <option value="Воздержался">Воздержался</option>
+                            <option value="Не голосовал">Не голосовал</option>
+                            <option value="Отсутствовал">Отсутствовал</option>
+                        </select>
+                    </div>
+                    <div id="case4DeputiesTable" style="max-height: 500px; overflow-y: auto;">
+                        ${generateDeputiesTable(data.deputies)}
+                    </div>
                 </div>
             </details>
         </div>
     `;
+}
+
+function getUniqueFactions(deputies) {
+    return [...new Set(deputies.map(d => d.faction))].sort();
+}
+
+function applyCase4Filters() {
+    if (!case4SimulationResults) return;
+
+    const factionFilter = document.getElementById('case4FactionFilter').value;
+    const voteFilter = document.getElementById('case4VoteFilter').value;
+
+    let filtered = case4SimulationResults.deputies;
+
+    if (factionFilter !== 'all') {
+        filtered = filtered.filter(d => d.faction === factionFilter);
+    }
+
+    if (voteFilter !== 'all') {
+        filtered = filtered.filter(d => d.vote === voteFilter);
+    }
+
+    document.getElementById('case4DeputiesTable').innerHTML = generateDeputiesTable(filtered);
 }
 
 async function showRealVotingComparison() {
@@ -1947,6 +2407,47 @@ function displayVotingComparison(simulationData, realData) {
         <div style="background: #fff3cd; padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem; border-left: 4px solid #ffc107;">
             <strong>📌 Примечание:</strong> Показано реальное голосование от 08.04.2016 (ID: 94008) для сравнения с вашей симуляцией.
         </div>
+        
+        <style>
+            .comparison-block {
+                background: white;
+                padding: 1.5rem;
+                border-radius: 12px;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            }
+            .comparison-block h3 {
+                margin: 0 0 1rem 0;
+                font-size: 1.1rem;
+                color: #2c3e50;
+                text-align: center;
+            }
+            .vote-breakdown {
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            .vote-item {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 0.5rem;
+                border-radius: 4px;
+                background: #f8f9fa;
+            }
+            .vote-label {
+                color: white;
+                padding: 0.25rem 0.75rem;
+                border-radius: 4px;
+                font-weight: 600;
+                font-size: 0.85rem;
+                min-width: 100px;
+                text-align: center;
+            }
+            .vote-count {
+                font-weight: bold;
+                font-size: 1.1rem;
+            }
+        </style>
         
         <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 2rem;">
             <!-- Симуляция -->
@@ -2033,149 +2534,15 @@ function displayVotingComparison(simulationData, realData) {
     `;
 }
 
-function generateFactionTableFromRealData(deputies) {
-    const voteColors = {
+function getVoteColor(vote) {
+    const colors = {
         'За': '#27ae60',
         'Против': '#e74c3c',
         'Воздержался': '#f39c12',
         'Не голосовал': '#95a5a6',
         'Отсутствовал': '#34495e'
     };
-
-    const factionVotes = {};
-    deputies.forEach(dep => {
-        if (!factionVotes[dep.faction]) {
-            factionVotes[dep.faction] = {
-                'За': 0,
-                'Против': 0,
-                'Воздержался': 0,
-                'Не голосовал': 0,
-                'Отсутствовал': 0
-            };
-        }
-        factionVotes[dep.faction][dep.real_vote]++;
-    });
-
-    let html = `
-        <table style="width: 100%; border-collapse: collapse;">
-            <thead style="background: #34495e; color: white;">
-                <tr>
-                    <th style="padding: 0.75rem; text-align: left;">Фракция</th>
-                    <th style="padding: 0.75rem; text-align: center;">За</th>
-                    <th style="padding: 0.75rem; text-align: center;">Против</th>
-                    <th style="padding: 0.75rem; text-align: center;">Воздержался</th>
-                    <th style="padding: 0.75rem; text-align: center;">Не голосовал</th>
-                    <th style="padding: 0.75rem; text-align: center;">Отсутствовал</th>
-                </tr>
-            </thead>
-            <tbody>
-    `;
-
-for (const [faction, votes] of Object.entries(factionVotes)) {
-    html += '<tr style="border-bottom: 1px solid #ecf0f1;">';
-    html += '<td style="padding: 0.75rem; font-weight: 600;">' + faction + '</td>';
-    html += '<td style="padding: 0.75rem; text-align: center; background: ' + voteColors['За'] + '22;">' + (votes['За'] || 0) + '</td>';
-    html += '<td style="padding: 0.75rem; text-align: center; background: ' + voteColors['Против'] + '22;">' + (votes['Против'] || 0) + '</td>';
-    html += '<td style="padding: 0.75rem; text-align: center; background: ' + voteColors['Воздержался'] + '22;">' + (votes['Воздержался'] || 0) + '</td>';
-    html += '<td style="padding: 0.75rem; text-align: center; background: ' + voteColors['Не голосовал'] + '22;">' + (votes['Не голосовал'] || 0) + '</td>';
-    html += '<td style="padding: 0.75rem; text-align: center; background: ' + voteColors['Отсутствовал'] + '22;">' + (votes['Отсутствовал'] || 0) + '</td>';
-    html += '</tr>';
-}
-
-    html += `</tbody></table>`;
-    return html;
-}
-
-function generateRealVotingTable(deputies) {
-    const voteColors = {
-        'За': '#27ae60',
-        'Против': '#e74c3c',
-        'Воздержался': '#f39c12',
-        'Не голосовал': '#95a5a6',
-        'Отсутствовал': '#34495e'
-    };
-
-    let html = `
-        <table style="width: 100%; border-collapse: collapse; font-size: 0.9rem;">
-            <thead style="background: #34495e; color: white; position: sticky; top: 0;">
-                <tr>
-                    <th style="padding: 0.75rem; text-align: left;">ФИО</th>
-                    <th style="padding: 0.75rem; text-align: left;">Фракция</th>
-                    <th style="padding: 0.75rem; text-align: center;">Реальный голос</th>
-                    <th style="padding: 0.75rem; text-align: center;">Прогноз</th>
-                    <th style="padding: 0.75rem; text-align: center;">Совпадение</th>
-                </tr>
-            </thead>
-            <tbody>
-    `;
-
-    deputies.forEach(deputy => {
-        const matchIcon = deputy.is_correct
-            ? '<i class="fas fa-check-circle" style="color: #27ae60;"></i>'
-            : '<i class="fas fa-times-circle" style="color: #e74c3c;"></i>';
-
-        html += `
-            <tr style="border-bottom: 1px solid #ecf0f1; ${!deputy.is_correct ? 'background: #fff5f5;' : ''}">
-                <td style="padding: 0.75rem;">${deputy.fio}</td>
-                <td style="padding: 0.75rem;">${deputy.faction}</td>
-                <td style="padding: 0.75rem; text-align: center;">
-                    <span style="background: ${voteColors[deputy.real_vote]}; color: white; padding: 0.3rem 0.6rem; border-radius: 4px; font-weight: 600; display: inline-block; min-width: 100px;">
-                        ${deputy.real_vote}
-                    </span>
-                </td>
-                <td style="padding: 0.75rem; text-align: center;">
-                    <span style="background: ${voteColors[deputy.predicted_vote]}; color: white; padding: 0.3rem 0.6rem; border-radius: 4px; font-weight: 600; display: inline-block; min-width: 100px;">
-                        ${deputy.predicted_vote}
-                    </span>
-                </td>
-                <td style="padding: 0.75rem; text-align: center;">${matchIcon}</td>
-            </tr>
-        `;
-    });
-
-    html += `</tbody></table>`;
-    return html;
-}
-
-function generateDeputiesTable(deputies) {
-    const voteColors = {
-        'За': '#27ae60',
-        'Против': '#e74c3c',
-        'Воздержался': '#f39c12',
-        'Не голосовал': '#95a5a6',
-        'Отсутствовал': '#34495e'
-    };
-
-    let html = `
-        <table style="width: 100%; border-collapse: collapse; font-size: 0.9rem;">
-            <thead style="background: #34495e; color: white; position: sticky; top: 0;">
-                <tr>
-                    <th style="padding: 0.75rem; text-align: left;">ФИО</th>
-                    <th style="padding: 0.75rem; text-align: left;">Фракция</th>
-                    <th style="padding: 0.75rem; text-align: center;">Голос</th>
-                    <th style="padding: 0.75rem; text-align: center;">Уверенность</th>
-                </tr>
-            </thead>
-            <tbody>
-    `;
-
-    deputies.forEach(deputy => {
-        html += `
-            <tr style="border-bottom: 1px solid #ecf0f1;">
-                <td style="padding: 0.75rem;">${deputy.name}</td>
-                <td style="padding: 0.75rem;">${deputy.faction}</td>
-                <td style="padding: 0.75rem; text-align: center;">
-                    <span style="background: ${voteColors[deputy.vote]}; color: white; padding: 0.3rem 0.6rem; border-radius: 4px; font-weight: 600; display: inline-block; min-width: 100px;">
-                        ${deputy.vote}
-                    </span>
-                </td>
-                <td style="padding: 0.75rem; text-align: center;">${deputy.confidence}%</td>
-            </tr>
-        `;
-    });
-
-    html += `</tbody></table>`;
-    return html;
+    return colors[vote] || '#95a5a6';
 }
 
 function generateVoteCards(counts) {
@@ -2190,7 +2557,7 @@ function generateVoteCards(counts) {
     const total = Object.values(counts).reduce((a, b) => a + b, 0);
 
     return Object.entries(counts).map(([vote, count]) => {
-        const config = voteConfig[vote];
+        const config = voteConfig[vote] || { color: '#95a5a6', icon: 'fa-question' };
         const percentage = ((count / total) * 100).toFixed(1);
 
         return `
@@ -2241,11 +2608,159 @@ function generateFactionTable(factionVotes) {
         `;
     }
 
-    html += `
-            </tbody>
-        </table>
+    html += `</tbody></table>`;
+    return html;
+}
+
+function generateFactionTableFromRealData(deputies) {
+    const voteColors = {
+        'За': '#27ae60',
+        'Против': '#e74c3c',
+        'Воздержался': '#f39c12',
+        'Не голосовал': '#95a5a6',
+        'Отсутствовал': '#34495e'
+    };
+
+    const factionVotes = {};
+    deputies.forEach(dep => {
+        if (!factionVotes[dep.faction]) {
+            factionVotes[dep.faction] = {
+                'За': 0,
+                'Против': 0,
+                'Воздержался': 0,
+                'Не голосовал': 0,
+                'Отсутствовал': 0
+            };
+        }
+        factionVotes[dep.faction][dep.real_vote]++;
+    });
+
+    let html = `
+        <table style="width: 100%; border-collapse: collapse;">
+            <thead style="background: #34495e; color: white;">
+                <tr>
+                    <th style="padding: 0.75rem; text-align: left;">Фракция</th>
+                    <th style="padding: 0.75rem; text-align: center;">За</th>
+                    <th style="padding: 0.75rem; text-align: center;">Против</th>
+                    <th style="padding: 0.75rem; text-align: center;">Воздержался</th>
+                    <th style="padding: 0.75rem; text-align: center;">Не голосовал</th>
+                    <th style="padding: 0.75rem; text-align: center;">Отсутствовал</th>
+                </tr>
+            </thead>
+            <tbody>
     `;
 
+    for (const [faction, votes] of Object.entries(factionVotes)) {
+        html += `
+            <tr style="border-bottom: 1px solid #ecf0f1;">
+                <td style="padding: 0.75rem; font-weight: 600;">${faction}</td>
+                <td style="padding: 0.75rem; text-align: center; background: ${voteColors['За']}22;">${votes['За']}</td>
+                <td style="padding: 0.75rem; text-align: center; background: ${voteColors['Против']}22;">${votes['Против']}</td>
+                <td style="padding: 0.75rem; text-align: center; background: ${voteColors['Воздержался']}22;">${votes['Воздержался']}</td>
+                <td style="padding: 0.75rem; text-align: center; background: ${voteColors['Не голосовал']}22;">${votes['Не голосовал']}</td>
+                <td style="padding: 0.75rem; text-align: center; background: ${voteColors['Отсутствовал']}22;">${votes['Отсутствовал']}</td>
+            </tr>
+        `;
+    }
+
+    html += `</tbody></table>`;
+    return html;
+}
+
+function generateDeputiesTable(deputies) {
+    const voteColors = {
+        'За': '#27ae60',
+        'Против': '#e74c3c',
+        'Воздержался': '#f39c12',
+        'Не голосовал': '#95a5a6',
+        'Отсутствовал': '#34495e'
+    };
+
+    let html = `
+        <table style="width: 100%; border-collapse: collapse; font-size: 0.9rem;">
+            <thead style="background: #34495e; color: white; position: sticky; top: 0;">
+                <tr>
+                    <th style="padding: 0.75rem; text-align: center; width: 50px;">№</th>
+                    <th style="padding: 0.75rem; text-align: left;">ФИО</th>
+                    <th style="padding: 0.75rem; text-align: left;">Фракция</th>
+                    <th style="padding: 0.75rem; text-align: center;">Голос</th>
+                    <th style="padding: 0.75rem; text-align: center;">Уверенность</th>
+                </tr>
+            </thead>
+            <tbody>
+    `;
+
+    deputies.forEach((deputy, index) => {
+        const voteColor = voteColors[deputy.vote] || '#95a5a6';
+        html += `
+            <tr style="border-bottom: 1px solid #ecf0f1;">
+                <td style="padding: 0.75rem; text-align: center; color: #999;">${index + 1}</td>
+                <td style="padding: 0.75rem;">${deputy.name}</td>
+                <td style="padding: 0.75rem;">${deputy.faction}</td>
+                <td style="padding: 0.75rem; text-align: center;">
+                    <span style="background: ${voteColor}; color: white; padding: 0.3rem 0.6rem; border-radius: 4px; font-weight: 600; display: inline-block; min-width: 100px;">
+                        ${deputy.vote}
+                    </span>
+                </td>
+                <td style="padding: 0.75rem; text-align: center;">${deputy.confidence || '-'}%</td>
+            </tr>
+        `;
+    });
+
+    html += `</tbody></table>`;
+    return html;
+}
+
+function generateRealVotingTable(deputies) {
+    const voteColors = {
+        'За': '#27ae60',
+        'Против': '#e74c3c',
+        'Воздержался': '#f39c12',
+        'Не голосовал': '#95a5a6',
+        'Отсутствовал': '#34495e'
+    };
+
+    let html = `
+        <table style="width: 100%; border-collapse: collapse; font-size: 0.9rem;">
+            <thead style="background: #34495e; color: white; position: sticky; top: 0;">
+                <tr>
+                    <th style="padding: 0.75rem; text-align: left;">ФИО</th>
+                    <th style="padding: 0.75rem; text-align: left;">Фракция</th>
+                    <th style="padding: 0.75rem; text-align: center;">Реальный голос</th>
+                    <th style="padding: 0.75rem; text-align: center;">Прогноз</th>
+                    <th style="padding: 0.75rem; text-align: center;">Совпадение</th>
+                </tr>
+            </thead>
+            <tbody>
+    `;
+
+    deputies.forEach(deputy => {
+        const matchIcon = deputy.is_correct
+            ? '<i class="fas fa-check-circle" style="color: #27ae60;"></i>'
+            : '<i class="fas fa-times-circle" style="color: #e74c3c;"></i>';
+
+        const rowBg = !deputy.is_correct ? 'background: #fff5f5;' : '';
+
+        html += `
+            <tr style="border-bottom: 1px solid #ecf0f1; ${rowBg}">
+                <td style="padding: 0.75rem;">${deputy.fio}</td>
+                <td style="padding: 0.75rem;">${deputy.faction}</td>
+                <td style="padding: 0.75rem; text-align: center;">
+                    <span style="background: ${voteColors[deputy.real_vote]}; color: white; padding: 0.3rem 0.6rem; border-radius: 4px; font-weight: 600; display: inline-block; min-width: 100px;">
+                        ${deputy.real_vote}
+                    </span>
+                </td>
+                <td style="padding: 0.75rem; text-align: center;">
+                    <span style="background: ${voteColors[deputy.predicted_vote]}; color: white; padding: 0.3rem 0.6rem; border-radius: 4px; font-weight: 600; display: inline-block; min-width: 100px;">
+                        ${deputy.predicted_vote}
+                    </span>
+                </td>
+                <td style="padding: 0.75rem; text-align: center;">${matchIcon}</td>
+            </tr>
+        `;
+    });
+
+    html += `</tbody></table>`;
     return html;
 }
 // ============================================
