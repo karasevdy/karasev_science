@@ -6,6 +6,109 @@
     <title>Дмитрий Карасев - ML Research</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Дополнительные стили для публикаций -->
+    <style>
+        /* Стили для секции публикаций */
+        .publications-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .publication-item {
+            display: flex;
+            gap: 1.5rem;
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .publication-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+        }
+
+        .pub-year {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            height: fit-content;
+            min-width: 60px;
+            text-align: center;
+        }
+
+        .pub-content {
+            flex: 1;
+        }
+
+        .pub-content h4 {
+            margin: 0 0 0.5rem 0;
+            color: #2c3e50;
+            font-size: 1.1rem;
+        }
+
+        .pub-content p {
+            margin: 0.25rem 0;
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .pub-content p em {
+            color: #7f8c8d;
+        }
+
+        .pub-links {
+            margin-top: 1rem;
+        }
+
+        /* Кнопка скачать PDF */
+        .btn-pdf {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn-pdf:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(231, 76, 60, 0.4);
+            color: white;
+        }
+
+        .btn-pdf i {
+            font-size: 1.1rem;
+        }
+
+        /* Темная тема для публикаций */
+        [data-theme="dark"] .publication-item {
+            background: #2c3e50;
+        }
+
+        [data-theme="dark"] .pub-content h4 {
+            color: #ecf0f1;
+        }
+
+        [data-theme="dark"] .pub-content p {
+            color: #bdc3c7;
+        }
+
+        [data-theme="dark"] .pub-content p em {
+            color: #95a5a6;
+        }
+    </style>
 </head>
 <body>
     <nav class="navbar">
@@ -90,20 +193,31 @@
         </div>
     </section>
 
+    <!-- ========== СЕКЦИЯ ПУБЛИКАЦИЙ (ОБНОВЛЁННАЯ) ========== -->
     <section id="publications" class="section section-alt">
         <div class="container">
             <h2 class="section-title" data-i18n="nav.publications">Publications</h2>
+
             <div class="publications-list">
+                <!-- Публикация -->
                 <div class="publication-item">
-                    <div class="pub-year">2023</div>
+                    <div class="pub-year">2024</div>
                     <div class="pub-content">
-                        <h4>Title of Your Recent Publication</h4>
-                        <p>Your Name, Co-Author Name</p>
-                        <p><em>Conference/Journal Name, 2023</em></p>
+                        <h4>Название публикации</h4>
+                        <p>Карасев Д.Ю.</p>
+                        <p><em>Название журнала / конференции, 2024</em></p>
                         <div class="pub-links">
-                            <a href="#" class="pub-link"><i class="fas fa-file-pdf"></i> PDF</a>
-                            <a href="#" class="pub-link"><i class="fas fa-quote-right"></i> Cite</a>
-                            <a href="#" class="pub-link"><i class="fas fa-code"></i> Code</a>
+                            <!--
+                                ИНСТРУКЦИЯ:
+                                1. Создайте папку "publications" в корне сайта
+                                2. Загрузите PDF файл в эту папку
+                                3. Укажите имя файла в href="publications/ваш_файл.pdf"
+                            -->
+                            <a href="publications/publication.pdf"
+                               download="Karasev_2024.pdf"
+                               class="btn-pdf">
+                                <i class="fas fa-file-pdf"></i> Скачать PDF
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -291,19 +405,19 @@
             console.log('🎨 toggleTheme() вызвана');
             currentTheme = currentTheme === 'light' ? 'dark' : 'light';
 
-            // ИСПРАВЛЕНО: устанавливаем data-theme на <html>, а не класс на <body>
+            // Устанавливаем data-theme на <html>
             document.documentElement.setAttribute('data-theme', currentTheme);
 
             const themeIcon = document.querySelector('.theme-toggle i');
             if (themeIcon) {
                 themeIcon.className = currentTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
-           }
+            }
 
-    // Сохраняем в localStorage
-    localStorage.setItem('theme', currentTheme);
+            // Сохраняем в localStorage
+            localStorage.setItem('theme', currentTheme);
 
-    console.log(`✅ Тема изменена на: ${currentTheme}`);
-}
+            console.log(`✅ Тема изменена на: ${currentTheme}`);
+        }
 
         // ПЕРЕКЛЮЧЕНИЕ ЯЗЫКА
         function toggleLanguage() {
@@ -333,6 +447,17 @@
 
             // Применяем переводы при загрузке
             applyTranslations();
+
+            // Восстанавливаем тему из localStorage
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                currentTheme = savedTheme;
+                document.documentElement.setAttribute('data-theme', currentTheme);
+                const themeIcon = document.querySelector('.theme-toggle i');
+                if (themeIcon) {
+                    themeIcon.className = currentTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+                }
+            }
 
             console.log('✅ Навигация активирована');
         });

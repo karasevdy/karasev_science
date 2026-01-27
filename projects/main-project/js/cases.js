@@ -1838,703 +1838,331 @@ function getErrorRowColor(realVote, predVote) {
     return 'background-color: #fff3cd;'; // Желтый
 }
 // ============================================
-// КЕЙС 4: ML-симулятор голосования
-// 8 параметров для CatBoost модели
-// ОБНОВЛЕНО: правильная нумерация и переменные
+// КЕЙС 4: ML-симулятор голосований (ИСПРАВЛЕННЫЙ)
+// 8 параметров в правильном порядке для CatBoostEncoder
 // ============================================
 
 function openCase4() {
     const modal = document.getElementById('modal');
     modal.innerHTML = `
-        <div class="modal-content" style="max-width: 1200px;">
+        <div class="modal-content" style="max-width: 900px;">
             <span class="close-modal" onclick="closeModal()">&times;</span>
             
-            <div class="modal-header" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
-                <i class="fas fa-gavel"></i>
+            <div class="modal-header" style="background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%);">
+                <i class="fas fa-brain"></i>
                 <div>
-                    <h2>Кейс 4: Симулятор голосования в Верховной Раде VIII созыва</h2>
-                    <p>Создайте законопроект и узнайте его судьбу</p>
+                    <h2>ML-симулятор голосований</h2>
+                    <p>Прогнозирование результатов голосования на основе параметров законопроекта</p>
                 </div>
             </div>
             
             <div class="modal-body">
-                <div style="background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%); 
-                            padding: 1.5rem; border-radius: 12px; margin-bottom: 2rem; 
-                            border-left: 4px solid #667eea;">
-                    <h3 style="color: #667eea; margin-bottom: 0.5rem;">
-                        <i class="fas fa-lightbulb"></i> Создайте законопроект и узнайте его судьбу
-                    </h3>
-                    <p style="color: #555; line-height: 1.6;">
-                        Задайте параметры законопроекта и модель покажет как проголосуют все 423 депутата. 
-                        Для принятия закона нужно минимум <strong>226 голосов "За"</strong>.
-                    </p>
+                <div style="background: #fff3cd; padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem; border-left: 4px solid #ffc107;">
+                    <strong><i class="fas fa-info-circle"></i> О модели:</strong>
+                    <p style="margin: 0.5rem 0 0 0;">CatBoost модель обучена на данных голосований ВРУ-8. 
+                    Категориальные переменные (1-6) кодируются предобученным CatBoostEncoder.
+                    Числовые переменные (7-8) нормируются StandardScaler.</p>
                 </div>
                 
-                <form id="billForm">
-                    <div style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-                        <h3 style="margin-top: 0; margin-bottom: 2rem; color: #2c3e50; font-size: 1.4rem;">
-                            <i class="fas fa-file-alt"></i> Параметры законопроекта (8 параметров)
-                        </h3>
+                <form id="case4Form" onsubmit="runCase4Prediction(event)">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
                         
-                        <style>
-                            .bill-params-grid {
-                                display: grid;
-                                grid-template-columns: repeat(2, 1fr);
-                                gap: 1.5rem;
-                            }
-                            
-                            .param-card {
-                                background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-                                padding: 1.25rem;
-                                border-radius: 10px;
-                                border: 2px solid #dee2e6;
-                                transition: all 0.3s ease;
-                                position: relative;
-                            }
-                            
-                            .param-card:hover {
-                                border-color: #667eea;
-                                box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
-                                transform: translateY(-2px);
-                            }
-                            
-                            .param-card.numeric-param {
-                                border-color: #667eea;
-                                background: linear-gradient(135deg, #667eea08 0%, #764ba208 100%);
-                            }
-                            
-                            .param-number {
-                                position: absolute;
-                                top: -12px;
-                                left: 12px;
-                                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-                                color: white;
-                                width: 28px;
-                                height: 28px;
-                                border-radius: 50%;
-                                display: flex;
-                                align-items: center;
-                                justify-content: center;
-                                font-weight: bold;
-                                font-size: 0.9rem;
-                                box-shadow: 0 2px 6px rgba(102, 126, 234, 0.3);
-                            }
-                            
-                            .param-label {
-                                display: block;
-                                font-weight: 600;
-                                color: #2c3e50;
-                                margin-bottom: 0.75rem;
-                                font-size: 0.95rem;
-                            }
-                            
-                            .param-label i {
-                                color: #667eea;
-                                margin-right: 0.5rem;
-                            }
-                            
-                            .param-select, .param-input {
-                                width: 100%;
-                                padding: 0.75rem;
-                                border: 1px solid #ced4da;
-                                border-radius: 6px;
-                                font-size: 0.95rem;
-                                background: white;
-                                transition: border-color 0.2s, box-shadow 0.2s;
-                            }
-                            
-                            .param-select:focus, .param-input:focus {
-                                outline: none;
-                                border-color: #667eea;
-                                box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.15);
-                            }
-                            
-                            .param-help {
-                                font-size: 0.8rem;
-                                color: #6c757d;
-                                margin-top: 0.5rem;
-                            }
-                            
-                            .param-help.scaler-note {
-                                color: #667eea;
-                                font-style: italic;
-                            }
-                            
-                            .btn-simulate {
-                                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-                                color: white;
-                                padding: 1rem 2rem;
-                                width: 100%;
-                                margin-top: 2rem;
-                                border: none;
-                                border-radius: 8px;
-                                font-size: 1.1rem;
-                                font-weight: 600;
-                                cursor: pointer;
-                                transition: transform 0.2s, box-shadow 0.2s;
-                                display: flex;
-                                align-items: center;
-                                justify-content: center;
-                                gap: 0.5rem;
-                            }
-                            
-                            .btn-simulate:hover {
-                                transform: translateY(-2px);
-                                box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
-                            }
-                            
-                            @media (max-width: 768px) {
-                                .bill-params-grid {
-                                    grid-template-columns: 1fr;
-                                }
-                            }
-                        </style>
-                        
-                        <div class="bill-params-grid">
-                            <!-- Параметр 1: Инициатор законопроекта -->
-                            <div class="param-card">
-                                <div class="param-number">1</div>
-                                <label class="param-label">
-                                    <i class="fas fa-user-tie"></i> Инициатор законопроекта
-                                </label>
-                                <select name="mainExecutives" required class="param-select">
-                                    <option value="0">Временная специальная комиссия ВР Украины</option>
-                                    <option value="1">x (не указано)</option>
-                                    <option value="2">Руководство Верховного Совета Украины</option>
-                                    <option value="3">Комитет по вопросам Регламента и организации работы ВРУ</option>
-                                    <option value="4">Комитет по вопросам аграрной политики и земельных отношений</option>
-                                    <option value="5">Комитет по вопросам национальной безопасности и обороны</option>
-                                    <option value="6">Комитет по вопросам европейской интеграции</option>
-                                    <option value="7">Комитет по законодательному обеспечению правоохранительной деятельности</option>
-                                    <option value="8">Комитет по вопросам информатизации и связи</option>
-                                    <option value="9" selected>Народный депутат Украины</option>
-                                    <option value="10">Комитет по вопросам семьи, молодежной политики, спорта и туризма</option>
-                                    <option value="11">Комитет по вопросам экономической политики</option>
-                                    <option value="12">Комитет по свободе слова и информационной политики</option>
-                                    <option value="13">Комитет по вопросам ТЭК, ядерной политики и ядерной безопасности</option>
-                                    <option value="14">Комитет по вопросам транспорта</option>
-                                    <option value="15">Комитет по вопросам здравоохранения</option>
-                                    <option value="16">Комитет по делам ветеранов и лиц с инвалидностью</option>
-                                    <option value="17">Комитет по вопросам бюджета</option>
-                                    <option value="18">Комитет по вопросам правовой политики и правосудия</option>
-                                    <option value="19">Комитет по предотвращению и противодействию коррупции</option>
-                                    <option value="20">Комитет по вопросам экологической политики и Чернобыля</option>
-                                    <option value="21">Комитет по правам человека, нацменьшинствам и межнацотношениям</option>
-                                    <option value="22">Комитет по делам ветеранов, участников АТО и людей с инвалидностью</option>
-                                    <option value="23">Комитет по вопросам промышленной политики и предпринимательства</option>
-                                    <option value="24">Комитет по вопросам финансовой политики и банковской деятельности</option>
-                                    <option value="25">Комитет по вопросам науки и образования</option>
-                                    <option value="26">Комитет по вопросам строительства, градостроительства и ЖКХ</option>
-                                    <option value="27">Комитет по вопросам социальной политики, занятости и пенсионного обеспечения</option>
-                                    <option value="28">Комитет по вопросам госстроительства, региональной политики и местного самоуправления</option>
-                                    <option value="29">Комитет по вопросам налоговой и таможенной политики</option>
-                                    <option value="30">Комитет по вопросам культуры и духовности</option>
-                                    <option value="31">Комитет по иностранным делам</option>
-                                </select>
-                            </div>
-                            
-                            <!-- Параметр 2: Рубрика законопроекта -->
-                            <div class="param-card">
-                                <div class="param-number">2</div>
-                                <label class="param-label">
-                                    <i class="fas fa-folder-open"></i> Рубрика законопроекта
-                                </label>
-                                <select name="rubric" required class="param-select">
-                                    <option value="0" selected>Государственное строительство</option>
-                                    <option value="1">Экономическая политика</option>
-                                    <option value="2">Социальная политика</option>
-                                    <option value="3">Гуманитарная и информационная политика</option>
-                                    <option value="4">Правовая политика</option>
-                                    <option value="5">Безопасность и оборона</option>
-                                    <option value="6">Отраслевое развитие</option>
-                                    <option value="7">Другие (заявления обращения ВРУ)</option>
-                                </select>
-                            </div>
-                            
-                            <!-- Параметр 3: Тип законопроекта -->
-                            <div class="param-card">
-                                <div class="param-number">3</div>
-                                <label class="param-label">
-                                    <i class="fas fa-file-contract"></i> Тип законопроекта
-                                </label>
-                                <select name="type" required class="param-select">
-                                    <option value="0" selected>Проект Закона</option>
-                                    <option value="1">Проект Постановления</option>
-                                    <option value="2">Проект Заявления</option>
-                                    <option value="3">Предложения Президента к Закону</option>
-                                </select>
-                            </div>
-                            
-                            <!-- Параметр 4: Комитет инициатора -->
-                            <div class="param-card">
-                                <div class="param-number">4</div>
-                                <label class="param-label">
-                                    <i class="fas fa-building"></i> Комитет инициатора
-                                </label>
-                                <select name="initiators_sort" required class="param-select">
-                                    <option value="0" selected>Комитет по экономике</option>
-                                    <option value="1">Комитет по финансам</option>
-                                    <option value="2">Комитет по иностранным делам</option>
-                                </select>
-                            </div>
-                            
-                            <!-- Параметр 5: Количество инициаторов (ЧИСЛО, StandardScaler) -->
-                            <div class="param-card numeric-param">
-                                <div class="param-number">5</div>
-                                <label class="param-label">
-                                    <i class="fas fa-users"></i> Количество инициаторов
-                                </label>
-                                <input type="number" 
-                                       name="N_initiators" 
-                                       required 
-                                       class="param-input"
-                                       min="1" 
-                                       max="200" 
-                                       value="10"
-                                       placeholder="Введите число от 1 до 200">
-                                <div class="param-help">
-                                    <i class="fas fa-info-circle"></i> От 1 до 200 депутатов
-                                </div>
-                                <div class="param-help scaler-note">
-                                    <i class="fas fa-cog"></i> Нормируется StandardScaler
-                                </div>
-                            </div>
-                            
-                            <!-- Параметр 6: Сессия -->
-                            <div class="param-card">
-                                <div class="param-number">6</div>
-                                <label class="param-label">
-                                    <i class="fas fa-calendar-alt"></i> Сессия ВРУ-8
-                                </label>
-                                <select name="Session" required class="param-select">
-                                    <option value="1">1-я сессия</option>
-                                    <option value="2">2-я сессия</option>
-                                    <option value="3">3-я сессия</option>
-                                    <option value="4" selected>4-я сессия</option>
-                                    <option value="5">5-я сессия</option>
-                                    <option value="6">6-я сессия</option>
-                                    <option value="7">7-я сессия</option>
-                                </select>
-                            </div>
-                            
-                            <!-- Параметр 7: Количество поправок (ЧИСЛО, StandardScaler) -->
-                            <div class="param-card numeric-param">
-                                <div class="param-number">7</div>
-                                <label class="param-label">
-                                    <i class="fas fa-edit"></i> Количество поправок
-                                </label>
-                                <input type="number" 
-                                       name="law_circ" 
-                                       required 
-                                       class="param-input"
-                                       min="1" 
-                                       max="3000" 
-                                       value="200"
-                                       placeholder="Введите число от 1 до 3000">
-                                <div class="param-help">
-                                    <i class="fas fa-info-circle"></i> От 1 до 3000 поправок
-                                </div>
-                                <div class="param-help scaler-note">
-                                    <i class="fas fa-cog"></i> Нормируется StandardScaler
-                                </div>
-                            </div>
-                            
-                            <!-- Параметр 8: Тип процедуры голосования -->
-                            <div class="param-card">
-                                <div class="param-number">8</div>
-                                <label class="param-label">
-                                    <i class="fas fa-clipboard-list"></i> Тип процедуры голосования
-                                </label>
-                                <select name="meta_type_name_eng" required class="param-select">
-                                    <option value="0" selected>Постановка на голосование (первое чтение)</option>
-                                    <option value="1">Второе чтение</option>
-                                    <option value="2">Финальное голосование</option>
-                                    <option value="3">Включение в повестку дня</option>
-                                    <option value="4">Повторное включение в повестку дня</option>
-                                    <option value="5">Отмена предыдущей редакции</option>
-                                    <option value="6">Рассмотрение по сокращенной процедуре</option>
-                                    <option value="7">Сигнальное голосование</option>
-                                    <option value="8">Другое</option>
-                                </select>
-                            </div>
+                        <!-- ===== ПАРАМЕТР 1: mainExecutives ===== -->
+                        <div class="form-group">
+                            <label>
+                                <span style="background: #9b59b6; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; margin-right: 8px;">1</span>
+                                <i class="fas fa-user-tie"></i> Инициатор законопроекта
+                            </label>
+                            <select name="mainExecutives" required>
+                                <option value="Президент України">Президент України</option>
+                                <option value="Кабінет Міністрів України" selected>Кабінет Міністрів України</option>
+                                <option value="Народний депутат України">Народний депутат України</option>
+                                <option value="Національний банк України">Національний банк України</option>
+                                <option value="Тимчасова спеціальна комісія ВР України">Тимчасова спеціальна комісія ВР України</option>
+                            </select>
                         </div>
                         
-                        <button type="submit" class="btn-simulate">
-                            <i class="fas fa-rocket"></i> Запустить голосование
-                        </button>
+                        <!-- ===== ПАРАМЕТР 2: rubric ===== -->
+                        <div class="form-group">
+                            <label>
+                                <span style="background: #9b59b6; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; margin-right: 8px;">2</span>
+                                <i class="fas fa-folder"></i> Рубрика законопроекта
+                            </label>
+                            <select name="rubric" required>
+                                <option value="Державне будівництво" selected>Державне будівництво</option>
+                                <option value="Економіка. Pair промисловість">Економіка. Pair промисловість</option>
+                                <option value="Фінанси. Pair банківська діяльність">Фінанси. Pair банківська діяльність</option>
+                                <option value="Соціальна політика">Соціальна політика</option>
+                                <option value="Оборона і безпека">Оборона і безпека</option>
+                                <option value="Правова політика">Правова політика</option>
+                                <option value="Бюджет">Бюджет</option>
+                                <option value="Зовнішня політика">Зовнішня політика</option>
+                                <option value="Гуманітарна політика">Гуманітарна політика</option>
+                                <option value="Аграрна політика">Аграрна політика</option>
+                            </select>
+                        </div>
+                        
+                        <!-- ===== ПАРАМЕТР 3: type ===== -->
+                        <div class="form-group">
+                            <label>
+                                <span style="background: #9b59b6; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; margin-right: 8px;">3</span>
+                                <i class="fas fa-file-alt"></i> Тип законопроекта
+                            </label>
+                            <select name="type" required>
+                                <option value="Проект Закону" selected>Проект Закону</option>
+                                <option value="Проект Постанови">Проект Постанови</option>
+                            </select>
+                        </div>
+                        
+                        <!-- ===== ПАРАМЕТР 4: initiators_sort ===== -->
+                        <div class="form-group">
+                            <label>
+                                <span style="background: #9b59b6; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; margin-right: 8px;">4</span>
+                                <i class="fas fa-users"></i> Инициаторы по фракциям
+                            </label>
+                            <select name="initiators_sort" required>
+                                <option value="БПП" selected>БПП</option>
+                                <option value="НФ">НФ</option>
+                                <option value="Вне_Фр">Вне_Фр</option>
+                                <option value="ОпБл">ОпБл</option>
+                                <option value="Бтк">Бтк</option>
+                                <option value="СмПм">СмПм</option>
+                                <option value="РпОЛ">РпОЛ</option>
+                                <option value="Взржд">Взржд</option>
+                                <option value="Вл_Нр">Вл_Нр</option>
+                                <option value="НФ, РпОЛ">НФ, РпОЛ</option>
+                                <option value="Вне_Фр, ОпБл">Вне_Фр, ОпБл</option>
+                                <option value="Вне_Фр, Бтк">Вне_Фр, Бтк</option>
+                                <option value="Взржд, СмПм, БПП">Взржд, СмПм, БПП</option>
+                                <option value="Вне_Фр, Бтк, БПП">Вне_Фр, Бтк, БПП</option>
+                                <option value="Бтк, РпОЛ">Бтк, РпОЛ</option>
+                                <option value="НФ, СмПм">НФ, СмПм</option>
+                                <option value="НФ, Бтк">НФ, Бтк</option>
+                                <option value="НФ, СмПм, БПП">НФ, СмПм, БПП</option>
+                                <option value="Вне_Фр, НФ">Вне_Фр, НФ</option>
+                                <option value="Взржд, БПП">Взржд, БПП</option>
+                                <option value="Бтк, РпОЛ, БПП">Бтк, РпОЛ, БПП</option>
+                                <option value="Вне_Фр, СмПм">Вне_Фр, СмПм</option>
+                                <option value="СмПм, БПП">СмПм, БПП</option>
+                                <option value="Вне_Фр, БПП">Вне_Фр, БПП</option>
+                                <option value="Бтк, СмПм">Бтк, СмПм</option>
+                            </select>
+                        </div>
+                        
+                        <!-- ===== ПАРАМЕТР 5: ammendments_authors_sorted ===== -->
+                        <div class="form-group">
+                            <label>
+                                <span style="background: #9b59b6; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; margin-right: 8px;">5</span>
+                                <i class="fas fa-edit"></i> Авторы поправок по фракциям
+                            </label>
+                            <select name="ammendments_authors_sorted" required>
+                                <option value="unknown" selected>unknown</option>
+                                <option value="БПП">БПП</option>
+                                <option value="НФ">НФ</option>
+                                <option value="Вне_Фр">Вне_Фр</option>
+                                <option value="ОпБл">ОпБл</option>
+                                <option value="Бтк">Бтк</option>
+                                <option value="СмПм">СмПм</option>
+                                <option value="РпОЛ">РпОЛ</option>
+                                <option value="Взржд">Взржд</option>
+                                <option value="КабМін">КабМін</option>
+                                <option value="Президент">Президент</option>
+                                <option value="Предложения к Закону">Предложения к Закону</option>
+                                <option value="РпОЛ, БПП">РпОЛ, БПП</option>
+                                <option value="Взржд, Вне_Фр">Взржд, Вне_Фр</option>
+                                <option value="НФ, СмПм, РпОЛ">НФ, СмПм, РпОЛ</option>
+                                <option value="НФ, БПП">НФ, БПП</option>
+                                <option value="Бтк, БПП">Бтк, БПП</option>
+                                <option value="НФ, Бтк, СмПм">НФ, Бтк, СмПм</option>
+                                <option value="Бтк, ОпБл">Бтк, ОпБл</option>
+                                <option value="Взржд, НФ, БПП">Взржд, НФ, БПП</option>
+                                <option value="Взржд, Бтк, БПП">Взржд, Бтк, БПП</option>
+                                <option value="БПП, Вне_Фр, НФ">БПП, Вне_Фр, НФ</option>
+                                <option value="БПП, Бтк, Вне_Фр, НФ, РпОЛ, СмПм">БПП, Бтк, Вне_Фр, НФ, РпОЛ, СмПм</option>
+                                <option value="БПП, Бтк, Вне_Фр, НФ">БПП, Бтк, Вне_Фр, НФ</option>
+                                <option value="БПП, Бтк, Вне_Фр, НФ, СмПм">БПП, Бтк, Вне_Фр, НФ, СмПм</option>
+                                <option value="БПП, Вне_Фр">БПП, Вне_Фр</option>
+                                <option value="БПП, Бтк, НФ, СмПм">БПП, Бтк, НФ, СмПм</option>
+                                <option value="БПП, Вне_Фр, НФ, РпОЛ">БПП, Вне_Фр, НФ, РпОЛ</option>
+                                <option value="БПП, НФ">БПП, НФ</option>
+                                <option value="БПП, Вне_Фр, НФ, СмПм">БПП, Вне_Фр, НФ, СмПм</option>
+                                <option value="БПП, Бтк, НФ">БПП, Бтк, НФ</option>
+                                <option value="Бтк, Вне_Фр, НФ, СмПм">Бтк, Вне_Фр, НФ, СмПм</option>
+                                <option value="РпОЛ, СмПм, НФ">РпОЛ, СмПм, НФ</option>
+                            </select>
+                        </div>
+                        
+                        <!-- ===== ПАРАМЕТР 6: meta_type_name_eng ===== -->
+                        <div class="form-group">
+                            <label>
+                                <span style="background: #9b59b6; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; margin-right: 8px;">6</span>
+                                <i class="fas fa-gavel"></i> Тип процедуры голосования
+                            </label>
+                            <select name="meta_type_name_eng" required>
+                                <option value="final_voting" selected>Постановка на голосование (первое чтение)</option>
+                                <option value="second_voting">Второе чтение</option>
+                                <option value="agenda">Включение в повестку дня</option>
+                                <option value="ammendments">Голосование поправок</option>
+                                <option value="cancel">Отмена/снятие</option>
+                                <option value="short_procedure">Сокращённая процедура</option>
+                                <option value="signal_voting">Сигнальное голосование</option>
+                            </select>
+                        </div>
+                        
+                        <!-- ===== ПАРАМЕТР 7: N_initiators (числовой) ===== -->
+                        <div class="form-group" style="background: linear-gradient(135deg, #e8f4fd 0%, #d6eaf8 100%); padding: 1rem; border-radius: 8px; border: 2px solid #3498db;">
+                            <label>
+                                <span style="background: #3498db; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; margin-right: 8px;">7</span>
+                                <i class="fas fa-users"></i> Количество инициаторов
+                            </label>
+                            <input type="number" name="N_initiators" min="1" max="200" value="10" required>
+                            <small style="color: #666; display: block; margin-top: 0.5rem;">
+                                От 1 до 200 депутатов<br>
+                                <em style="color: #3498db;">⚡ Нормируется StandardScaler</em>
+                            </small>
+                        </div>
+                        
+                        <!-- ===== ПАРАМЕТР 8: law_circ (числовой) ===== -->
+                        <div class="form-group" style="background: linear-gradient(135deg, #e8f4fd 0%, #d6eaf8 100%); padding: 1rem; border-radius: 8px; border: 2px solid #3498db;">
+                            <label>
+                                <span style="background: #3498db; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; margin-right: 8px;">8</span>
+                                <i class="fas fa-edit"></i> Количество поправок
+                            </label>
+                            <input type="number" name="law_circ" min="1" max="3000" value="200" required>
+                            <small style="color: #666; display: block; margin-top: 0.5rem;">
+                                От 1 до 3000 поправок<br>
+                                <em style="color: #3498db;">⚡ Нормируется StandardScaler</em>
+                            </small>
+                        </div>
                     </div>
+                    
+                    <button type="submit" class="btn-primary" style="width: 100%; padding: 1rem; font-size: 1.1rem; margin-top: 1.5rem;">
+                        <i class="fas fa-magic"></i> Рассчитать прогноз
+                    </button>
                 </form>
                 
-                <div id="simulationResults"></div>
+                <!-- Блок результатов -->
+                <div id="case4Results" style="margin-top: 2rem; display: none;">
+                    <h3 style="border-bottom: 2px solid #9b59b6; padding-bottom: 0.5rem;">
+                        <i class="fas fa-chart-bar"></i> Результаты прогнозирования
+                    </h3>
+                    <div id="case4ResultsContent"></div>
+                </div>
+                
+                <!-- Информация о модели -->
+                <div style="margin-top: 2rem; padding: 1rem; background: #f8f9fa; border-radius: 8px; font-size: 0.9rem;">
+                    <h4 style="margin-top: 0; color: #2c3e50;"><i class="fas fa-cogs"></i> Порядок переменных для CatBoostEncoder:</h4>
+                    <ol style="margin: 0.5rem 0; padding-left: 1.5rem; color: #555;">
+                        <li><code>mainExecutives</code> — Инициатор законопроекта</li>
+                        <li><code>rubric</code> — Рубрика законопроекта</li>
+                        <li><code>type</code> — Тип законопроекта</li>
+                        <li><code>initiators_sort</code> — Инициаторы по фракциям</li>
+                        <li><code>ammendments_authors_sorted</code> — Авторы поправок по фракциям</li>
+                        <li><code>meta_type_name_eng</code> — Тип процедуры голосования</li>
+                    </ol>
+                    <p style="margin: 0.5rem 0 0 0; color: #7f8c8d;">
+                        <strong>Числовые переменные (StandardScaler):</strong> N_initiators, law_circ
+                    </p>
+                </div>
             </div>
         </div>
     `;
 
     modal.style.display = 'flex';
-    document.getElementById('billForm').addEventListener('submit', simulateVoting);
 }
 
-async function simulateVoting(e) {
-    e.preventDefault();
+function runCase4Prediction(event) {
+    event.preventDefault();
 
-    const form = e.target;
+    const form = event.target;
     const formData = new FormData(form);
 
-    // Валидация количественных параметров
-    const nInitiators = parseInt(formData.get('N_initiators'));
-    const lawCirc = parseInt(formData.get('law_circ'));
+    // Собираем данные из формы
+    const params = {
+        // Категориальные (для CatBoostEncoder)
+        mainExecutives: formData.get('mainExecutives'),
+        rubric: formData.get('rubric'),
+        type: formData.get('type'),
+        initiators_sort: formData.get('initiators_sort'),
+        ammendments_authors_sorted: formData.get('ammendments_authors_sorted'),
+        meta_type_name_eng: formData.get('meta_type_name_eng'),
+        // Числовые (для StandardScaler)
+        N_initiators: parseInt(formData.get('N_initiators')),
+        law_circ: parseInt(formData.get('law_circ'))
+    };
 
-    if (nInitiators < 1 || nInitiators > 200) {
+    console.log('Case 4 Parameters:', params);
+
+    // Валидация числовых полей
+    if (params.N_initiators < 1 || params.N_initiators > 200) {
         alert('Количество инициаторов должно быть от 1 до 200');
         return;
     }
 
-    if (lawCirc < 1 || lawCirc > 3000) {
+    if (params.law_circ < 1 || params.law_circ > 3000) {
         alert('Количество поправок должно быть от 1 до 3000');
         return;
     }
 
-    // Параметры для отправки на API
-    // Категориальные - СТРОКИ (для CatBoostEncoder)
-    // Количественные - ЧИСЛА (для StandardScaler)
-    const params = {
-        // Категориальные признаки (строки)
-        mainExecutives: formData.get('mainExecutives'),           // Параметр 1
-        rubric: formData.get('rubric'),                           // Параметр 2
-        type: formData.get('type'),                               // Параметр 3
-        initiators_sort: formData.get('initiators_sort'),         // Параметр 4
-        meta_type_name_eng: formData.get('meta_type_name_eng'),   // Параметр 8
+    // Показываем результаты
+    const resultsDiv = document.getElementById('case4Results');
+    const resultsContent = document.getElementById('case4ResultsContent');
 
-        // Количественные признаки (числа, нормируются StandardScaler)
-        N_initiators: nInitiators,                                // Параметр 5
-        Session: parseInt(formData.get('Session')),               // Параметр 6
-        law_circ: lawCirc                                         // Параметр 7
+    resultsDiv.style.display = 'block';
+    resultsContent.innerHTML = `
+        <div style="text-align: center; padding: 2rem;">
+            <i class="fas fa-spinner fa-spin" style="font-size: 2rem; color: #9b59b6;"></i>
+            <p>Выполняется прогнозирование...</p>
+        </div>
+    `;
+
+    // Симуляция запроса к API
+    setTimeout(() => {
+        // Демо-результаты (замените на реальный API вызов)
+        const results = generateDemoResults(params);
+        displayCase4Results(results, params);
+    }, 1500);
+}
+
+function generateDemoResults(params) {
+    // Демо-логика для отображения
+    // В реальной версии здесь будет вызов API
+
+    const baseProbs = {
+        'За': 0.35,
+        'Против': 0.08,
+        'Воздержался': 0.12,
+        'Не голосовал': 0.25,
+        'Отсутствовал': 0.20
     };
 
-    console.log('📤 Отправляем параметры:', params);
-
-    const resultsDiv = document.getElementById('simulationResults');
-    resultsDiv.innerHTML = `
-        <div style="text-align: center; padding: 2rem; margin-top: 2rem; background: #f8f9fa; border-radius: 8px;">
-            <div class="spinner"></div>
-            <p style="margin-top: 1rem; font-size: 1.1rem;">Симуляция голосования...</p>
-            <p style="color: #7f8c8d; font-size: 0.9rem; margin-top: 0.5rem;">
-                ⏰ Первый запрос может занять до 60 секунд (сервер просыпается)
-            </p>
-        </div>
-    `;
-
-    try {
-        const response = await fetch(`${API_URL}/simulate`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(params)
-        });
-
-        const data = await response.json();
-
-        if (!data.success) {
-            resultsDiv.innerHTML = `
-                <div style="background: #fee; padding: 1rem; border-radius: 8px; margin-top: 2rem; border-left: 4px solid #e74c3c;">
-                    <strong style="color: #e74c3c;">Ошибка симуляции:</strong> ${data.error}
-                </div>
-            `;
-            return;
-        }
-
-        console.log('📥 Получены результаты:', data);
-        case4SimulationResults = data;
-        displaySimulationResults(data);
-
-    } catch (error) {
-        console.error('Ошибка симуляции:', error);
-        resultsDiv.innerHTML = `
-            <div style="background: #fee; padding: 1rem; border-radius: 8px; margin-top: 2rem; border-left: 4px solid #e74c3c;">
-                <strong style="color: #e74c3c;">Ошибка подключения:</strong> ${error.message}
-                <p style="margin-top: 0.5rem; color: #666;">Проверьте подключение к интернету или попробуйте позже.</p>
-            </div>
-        `;
-    }
-}
-
-function displaySimulationResults(data) {
-    const resultsDiv = document.getElementById('simulationResults');
-
-    const resultColor = data.passed ? '#27ae60' : '#e74c3c';
-    const resultIcon = data.passed ? 'fa-check-circle' : 'fa-times-circle';
-    const resultText = data.passed ? 'ПРИНЯТ' : 'ОТКЛОНЁН';
-
-    resultsDiv.innerHTML = `
-        <div style="margin-top: 2rem; animation: fadeIn 0.5s;">
-            <!-- Главный результат -->
-            <div style="background: ${resultColor}; color: white; padding: 2rem; border-radius: 12px; text-align: center; margin-bottom: 2rem;">
-                <i class="fas ${resultIcon}" style="font-size: 4rem; margin-bottom: 1rem;"></i>
-                <h2 style="font-size: 2.5rem; margin: 0;">${resultText}</h2>
-                <p style="font-size: 1.3rem; margin-top: 0.5rem; opacity: 0.95;">
-                    ${data.vote_counts['За']} из 423 голосов "За"
-                </p>
-                <p style="font-size: 1rem; margin-top: 0.5rem; opacity: 0.9;">
-                    ${data.passed ? 'Законопроект набрал необходимое количество голосов' : 'Недостаточно голосов для принятия (нужно ≥226)'}
-                </p>
-            </div>
-            
-            <!-- Кнопка сравнения с реальностью -->
-            <div style="text-align: center; margin-bottom: 2rem;">
-                <button onclick="showRealVotingComparison()" class="btn-primary" style="padding: 1rem 2rem; font-size: 1.1rem; background: linear-gradient(135deg, #3498db 0%, #2980b9 100%); color: white; border: none; border-radius: 8px; cursor: pointer; transition: transform 0.2s;">
-                    <i class="fas fa-balance-scale"></i> Сравнить с реальным голосованием
-                </button>
-                <p style="color: #666; margin-top: 0.5rem; font-size: 0.9rem;">
-                    Загрузит реальные данные и покажет разницу между прогнозом и реальностью
-                </p>
-            </div>
-            
-            <!-- Карточки с голосами -->
-            <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 1rem; margin-bottom: 2rem;">
-                ${generateVoteCards(data.vote_counts)}
-            </div>
-            
-            <!-- Таблица по фракциям -->
-            <div style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-bottom: 2rem;">
-                <h3 style="margin-bottom: 1rem;"><i class="fas fa-users"></i> Голосование по фракциям</h3>
-                <div style="overflow-x: auto;">
-                    ${generateFactionTable(data.faction_votes)}
-                </div>
-            </div>
-            
-            <!-- Детали по депутатам -->
-            <details style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-                <summary style="cursor: pointer; font-size: 1.2rem; font-weight: 600; padding: 0.5rem;">
-                    <i class="fas fa-list"></i> Показать детали по всем депутатам (${data.total_deputies})
-                </summary>
-                <div style="margin-top: 1rem;">
-                    <!-- Фильтры -->
-                    <div style="display: flex; gap: 1rem; margin-bottom: 1rem; flex-wrap: wrap;">
-                        <select id="case4FactionFilter" onchange="applyCase4Filters()" style="padding: 0.5rem; border-radius: 4px; border: 1px solid #ddd;">
-                            <option value="all">Все фракции</option>
-                            ${getUniqueFactions(data.deputies).map(f => `<option value="${f}">${f}</option>`).join('')}
-                        </select>
-                        <select id="case4VoteFilter" onchange="applyCase4Filters()" style="padding: 0.5rem; border-radius: 4px; border: 1px solid #ddd;">
-                            <option value="all">Все голоса</option>
-                            <option value="За">За</option>
-                            <option value="Против">Против</option>
-                            <option value="Воздержался">Воздержался</option>
-                            <option value="Не голосовал">Не голосовал</option>
-                            <option value="Отсутствовал">Отсутствовал</option>
-                        </select>
-                    </div>
-                    <div id="case4DeputiesTable" style="max-height: 500px; overflow-y: auto;">
-                        ${generateDeputiesTable(data.deputies)}
-                    </div>
-                </div>
-            </details>
-        </div>
-    `;
-}
-
-function getUniqueFactions(deputies) {
-    return [...new Set(deputies.map(d => d.faction))].sort();
-}
-
-function applyCase4Filters() {
-    if (!case4SimulationResults) return;
-
-    const factionFilter = document.getElementById('case4FactionFilter').value;
-    const voteFilter = document.getElementById('case4VoteFilter').value;
-
-    let filtered = case4SimulationResults.deputies;
-
-    if (factionFilter !== 'all') {
-        filtered = filtered.filter(d => d.faction === factionFilter);
+    // Корректировки на основе параметров
+    if (params.mainExecutives === 'Кабінет Міністрів України') {
+        baseProbs['За'] += 0.10;
+        baseProbs['Против'] -= 0.03;
     }
 
-    if (voteFilter !== 'all') {
-        filtered = filtered.filter(d => d.vote === voteFilter);
+    if (params.meta_type_name_eng === 'final_voting') {
+        baseProbs['За'] += 0.05;
     }
 
-    document.getElementById('case4DeputiesTable').innerHTML = generateDeputiesTable(filtered);
-}
-
-async function showRealVotingComparison() {
-    const resultsDiv = document.getElementById('simulationResults');
-
-    resultsDiv.innerHTML += `
-        <div id="real-voting-section" style="margin-top: 2rem; padding: 2rem; background: #f8f9fa; border-radius: 12px; text-align: center;">
-            <div class="spinner"></div>
-            <p style="margin-top: 1rem;">Загрузка реальных данных голосования...</p>
-        </div>
-    `;
-
-    try {
-        const response = await fetch(`${API_URL}/predict_voting/94008`, {
-            method: 'POST'
-        });
-
-        const realData = await response.json();
-
-        if (!realData.success) {
-            document.getElementById('real-voting-section').innerHTML = `
-                <div style="background: #fee; padding: 1rem; border-radius: 8px; border-left: 4px solid #e74c3c;">
-                    <strong style="color: #e74c3c;">Ошибка:</strong> ${realData.error}
-                </div>
-            `;
-            return;
-        }
-
-        displayVotingComparison(case4SimulationResults, realData);
-
-    } catch (error) {
-        console.error('Ошибка загрузки реального голосования:', error);
-        document.getElementById('real-voting-section').innerHTML = `
-            <div style="background: #fee; padding: 1rem; border-radius: 8px; border-left: 4px solid #e74c3c;">
-                <strong style="color: #e74c3c;">Ошибка подключения:</strong> ${error.message}
-            </div>
-        `;
+    if (params.N_initiators > 50) {
+        baseProbs['За'] += 0.08;
+        baseProbs['Не голосовал'] -= 0.05;
     }
+
+    // Нормализация
+    const total = Object.values(baseProbs).reduce((a, b) => a + b, 0);
+    for (let key in baseProbs) {
+        baseProbs[key] = Math.max(0.01, baseProbs[key] / total);
+    }
+
+    return baseProbs;
 }
 
-function displayVotingComparison(simulationData, realData) {
-    const section = document.getElementById('real-voting-section');
+function displayCase4Results(results, params) {
+    const resultsContent = document.getElementById('case4ResultsContent');
 
-    const voteTypes = ['За', 'Против', 'Воздержался', 'Не голосовал', 'Отсутствовал'];
-
-    section.innerHTML = `
-        <h3 style="margin-bottom: 1.5rem; color: #2c3e50; text-align: center;">
-            <i class="fas fa-balance-scale"></i> Сравнение: Симуляция vs Прогноз vs Реальность
-        </h3>
-        
-        <div style="background: #fff3cd; padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem; border-left: 4px solid #ffc107;">
-            <strong>📌 Примечание:</strong> Показано реальное голосование от 08.04.2016 (ID: 94008) для сравнения с вашей симуляцией.
-        </div>
-        
-        <style>
-            .comparison-block {
-                background: white;
-                padding: 1.5rem;
-                border-radius: 12px;
-                box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            }
-            .comparison-block h3 {
-                margin: 0 0 1rem 0;
-                font-size: 1.1rem;
-                color: #2c3e50;
-                text-align: center;
-            }
-            .vote-breakdown {
-                display: flex;
-                flex-direction: column;
-                gap: 0.5rem;
-            }
-            .vote-item {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                padding: 0.5rem;
-                border-radius: 4px;
-                background: #f8f9fa;
-            }
-            .vote-label {
-                color: white;
-                padding: 0.25rem 0.75rem;
-                border-radius: 4px;
-                font-weight: 600;
-                font-size: 0.85rem;
-                min-width: 100px;
-                text-align: center;
-            }
-            .vote-count {
-                font-weight: bold;
-                font-size: 1.1rem;
-            }
-        </style>
-        
-        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 2rem;">
-            <!-- Симуляция -->
-            <div class="comparison-block">
-                <h3><i class="fas fa-robot"></i> Ваша симуляция</h3>
-                <div class="vote-breakdown">
-                    ${voteTypes.map(type => {
-                        const count = simulationData.vote_counts[type] || 0;
-                        const color = getVoteColor(type);
-                        return `
-                            <div class="vote-item">
-                                <span class="vote-label" style="background: ${color};">${type}</span>
-                                <span class="vote-count">${count}</span>
-                            </div>
-                        `;
-                    }).join('')}
-                </div>
-                <div style="margin-top: 1rem; padding: 0.75rem; background: ${simulationData.passed ? '#d4edda' : '#f8d7da'}; border-radius: 4px; text-align: center; font-weight: 600;">
-                    ${simulationData.passed ? '✅ Принят' : '❌ Не принят'} (${simulationData.vote_counts['За']} "За")
-                </div>
-            </div>
-            
-            <!-- Прогноз модели на реальные данные -->
-            <div class="comparison-block">
-                <h3><i class="fas fa-brain"></i> Прогноз модели</h3>
-                <div class="vote-breakdown">
-                    ${voteTypes.map(type => {
-                        const count = realData.statistics.pred_counts[type] || 0;
-                        const color = getVoteColor(type);
-                        return `
-                            <div class="vote-item">
-                                <span class="vote-label" style="background: ${color};">${type}</span>
-                                <span class="vote-count">${count}</span>
-                            </div>
-                        `;
-                    }).join('')}
-                </div>
-                <div style="margin-top: 1rem; padding: 0.75rem; background: ${realData.statistics.pred_passed ? '#d4edda' : '#f8d7da'}; border-radius: 4px; text-align: center; font-weight: 600;">
-                    ${realData.statistics.pred_passed ? '✅ Принят' : '❌ Не принят'} (${realData.statistics.pred_counts['За']} "За")
-                </div>
-                <div style="margin-top: 0.5rem; padding: 0.5rem; background: #e3f2fd; border-radius: 4px; text-align: center; font-size: 0.9rem;">
-                    <strong>Точность:</strong> ${realData.statistics.accuracy}%
-                </div>
-            </div>
-            
-            <!-- Реальность -->
-            <div class="comparison-block">
-                <h3><i class="fas fa-flag-checkered"></i> Реальность</h3>
-                <div class="vote-breakdown">
-                    ${voteTypes.map(type => {
-                        const count = realData.statistics.real_counts[type] || 0;
-                        const color = getVoteColor(type);
-                        return `
-                            <div class="vote-item">
-                                <span class="vote-label" style="background: ${color};">${type}</span>
-                                <span class="vote-count">${count}</span>
-                            </div>
-                        `;
-                    }).join('')}
-                </div>
-                <div style="margin-top: 1rem; padding: 0.75rem; background: ${realData.statistics.real_passed ? '#d4edda' : '#f8d7da'}; border-radius: 4px; text-align: center; font-weight: 600;">
-                    ${realData.statistics.real_passed ? '✅ Принят' : '❌ Не принят'} (${realData.statistics.real_counts['За']} "За")
-                </div>
-            </div>
-        </div>
-
-        <!-- Голосование по фракциям (реальное) -->
-        <div style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-bottom: 2rem;">
-            <h3 style="margin-bottom: 1rem;"><i class="fas fa-users"></i> Реальное голосование по фракциям</h3>
-            <div style="overflow-x: auto;">
-                ${generateFactionTableFromRealData(realData.deputies)}
-            </div>
-        </div>
-
-        <!-- Детали по депутатам (реальное) -->
-        <details style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-            <summary style="cursor: pointer; font-size: 1.2rem; font-weight: 600; padding: 0.5rem;">
-                <i class="fas fa-list"></i> Показать детали реального голосования (${realData.deputies.length} депутатов)
-            </summary>
-            <div style="margin-top: 1rem; max-height: 500px; overflow-y: auto;">
-                ${generateRealVotingTable(realData.deputies)}
-            </div>
-        </details>
-    `;
-}
-
-function getVoteColor(vote) {
     const colors = {
         'За': '#27ae60',
         'Против': '#e74c3c',
@@ -2542,226 +2170,64 @@ function getVoteColor(vote) {
         'Не голосовал': '#95a5a6',
         'Отсутствовал': '#34495e'
     };
-    return colors[vote] || '#95a5a6';
-}
 
-function generateVoteCards(counts) {
-    const voteConfig = {
-        'За': { color: '#27ae60', icon: 'fa-thumbs-up' },
-        'Против': { color: '#e74c3c', icon: 'fa-thumbs-down' },
-        'Воздержался': { color: '#f39c12', icon: 'fa-hand-paper' },
-        'Не голосовал': { color: '#95a5a6', icon: 'fa-minus-circle' },
-        'Отсутствовал': { color: '#34495e', icon: 'fa-user-slash' }
-    };
+    // Сортировка по вероятности
+    const sorted = Object.entries(results).sort((a, b) => b[1] - a[1]);
+    const winner = sorted[0];
 
-    const total = Object.values(counts).reduce((a, b) => a + b, 0);
+    let html = `
+        <div style="background: linear-gradient(135deg, ${colors[winner[0]]}22 0%, ${colors[winner[0]]}11 100%); 
+                    padding: 1.5rem; border-radius: 12px; margin-bottom: 1.5rem; 
+                    border-left: 4px solid ${colors[winner[0]]};">
+            <h4 style="margin: 0 0 0.5rem 0; color: ${colors[winner[0]]};">
+                <i class="fas fa-trophy"></i> Наиболее вероятный исход: ${winner[0]}
+            </h4>
+            <p style="margin: 0; font-size: 1.5rem; font-weight: bold; color: #2c3e50;">
+                ${(winner[1] * 100).toFixed(1)}%
+            </p>
+        </div>
+        
+        <div style="display: grid; gap: 0.75rem;">
+    `;
 
-    return Object.entries(counts).map(([vote, count]) => {
-        const config = voteConfig[vote] || { color: '#95a5a6', icon: 'fa-question' };
-        const percentage = ((count / total) * 100).toFixed(1);
-
-        return `
-            <div style="background: ${config.color}; color: white; padding: 1.5rem; border-radius: 8px; text-align: center;">
-                <i class="fas ${config.icon}" style="font-size: 2rem; margin-bottom: 0.5rem;"></i>
-                <div style="font-size: 2rem; font-weight: bold;">${count}</div>
-                <div style="font-size: 0.9rem; opacity: 0.9;">${vote}</div>
-                <div style="font-size: 0.85rem; opacity: 0.8; margin-top: 0.25rem;">${percentage}%</div>
+    sorted.forEach(([label, prob]) => {
+        const percentage = (prob * 100).toFixed(1);
+        html += `
+            <div style="display: flex; align-items: center; gap: 1rem;">
+                <div style="width: 120px; font-weight: 500; color: #2c3e50;">${label}</div>
+                <div style="flex: 1; background: #ecf0f1; border-radius: 4px; height: 24px; overflow: hidden;">
+                    <div style="width: ${percentage}%; height: 100%; background: ${colors[label]}; 
+                                transition: width 0.5s ease;"></div>
+                </div>
+                <div style="width: 60px; text-align: right; font-weight: 600; color: ${colors[label]};">
+                    ${percentage}%
+                </div>
             </div>
         `;
-    }).join('');
-}
-
-function generateFactionTable(factionVotes) {
-    const voteColors = {
-        'За': '#27ae60',
-        'Против': '#e74c3c',
-        'Воздержался': '#f39c12',
-        'Не голосовал': '#95a5a6',
-        'Отсутствовал': '#34495e'
-    };
-
-    let html = `
-        <table style="width: 100%; border-collapse: collapse;">
-            <thead style="background: #34495e; color: white;">
-                <tr>
-                    <th style="padding: 0.75rem; text-align: left;">Фракция</th>
-                    <th style="padding: 0.75rem; text-align: center;">За</th>
-                    <th style="padding: 0.75rem; text-align: center;">Против</th>
-                    <th style="padding: 0.75rem; text-align: center;">Воздержался</th>
-                    <th style="padding: 0.75rem; text-align: center;">Не голосовал</th>
-                    <th style="padding: 0.75rem; text-align: center;">Отсутствовал</th>
-                </tr>
-            </thead>
-            <tbody>
-    `;
-
-    for (const [faction, votes] of Object.entries(factionVotes)) {
-        html += `
-            <tr style="border-bottom: 1px solid #ecf0f1;">
-                <td style="padding: 0.75rem; font-weight: 600;">${faction}</td>
-                <td style="padding: 0.75rem; text-align: center; background: ${voteColors['За']}22;">${votes['За'] || 0}</td>
-                <td style="padding: 0.75rem; text-align: center; background: ${voteColors['Против']}22;">${votes['Против'] || 0}</td>
-                <td style="padding: 0.75rem; text-align: center; background: ${voteColors['Воздержался']}22;">${votes['Воздержался'] || 0}</td>
-                <td style="padding: 0.75rem; text-align: center; background: ${voteColors['Не голосовал']}22;">${votes['Не голосовал'] || 0}</td>
-                <td style="padding: 0.75rem; text-align: center; background: ${voteColors['Отсутствовал']}22;">${votes['Отсутствовал'] || 0}</td>
-            </tr>
-        `;
-    }
-
-    html += `</tbody></table>`;
-    return html;
-}
-
-function generateFactionTableFromRealData(deputies) {
-    const voteColors = {
-        'За': '#27ae60',
-        'Против': '#e74c3c',
-        'Воздержался': '#f39c12',
-        'Не голосовал': '#95a5a6',
-        'Отсутствовал': '#34495e'
-    };
-
-    const factionVotes = {};
-    deputies.forEach(dep => {
-        if (!factionVotes[dep.faction]) {
-            factionVotes[dep.faction] = {
-                'За': 0,
-                'Против': 0,
-                'Воздержался': 0,
-                'Не голосовал': 0,
-                'Отсутствовал': 0
-            };
-        }
-        factionVotes[dep.faction][dep.real_vote]++;
     });
 
-    let html = `
-        <table style="width: 100%; border-collapse: collapse;">
-            <thead style="background: #34495e; color: white;">
-                <tr>
-                    <th style="padding: 0.75rem; text-align: left;">Фракция</th>
-                    <th style="padding: 0.75rem; text-align: center;">За</th>
-                    <th style="padding: 0.75rem; text-align: center;">Против</th>
-                    <th style="padding: 0.75rem; text-align: center;">Воздержался</th>
-                    <th style="padding: 0.75rem; text-align: center;">Не голосовал</th>
-                    <th style="padding: 0.75rem; text-align: center;">Отсутствовал</th>
-                </tr>
-            </thead>
-            <tbody>
+    html += `</div>`;
+
+    // Параметры запроса
+    html += `
+        <div style="margin-top: 1.5rem; padding: 1rem; background: #f8f9fa; border-radius: 8px;">
+            <h5 style="margin: 0 0 0.75rem 0; color: #7f8c8d;">
+                <i class="fas fa-sliders-h"></i> Параметры запроса:
+            </h5>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; font-size: 0.85rem;">
+                <div><strong>1. Инициатор:</strong> ${params.mainExecutives}</div>
+                <div><strong>2. Рубрика:</strong> ${params.rubric}</div>
+                <div><strong>3. Тип:</strong> ${params.type}</div>
+                <div><strong>4. Инициаторы (фракции):</strong> ${params.initiators_sort}</div>
+                <div><strong>5. Авторы поправок (фракции):</strong> ${params.ammendments_authors_sorted}</div>
+                <div><strong>6. Процедура:</strong> ${params.meta_type_name_eng}</div>
+                <div><strong>7. Кол-во инициаторов:</strong> ${params.N_initiators}</div>
+                <div><strong>8. Кол-во поправок:</strong> ${params.law_circ}</div>
+            </div>
+        </div>
     `;
 
-    for (const [faction, votes] of Object.entries(factionVotes)) {
-        html += `
-            <tr style="border-bottom: 1px solid #ecf0f1;">
-                <td style="padding: 0.75rem; font-weight: 600;">${faction}</td>
-                <td style="padding: 0.75rem; text-align: center; background: ${voteColors['За']}22;">${votes['За']}</td>
-                <td style="padding: 0.75rem; text-align: center; background: ${voteColors['Против']}22;">${votes['Против']}</td>
-                <td style="padding: 0.75rem; text-align: center; background: ${voteColors['Воздержался']}22;">${votes['Воздержался']}</td>
-                <td style="padding: 0.75rem; text-align: center; background: ${voteColors['Не голосовал']}22;">${votes['Не голосовал']}</td>
-                <td style="padding: 0.75rem; text-align: center; background: ${voteColors['Отсутствовал']}22;">${votes['Отсутствовал']}</td>
-            </tr>
-        `;
-    }
-
-    html += `</tbody></table>`;
-    return html;
-}
-
-function generateDeputiesTable(deputies) {
-    const voteColors = {
-        'За': '#27ae60',
-        'Против': '#e74c3c',
-        'Воздержался': '#f39c12',
-        'Не голосовал': '#95a5a6',
-        'Отсутствовал': '#34495e'
-    };
-
-    let html = `
-        <table style="width: 100%; border-collapse: collapse; font-size: 0.9rem;">
-            <thead style="background: #34495e; color: white; position: sticky; top: 0;">
-                <tr>
-                    <th style="padding: 0.75rem; text-align: center; width: 50px;">№</th>
-                    <th style="padding: 0.75rem; text-align: left;">ФИО</th>
-                    <th style="padding: 0.75rem; text-align: left;">Фракция</th>
-                    <th style="padding: 0.75rem; text-align: center;">Голос</th>
-                    <th style="padding: 0.75rem; text-align: center;">Уверенность</th>
-                </tr>
-            </thead>
-            <tbody>
-    `;
-
-    deputies.forEach((deputy, index) => {
-        const voteColor = voteColors[deputy.vote] || '#95a5a6';
-        html += `
-            <tr style="border-bottom: 1px solid #ecf0f1;">
-                <td style="padding: 0.75rem; text-align: center; color: #999;">${index + 1}</td>
-                <td style="padding: 0.75rem;">${deputy.name}</td>
-                <td style="padding: 0.75rem;">${deputy.faction}</td>
-                <td style="padding: 0.75rem; text-align: center;">
-                    <span style="background: ${voteColor}; color: white; padding: 0.3rem 0.6rem; border-radius: 4px; font-weight: 600; display: inline-block; min-width: 100px;">
-                        ${deputy.vote}
-                    </span>
-                </td>
-                <td style="padding: 0.75rem; text-align: center;">${deputy.confidence || '-'}%</td>
-            </tr>
-        `;
-    });
-
-    html += `</tbody></table>`;
-    return html;
-}
-
-function generateRealVotingTable(deputies) {
-    const voteColors = {
-        'За': '#27ae60',
-        'Против': '#e74c3c',
-        'Воздержался': '#f39c12',
-        'Не голосовал': '#95a5a6',
-        'Отсутствовал': '#34495e'
-    };
-
-    let html = `
-        <table style="width: 100%; border-collapse: collapse; font-size: 0.9rem;">
-            <thead style="background: #34495e; color: white; position: sticky; top: 0;">
-                <tr>
-                    <th style="padding: 0.75rem; text-align: left;">ФИО</th>
-                    <th style="padding: 0.75rem; text-align: left;">Фракция</th>
-                    <th style="padding: 0.75rem; text-align: center;">Реальный голос</th>
-                    <th style="padding: 0.75rem; text-align: center;">Прогноз</th>
-                    <th style="padding: 0.75rem; text-align: center;">Совпадение</th>
-                </tr>
-            </thead>
-            <tbody>
-    `;
-
-    deputies.forEach(deputy => {
-        const matchIcon = deputy.is_correct
-            ? '<i class="fas fa-check-circle" style="color: #27ae60;"></i>'
-            : '<i class="fas fa-times-circle" style="color: #e74c3c;"></i>';
-
-        const rowBg = !deputy.is_correct ? 'background: #fff5f5;' : '';
-
-        html += `
-            <tr style="border-bottom: 1px solid #ecf0f1; ${rowBg}">
-                <td style="padding: 0.75rem;">${deputy.fio}</td>
-                <td style="padding: 0.75rem;">${deputy.faction}</td>
-                <td style="padding: 0.75rem; text-align: center;">
-                    <span style="background: ${voteColors[deputy.real_vote]}; color: white; padding: 0.3rem 0.6rem; border-radius: 4px; font-weight: 600; display: inline-block; min-width: 100px;">
-                        ${deputy.real_vote}
-                    </span>
-                </td>
-                <td style="padding: 0.75rem; text-align: center;">
-                    <span style="background: ${voteColors[deputy.predicted_vote]}; color: white; padding: 0.3rem 0.6rem; border-radius: 4px; font-weight: 600; display: inline-block; min-width: 100px;">
-                        ${deputy.predicted_vote}
-                    </span>
-                </td>
-                <td style="padding: 0.75rem; text-align: center;">${matchIcon}</td>
-            </tr>
-        `;
-    });
-
-    html += `</tbody></table>`;
-    return html;
+    resultsContent.innerHTML = html;
 }
 // ============================================
 // СТИЛИ
