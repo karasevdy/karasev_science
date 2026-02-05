@@ -8,9 +8,9 @@ app = Flask(__name__)
 CORS(app, resources={
     r"/*": {
         "origins": [
-            "https://karasevdy.github.io",  # твой GitHub Pages
-            "https://*.github.io",  # все поддомены github.io
-            "http://localhost:*",  # для локальной разработки
+            "https://karasevdy.github.io",
+            "https://*.github.io",
+            "http://localhost:*",
             "http://127.0.0.1:*"
         ]
     }
@@ -92,7 +92,6 @@ def index():
 # ============================================
 # API ENDPOINTS - HEALTH CHECK
 # ============================================
-
 @app.route('/api/health', methods=['GET'])
 def health():
     return jsonify({
@@ -476,7 +475,6 @@ def simulate_voting():
 # ============================================
 # ENDPOINTS ДЛЯ КЕЙСА 3
 # ============================================
-
 @app.route('/api/votings_list', methods=['GET'])
 def get_votings_list():
     votings = [
@@ -619,8 +617,6 @@ def predict_voting(voting_id):
 # ============================================
 # ENDPOINTS ДЛЯ КЕЙСА 2: СЕТЕВОЙ ГРАФ
 # ============================================
-
-# Маппинг КВЭД в крупные категории
 ACTIVITY_MAPPING = {
     'Інформація та телекомунікації': 'Информационные технологии и телекоммуникация',
     'Професійна, наукова та технічна діяльність': 'Научно-техническая и конструкторская деятельность',
@@ -1014,11 +1010,6 @@ def get_coauthorship_graph():
         import traceback
         traceback.print_exc()
         return jsonify({'success': False, 'error': str(e)}), 500
-
-
-# ============================================
-# MAIN
-# ============================================
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5001))

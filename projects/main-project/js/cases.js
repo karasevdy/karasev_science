@@ -1,20 +1,12 @@
 // ============================================
 // КОНФИГУРАЦИЯ API
 // ============================================
-
 const API_URL = 'https://karasev-backend.onrender.com/api';
-
 let case3CurrentData = [];
 let case3CurrentVoting = '94008';
-
-
 let cy = null;
 let case2CurrentGraph = 'real';
 let case2AllDeputies = [];
-
-// ============================================
-// МОДАЛЬНОЕ ОКНО
-// ============================================
 
 function closeModal() {
     const modal = document.getElementById('modal');
@@ -32,9 +24,7 @@ window.onclick = function(event) {
 
 // ============================================
 // КЕЙС 1: Вводные визуализации
-// Разделён на 3 секции с переключением
 // ============================================
-
 function openCase1() {
     const modal = document.getElementById('modal');
     modal.innerHTML = `
@@ -398,17 +388,11 @@ function openCase1() {
     loadCase1Data();
 }
 
-// Переключение между секциями
 function switchCase1Section(section) {
-    // Убираем active у всех кнопок и секций
     document.querySelectorAll('.case1-tab-btn').forEach(btn => btn.classList.remove('active'));
     document.querySelectorAll('.case1-section').forEach(sec => sec.classList.remove('active'));
-
-    // Добавляем active нужным элементам
     document.getElementById(`btn-${section}`).classList.add('active');
     document.getElementById(`section-${section}`).classList.add('active');
-
-    // Перерисовываем графики при переключении (Plotly требует видимости)
     setTimeout(() => {
         if (section === 'deputies') {
             generateFactionChart();
@@ -427,7 +411,6 @@ async function loadCase1Data() {
     generateClassificationReports();
     generateTrainTestTables();
 
-    // Загружаем данные депутатов для графика фракций
     try {
         const response = await fetch(`${API_URL}/deputies`);
         const data = await response.json();
@@ -438,7 +421,6 @@ async function loadCase1Data() {
         console.error('Ошибка загрузки:', error);
     }
 
-    // Генерируем первый видимый график
     generateFactionChart();
 }
 
@@ -568,16 +550,12 @@ function generateVotingTypesTable() {
 }
 
 function generateCoauthorsTable() {
-    // Таблица соотношения законопроектов соавторов по фракциям
     const container = document.getElementById('coauthorsTable');
     if (!container) return;
-
-    // Данные можно взять из PDF
     container.innerHTML = '<p style="color: #999; text-align: center;">Таблица генерируется из данных</p>';
 }
 
 function generateTrainTestTables() {
-    // Таблицы train и test
     const trainData = [
         {behavior: 'Не голосовал', count: 3410921, share: 0.37},
         {behavior: 'За', count: 2816714, share: 0.31},
@@ -634,7 +612,6 @@ function generateSmallTable(data, title) {
 }
 
 function generateTrainTestCharts() {
-    // Круговые диаграммы train и test
     const trainColors = ['#95a5a6', '#27ae60', '#34495e', '#f39c12', '#e74c3c'];
     const testColors = ['#27ae60', '#95a5a6', '#34495e', '#f39c12', '#e74c3c'];
 
@@ -775,17 +752,13 @@ function generateROCCurves() {
         </div>
     `;
 
-    // Генерируем кривые
     const fpr = [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0];
 
     Object.keys(rocData).forEach(voteType => {
         const data = rocData[voteType];
         const divId = `roc-${voteType.replace(/\s/g, '_')}`;
-
-        // Генерируем TPR на основе AUC (упрощённо)
         const tpr_train = fpr.map(x => Math.min(1, x + (data.train_auc - 0.5) * 1.5 * (1 - x)));
         const tpr_test = fpr.map(x => Math.min(1, x + (data.test_auc - 0.5) * 1.5 * (1 - x)));
-
         const traces = [
             { x: [0, 1], y: [0, 1], mode: 'lines', line: {dash: 'dash', color: 'gray', width: 1}, showlegend: false },
             { x: fpr, y: tpr_train, mode: 'lines', name: `train (AUC=${data.train_auc})`, line: {color: data.color, width: 3} },
@@ -823,9 +796,7 @@ function openCase2() {
             </div>
             
             <div class="modal-body">
-                <!-- 3 КНОПКИ для выбора типа графа -->
                 <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 2rem;">
-                    <!-- Кнопка 1: Граф соавторства -->
                     <div class="graph-type-card" onclick="loadCase2GraphType('coauthorship')" 
                          style="background: linear-gradient(135deg, #fff5f5 0%, #ffe8e8 100%); border: 2px solid #ffcdd2; border-radius: 12px; padding: 2rem; cursor: pointer; text-align: center; transition: all 0.3s;">
                         <i class="fas fa-users" style="font-size: 2.5rem; color: #e74c3c; margin-bottom: 1rem;"></i>
@@ -835,7 +806,6 @@ function openCase2() {
                         </p>
                     </div>
 
-                    <!-- Кнопка 2: Граф отраслевых связей (ИНТЕРАКТИВНЫЙ) -->
                     <div class="graph-type-card active" onclick="loadCase2GraphType('industry')" 
                          style="background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); border: 3px solid #2196F3; border-radius: 12px; padding: 2rem; cursor: pointer; text-align: center; transition: all 0.3s; box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);">
                         <i class="fas fa-industry" style="font-size: 2.5rem; color: #2196F3; margin-bottom: 1rem;"></i>
@@ -845,7 +815,6 @@ function openCase2() {
                         </p>
                     </div>
 
-                    <!-- Кнопка 3: Граф соголосования -->
                     <div class="graph-type-card" onclick="loadCase2GraphType('voting')" 
                          style="background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%); border: 2px solid #ce93d8; border-radius: 12px; padding: 2rem; cursor: pointer; text-align: center; transition: all 0.3s;">
                         <i class="fas fa-vote-yea" style="font-size: 2.5rem; color: #9c27b0; margin-bottom: 1rem;"></i>
@@ -856,7 +825,6 @@ function openCase2() {
                     </div>
                 </div>
 
-                <!-- Селектор депутата (только для интерактивного графа) -->
                 <div id="case2-deputy-selector" style="background: #f5f5f5; padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem;">
                     <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">
                         <i class="fas fa-user"></i> Выберите депутата для интерактивного графа:
@@ -871,7 +839,6 @@ function openCase2() {
                     </div>
                 </div>
 
-                <!-- Контейнер для отображения графа/картинки -->
                 <div id="case2-content-area" style="min-height: 600px;">
                     <div id="case2-filters" style="display: none; background: #f8f9fa; padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem;">
                         <h4><i class="fas fa-filter"></i> Фильтры</h4>
@@ -931,7 +898,6 @@ function openCase2() {
                         <div id="case2-node-info" style="display: none; background: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);"></div>
                     </div>
 
-                    <!-- Контейнер для статических картинок -->
                     <div id="case2-static-image" style="display: none;">
                         <div style="background: white; border-radius: 8px; padding: 2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); min-height: 600px; display: flex; align-items: center; justify-content: center;">
                             <img id="case2-graph-image" style="max-width: 100%; height: auto;" alt="График">
@@ -946,12 +912,9 @@ function openCase2() {
     `;
     modal.style.display = 'flex';
     loadCase2DeputiesList();
-
-    // По умолчанию загружаем интерактивный граф отраслевых связей
     loadCase2GraphType('industry');
 }
 
-// Переключение между типами графов
 function loadCase2GraphType(type) {
     const staticImage = document.getElementById('case2-static-image');
     const graphContainer = document.getElementById('case2-graph-container');
@@ -960,13 +923,11 @@ function loadCase2GraphType(type) {
     const image = document.getElementById('case2-graph-image');
     const caption = document.getElementById('case2-image-caption');
 
-    // Скрываем всё
     staticImage.style.display = 'none';
     graphContainer.style.display = 'none';
     filters.style.display = 'none';
 
     if (type === 'coauthorship') {
-        // Граф соавторства - статическая картинка
         deputySelector.style.display = 'none';
         staticImage.style.display = 'block';
         image.src = '/karasev_science/images/graphs/coauthorship_graph.png';
@@ -981,11 +942,8 @@ function loadCase2GraphType(type) {
         };
         caption.textContent = 'Граф соавторства депутатов Верховной Рады VIII созыва (448 депутатов). Связи показывают совместное авторство законопроектов.';
     } else if (type === 'industry') {
-        // Граф отраслевых связей - ИНТЕРАКТИВНЫЙ
         deputySelector.style.display = 'block';
-        // Не загружаем автоматически - ждем выбора депутата
     } else if (type === 'voting') {
-        // Граф соголосования - статическая картинка
         deputySelector.style.display = 'none';
         staticImage.style.display = 'block';
         image.src = '/karasev_science/images/graphs/covoting_graph.png';
@@ -1503,7 +1461,7 @@ async function loadVotingsList() {
     }
 }
 
-// Функция получения правильной даты по ID голосования
+
 function getVotingDate(votingId) {
     const dates = {
         '121108': '2015-03-19',
@@ -1517,7 +1475,6 @@ function getVotingDate(votingId) {
     return dates[votingId] || votingId;
 }
 
-// Функция форматирования названий голосований
 function formatVotingName(originalName, votingId) {
     const votingNames = {
         '121108': 'Отмена предыдущей редакции закона "Об акционерных обществах"',
@@ -1828,21 +1785,17 @@ function getErrorRowColor(realVote, predVote) {
         return 'background-color: #fff3cd;'; // Желтый
     }
 
-    // Если один За, другой Против - красный (противоположные)
+
     if ((realVote === 'За' && predVote === 'Против') ||
         (realVote === 'Против' && predVote === 'За')) {
         return 'background-color: #f8d7da;'; // Красный
     }
 
-    // Остальные случаи - желтый (смысл похожий, но не точное совпадение)
     return 'background-color: #fff3cd;'; // Желтый
 }
 // ============================================
 // КЕЙС 4: ML-симулятор голосования
-// 8 параметров для CatBoost модели
-// ИСПРАВЛЕНО: параметры 4, 5, 6 для CatBoostEncoder
 // ============================================
-
 let case4SimulationResults = null;
 
 function openCase4() {
@@ -2040,7 +1993,6 @@ function openCase4() {
                                 </select>
                             </div>
                             
-                            <!-- Параметр 3: Тип законопроекта -->
                             <div class="param-card">
                                 <div class="param-number">3</div>
                                 <label class="param-label">
@@ -2053,80 +2005,82 @@ function openCase4() {
                                     <option value="3">Предложения Президента к Закону</option>
                                 </select>
                             </div>
-                            
-                            <!-- Параметр 4: Инициаторы по фракциям (ИСПРАВЛЕНО) -->
+
+                            <!-- Параметр 4: Инициаторы по фракциям (ИСПРАВЛЕНО - теперь включает КабМін, Президент) -->
                             <div class="param-card">
                                 <div class="param-number">4</div>
                                 <label class="param-label">
                                     <i class="fas fa-users"></i> Инициаторы по фракциям
                                 </label>
                                 <select name="initiators_sort" required class="param-select">
-                                    <option value="БПП" selected>БПП</option>
+                                    <option value="КабМін" selected>Кабинет Министров</option>
+                                    <option value="Президент">Президент</option>
+                                    <option value="БПП">БПП</option>
                                     <option value="НФ">НФ</option>
-                                    <option value="Вне_Фр">Вне_Фр</option>
-                                    <option value="ОпБл">ОпБл</option>
-                                    <option value="Бтк">Бтк</option>
-                                    <option value="СмПм">СмПм</option>
-                                    <option value="РпОЛ">РпОЛ</option>
-                                    <option value="Взржд">Взржд</option>
-                                    <option value="Вл_Нр">Вл_Нр</option>
-                                    <option value="НФ, РпОЛ">НФ, РпОЛ</option>
-                                    <option value="Вне_Фр, ОпБл">Вне_Фр, ОпБл</option>
-                                    <option value="Вне_Фр, Бтк">Вне_Фр, Бтк</option>
-                                    <option value="Взржд, СмПм, БПП">Взржд, СмПм, БПП</option>
-                                    <option value="Вне_Фр, Бтк, БПП">Вне_Фр, Бтк, БПП</option>
-                                    <option value="Бтк, РпОЛ">Бтк, РпОЛ</option>
-                                    <option value="НФ, СмПм">НФ, СмПм</option>
-                                    <option value="НФ, Бтк">НФ, Бтк</option>
-                                    <option value="НФ, СмПм, БПП">НФ, СмПм, БПП</option>
-                                    <option value="Вне_Фр, НФ">Вне_Фр, НФ</option>
-                                    <option value="Взржд, БПП">Взржд, БПП</option>
-                                    <option value="Бтк, РпОЛ, БПП">Бтк, РпОЛ, БПП</option>
-                                    <option value="Вне_Фр, СмПм">Вне_Фр, СмПм</option>
-                                    <option value="СмПм, БПП">СмПм, БПП</option>
-                                    <option value="Вне_Фр, БПП">Вне_Фр, БПП</option>
-                                    <option value="Бтк, СмПм">Бтк, СмПм</option>
+                                    <option value="Вне_Фр">Вне фракций</option>
+                                    <option value="ОпБл">Оппозиционный блок</option>
+                                    <option value="Бтк">Батькивщина</option>
+                                    <option value="СмПм">Самопомощь</option>
+                                    <option value="РпОЛ">Радикальная партия</option>
+                                    <option value="Взржд">Возрождение</option>
+                                    <option value="Вл_Нр">Воля народа</option>
+                                    <option value="НФ, БПП">НФ + БПП</option>
+                                    <option value="БПП, НФ">БПП + НФ</option>
+                                    <option value="Вне_Фр, БПП">Вне фракций + БПП</option>
+                                    <option value="Вне_Фр, НФ">Вне фракций + НФ</option>
+                                    <option value="Вне_Фр, ОпБл">Вне фракций + ОпБл</option>
+                                    <option value="Вне_Фр, Бтк">Вне фракций + Батькивщина</option>
+                                    <option value="Вне_Фр, СмПм">Вне фракций + Самопомощь</option>
+                                    <option value="Бтк, БПП">Батькивщина + БПП</option>
+                                    <option value="Бтк, НФ">Батькивщина + НФ</option>
+                                    <option value="Бтк, СмПм">Батькивщина + Самопомощь</option>
+                                    <option value="Бтк, РпОЛ">Батькивщина + Радикальная партия</option>
+                                    <option value="НФ, СмПм">НФ + Самопомощь</option>
+                                    <option value="НФ, Бтк">НФ + Батькивщина</option>
+                                    <option value="НФ, РпОЛ">НФ + Радикальная партия</option>
+                                    <option value="СмПм, БПП">Самопомощь + БПП</option>
+                                    <option value="Взржд, БПП">Возрождение + БПП</option>
+                                    <option value="НФ, СмПм, БПП">НФ + Самопомощь + БПП</option>
+                                    <option value="Вне_Фр, Бтк, БПП">Вне фракций + Батькивщина + БПП</option>
+                                    <option value="Взржд, СмПм, БПП">Возрождение + Самопомощь + БПП</option>
+                                    <option value="Бтк, РпОЛ, БПП">Батькивщина + Радикальная партия + БПП</option>
                                 </select>
                             </div>
-                            
-                            <!-- Параметр 5: Авторы поправок по фракциям (ИСПРАВЛЕНО) -->
+
+                            <!-- Параметр 5: Авторы поправок по фракциям (ИСПРАВЛЕНО - теперь только фракции) -->
                             <div class="param-card">
                                 <div class="param-number">5</div>
                                 <label class="param-label">
                                     <i class="fas fa-edit"></i> Авторы поправок по фракциям
                                 </label>
                                 <select name="ammendments_authors_sorted" required class="param-select">
-                                    <option value="unknown" selected>unknown</option>
+                                    <option value="unknown" selected>Неизвестно / нет поправок</option>
                                     <option value="БПП">БПП</option>
                                     <option value="НФ">НФ</option>
-                                    <option value="Вне_Фр">Вне_Фр</option>
-                                    <option value="ОпБл">ОпБл</option>
-                                    <option value="Бтк">Бтк</option>
-                                    <option value="СмПм">СмПм</option>
-                                    <option value="РпОЛ">РпОЛ</option>
-                                    <option value="Взржд">Взржд</option>
-                                    <option value="КабМін">КабМін</option>
-                                    <option value="Президент">Президент</option>
-                                    <option value="Предложения к Закону">Предложения к Закону</option>
-                                    <option value="РпОЛ, БПП">РпОЛ, БПП</option>
-                                    <option value="Взржд, Вне_Фр">Взржд, Вне_Фр</option>
-                                    <option value="НФ, СмПм, РпОЛ">НФ, СмПм, РпОЛ</option>
-                                    <option value="НФ, БПП">НФ, БПП</option>
-                                    <option value="Бтк, БПП">Бтк, БПП</option>
-                                    <option value="НФ, Бтк, СмПм">НФ, Бтк, СмПм</option>
-                                    <option value="Бтк, ОпБл">Бтк, ОпБл</option>
-                                    <option value="Взржд, НФ, БПП">Взржд, НФ, БПП</option>
-                                    <option value="Взржд, Бтк, БПП">Взржд, Бтк, БПП</option>
-                                    <option value="БПП, Вне_Фр, НФ">БПП, Вне_Фр, НФ</option>
-                                    <option value="БПП, Бтк, Вне_Фр, НФ, РпОЛ, СмПм">БПП, Бтк, Вне_Фр, НФ, РпОЛ, СмПм</option>
-                                    <option value="БПП, Бтк, Вне_Фр, НФ">БПП, Бтк, Вне_Фр, НФ</option>
-                                    <option value="БПП, Вне_Фр">БПП, Вне_Фр</option>
-                                    <option value="БПП, НФ">БПП, НФ</option>
-                                    <option value="БПП, Бтк, НФ">БПП, Бтк, НФ</option>
+                                    <option value="Вне_Фр">Вне фракций</option>
+                                    <option value="ОпБл">Оппозиционный блок</option>
+                                    <option value="Бтк">Батькивщина</option>
+                                    <option value="СмПм">Самопомощь</option>
+                                    <option value="РпОЛ">Радикальная партия</option>
+                                    <option value="Взржд">Возрождение</option>
+                                    <option value="НФ, БПП">НФ + БПП</option>
+                                    <option value="БПП, НФ">БПП + НФ</option>
+                                    <option value="БПП, Вне_Фр">БПП + Вне фракций</option>
+                                    <option value="БПП, Вне_Фр, НФ">БПП + Вне фракций + НФ</option>
+                                    <option value="БПП, Бтк, НФ">БПП + Батькивщина + НФ</option>
+                                    <option value="БПП, Бтк, Вне_Фр, НФ">БПП + Батькивщина + Вне фракций + НФ</option>
+                                    <option value="БПП, Бтк, Вне_Фр, НФ, РпОЛ, СмПм">Широкая коалиция</option>
+                                    <option value="Бтк, БПП">Батькивщина + БПП</option>
+                                    <option value="Бтк, ОпБл">Батькивщина + ОпБл</option>
+                                    <option value="РпОЛ, БПП">Радикальная партия + БПП</option>
+                                    <option value="Взржд, Вне_Фр">Возрождение + Вне фракций</option>
+                                    <option value="Взржд, НФ, БПП">Возрождение + НФ + БПП</option>
+                                    <option value="Взржд, Бтк, БПП">Возрождение + Батькивщина + БПП</option>
+                                    <option value="НФ, Бтк, СмПм">НФ + Батькивщина + Самопомощь</option>
+                                    <option value="НФ, СмПм, РпОЛ">НФ + Самопомощь + Радикальная партия</option>
                                 </select>
                             </div>
-                            
-                            <!-- Параметр 6: Тип процедуры голосования (ИСПРАВЛЕНО) -->
+
                             <div class="param-card">
                                 <div class="param-number">6</div>
                                 <label class="param-label">
@@ -2142,19 +2096,19 @@ function openCase4() {
                                     <option value="signal_voting">Сигнальное голосование</option>
                                 </select>
                             </div>
-                            
+
                             <!-- Параметр 7: Количество инициаторов -->
                             <div class="param-card numeric-param">
                                 <div class="param-number">7</div>
                                 <label class="param-label">
                                     <i class="fas fa-users"></i> Количество инициаторов
                                 </label>
-                                <input type="number" 
-                                       name="N_initiators" 
-                                       required 
+                                <input type="number"
+                                       name="N_initiators"
+                                       required
                                        class="param-input"
-                                       min="1" 
-                                       max="200" 
+                                       min="1"
+                                       max="200"
                                        value="10"
                                        placeholder="Введите число от 1 до 200">
                                 <div class="param-help">
@@ -2164,19 +2118,19 @@ function openCase4() {
                                     <i class="fas fa-cog"></i> Нормируется StandardScaler
                                 </div>
                             </div>
-                            
+
                             <!-- Параметр 8: Количество поправок -->
                             <div class="param-card numeric-param">
                                 <div class="param-number">8</div>
                                 <label class="param-label">
                                     <i class="fas fa-edit"></i> Количество поправок
                                 </label>
-                                <input type="number" 
-                                       name="law_circ" 
-                                       required 
+                                <input type="number"
+                                       name="law_circ"
+                                       required
                                        class="param-input"
-                                       min="1" 
-                                       max="3000" 
+                                       min="1"
+                                       max="3000"
                                        value="200"
                                        placeholder="Введите число от 1 до 3000">
                                 <div class="param-help">
@@ -2187,13 +2141,13 @@ function openCase4() {
                                 </div>
                             </div>
                         </div>
-                        
+
                         <button type="submit" class="btn-simulate">
                             <i class="fas fa-rocket"></i> Запустить голосование
                         </button>
                     </div>
                 </form>
-                
+
                 <div id="simulationResults"></div>
             </div>
         </div>
@@ -2300,7 +2254,7 @@ function displayCase4SimulationResults(data) {
                     ${data.passed ? 'Законопроект набрал необходимое количество голосов' : 'Недостаточно голосов для принятия (нужно ≥226)'}
                 </p>
             </div>
-            
+
             <div style="text-align: center; margin-bottom: 2rem;">
                 <button onclick="showCase4RealVotingComparison()" class="btn-primary" style="padding: 1rem 2rem; font-size: 1.1rem; background: linear-gradient(135deg, #3498db 0%, #2980b9 100%); color: white; border: none; border-radius: 8px; cursor: pointer; transition: transform 0.2s;">
                     <i class="fas fa-balance-scale"></i> Сравнить с реальным голосованием
@@ -2309,18 +2263,18 @@ function displayCase4SimulationResults(data) {
                     Загрузит реальные данные и покажет разницу между прогнозом и реальностью
                 </p>
             </div>
-            
+
             <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 1rem; margin-bottom: 2rem;">
                 ${generateCase4VoteCards(data.vote_counts)}
             </div>
-            
+
             <div style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-bottom: 2rem;">
                 <h3 style="margin-bottom: 1rem;"><i class="fas fa-users"></i> Голосование по фракциям</h3>
                 <div style="overflow-x: auto;">
                     ${generateCase4FactionTable(data.faction_votes)}
                 </div>
             </div>
-            
+
             <details style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
                 <summary style="cursor: pointer; font-size: 1.2rem; font-weight: 600; padding: 0.5rem;">
                     <i class="fas fa-list"></i> Показать детали по всем депутатам (${data.total_deputies})
@@ -2418,11 +2372,11 @@ function displayCase4VotingComparison(simulationData, realData) {
         <h3 style="margin-bottom: 1.5rem; color: #2c3e50; text-align: center;">
             <i class="fas fa-balance-scale"></i> Сравнение: Симуляция vs Прогноз vs Реальность
         </h3>
-        
+
         <div style="background: #fff3cd; padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem; border-left: 4px solid #ffc107;">
             <strong>📌 Примечание:</strong> Показано реальное голосование от 08.04.2016 (ID: 94008) для сравнения с вашей симуляцией.
         </div>
-        
+
         <style>
             .comparison-block {
                 background: white;
@@ -2463,7 +2417,7 @@ function displayCase4VotingComparison(simulationData, realData) {
                 font-size: 1.1rem;
             }
         </style>
-        
+
         <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 2rem;">
             <div class="comparison-block">
                 <h3><i class="fas fa-robot"></i> Ваша симуляция</h3>
@@ -2483,7 +2437,7 @@ function displayCase4VotingComparison(simulationData, realData) {
                     ${simulationData.passed ? '✅ Принят' : '❌ Не принят'} (${simulationData.vote_counts['За']} "За")
                 </div>
             </div>
-            
+
             <div class="comparison-block">
                 <h3><i class="fas fa-brain"></i> Прогноз модели</h3>
                 <div class="vote-breakdown">
@@ -2505,7 +2459,7 @@ function displayCase4VotingComparison(simulationData, realData) {
                     <strong>Точность:</strong> ${realData.statistics.accuracy}%
                 </div>
             </div>
-            
+
             <div class="comparison-block">
                 <h3><i class="fas fa-flag-checkered"></i> Реальность</h3>
                 <div class="vote-breakdown">
@@ -2810,12 +2764,12 @@ style.textContent = `
         animation: spin 1s linear infinite;
         margin: 0 auto;
     }
-    
+
     @keyframes spin {
         0% { transform: rotate(0deg); }
         100% { transform: rotate(360deg); }
     }
-    
+
     .stat-card {
         background: white;
         padding: 1.5rem;
@@ -2823,96 +2777,96 @@ style.textContent = `
         box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         text-align: center;
     }
-    
+
     .stat-value {
         font-size: 2.5rem;
         font-weight: bold;
         margin: 0.5rem 0;
     }
-    
+
     .stat-label {
         font-size: 0.9rem;
         opacity: 0.9;
     }
-    
+
     .case3-stats-grid {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         gap: 1rem;
         margin-bottom: 2rem;
     }
-    
+
     .case3-stats-grid .stat-card {
         color: white;
     }
-    
+
     .case3-comparison {
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 2rem;
         margin-bottom: 2rem;
     }
-    
+
     .metrics-table-wrapper {
         overflow-x: auto;
     }
-    
+
     .metrics-table {
         width: 100%;
         border-collapse: collapse;
     }
-    
+
     .metrics-table thead {
         background: #9b59b6;
         color: white;
     }
-    
+
     .metrics-table th {
         padding: 0.75rem;
         text-align: center;
         font-weight: 600;
     }
-    
+
     .metrics-table td {
         padding: 0.75rem;
         text-align: center;
         border-bottom: 1px solid #ecf0f1;
     }
-    
+
     .metrics-table tbody tr:hover {
         background: #f8f9fa;
     }
-    
+
     .case3-filters {
         background: #f8f9fa;
         padding: 1.5rem;
         border-radius: 8px;
         margin-bottom: 2rem;
     }
-    
+
     .case3-filters h3 {
         margin-top: 0;
         margin-bottom: 1rem;
     }
-    
+
     .filters-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
         gap: 1rem;
         margin-top: 1rem;
     }
-    
+
     .filter-group {
         display: flex;
         flex-direction: column;
     }
-    
+
     .filter-group label {
         font-weight: 600;
         margin-bottom: 0.5rem;
         color: #2c3e50;
     }
-    
+
     .filter-group select {
         width: 100%;
         padding: 0.5rem;
@@ -2920,29 +2874,29 @@ style.textContent = `
         border-radius: 4px;
         font-size: 0.95rem;
     }
-    
+
     .filter-group select:focus {
         outline: none;
         border-color: #9b59b6;
     }
-    
+
     .case3-table-section {
         background: white;
         padding: 1.5rem;
         border-radius: 8px;
         box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
-    
+
     .case3-table-section h3 {
         margin-top: 0;
         margin-bottom: 1rem;
     }
-    
+
     .case3-table {
         width: 100%;
         border-collapse: collapse;
     }
-    
+
     .case3-table th {
         background: #9b59b6;
         color: white;
@@ -2950,20 +2904,20 @@ style.textContent = `
         text-align: left;
         font-weight: 600;
     }
-    
+
     .case3-table td {
         padding: 0.75rem;
         border-bottom: 1px solid #eee;
     }
-    
+
     .case3-table tbody tr:hover {
         background: #f8f9fa;
     }
-    
+
     .error-row {
         background: #fff5f5;
     }
-    
+
     .vote-badge {
         display: inline-block;
         padding: 0.25rem 0.75rem;
@@ -2971,7 +2925,7 @@ style.textContent = `
         color: white;
         font-weight: 600;
     }
-    
+
     .btn-secondary {
         background: #95a5a6;
         color: white;
@@ -2981,11 +2935,11 @@ style.textContent = `
         cursor: pointer;
         transition: all 0.2s;
     }
-    
+
     .btn-secondary:hover {
         background: #7f8c8d;
     }
-    
+
     .btn-primary {
         background: #3498db;
         color: white;
@@ -2995,21 +2949,21 @@ style.textContent = `
         cursor: pointer;
         font-weight: 600;
     }
-    
+
     .form-row {
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 1rem;
         margin-bottom: 1rem;
     }
-    
+
     .form-group select {
         width: 100%;
         padding: 0.75rem;
         border: 2px solid #ecf0f1;
         border-radius: 8px;
     }
-    
+
     .btn-simulate {
         width: 100%;
         padding: 1rem;
@@ -3021,24 +2975,24 @@ style.textContent = `
         cursor: pointer;
         transition: transform 0.2s, box-shadow 0.2s;
     }
-    
+
     .btn-simulate:hover {
         transform: translateY(-2px);
         box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
     }
-    
+
     .bill-params-grid {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: 1.5rem;
     }
-    
+
     @media (max-width: 768px) {
         .bill-params-grid {
             grid-template-columns: 1fr;
         }
     }
-    
+
     .param-card {
         background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
         padding: 1.25rem;
@@ -3047,13 +3001,13 @@ style.textContent = `
         transition: all 0.3s ease;
         position: relative;
     }
-    
+
     .param-card:hover {
         border-color: #667eea;
         box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
         transform: translateY(-2px);
     }
-    
+
     .param-number {
         position: absolute;
         top: -12px;
@@ -3070,7 +3024,7 @@ style.textContent = `
         font-size: 0.9rem;
         box-shadow: 0 2px 6px rgba(102, 126, 234, 0.3);
     }
-    
+
     .param-label {
         display: flex;
         align-items: center;
@@ -3080,12 +3034,12 @@ style.textContent = `
         margin-bottom: 0.75rem;
         font-size: 1rem;
     }
-    
+
     .param-label i {
         color: #667eea;
         font-size: 1.1rem;
     }
-    
+
     .param-select {
         width: 100%;
         padding: 0.75rem;
@@ -3096,33 +3050,33 @@ style.textContent = `
         transition: all 0.2s;
         cursor: pointer;
     }
-    
+
     .param-select:focus {
         outline: none;
         border-color: #667eea;
         box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
     }
-    
+
     .param-select:hover {
         border-color: #667eea;
     }
-    
+
     input.param-select[type="number"] {
         cursor: text;
     }
-    
+
     .table-wrapper {
         overflow-x: auto;
         background: white;
         border-radius: 8px;
     }
-    
+
     .comparison-block {
         background: #f8f9fa;
         padding: 1.5rem;
         border-radius: 8px;
     }
-    
+
     .comparison-block h3 {
         margin-top: 0;
         color: #2c3e50;
@@ -3130,20 +3084,20 @@ style.textContent = `
         align-items: center;
         gap: 0.5rem;
     }
-    
+
     .vote-breakdown {
         display: flex;
         flex-direction: column;
         gap: 0.75rem;
         margin-top: 1rem;
     }
-    
+
     .vote-item {
         display: flex;
         justify-content: space-between;
         align-items: center;
     }
-    
+
     .vote-label {
         padding: 0.5rem 1rem;
         border-radius: 4px;
@@ -3151,7 +3105,7 @@ style.textContent = `
         font-weight: 600;
         flex: 1;
     }
-    
+
     .vote-count {
         font-size: 1.5rem;
         font-weight: bold;
@@ -3162,5 +3116,5 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
-console.log('✅ Cases.js загружен успешно');
+console.log('✅ Case4.js загружен успешно');
 console.log('📡 API URL:', API_URL);
