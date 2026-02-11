@@ -7,9 +7,8 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- Дополнительные стили для публикаций -->
+    <!-- Стили для публикаций -->
     <style>
-        /* Стили для секции публикаций */
         .publications-list {
             display: flex;
             flex-direction: column;
@@ -19,27 +18,27 @@
         .publication-item {
             display: flex;
             gap: 1.5rem;
-            background: white;
-            padding: 1.5rem;
+            background: #34495e;
+            padding: 2rem;
             border-radius: 12px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
             transition: transform 0.3s, box-shadow 0.3s;
         }
 
         .publication-item:hover {
             transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.4);
         }
 
         .pub-year {
-            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            background: #3498db;
             color: white;
-            padding: 0.5rem 1rem;
+            padding: 0.75rem 1.25rem;
             border-radius: 8px;
             font-weight: 700;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             height: fit-content;
-            min-width: 60px;
+            min-width: 70px;
             text-align: center;
         }
 
@@ -48,41 +47,43 @@
         }
 
         .pub-content h4 {
-            margin: 0 0 0.5rem 0;
-            color: #2c3e50;
-            font-size: 1.1rem;
+            margin: 0 0 0.75rem 0;
+            color: #ecf0f1;
+            font-size: 1.25rem;
+            font-weight: 600;
         }
 
         .pub-content p {
             margin: 0.25rem 0;
-            color: #666;
+            color: #bdc3c7;
             font-size: 0.95rem;
         }
 
         .pub-content p em {
-            color: #7f8c8d;
+            color: #95a5a6;
+            font-style: italic;
         }
 
         .pub-links {
             margin-top: 1rem;
         }
 
-        /* Кнопка скачать PDF */
         .btn-pdf {
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            background: #e74c3c;
             color: white;
-            padding: 0.6rem 1.2rem;
+            padding: 0.7rem 1.5rem;
             border-radius: 6px;
             text-decoration: none;
             font-weight: 600;
-            font-size: 0.9rem;
-            transition: transform 0.2s, box-shadow 0.2s;
+            font-size: 0.95rem;
+            transition: all 0.2s;
         }
 
         .btn-pdf:hover {
+            background: #c0392b;
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(231, 76, 60, 0.4);
             color: white;
@@ -92,21 +93,35 @@
             font-size: 1.1rem;
         }
 
-        /* Темная тема для публикаций */
-        [data-theme="dark"] .publication-item {
-            background: #2c3e50;
+        [data-theme="light"] .publication-item {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
         }
 
-        [data-theme="dark"] .pub-content h4 {
-            color: #ecf0f1;
+        [data-theme="light"] .publication-item:hover {
+            box-shadow: 0 6px 20px rgba(0,0,0,0.12);
         }
 
-        [data-theme="dark"] .pub-content p {
-            color: #bdc3c7;
+        [data-theme="light"] .pub-content h4 {
+            color: #2c3e50;
         }
 
-        [data-theme="dark"] .pub-content p em {
-            color: #95a5a6;
+        [data-theme="light"] .pub-content p {
+            color: #666;
+        }
+
+        [data-theme="light"] .pub-content p em {
+            color: #7f8c8d;
+        }
+
+        @media (max-width: 768px) {
+            .publication-item {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .pub-year {
+                width: fit-content;
+            }
         }
     </style>
 </head>
@@ -193,13 +208,14 @@
         </div>
     </section>
 
-    <!-- ========== СЕКЦИЯ ПУБЛИКАЦИЙ (ОБНОВЛЁННАЯ) ========== -->
+    <!-- ========== СЕКЦИЯ ПУБЛИКАЦИЙ ========== -->
     <section id="publications" class="section section-alt">
         <div class="container">
             <h2 class="section-title" data-i18n="nav.publications">Publications</h2>
 
             <div class="publications-list">
-                <!-- Публикация -->
+
+                <!-- Публикация #1 -->
                 <div class="publication-item">
                     <div class="pub-year">2024</div>
                     <div class="pub-content">
@@ -207,13 +223,7 @@
                         <p>Карасев Д.Ю.</p>
                         <p><em>Название журнала / конференции, 2024</em></p>
                         <div class="pub-links">
-                            <!--
-                                ИНСТРУКЦИЯ:
-                                1. Создайте папку "publications" в корне сайта
-                                2. Загрузите PDF файл в эту папку
-                                3. Укажите имя файла в href="publications/ваш_файл.pdf"
-                            -->
-                            <a href="publications/publication.pdf"
+                            <a href="publications/karasev_2024.pdf"
                                download="Karasev_2024.pdf"
                                class="btn-pdf">
                                 <i class="fas fa-file-pdf"></i> Скачать PDF
@@ -221,30 +231,83 @@
                         </div>
                     </div>
                 </div>
-                <!-- Публикация -->
-                                <!-- Публикация -->
+
+                <!-- Публикация #2 -->
+                <!--
                 <div class="publication-item">
-                    <div class="pub-year">2024</div>
+                    <div class="pub-year">2023</div>
                     <div class="pub-content">
                         <h4>Название публикации</h4>
                         <p>Карасев Д.Ю.</p>
-                        <p><em>Название журнала / конференции, 2024</em></p>
+                        <p><em>Название журнала / конференции, 2023</em></p>
                         <div class="pub-links">
-                            <!--
-                                ИНСТРУКЦИЯ:
-                                1. Создайте папку "publications" в корне сайта
-                                2. Загрузите PDF файл в эту папку
-                                3. Укажите имя файла в href="publications/ваш_файл.pdf"
-                            -->
-                            <a href="publications/publication.pdf"
-                               download="Karasev_2024.pdf"
+                            <a href="publications/karasev_2023.pdf"
+                               download="Karasev_2023.pdf"
                                class="btn-pdf">
                                 <i class="fas fa-file-pdf"></i> Скачать PDF
                             </a>
                         </div>
                     </div>
                 </div>
-                <!-- Публикация -->
+                -->
+
+                <!-- Публикация #3 -->
+                <!--
+                <div class="publication-item">
+                    <div class="pub-year">2022</div>
+                    <div class="pub-content">
+                        <h4>Название публикации</h4>
+                        <p>Карасев Д.Ю.</p>
+                        <p><em>Название журнала / конференции, 2022</em></p>
+                        <div class="pub-links">
+                            <a href="publications/karasev_2022.pdf"
+                               download="Karasev_2022.pdf"
+                               class="btn-pdf">
+                                <i class="fas fa-file-pdf"></i> Скачать PDF
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                -->
+
+                <!-- Публикация #4 -->
+                <!--
+                <div class="publication-item">
+                    <div class="pub-year">2021</div>
+                    <div class="pub-content">
+                        <h4>Название публикации</h4>
+                        <p>Карасев Д.Ю.</p>
+                        <p><em>Название журнала / конференции, 2021</em></p>
+                        <div class="pub-links">
+                            <a href="publications/karasev_2021.pdf"
+                               download="Karasev_2021.pdf"
+                               class="btn-pdf">
+                                <i class="fas fa-file-pdf"></i> Скачать PDF
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                -->
+
+                <!-- Публикация #5 -->
+                <!--
+                <div class="publication-item">
+                    <div class="pub-year">2020</div>
+                    <div class="pub-content">
+                        <h4>Название публикации</h4>
+                        <p>Карасев Д.Ю.</p>
+                        <p><em>Название журнала / конференции, 2020</em></p>
+                        <div class="pub-links">
+                            <a href="publications/karasev_2020.pdf"
+                               download="Karasev_2020.pdf"
+                               class="btn-pdf">
+                                <i class="fas fa-file-pdf"></i> Скачать PDF
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                -->
+
             </div>
         </div>
     </section>
@@ -295,124 +358,83 @@
     </footer>
 
     <script>
-        // ============================================
-        // INLINE JAVASCRIPT - работает гарантированно
-        // ============================================
-
         console.log('🚀 JavaScript загружен!');
 
         let currentLang = 'en';
         let currentTheme = 'light';
 
-        // ОБЪЕКТ С ПЕРЕВОДАМИ
         const translations = {
             en: {
-                // Navigation
                 'nav.home': 'Home',
                 'nav.biography': 'Biography',
                 'nav.publications': 'Publications',
                 'nav.projects': 'Projects',
                 'nav.contact': 'Contact',
-
-                // Profile
                 'profile.name': 'Dmitry Karasev',
                 'profile.title': 'Senior Research Fellow',
                 'profile.affiliation': 'RANEPA',
-
-                // Biography
                 'bio.title': 'Biography',
                 'bio.intro': 'I am PhD in sociology since the 2016 (Moscow State University) and practised Data Scientist since the 2023 (Yandex Practicum, Otus). Till the 2024, I was a Research Fellow at the MGIMO University, now I am Senior Research Fellow at The Russian Presidential Academy of National Economy and Public Administration (RANEPA).',
                 'bio.current': 'Currently, I am working in the field of Social and Humanities Computing: multi-agent modeling and computing in legislative studies; books summarization via LLM + LangChain; vector-based search and modeling using embeddings.',
                 'bio.project': 'As part of my recent project, it was developed the state-of-the-art multi-agent model of legislative behavior in the Verkhovna Rada of Ukraine of the 8th convocation. The general principles of the elaborated and finetuned model being developed the approaches of D. MacRae and K. Poole, H. Rosenthal and can be used to predict the behavior of members of any parliament (for which roll calls are publicly available).',
-
-                // Interests
                 'interests.title': 'Interests',
                 'interests.item1': 'Multi-Agent Modeling',
                 'interests.item2': 'Legislative Studies',
                 'interests.item3': 'LLM & Vector Search',
-
-                // Education
                 'education.title': 'Education',
                 'education.phd': 'PhD in Sociology, 2016',
                 'education.ds': 'Data Science, 2023',
-
-                // Projects
                 'projects.title': 'Projects',
                 'project.main.title': 'Legislative Behavior Modeling',
                 'project.main.desc': 'Multi-agent ML-model predicting legislative behavior of deputies in the Verkhovna Rada of Ukraine VIII convocation during voting',
                 'project.main.badge': 'Main Project',
-
-                // Contact
                 'contact.title': 'Contact',
-
-                // Footer
                 'footer.text': 'All rights reserved.'
             },
             ru: {
-                // Навигация
                 'nav.home': 'Главная',
                 'nav.biography': 'Биография',
                 'nav.publications': 'Публикации',
                 'nav.projects': 'Проекты',
                 'nav.contact': 'Контакты',
-
-                // Профиль
                 'profile.name': 'Дмитрий Карасев',
                 'profile.title': 'Старший научный сотрудник',
                 'profile.affiliation': 'РАНХиГС',
-
-                // Биография
                 'bio.title': 'Биография',
                 'bio.intro': 'Я кандидат социологических наук с 2016 года (МГУ) и практикующий Data Scientist с 2023 г. (Яндекс Практикум, Otus). До 2024 года я работал научным сотрудником в МГИМО, сейчас я старший научный сотрудник в Российской академии народного хозяйства и государственной службы при Президенте РФ (РАНХиГС).',
                 'bio.current': 'В настоящее время я работаю в области цифровых социальных и гуманитарных наук: мультиагентное моделирование и рассочеты в законодательных исследованиях; автоматическая суммаризация книг с помощью LLM + LangChain; векторный поиск и моделирование с использованием эмбеддингов.',
                 'bio.project': 'Мой последний проект – современная мультиагентная модель, прогнозирующая поведение депутатов Верховной Рады Украины VIII созыва при голосовании. Разработанная и тонко настроенная модель развивает общие принципы подходов Д. Макрая и К. Пула, Х. Розенталя и могут быть использованы для прогнозирования поведения членов любого парламента (для которого публично доступны данные о поименных',
-
-                // Интересы
                 'interests.title': 'Интересы',
                 'interests.item1': 'Мультиагентное моделирование',
                 'interests.item2': 'Законодательные исследования',
                 'interests.item3': 'LLM и векторный поиск',
-
-                // Образование
                 'education.title': 'Образование',
                 'education.phd': 'PhD в социологии, 2016',
                 'education.ds': 'Data Science, 2023',
-
-                // Проекты
                 'projects.title': 'Проекты',
                 'project.main.title': 'Моделирование поведения депутатов при голосовании',
                 'project.main.desc': 'Мультиагентная ML-модель прогнозирующая поведение депутатов Верховной Раде Украины VIII созыва при голосовании',
                 'project.main.badge': 'Основной проект',
-
-                // Контакты
                 'contact.title': 'Контакты',
-
-                // Подвал
                 'footer.text': 'Все права защищены.'
             }
         };
 
-        // ФУНКЦИЯ ПРИМЕНЕНИЯ ПЕРЕВОДОВ
         function applyTranslations() {
             console.log('🔄 Применяю переводы для языка:', currentLang);
-
             const elements = document.querySelectorAll('[data-i18n]');
             let translatedCount = 0;
-
             elements.forEach(element => {
                 const key = element.getAttribute('data-i18n');
                 const translation = translations[currentLang][key];
-
                 if (translation) {
                     element.textContent = translation;
                     translatedCount++;
                 }
             });
-
             console.log(`✅ Переведено элементов: ${translatedCount}`);
         }
 
-        // ПЕРЕКЛЮЧЕНИЕ ПОИСКА
         function toggleSearch() {
             console.log('🔍 toggleSearch() вызвана');
             const searchBar = document.getElementById('search-bar');
@@ -424,43 +446,29 @@
             }
         }
 
-        // ПЕРЕКЛЮЧЕНИЕ ТЕМЫ
         function toggleTheme() {
             console.log('🎨 toggleTheme() вызвана');
             currentTheme = currentTheme === 'light' ? 'dark' : 'light';
-
-            // Устанавливаем data-theme на <html>
             document.documentElement.setAttribute('data-theme', currentTheme);
-
             const themeIcon = document.querySelector('.theme-toggle i');
             if (themeIcon) {
                 themeIcon.className = currentTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
             }
-
-            // Сохраняем в localStorage
             localStorage.setItem('theme', currentTheme);
-
             console.log(`✅ Тема изменена на: ${currentTheme}`);
         }
 
-        // ПЕРЕКЛЮЧЕНИЕ ЯЗЫКА
         function toggleLanguage() {
             console.log('🌍 toggleLanguage() вызвана');
             currentLang = currentLang === 'en' ? 'ru' : 'en';
-
-            // Обновляем кнопку переключения
             document.getElementById('current-lang').textContent = currentLang === 'en' ? 'Eng' : 'Рус';
             document.getElementById('alt-lang').textContent = currentLang === 'en' ? 'Rus' : 'Eng';
-
             applyTranslations();
             console.log(`✅ Язык изменен на: ${currentLang}`);
         }
 
-        // АКТИВАЦИЯ НАВИГАЦИИ
         document.addEventListener('DOMContentLoaded', function() {
             console.log('📄 DOMContentLoaded запущен');
-
-            // Навигация
             const navLinks = document.querySelectorAll('.nav-link');
             navLinks.forEach(link => {
                 link.addEventListener('click', function(e) {
@@ -468,11 +476,7 @@
                     this.classList.add('active');
                 });
             });
-
-            // Применяем переводы при загрузке
             applyTranslations();
-
-            // Восстанавливаем тему из localStorage
             const savedTheme = localStorage.getItem('theme');
             if (savedTheme) {
                 currentTheme = savedTheme;
@@ -482,7 +486,6 @@
                     themeIcon.className = currentTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
                 }
             }
-
             console.log('✅ Навигация активирована');
         });
     </script>
