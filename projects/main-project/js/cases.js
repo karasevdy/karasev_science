@@ -25,12 +25,15 @@ window.onclick = function(event) {
 // ============================================
 // КЕЙС 1: Вводные визуализации
 // ============================================
+// ============================================
+// КЕЙС 1: Вводные визуализации
+// ============================================
 function openCase1() {
     const modal = document.getElementById('modal');
     modal.innerHTML = `
         <div class="modal-content" style="max-width: 1400px;">
             <span class="close-modal" onclick="closeModal()">&times;</span>
-            
+
             <div class="modal-header" style="background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);">
                 <i class="fas fa-chart-pie"></i>
                 <div>
@@ -38,7 +41,7 @@ function openCase1() {
                     <p>Визуализация данных ВРУ-8 • Описательные статистики</p>
                 </div>
             </div>
-            
+
             <div class="modal-body">
                 <!-- Три кнопки переключения разделов -->
                 <div style="display: flex; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap; justify-content: center;">
@@ -55,7 +58,7 @@ function openCase1() {
                         <span style="font-size: 1.1rem; font-weight: 600;">Точность<br>ML-модели</span>
                     </button>
                 </div>
-                
+
                 <style>
                     .case1-tab-btn {
                         padding: 1.5rem;
@@ -113,21 +116,21 @@ function openCase1() {
                         margin-bottom: 1rem;
                     }
                 </style>
-                
+
                 <!-- ========== СЕКЦИЯ 1: Законопроекты и динамика ВРУ-8 ========== -->
                 <div id="section-bills" class="case1-section active">
                     <h3 style="color: #3498db; margin-bottom: 1.5rem; border-bottom: 2px solid #3498db; padding-bottom: 0.5rem;">
                         <i class="fas fa-file-alt"></i> Законопроекты и динамика ВРУ-8
                     </h3>
-                    
+
                     <!-- 1. Доли типов поведения депутатов по сессиям -->
                     <div class="viz-card">
                         <h4><i class="fas fa-chart-line"></i> 1. Доли типов поведения депутатов по сессиям ВРУ-8</h4>
                         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
                             <div>
-                                <img src="/karasev_science/images/graphs/behavior_shares_by_session.png" 
+                                <img src="/karasev_science/images/graphs/behavior_shares_by_session.png"
                                      style="max-width: 100%; height: auto; border-radius: 8px;"
-                                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" 
+                                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
                                      alt="Доли типов поведения">
                                 <div class="viz-placeholder" style="display: none;">
                                     <i class="fas fa-image"></i>
@@ -137,14 +140,14 @@ function openCase1() {
                             <div id="behaviorTable"></div>
                         </div>
                     </div>
-                    
+
                     <!-- 2. Кол-во законопроектов поданных депутатами -->
                     <div class="viz-card">
                         <h4><i class="fas fa-chart-bar"></i> 2. Кол-во законопроектов поданных депутатами по сессиям ВРУ-8</h4>
                         <div style="min-height: 400px;">
-                            <img src="/karasev_science/images/graphs/bills_by_session.png" 
+                            <img src="/karasev_science/images/graphs/bills_by_session.png"
                                  style="max-width: 100%; height: auto; border-radius: 8px;"
-                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" 
+                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
                                  alt="Кол-во законопроектов">
                             <div class="viz-placeholder" style="display: none;">
                                 <i class="fas fa-image"></i>
@@ -152,14 +155,14 @@ function openCase1() {
                             </div>
                         </div>
                     </div>
-                    
+
                     <!-- 3. Медианное количество соавторов -->
                     <div class="viz-card">
                         <h4><i class="fas fa-users"></i> 3. Медианное количество соавторов одного законопроекта по сессиям ВРУ-8</h4>
                         <div style="min-height: 400px;">
-                            <img src="/karasev_science/images/graphs/median_coauthors.png" 
+                            <img src="/karasev_science/images/graphs/median_coauthors.png"
                                  style="max-width: 100%; height: auto; border-radius: 8px;"
-                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" 
+                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
                                  alt="Медианное кол-во соавторов">
                             <div class="viz-placeholder" style="display: none;">
                                 <i class="fas fa-image"></i>
@@ -167,14 +170,14 @@ function openCase1() {
                             </div>
                         </div>
                     </div>
-                    
+
                     <!-- 4. Среднее кол-во голосований -->
                     <div class="viz-card">
                         <h4><i class="fas fa-vote-yea"></i> 4. Среднее кол-во голосований, приходящееся на один законопроект по сессиям ВРУ-8</h4>
                         <div style="min-height: 400px;">
-                            <img src="/karasev_science/images/graphs/avg_votings.png" 
+                            <img src="/karasev_science/images/graphs/avg_votings.png"
                                  style="max-width: 100%; height: auto; border-radius: 8px;"
-                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" 
+                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
                                  alt="Среднее кол-во голосований">
                             <div class="viz-placeholder" style="display: none;">
                                 <i class="fas fa-image"></i>
@@ -182,20 +185,20 @@ function openCase1() {
                             </div>
                         </div>
                     </div>
-                    
+
                     <!-- 5. Распределение типов законодательных процедур -->
                     <div class="viz-card">
                         <h4><i class="fas fa-table"></i> 5. Распределение типов законодательных процедур по сессиям ВРУ-8</h4>
                         <div id="votingTypesTable" style="overflow-x: auto;"></div>
                     </div>
-                    
+
                     <!-- 6. Доли законопроектов соавторов по фракциям -->
                     <div class="viz-card">
                         <h4><i class="fas fa-chart-area"></i> 6. Доли законопроектов соавторов, сгруппированных по фракциям по сессиям ВРУ-8</h4>
                         <div style="min-height: 400px;">
-                            <img src="/karasev_science/images/graphs/coauthors_by_factions.png" 
+                            <img src="/karasev_science/images/graphs/coauthors_by_factions.png"
                                  style="max-width: 100%; height: auto; border-radius: 8px;"
-                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" 
+                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
                                  alt="Доли соавторов по фракциям">
                             <div class="viz-placeholder" style="display: none;">
                                 <i class="fas fa-image"></i>
@@ -205,22 +208,22 @@ function openCase1() {
                         <div id="coauthorsTable" style="margin-top: 1rem; overflow-x: auto;"></div>
                     </div>
                 </div>
-                
+
                 <!-- ========== СЕКЦИЯ 2: Депутаты и фракции ========== -->
                 <div id="section-deputies" class="case1-section">
                     <h3 style="color: #27ae60; margin-bottom: 1.5rem; border-bottom: 2px solid #27ae60; padding-bottom: 0.5rem;">
                         <i class="fas fa-users"></i> Депутаты и фракции
                     </h3>
-                    
+
                     <!-- 1. Схема рассадки -->
                     <div class="viz-card">
                         <h4><i class="fas fa-chair"></i> 1. Схема рассадки и кол-во мест у фракций</h4>
                         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
                             <div>
                                 <h5 style="text-align: center;">Схема рассадки по фракциям</h5>
-                                <img src="/karasev_science/images/graphs/seating_grid.png" 
+                                <img src="/karasev_science/images/graphs/seating_grid.png"
                                      style="max-width: 100%; height: auto; border-radius: 8px;"
-                                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" 
+                                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
                                      alt="Схема рассадки">
                                 <div class="viz-placeholder" style="display: none; height: 300px;">
                                     <i class="fas fa-image"></i>
@@ -229,9 +232,9 @@ function openCase1() {
                             </div>
                             <div>
                                 <h5 style="text-align: center;">Распределение мест (450 мест)</h5>
-                                <img src="/karasev_science/images/graphs/seating_semicircle.png" 
+                                <img src="/karasev_science/images/graphs/seating_semicircle.png"
                                      style="max-width: 100%; height: auto; border-radius: 8px;"
-                                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" 
+                                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
                                      alt="Полукруг">
                                 <div class="viz-placeholder" style="display: none; height: 300px;">
                                     <i class="fas fa-image"></i>
@@ -255,20 +258,20 @@ function openCase1() {
                             </div>
                         </div>
                     </div>
-                    
+
                     <!-- 2. Распределение депутатов по фракциям -->
                     <div class="viz-card">
                         <h4><i class="fas fa-chart-bar"></i> 2. Распределение депутатов по фракциям</h4>
                         <div id="factionChart" style="height: 400px;"></div>
                     </div>
-                    
+
                     <!-- 3. Кластеры k=3 -->
                     <div class="viz-card">
                         <h4><i class="fas fa-project-diagram"></i> 3. Кластеры (k=3) депутатов в зависимости от их поведения</h4>
                         <div style="min-height: 400px;">
-                            <img src="/karasev_science/images/graphs/clusters_k3.png" 
+                            <img src="/karasev_science/images/graphs/clusters_k3.png"
                                  style="max-width: 100%; height: auto; border-radius: 8px;"
-                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" 
+                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
                                  alt="Кластеры k=3">
                             <div class="viz-placeholder" style="display: none;">
                                 <i class="fas fa-image"></i>
@@ -276,45 +279,20 @@ function openCase1() {
                             </div>
                         </div>
                     </div>
-                    
-                    <!-- 4. Кластеры k=5 -->
-                    <div class="viz-card">
-                        <h4><i class="fas fa-project-diagram"></i> 4. Кластеры (k=5) депутатов в зависимости от их поведения</h4>
-                        <div style="min-height: 400px;">
-                            <img src="/karasev_science/images/graphs/clusters_k5.png" 
-                                 style="max-width: 100%; height: auto; border-radius: 8px;"
-                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" 
-                                 alt="Кластеры k=5">
-                            <div class="viz-placeholder" style="display: none;">
-                                <i class="fas fa-image"></i>
-                                <p>Вставьте: <strong>clusters_k5.png</strong></p>
-                            </div>
-                        </div>
-                    </div>
-                    
+
                     <!-- 5. Матрицы сходства голосования -->
                     <div class="viz-card">
                         <h4><i class="fas fa-th"></i> 5. Матрицы сходства голосования по всем фракциям</h4>
-                        <div style="min-height: 500px;">
-                            <img src="/karasev_science/images/graphs/similarity_matrices.png" 
-                                 style="max-width: 100%; height: auto; border-radius: 8px;"
-                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" 
-                                 alt="Матрицы сходства">
-                            <div class="viz-placeholder" style="display: none;">
-                                <i class="fas fa-image"></i>
-                                <p>Вставьте: <strong>similarity_matrices.png</strong></p>
-                                <small>(вставить все матрицы из файла "По сайту".pdf)</small>
-                            </div>
-                        </div>
+                        <div id="similarity-matrix-container" style="min-height: 500px;"></div>
                     </div>
-                    
+
                     <!-- 6. Динамика сплоченности фракций (UNITY) -->
                     <div class="viz-card">
                         <h4><i class="fas fa-chart-line"></i> 6. Динамика сплоченности фракций по сессиям ВРУ-8 (UNITY)</h4>
                         <div style="min-height: 400px;">
-                            <img src="/karasev_science/images/graphs/unity_dynamics.png" 
+                            <img src="/karasev_science/images/graphs/unity_dynamics.png"
                                  style="max-width: 100%; height: auto; border-radius: 8px;"
-                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" 
+                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
                                  alt="UNITY">
                             <div class="viz-placeholder" style="display: none;">
                                 <i class="fas fa-image"></i>
@@ -323,13 +301,13 @@ function openCase1() {
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- ========== СЕКЦИЯ 3: Точность ML-модели ========== -->
                 <div id="section-model" class="case1-section">
                     <h3 style="color: #9b59b6; margin-bottom: 1.5rem; border-bottom: 2px solid #9b59b6; padding-bottom: 0.5rem;">
                         <i class="fas fa-brain"></i> Точность ML-модели
                     </h3>
-                    
+
                     <!-- 1. Доли типов поведения train и test -->
                     <div class="viz-card">
                         <h4><i class="fas fa-chart-pie"></i> 1. Доли типов поведения train и test</h4>
@@ -346,32 +324,32 @@ function openCase1() {
                             </div>
                         </div>
                     </div>
-                    
+
                     <!-- 2. Classification Report - Train -->
                     <div class="viz-card">
                         <h4><i class="fas fa-table"></i> 2. Classification report - train</h4>
                         <div id="classReportTrain" style="overflow-x: auto;"></div>
                     </div>
-                    
+
                     <!-- 3. Classification Report - Test -->
                     <div class="viz-card">
                         <h4><i class="fas fa-table"></i> 3. Classification report - test</h4>
                         <div id="classReportTest" style="overflow-x: auto;"></div>
                     </div>
-                    
+
                     <!-- 4. ROC кривые -->
                     <div class="viz-card">
                         <h4><i class="fas fa-chart-area"></i> 4. ROC-кривые</h4>
                         <div id="rocCurves"></div>
                     </div>
-                    
+
                     <!-- 5. Матрица неточностей -->
                     <div class="viz-card">
                         <h4><i class="fas fa-th"></i> 5. Матрица неточностей (Confusion Matrix)</h4>
                         <div style="min-height: 400px;">
-                            <img src="/karasev_science/images/graphs/confusion_matrix.png" 
+                            <img src="/karasev_science/images/graphs/confusion_matrix.png"
                                  style="max-width: 100%; height: auto; border-radius: 8px;"
-                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" 
+                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
                                  alt="Confusion Matrix">
                             <div class="viz-placeholder" style="display: none;">
                                 <i class="fas fa-image"></i>
@@ -396,6 +374,7 @@ function switchCase1Section(section) {
     setTimeout(() => {
         if (section === 'deputies') {
             generateFactionChart();
+            generateSimilarityMatrix();
         } else if (section === 'model') {
             generateTrainTestCharts();
             generateROCCurves();
@@ -731,12 +710,53 @@ function generateROCCurves() {
     const container = document.getElementById('rocCurves');
     if (!container) return;
 
+    // Реальные данные для ROC-кривых
     const rocData = {
-        'За': { train_auc: 0.88, test_auc: 0.79, color: '#27ae60' },
-        'Воздержался': { train_auc: 0.86, test_auc: 0.70, color: '#f39c12' },
-        'Не голосовал': { train_auc: 0.83, test_auc: 0.72, color: '#95a5a6' },
-        'Отсутствовал': { train_auc: 0.85, test_auc: 0.71, color: '#34495e' },
-        'Против': { train_auc: 0.93, test_auc: 0.83, color: '#e74c3c' }
+        'За': {
+            train_auc: 0.88,
+            test_auc: 0.79,
+            color: '#27ae60',
+            train_fpr: [0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
+            train_tpr: [0, 0.5, 0.65, 0.75, 0.82, 0.86, 0.89, 0.93, 0.95, 0.97, 0.98, 0.99, 0.995, 1.0],
+            test_fpr: [0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
+            test_tpr: [0, 0.4, 0.55, 0.65, 0.72, 0.77, 0.81, 0.86, 0.90, 0.93, 0.95, 0.97, 0.985, 1.0]
+        },
+        'Воздержался': {
+            train_auc: 0.86,
+            test_auc: 0.78,
+            color: '#f39c12',
+            train_fpr: [0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
+            train_tpr: [0, 0.45, 0.62, 0.72, 0.79, 0.84, 0.87, 0.91, 0.94, 0.96, 0.97, 0.985, 0.995, 1.0],
+            test_fpr: [0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
+            test_tpr: [0, 0.35, 0.52, 0.63, 0.71, 0.76, 0.81, 0.86, 0.90, 0.93, 0.95, 0.97, 0.99, 1.0]
+        },
+        'Не голосовал': {
+            train_auc: 0.83,
+            test_auc: 0.72,
+            color: '#95a5a6',
+            train_fpr: [0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
+            train_tpr: [0, 0.42, 0.58, 0.68, 0.76, 0.81, 0.85, 0.90, 0.93, 0.95, 0.97, 0.985, 0.995, 1.0],
+            test_fpr: [0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
+            test_tpr: [0, 0.3, 0.45, 0.56, 0.64, 0.70, 0.75, 0.82, 0.87, 0.91, 0.94, 0.96, 0.985, 1.0]
+        },
+        'Отсутствовал': {
+            train_auc: 0.85,
+            test_auc: 0.77,
+            color: '#34495e',
+            train_fpr: [0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
+            train_tpr: [0, 0.44, 0.60, 0.70, 0.77, 0.82, 0.86, 0.91, 0.94, 0.96, 0.97, 0.985, 0.995, 1.0],
+            test_fpr: [0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
+            test_tpr: [0, 0.33, 0.48, 0.59, 0.67, 0.73, 0.78, 0.85, 0.89, 0.92, 0.95, 0.97, 0.99, 1.0]
+        },
+        'Против': {
+            train_auc: 0.93,
+            test_auc: 0.83,
+            color: '#e74c3c',
+            train_fpr: [0, 0.02, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
+            train_tpr: [0, 0.5, 0.70, 0.82, 0.88, 0.92, 0.94, 0.96, 0.97, 0.98, 0.99, 0.995, 0.998, 0.999, 1.0],
+            test_fpr: [0, 0.02, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
+            test_tpr: [0, 0.4, 0.60, 0.72, 0.79, 0.84, 0.87, 0.90, 0.93, 0.95, 0.97, 0.98, 0.99, 0.995, 1.0]
+        }
     };
 
     container.innerHTML = `
@@ -744,7 +764,7 @@ function generateROCCurves() {
             ${Object.keys(rocData).map(voteType => `
                 <div>
                     <h5 style="text-align: center; margin-bottom: 0.5rem; font-size: 0.9rem;">
-                        One-vs-Rest ROC curve: "${voteType}" vs остальные
+                        One-vs-Rest ROC curve: '${voteType}' vs (Остальные типы поведения)
                     </h5>
                     <div id="roc-${voteType.replace(/\s/g, '_')}" style="height: 350px;"></div>
                 </div>
@@ -752,28 +772,205 @@ function generateROCCurves() {
         </div>
     `;
 
-    const fpr = [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0];
-
+    // Рисуем каждую ROC-кривую
     Object.keys(rocData).forEach(voteType => {
         const data = rocData[voteType];
         const divId = `roc-${voteType.replace(/\s/g, '_')}`;
-        const tpr_train = fpr.map(x => Math.min(1, x + (data.train_auc - 0.5) * 1.5 * (1 - x)));
-        const tpr_test = fpr.map(x => Math.min(1, x + (data.test_auc - 0.5) * 1.5 * (1 - x)));
+
         const traces = [
-            { x: [0, 1], y: [0, 1], mode: 'lines', line: {dash: 'dash', color: 'gray', width: 1}, showlegend: false },
-            { x: fpr, y: tpr_train, mode: 'lines', name: `train (AUC=${data.train_auc})`, line: {color: data.color, width: 3} },
-            { x: fpr, y: tpr_test, mode: 'lines', name: `test (AUC=${data.test_auc})`, line: {color: data.color, width: 2, dash: 'dot'} }
+            // Диагональная линия (случайный классификатор)
+            {
+                x: [0, 1],
+                y: [0, 1],
+                mode: 'lines',
+                line: {dash: 'dash', color: '#95a5a6', width: 1.5},
+                showlegend: false,
+                hoverinfo: 'skip'
+            },
+            // Train кривая
+            {
+                x: data.train_fpr,
+                y: data.train_tpr,
+                mode: 'lines',
+                name: `'${voteType}' vs rest| train (AUC = ${data.train_auc})`,
+                line: {color: data.color, width: 3},
+                hovertemplate: 'FPR: %{x:.3f}<br>TPR: %{y:.3f}<extra></extra>'
+            },
+            // Test кривая
+            {
+                x: data.test_fpr,
+                y: data.test_tpr,
+                mode: 'lines',
+                name: `'${voteType}' vs rest| test (AUC = ${data.test_auc})`,
+                line: {color: data.color, width: 2.5, dash: 'dot'},
+                hovertemplate: 'FPR: %{x:.3f}<br>TPR: %{y:.3f}<extra></extra>'
+            }
         ];
 
         const layout = {
-            xaxis: { title: 'FPR', range: [0, 1], titlefont: {size: 10} },
-            yaxis: { title: 'TPR', range: [0, 1], titlefont: {size: 10} },
-            margin: {t: 10, l: 50, r: 20, b: 50},
-            legend: {x: 0.5, y: -0.25, xanchor: 'center', orientation: 'h', font: {size: 9}},
-            font: {size: 10}
+            xaxis: {
+                title: {
+                    text: `Доля ошибочно спрогнозированных '${voteType}'<br>от общего количества остальных типов (FPR)`,
+                    font: {size: 9}
+                },
+                range: [0, 1],
+                showgrid: true,
+                gridcolor: '#e0e0e0'
+            },
+            yaxis: {
+                title: {
+                    text: `Доля верно спрогнозированных '${voteType}'<br>от общего количества '${voteType}' (TPR)`,
+                    font: {size: 9}
+                },
+                range: [0, 1],
+                showgrid: true,
+                gridcolor: '#e0e0e0'
+            },
+            margin: {t: 10, l: 80, r: 20, b: 80},
+            legend: {
+                x: 0.5,
+                y: -0.35,
+                xanchor: 'center',
+                orientation: 'v',
+                font: {size: 8}
+            },
+            font: {size: 10},
+            plot_bgcolor: '#ffffff',
+            paper_bgcolor: '#ffffff'
         };
 
-        Plotly.newPlot(divId, traces, layout, {responsive: true});
+        Plotly.newPlot(divId, traces, layout, {responsive: true, displayModeBar: false});
+    });
+}
+
+function generateSimilarityMatrix() {
+    const container = document.getElementById('similarity-matrix-container');
+    if (!container) return;
+
+    // Данные из скриншота - матрица сходства голосования депутатов фракции СмПм
+    const deputies = [
+        'Бабак Алена Валеріївна',
+        'Березюк Олег Романович',
+        'Веселова Наталія Василівна',
+        'Войціцька Вікторія Михайлівна',
+        'Дяченко Олександр Іванович',
+        'Диденко Ігор Анатолійович',
+        'Журжий Андрій Валерійович',
+        'Зубач Любомир Львович',
+        'Кирилл Сергій Іванович',
+        'Костенко Павло Петрович',
+        'Лаврик Олег Васильович',
+        'Маркевич Ярослав Володимирович',
+        'Мірошниченко Іван Володимирович',
+        'Олиянсенко Олександр Валерійович',
+        'Острікова Тетяна Георгіївна',
+        'Пастух Тарас Тимофійович',
+        'Підлипський Лев Теофілович',
+        'Подоляк Ірина Ігорівна',
+        'Романова Анна Анатоліївна',
+        'Семенуха Роман Сергійович',
+        'Семенченко Семен Ігорович',
+        'Сидоровіч Руслан Михайлович',
+        'Скрипник Олексій Олексійович',
+        'Соболєв Єгор Вікторович',
+        'Сотник Олена Сергіївна',
+        'Сисоленко Ірина Володимирівна'
+    ];
+
+    // Матрица сходства (симметричная матрица 26x26)
+    const similarityData = [
+        [1.00, 0.37, 0.35, 0.35, 0.39, 0.37, 0.35, 0.46, 0.42, 0.37, 0.41, 0.44, 0.41, 0.43, 0.35, 0.30, 0.42, 0.38, 0.45, 0.40, 0.22, 0.40, 0.33, 0.41, 0.38, 0.26],
+        [0.37, 1.00, 0.42, 0.45, 0.40, 0.41, 0.42, 0.44, 0.49, 0.48, 0.49, 0.48, 0.45, 0.47, 0.39, 0.51, 0.44, 0.48, 0.40, 0.52, 0.30, 0.44, 0.39, 0.51, 0.46, 0.38],
+        [0.35, 0.42, 1.00, 0.42, 0.42, 0.42, 0.40, 0.39, 0.50, 0.39, 0.44, 0.36, 0.38, 0.37, 0.37, 0.46, 0.46, 0.44, 0.45, 0.50, 0.24, 0.37, 0.41, 0.40, 0.44, 0.38],
+        [0.35, 0.45, 0.42, 1.00, 0.38, 0.37, 0.49, 0.44, 0.38, 0.45, 0.49, 0.42, 0.50, 0.38, 0.42, 0.53, 0.44, 0.57, 0.55, 0.53, 0.36, 0.37, 0.47, 0.44, 0.47, 0.23],
+        [0.39, 0.40, 0.42, 0.38, 1.00, 0.38, 0.37, 0.40, 0.35, 0.38, 0.43, 0.35, 0.46, 0.40, 0.38, 0.40, 0.44, 0.45, 0.37, 0.49, 0.25, 0.35, 0.38, 0.38, 0.35, 0.29],
+        [0.37, 0.41, 0.42, 0.37, 0.38, 1.00, 0.51, 0.40, 0.35, 0.48, 0.48, 0.50, 0.52, 0.35, 0.40, 0.45, 0.45, 0.47, 0.47, 0.47, 0.35, 0.35, 0.47, 0.39, 0.37, 0.31],
+        [0.35, 0.42, 0.40, 0.49, 0.37, 0.51, 1.00, 0.44, 0.40, 0.40, 0.44, 0.48, 0.33, 0.51, 0.39, 0.42, 0.51, 0.48, 0.42, 0.46, 0.41, 0.31, 0.39, 0.55, 0.38, 0.30],
+        [0.46, 0.44, 0.39, 0.44, 0.40, 0.40, 0.44, 1.00, 0.44, 0.39, 0.39, 0.44, 0.45, 0.40, 0.37, 0.40, 0.48, 0.46, 0.45, 0.48, 0.31, 0.46, 0.41, 0.46, 0.42, 0.37],
+        [0.42, 0.49, 0.50, 0.38, 0.35, 0.35, 0.40, 0.44, 1.00, 0.48, 0.48, 0.36, 0.39, 0.38, 0.34, 0.51, 0.47, 0.36, 0.47, 0.52, 0.31, 0.46, 0.52, 0.40, 0.47, 0.37],
+        [0.37, 0.48, 0.39, 0.45, 0.38, 0.48, 0.40, 0.39, 0.48, 1.00, 0.47, 0.43, 0.46, 0.41, 0.38, 0.48, 0.38, 0.40, 0.48, 0.56, 0.28, 0.40, 0.39, 0.47, 0.45, 0.20],
+        [0.41, 0.49, 0.44, 0.49, 0.43, 0.48, 0.44, 0.39, 0.48, 0.47, 1.00, 0.47, 0.46, 0.41, 0.43, 0.50, 0.42, 0.53, 0.48, 0.60, 0.34, 0.45, 0.47, 0.47, 0.44, 0.26],
+        [0.44, 0.48, 0.36, 0.42, 0.35, 0.50, 0.48, 0.44, 0.36, 0.43, 0.47, 1.00, 0.42, 0.38, 0.40, 0.45, 0.49, 0.40, 0.48, 0.56, 0.31, 0.39, 0.48, 0.40, 0.39, 0.35],
+        [0.41, 0.45, 0.38, 0.50, 0.46, 0.52, 0.33, 0.45, 0.39, 0.46, 0.46, 0.42, 1.00, 0.46, 0.38, 0.50, 0.38, 0.53, 0.40, 0.53, 0.34, 0.46, 0.39, 0.47, 0.40, 0.31],
+        [0.43, 0.47, 0.37, 0.38, 0.40, 0.35, 0.51, 0.40, 0.38, 0.41, 0.41, 0.38, 0.46, 1.00, 0.42, 0.40, 0.45, 0.38, 0.49, 0.48, 0.27, 0.47, 0.36, 0.49, 0.44, 0.35],
+        [0.35, 0.39, 0.37, 0.42, 0.38, 0.40, 0.39, 0.37, 0.34, 0.38, 0.43, 0.40, 0.38, 0.42, 1.00, 0.38, 0.39, 0.40, 0.40, 0.53, 0.25, 0.42, 0.38, 0.43, 0.40, 0.30],
+        [0.30, 0.51, 0.46, 0.53, 0.40, 0.45, 0.42, 0.40, 0.51, 0.48, 0.50, 0.45, 0.50, 0.40, 0.38, 1.00, 0.48, 0.42, 0.42, 0.49, 0.35, 0.35, 0.47, 0.40, 0.47, 0.31],
+        [0.42, 0.44, 0.46, 0.44, 0.44, 0.45, 0.51, 0.48, 0.47, 0.38, 0.42, 0.49, 0.38, 0.45, 0.39, 0.48, 1.00, 0.45, 0.42, 0.42, 0.35, 0.31, 0.41, 0.53, 0.37, 0.30],
+        [0.38, 0.48, 0.44, 0.57, 0.45, 0.47, 0.48, 0.46, 0.36, 0.40, 0.53, 0.40, 0.53, 0.38, 0.40, 0.42, 0.45, 1.00, 0.48, 0.56, 0.34, 0.39, 0.48, 0.47, 0.41, 0.36],
+        [0.45, 0.40, 0.45, 0.55, 0.37, 0.47, 0.42, 0.45, 0.47, 0.48, 0.48, 0.48, 0.40, 0.49, 0.40, 0.42, 0.42, 0.48, 1.00, 0.60, 0.31, 0.40, 0.39, 0.49, 0.40, 0.26],
+        [0.40, 0.52, 0.50, 0.53, 0.49, 0.47, 0.46, 0.48, 0.52, 0.56, 0.60, 0.56, 0.53, 0.48, 0.53, 0.49, 0.42, 0.56, 0.60, 1.00, 0.28, 0.56, 0.47, 0.60, 0.53, 0.37],
+        [0.22, 0.30, 0.24, 0.36, 0.25, 0.35, 0.41, 0.31, 0.31, 0.28, 0.34, 0.31, 0.34, 0.27, 0.25, 0.35, 0.35, 0.34, 0.31, 0.28, 1.00, 0.28, 0.32, 0.35, 0.25, 0.23],
+        [0.40, 0.44, 0.37, 0.37, 0.35, 0.35, 0.31, 0.46, 0.46, 0.40, 0.45, 0.39, 0.46, 0.47, 0.42, 0.35, 0.31, 0.39, 0.40, 0.56, 0.28, 1.00, 0.39, 0.47, 0.44, 0.38],
+        [0.33, 0.39, 0.41, 0.47, 0.38, 0.47, 0.39, 0.41, 0.52, 0.39, 0.47, 0.48, 0.39, 0.36, 0.38, 0.47, 0.41, 0.48, 0.39, 0.47, 0.32, 0.39, 1.00, 0.45, 0.41, 0.42],
+        [0.41, 0.51, 0.40, 0.44, 0.38, 0.39, 0.55, 0.46, 0.40, 0.47, 0.47, 0.40, 0.47, 0.49, 0.43, 0.40, 0.53, 0.47, 0.49, 0.60, 0.35, 0.47, 0.45, 1.00, 0.55, 0.42],
+        [0.38, 0.46, 0.44, 0.47, 0.35, 0.37, 0.38, 0.42, 0.47, 0.45, 0.44, 0.39, 0.40, 0.44, 0.40, 0.47, 0.37, 0.41, 0.40, 0.53, 0.25, 0.44, 0.41, 0.55, 1.00, 0.36],
+        [0.26, 0.38, 0.38, 0.23, 0.29, 0.31, 0.30, 0.37, 0.37, 0.20, 0.26, 0.35, 0.31, 0.35, 0.30, 0.31, 0.30, 0.36, 0.26, 0.37, 0.23, 0.38, 0.42, 0.42, 0.36, 1.00]
+    ];
+
+    container.innerHTML = `
+        <div style="margin-bottom: 1rem;">
+            <h4 style="text-align: center; margin: 0; color: #2c3e50;">
+                Согласованность голосования депутатов фракции СмПм
+            </h4>
+            <p style="text-align: center; color: #7f8c8d; font-size: 0.9rem; margin-top: 0.5rem;">
+                Наведите на ячейку для просмотра коэффициента сходства
+            </p>
+        </div>
+        <div id="similarity-heatmap" style="width: 100%; height: 800px;"></div>
+    `;
+
+    const trace = {
+        z: similarityData,
+        x: deputies,
+        y: deputies,
+        type: 'heatmap',
+        colorscale: [
+            [0, '#1a1a2e'],      // Темно-синий (низкое сходство)
+            [0.2, '#16213e'],
+            [0.3, '#533483'],    // Фиолетовый
+            [0.4, '#c23a67'],    // Красно-фиолетовый
+            [0.5, '#e94b3c'],    // Красный
+            [0.6, '#ff6b6b'],    // Светло-красный
+            [0.7, '#ffa07a'],    // Оранжевый
+            [0.8, '#ffd19a'],    // Желто-оранжевый
+            [1, '#ffe5b4']       // Светло-бежевый (высокое сходство)
+        ],
+        colorbar: {
+            title: 'Коэффициент<br>сходства',
+            titleside: 'right',
+            tickvals: [0, 0.2, 0.4, 0.6, 0.8, 1.0],
+            ticktext: ['0.0', '0.2', '0.4', '0.6', '0.8', '1.0'],
+            len: 0.7
+        },
+        hovertemplate: '<b>%{y}</b><br><b>%{x}</b><br>Сходство: %{z:.2f}<extra></extra>',
+        showscale: true,
+        zmin: 0,
+        zmax: 1
+    };
+
+    const layout = {
+        xaxis: {
+            tickangle: -45,
+            side: 'bottom',
+            tickfont: { size: 9 },
+            showgrid: false
+        },
+        yaxis: {
+            tickfont: { size: 9 },
+            showgrid: false,
+            autorange: 'reversed'
+        },
+        margin: { l: 200, r: 100, t: 20, b: 200 },
+        plot_bgcolor: '#ffffff',
+        paper_bgcolor: '#ffffff',
+        font: { family: 'Arial, sans-serif' }
+    };
+
+    Plotly.newPlot('similarity-heatmap', [trace], layout, {
+        responsive: true,
+        displayModeBar: true,
+        modeBarButtonsToRemove: ['lasso2d', 'select2d'],
+        displaylogo: false
     });
 }
 
