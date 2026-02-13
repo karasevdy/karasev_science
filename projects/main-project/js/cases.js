@@ -25,9 +25,6 @@ window.onclick = function(event) {
 // ============================================
 // КЕЙС 1: Вводные визуализации
 // ============================================
-// ============================================
-// КЕЙС 1: Вводные визуализации
-// ============================================
 function openCase1() {
     const modal = document.getElementById('modal');
     modal.innerHTML = `
@@ -38,7 +35,7 @@ function openCase1() {
                 <i class="fas fa-chart-pie"></i>
                 <div>
                     <h2>Вводные визуализации для Верховной Рады 8-го созыва и ML-модели</h2>
-                    <p>Визуализация данных ВРУ-8 • Описательные статистики</p>
+                    <p>Описательные статистики • Визуализация данных ВРУ-8</p>
                 </div>
             </div>
 
@@ -115,6 +112,27 @@ function openCase1() {
                         font-size: 3rem;
                         margin-bottom: 1rem;
                     }
+                    .explanation-box {
+                        margin-top: 1rem;
+                        padding: 0.75rem;
+                        background: #f8f9fa;
+                        border-radius: 6px;
+                        border-left: 3px solid #95a5a6;
+                    }
+                    .explanation-box p {
+                        margin: 0;
+                        font-size: 0.85rem;
+                        color: #666;
+                        line-height: 1.5;
+                    }
+                    .explanation-box a {
+                        color: #667eea;
+                        text-decoration: none;
+                        font-weight: 600;
+                    }
+                    .explanation-box a:hover {
+                        text-decoration: underline;
+                    }
                 </style>
 
                 <!-- ========== СЕКЦИЯ 1: Законопроекты и динамика ВРУ-8 ========== -->
@@ -139,11 +157,18 @@ function openCase1() {
                             </div>
                             <div id="behaviorTable"></div>
                         </div>
+                        <div class="explanation-box">
+                            <p>
+                                <i class="fas fa-info-circle" style="margin-right: 0.25rem;"></i>
+                                <strong>Пояснение:</strong> [ВСТАВЬТЕ ТЕКСТ ПОЯСНЕНИЯ]
+                                <a href="/karasev_science/projects/main-project/index.html#iii-4">→ Подробнее в разделе III.4</a>
+                            </p>
+                        </div>
                     </div>
 
                     <!-- 2. Кол-во законопроектов поданных депутатами -->
                     <div class="viz-card">
-                        <h4><i class="fas fa-chart-bar"></i> 2. Кол-во законопроектов поданных депутатами по сессиям ВРУ-8</h4>
+                        <h4><i class="fas fa-chart-bar"></i> 2. Кол-во законопроектов, поданных депутатами по сессиям ВРУ-8</h4>
                         <div style="min-height: 400px;">
                             <img src="/karasev_science/images/graphs/bills_by_session.png"
                                  style="max-width: 100%; height: auto; border-radius: 8px;"
@@ -153,6 +178,13 @@ function openCase1() {
                                 <i class="fas fa-image"></i>
                                 <p>Вставьте: <strong>bills_by_session.png</strong></p>
                             </div>
+                        </div>
+                        <div class="explanation-box">
+                            <p>
+                                <i class="fas fa-info-circle" style="margin-right: 0.25rem;"></i>
+                                <strong>Пояснение:</strong> [ВСТАВЬТЕ ТЕКСТ ПОЯСНЕНИЯ]
+                                <a href="/karasev_science/projects/main-project/index.html#ii-4">→ Подробнее в разделе II.4</a>
+                            </p>
                         </div>
                     </div>
 
@@ -169,6 +201,13 @@ function openCase1() {
                                 <p>Вставьте: <strong>median_coauthors.png</strong></p>
                             </div>
                         </div>
+                        <div class="explanation-box">
+                            <p>
+                                <i class="fas fa-info-circle" style="margin-right: 0.25rem;"></i>
+                                <strong>Пояснение:</strong> [ВСТАВЬТЕ ТЕКСТ ПОЯСНЕНИЯ]
+                                <a href="/karasev_science/projects/main-project/index.html#iii-3">→ Подробнее в разделе III.3</a>
+                            </p>
+                        </div>
                     </div>
 
                     <!-- 4. Среднее кол-во голосований -->
@@ -184,12 +223,26 @@ function openCase1() {
                                 <p>Вставьте: <strong>avg_votings.png</strong></p>
                             </div>
                         </div>
+                        <div class="explanation-box">
+                            <p>
+                                <i class="fas fa-info-circle" style="margin-right: 0.25rem;"></i>
+                                <strong>Пояснение:</strong> [ВСТАВЬТЕ ТЕКСТ ПОЯСНЕНИЯ]
+                                <a href="/karasev_science/projects/main-project/index.html#iii-3">→ Подробнее в разделе III.3</a>
+                            </p>
+                        </div>
                     </div>
 
                     <!-- 5. Распределение типов законодательных процедур -->
                     <div class="viz-card">
                         <h4><i class="fas fa-table"></i> 5. Распределение типов законодательных процедур по сессиям ВРУ-8</h4>
                         <div id="votingTypesTable" style="overflow-x: auto;"></div>
+                        <div class="explanation-box">
+                            <p>
+                                <i class="fas fa-info-circle" style="margin-right: 0.25rem;"></i>
+                                <strong>Пояснение:</strong> [ВСТАВЬТЕ ТЕКСТ ПОЯСНЕНИЯ]
+                                <a href="/karasev_science/projects/main-project/index.html#iii-3">→ Подробнее в разделе III.3</a>
+                            </p>
+                        </div>
                     </div>
 
                     <!-- 6. Доли законопроектов соавторов по фракциям -->
@@ -206,6 +259,13 @@ function openCase1() {
                             </div>
                         </div>
                         <div id="coauthorsTable" style="margin-top: 1rem; overflow-x: auto;"></div>
+                        <div class="explanation-box">
+                            <p>
+                                <i class="fas fa-info-circle" style="margin-right: 0.25rem;"></i>
+                                <strong>Пояснение:</strong> [ВСТАВЬТЕ ТЕКСТ ПОЯСНЕНИЯ]
+                                <a href="/karasev_science/projects/main-project/index.html#iii-6">→ Подробнее в разделе III.6</a>
+                            </p>
+                        </div>
                     </div>
                 </div>
 
@@ -257,12 +317,26 @@ function openCase1() {
                                 <div style="display: flex; align-items: center; gap: 0.5rem;"><div style="width: 20px; height: 20px; background: #95a5a6; border-radius: 3px;"></div><span>Позафракційні (25)</span></div>
                             </div>
                         </div>
+                        <div class="explanation-box">
+                            <p>
+                                <i class="fas fa-info-circle" style="margin-right: 0.25rem;"></i>
+                                <strong>Пояснение:</strong> [ВСТАВЬТЕ ТЕКСТ ПОЯСНЕНИЯ]
+                                <a href="/karasev_science/projects/main-project/index.html#ii-4">→ Подробнее в разделе II.4</a>
+                            </p>
+                        </div>
                     </div>
 
                     <!-- 2. Распределение депутатов по фракциям -->
                     <div class="viz-card">
                         <h4><i class="fas fa-chart-bar"></i> 2. Распределение депутатов по фракциям</h4>
                         <div id="factionChart" style="height: 400px;"></div>
+                        <div class="explanation-box">
+                            <p>
+                                <i class="fas fa-info-circle" style="margin-right: 0.25rem;"></i>
+                                <strong>Пояснение:</strong> [ВСТАВЬТЕ ТЕКСТ ПОЯСНЕНИЯ]
+                                <a href="/karasev_science/projects/main-project/index.html#ii-4">→ Подробнее в разделе II.4</a>
+                            </p>
+                        </div>
                     </div>
 
                     <!-- 3. Кластеры k=3 -->
@@ -278,12 +352,185 @@ function openCase1() {
                                 <p>Вставьте: <strong>clusters_k3.png</strong></p>
                             </div>
                         </div>
+                        <div class="explanation-box">
+                            <p>
+                                <i class="fas fa-info-circle" style="margin-right: 0.25rem;"></i>
+                                <strong>Пояснение:</strong> [ВСТАВЬТЕ ТЕКСТ ПОЯСНЕНИЯ]
+                                <a href="/karasev_science/projects/main-project/index.html#iii-8">→ Подробнее в разделе III.8</a>
+                            </p>
+                        </div>
                     </div>
 
-                    <!-- 5. Матрицы сходства голосования -->
+                    <!-- 4. Кластеры k=5 -->
+                    <div class="viz-card">
+                        <h4><i class="fas fa-project-diagram"></i> 4. Кластеры (k=5) депутатов в зависимости от их поведения</h4>
+                        <div style="min-height: 400px;">
+                            <img src="/karasev_science/images/graphs/clusters_k5.png"
+                                 style="max-width: 100%; height: auto; border-radius: 8px;"
+                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                                 alt="Кластеры k=5">
+                            <div class="viz-placeholder" style="display: none;">
+                                <i class="fas fa-image"></i>
+                                <p>Вставьте: <strong>clusters_k5.png</strong></p>
+                            </div>
+                        </div>
+                        <div class="explanation-box">
+                            <p>
+                                <i class="fas fa-info-circle" style="margin-right: 0.25rem;"></i>
+                                <strong>Пояснение:</strong> [ВСТАВЬТЕ ТЕКСТ ПОЯСНЕНИЯ]
+                                <a href="/karasev_science/projects/main-project/index.html#iii-8">→ Подробнее в разделе III.8</a>
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- 5. Матрицы сходства голосования по фракциям -->
                     <div class="viz-card">
                         <h4><i class="fas fa-th"></i> 5. Матрицы сходства голосования по всем фракциям</h4>
-                        <div id="similarity-matrix-container" style="min-height: 500px;"></div>
+                        <p style="color: #666; margin-bottom: 1.5rem;">Матрицы показывают согласованность голосования депутатов внутри каждой фракции</p>
+
+                        <!-- Блок Петра Порошенко -->
+                        <div style="margin-bottom: 2rem;">
+                            <h5 style="color: #e74c3c; margin-bottom: 1rem;">
+                                <i class="fas fa-square" style="color: #e74c3c;"></i> Блок Петра Порошенко (БПП)
+                            </h5>
+                            <div style="min-height: 400px;">
+                                <img src="/karasev_science/images/graphs/similarity_bpp.png"
+                                     style="max-width: 100%; height: auto; border-radius: 8px;"
+                                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                                     alt="Матрица БПП">
+                                <div class="viz-placeholder" style="display: none;">
+                                    <i class="fas fa-image"></i>
+                                    <p>Вставьте: <strong>similarity_bpp.png</strong></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Народный фронт -->
+                        <div style="margin-bottom: 2rem;">
+                            <h5 style="color: #9b59b6; margin-bottom: 1rem;">
+                                <i class="fas fa-square" style="color: #9b59b6;"></i> Народный фронт (НФ)
+                            </h5>
+                            <div style="min-height: 400px;">
+                                <img src="/karasev_science/images/graphs/similarity_nf.png"
+                                     style="max-width: 100%; height: auto; border-radius: 8px;"
+                                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                                     alt="Матрица НФ">
+                                <div class="viz-placeholder" style="display: none;">
+                                    <i class="fas fa-image"></i>
+                                    <p>Вставьте: <strong>similarity_nf.png</strong></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Самопомощь -->
+                        <div style="margin-bottom: 2rem;">
+                            <h5 style="color: #f39c12; margin-bottom: 1rem;">
+                                <i class="fas fa-square" style="color: #f39c12;"></i> Самопомощь (СмПм)
+                            </h5>
+                            <div style="min-height: 400px;">
+                                <img src="/karasev_science/images/graphs/similarity_smpm.png"
+                                     style="max-width: 100%; height: auto; border-radius: 8px;"
+                                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                                     alt="Матрица Самопомощь">
+                                <div class="viz-placeholder" style="display: none;">
+                                    <i class="fas fa-image"></i>
+                                    <p>Вставьте: <strong>similarity_smpm.png</strong></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Радикальная партия Олега Ляшко -->
+                        <div style="margin-bottom: 2rem;">
+                            <h5 style="color: #3498db; margin-bottom: 1rem;">
+                                <i class="fas fa-square" style="color: #3498db;"></i> Радикальная партия Олега Ляшко (РпОЛ)
+                            </h5>
+                            <div style="min-height: 400px;">
+                                <img src="/karasev_science/images/graphs/similarity_rpol.png"
+                                     style="max-width: 100%; height: auto; border-radius: 8px;"
+                                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                                     alt="Матрица РпОЛ">
+                                <div class="viz-placeholder" style="display: none;">
+                                    <i class="fas fa-image"></i>
+                                    <p>Вставьте: <strong>similarity_rpol.png</strong></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ВО Батькивщина -->
+                        <div style="margin-bottom: 2rem;">
+                            <h5 style="color: #27ae60; margin-bottom: 1rem;">
+                                <i class="fas fa-square" style="color: #27ae60;"></i> ВО Батькивщина (Бтк)
+                            </h5>
+                            <div style="min-height: 400px;">
+                                <img src="/karasev_science/images/graphs/similarity_batk.png"
+                                     style="max-width: 100%; height: auto; border-radius: 8px;"
+                                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                                     alt="Матрица Батькивщина">
+                                <div class="viz-placeholder" style="display: none;">
+                                    <i class="fas fa-image"></i>
+                                    <p>Вставьте: <strong>similarity_batk.png</strong></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Оппозиционный блок -->
+                        <div style="margin-bottom: 2rem;">
+                            <h5 style="color: #34495e; margin-bottom: 1rem;">
+                                <i class="fas fa-square" style="color: #34495e;"></i> Оппозиционный блок (ОпБл)
+                            </h5>
+                            <div style="min-height: 400px;">
+                                <img src="/karasev_science/images/graphs/similarity_opbl.png"
+                                     style="max-width: 100%; height: auto; border-radius: 8px;"
+                                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                                     alt="Матрица Оппозиционный блок">
+                                <div class="viz-placeholder" style="display: none;">
+                                    <i class="fas fa-image"></i>
+                                    <p>Вставьте: <strong>similarity_opbl.png</strong></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Воля народу -->
+                        <div style="margin-bottom: 2rem;">
+                            <h5 style="color: #1abc9c; margin-bottom: 1rem;">
+                                <i class="fas fa-square" style="color: #1abc9c;"></i> Воля народу (ВлНр)
+                            </h5>
+                            <div style="min-height: 400px;">
+                                <img src="/karasev_science/images/graphs/similarity_vlnr.png"
+                                     style="max-width: 100%; height: auto; border-radius: 8px;"
+                                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                                     alt="Матрица Воля народу">
+                                <div class="viz-placeholder" style="display: none;">
+                                    <i class="fas fa-image"></i>
+                                    <p>Вставьте: <strong>similarity_vlnr.png</strong></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Відродження -->
+                        <div style="margin-bottom: 2rem;">
+                            <h5 style="color: #e67e22; margin-bottom: 1rem;">
+                                <i class="fas fa-square" style="color: #e67e22;"></i> Відродження (Взржд)
+                            </h5>
+                            <div style="min-height: 400px;">
+                                <img src="/karasev_science/images/graphs/similarity_vidr.png"
+                                     style="max-width: 100%; height: auto; border-radius: 8px;"
+                                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                                     alt="Матрица Відродження">
+                                <div class="viz-placeholder" style="display: none;">
+                                    <i class="fas fa-image"></i>
+                                    <p>Вставьте: <strong>similarity_vidr.png</strong></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="explanation-box">
+                            <p>
+                                <i class="fas fa-info-circle" style="margin-right: 0.25rem;"></i>
+                                <strong>Пояснение:</strong> [ВСТАВЬТЕ ТЕКСТ ПОЯСНЕНИЯ]
+                                <a href="/karasev_science/projects/main-project/index.html#iii-11">→ Подробнее в разделе III.11</a>
+                            </p>
+                        </div>
                     </div>
 
                     <!-- 6. Динамика сплоченности фракций (UNITY) -->
@@ -298,6 +545,13 @@ function openCase1() {
                                 <i class="fas fa-image"></i>
                                 <p>Вставьте: <strong>unity_dynamics.png</strong></p>
                             </div>
+                        </div>
+                        <div class="explanation-box">
+                            <p>
+                                <i class="fas fa-info-circle" style="margin-right: 0.25rem;"></i>
+                                <strong>Пояснение:</strong> [ВСТАВЬТЕ ТЕКСТ ПОЯСНЕНИЯ]
+                                <a href="/karasev_science/projects/main-project/index.html#iii-11">→ Подробнее в разделе III.11</a>
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -323,24 +577,52 @@ function openCase1() {
                                 <div id="testTable" style="margin-top: 1rem;"></div>
                             </div>
                         </div>
+                        <div class="explanation-box">
+                            <p>
+                                <i class="fas fa-info-circle" style="margin-right: 0.25rem;"></i>
+                                <strong>Пояснение:</strong> [ВСТАВЬТЕ ТЕКСТ ПОЯСНЕНИЯ]
+                                <a href="/karasev_science/projects/main-project/index.html#iii-13">→ Подробнее в разделе III.13</a>
+                            </p>
+                        </div>
                     </div>
 
                     <!-- 2. Classification Report - Train -->
                     <div class="viz-card">
                         <h4><i class="fas fa-table"></i> 2. Classification report - train</h4>
                         <div id="classReportTrain" style="overflow-x: auto;"></div>
+                        <div class="explanation-box">
+                            <p>
+                                <i class="fas fa-info-circle" style="margin-right: 0.25rem;"></i>
+                                <strong>Пояснение:</strong> [ВСТАВЬТЕ ТЕКСТ ПОЯСНЕНИЯ]
+                                <a href="/karasev_science/projects/main-project/index.html#iii-13">→ Подробнее в разделе III.13</a>
+                            </p>
+                        </div>
                     </div>
 
                     <!-- 3. Classification Report - Test -->
                     <div class="viz-card">
                         <h4><i class="fas fa-table"></i> 3. Classification report - test</h4>
                         <div id="classReportTest" style="overflow-x: auto;"></div>
+                        <div class="explanation-box">
+                            <p>
+                                <i class="fas fa-info-circle" style="margin-right: 0.25rem;"></i>
+                                <strong>Пояснение:</strong> [ВСТАВЬТЕ ТЕКСТ ПОЯСНЕНИЯ]
+                                <a href="/karasev_science/projects/main-project/index.html#iii-13">→ Подробнее в разделе III.13</a>
+                            </p>
+                        </div>
                     </div>
 
                     <!-- 4. ROC кривые -->
                     <div class="viz-card">
                         <h4><i class="fas fa-chart-area"></i> 4. ROC-кривые</h4>
                         <div id="rocCurves"></div>
+                        <div class="explanation-box">
+                            <p>
+                                <i class="fas fa-info-circle" style="margin-right: 0.25rem;"></i>
+                                <strong>Пояснение:</strong> [ВСТАВЬТЕ ТЕКСТ ПОЯСНЕНИЯ]
+                                <a href="/karasev_science/projects/main-project/index.html#iii-13">→ Подробнее в разделе III.13</a>
+                            </p>
+                        </div>
                     </div>
 
                     <!-- 5. Матрица неточностей -->
@@ -355,6 +637,13 @@ function openCase1() {
                                 <i class="fas fa-image"></i>
                                 <p>Вставьте: <strong>confusion_matrix.png</strong></p>
                             </div>
+                        </div>
+                        <div class="explanation-box">
+                            <p>
+                                <i class="fas fa-info-circle" style="margin-right: 0.25rem;"></i>
+                                <strong>Пояснение:</strong> [ВСТАВЬТЕ ТЕКСТ ПОЯСНЕНИЯ]
+                                <a href="/karasev_science/projects/main-project/index.html#iii-13">→ Подробнее в разделе III.13</a>
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -374,7 +663,6 @@ function switchCase1Section(section) {
     setTimeout(() => {
         if (section === 'deputies') {
             generateFactionChart();
-            generateSimilarityMatrix();
         } else if (section === 'model') {
             generateTrainTestCharts();
             generateROCCurves();
@@ -842,138 +1130,6 @@ function generateROCCurves() {
         Plotly.newPlot(divId, traces, layout, {responsive: true, displayModeBar: false});
     });
 }
-
-function generateSimilarityMatrix() {
-    const container = document.getElementById('similarity-matrix-container');
-    if (!container) return;
-
-    // Данные из скриншота - матрица сходства голосования депутатов фракции СмПм
-    const deputies = [
-        'Бабак Алена Валеріївна',
-        'Березюк Олег Романович',
-        'Веселова Наталія Василівна',
-        'Войціцька Вікторія Михайлівна',
-        'Дяченко Олександр Іванович',
-        'Диденко Ігор Анатолійович',
-        'Журжий Андрій Валерійович',
-        'Зубач Любомир Львович',
-        'Кирилл Сергій Іванович',
-        'Костенко Павло Петрович',
-        'Лаврик Олег Васильович',
-        'Маркевич Ярослав Володимирович',
-        'Мірошниченко Іван Володимирович',
-        'Олиянсенко Олександр Валерійович',
-        'Острікова Тетяна Георгіївна',
-        'Пастух Тарас Тимофійович',
-        'Підлипський Лев Теофілович',
-        'Подоляк Ірина Ігорівна',
-        'Романова Анна Анатоліївна',
-        'Семенуха Роман Сергійович',
-        'Семенченко Семен Ігорович',
-        'Сидоровіч Руслан Михайлович',
-        'Скрипник Олексій Олексійович',
-        'Соболєв Єгор Вікторович',
-        'Сотник Олена Сергіївна',
-        'Сисоленко Ірина Володимирівна'
-    ];
-
-    // Матрица сходства (симметричная матрица 26x26)
-    const similarityData = [
-        [1.00, 0.37, 0.35, 0.35, 0.39, 0.37, 0.35, 0.46, 0.42, 0.37, 0.41, 0.44, 0.41, 0.43, 0.35, 0.30, 0.42, 0.38, 0.45, 0.40, 0.22, 0.40, 0.33, 0.41, 0.38, 0.26],
-        [0.37, 1.00, 0.42, 0.45, 0.40, 0.41, 0.42, 0.44, 0.49, 0.48, 0.49, 0.48, 0.45, 0.47, 0.39, 0.51, 0.44, 0.48, 0.40, 0.52, 0.30, 0.44, 0.39, 0.51, 0.46, 0.38],
-        [0.35, 0.42, 1.00, 0.42, 0.42, 0.42, 0.40, 0.39, 0.50, 0.39, 0.44, 0.36, 0.38, 0.37, 0.37, 0.46, 0.46, 0.44, 0.45, 0.50, 0.24, 0.37, 0.41, 0.40, 0.44, 0.38],
-        [0.35, 0.45, 0.42, 1.00, 0.38, 0.37, 0.49, 0.44, 0.38, 0.45, 0.49, 0.42, 0.50, 0.38, 0.42, 0.53, 0.44, 0.57, 0.55, 0.53, 0.36, 0.37, 0.47, 0.44, 0.47, 0.23],
-        [0.39, 0.40, 0.42, 0.38, 1.00, 0.38, 0.37, 0.40, 0.35, 0.38, 0.43, 0.35, 0.46, 0.40, 0.38, 0.40, 0.44, 0.45, 0.37, 0.49, 0.25, 0.35, 0.38, 0.38, 0.35, 0.29],
-        [0.37, 0.41, 0.42, 0.37, 0.38, 1.00, 0.51, 0.40, 0.35, 0.48, 0.48, 0.50, 0.52, 0.35, 0.40, 0.45, 0.45, 0.47, 0.47, 0.47, 0.35, 0.35, 0.47, 0.39, 0.37, 0.31],
-        [0.35, 0.42, 0.40, 0.49, 0.37, 0.51, 1.00, 0.44, 0.40, 0.40, 0.44, 0.48, 0.33, 0.51, 0.39, 0.42, 0.51, 0.48, 0.42, 0.46, 0.41, 0.31, 0.39, 0.55, 0.38, 0.30],
-        [0.46, 0.44, 0.39, 0.44, 0.40, 0.40, 0.44, 1.00, 0.44, 0.39, 0.39, 0.44, 0.45, 0.40, 0.37, 0.40, 0.48, 0.46, 0.45, 0.48, 0.31, 0.46, 0.41, 0.46, 0.42, 0.37],
-        [0.42, 0.49, 0.50, 0.38, 0.35, 0.35, 0.40, 0.44, 1.00, 0.48, 0.48, 0.36, 0.39, 0.38, 0.34, 0.51, 0.47, 0.36, 0.47, 0.52, 0.31, 0.46, 0.52, 0.40, 0.47, 0.37],
-        [0.37, 0.48, 0.39, 0.45, 0.38, 0.48, 0.40, 0.39, 0.48, 1.00, 0.47, 0.43, 0.46, 0.41, 0.38, 0.48, 0.38, 0.40, 0.48, 0.56, 0.28, 0.40, 0.39, 0.47, 0.45, 0.20],
-        [0.41, 0.49, 0.44, 0.49, 0.43, 0.48, 0.44, 0.39, 0.48, 0.47, 1.00, 0.47, 0.46, 0.41, 0.43, 0.50, 0.42, 0.53, 0.48, 0.60, 0.34, 0.45, 0.47, 0.47, 0.44, 0.26],
-        [0.44, 0.48, 0.36, 0.42, 0.35, 0.50, 0.48, 0.44, 0.36, 0.43, 0.47, 1.00, 0.42, 0.38, 0.40, 0.45, 0.49, 0.40, 0.48, 0.56, 0.31, 0.39, 0.48, 0.40, 0.39, 0.35],
-        [0.41, 0.45, 0.38, 0.50, 0.46, 0.52, 0.33, 0.45, 0.39, 0.46, 0.46, 0.42, 1.00, 0.46, 0.38, 0.50, 0.38, 0.53, 0.40, 0.53, 0.34, 0.46, 0.39, 0.47, 0.40, 0.31],
-        [0.43, 0.47, 0.37, 0.38, 0.40, 0.35, 0.51, 0.40, 0.38, 0.41, 0.41, 0.38, 0.46, 1.00, 0.42, 0.40, 0.45, 0.38, 0.49, 0.48, 0.27, 0.47, 0.36, 0.49, 0.44, 0.35],
-        [0.35, 0.39, 0.37, 0.42, 0.38, 0.40, 0.39, 0.37, 0.34, 0.38, 0.43, 0.40, 0.38, 0.42, 1.00, 0.38, 0.39, 0.40, 0.40, 0.53, 0.25, 0.42, 0.38, 0.43, 0.40, 0.30],
-        [0.30, 0.51, 0.46, 0.53, 0.40, 0.45, 0.42, 0.40, 0.51, 0.48, 0.50, 0.45, 0.50, 0.40, 0.38, 1.00, 0.48, 0.42, 0.42, 0.49, 0.35, 0.35, 0.47, 0.40, 0.47, 0.31],
-        [0.42, 0.44, 0.46, 0.44, 0.44, 0.45, 0.51, 0.48, 0.47, 0.38, 0.42, 0.49, 0.38, 0.45, 0.39, 0.48, 1.00, 0.45, 0.42, 0.42, 0.35, 0.31, 0.41, 0.53, 0.37, 0.30],
-        [0.38, 0.48, 0.44, 0.57, 0.45, 0.47, 0.48, 0.46, 0.36, 0.40, 0.53, 0.40, 0.53, 0.38, 0.40, 0.42, 0.45, 1.00, 0.48, 0.56, 0.34, 0.39, 0.48, 0.47, 0.41, 0.36],
-        [0.45, 0.40, 0.45, 0.55, 0.37, 0.47, 0.42, 0.45, 0.47, 0.48, 0.48, 0.48, 0.40, 0.49, 0.40, 0.42, 0.42, 0.48, 1.00, 0.60, 0.31, 0.40, 0.39, 0.49, 0.40, 0.26],
-        [0.40, 0.52, 0.50, 0.53, 0.49, 0.47, 0.46, 0.48, 0.52, 0.56, 0.60, 0.56, 0.53, 0.48, 0.53, 0.49, 0.42, 0.56, 0.60, 1.00, 0.28, 0.56, 0.47, 0.60, 0.53, 0.37],
-        [0.22, 0.30, 0.24, 0.36, 0.25, 0.35, 0.41, 0.31, 0.31, 0.28, 0.34, 0.31, 0.34, 0.27, 0.25, 0.35, 0.35, 0.34, 0.31, 0.28, 1.00, 0.28, 0.32, 0.35, 0.25, 0.23],
-        [0.40, 0.44, 0.37, 0.37, 0.35, 0.35, 0.31, 0.46, 0.46, 0.40, 0.45, 0.39, 0.46, 0.47, 0.42, 0.35, 0.31, 0.39, 0.40, 0.56, 0.28, 1.00, 0.39, 0.47, 0.44, 0.38],
-        [0.33, 0.39, 0.41, 0.47, 0.38, 0.47, 0.39, 0.41, 0.52, 0.39, 0.47, 0.48, 0.39, 0.36, 0.38, 0.47, 0.41, 0.48, 0.39, 0.47, 0.32, 0.39, 1.00, 0.45, 0.41, 0.42],
-        [0.41, 0.51, 0.40, 0.44, 0.38, 0.39, 0.55, 0.46, 0.40, 0.47, 0.47, 0.40, 0.47, 0.49, 0.43, 0.40, 0.53, 0.47, 0.49, 0.60, 0.35, 0.47, 0.45, 1.00, 0.55, 0.42],
-        [0.38, 0.46, 0.44, 0.47, 0.35, 0.37, 0.38, 0.42, 0.47, 0.45, 0.44, 0.39, 0.40, 0.44, 0.40, 0.47, 0.37, 0.41, 0.40, 0.53, 0.25, 0.44, 0.41, 0.55, 1.00, 0.36],
-        [0.26, 0.38, 0.38, 0.23, 0.29, 0.31, 0.30, 0.37, 0.37, 0.20, 0.26, 0.35, 0.31, 0.35, 0.30, 0.31, 0.30, 0.36, 0.26, 0.37, 0.23, 0.38, 0.42, 0.42, 0.36, 1.00]
-    ];
-
-    container.innerHTML = `
-        <div style="margin-bottom: 1rem;">
-            <h4 style="text-align: center; margin: 0; color: #2c3e50;">
-                Согласованность голосования депутатов фракции СмПм
-            </h4>
-            <p style="text-align: center; color: #7f8c8d; font-size: 0.9rem; margin-top: 0.5rem;">
-                Наведите на ячейку для просмотра коэффициента сходства
-            </p>
-        </div>
-        <div id="similarity-heatmap" style="width: 100%; height: 800px;"></div>
-    `;
-
-    const trace = {
-        z: similarityData,
-        x: deputies,
-        y: deputies,
-        type: 'heatmap',
-        colorscale: [
-            [0, '#1a1a2e'],      // Темно-синий (низкое сходство)
-            [0.2, '#16213e'],
-            [0.3, '#533483'],    // Фиолетовый
-            [0.4, '#c23a67'],    // Красно-фиолетовый
-            [0.5, '#e94b3c'],    // Красный
-            [0.6, '#ff6b6b'],    // Светло-красный
-            [0.7, '#ffa07a'],    // Оранжевый
-            [0.8, '#ffd19a'],    // Желто-оранжевый
-            [1, '#ffe5b4']       // Светло-бежевый (высокое сходство)
-        ],
-        colorbar: {
-            title: 'Коэффициент<br>сходства',
-            titleside: 'right',
-            tickvals: [0, 0.2, 0.4, 0.6, 0.8, 1.0],
-            ticktext: ['0.0', '0.2', '0.4', '0.6', '0.8', '1.0'],
-            len: 0.7
-        },
-        hovertemplate: '<b>%{y}</b><br><b>%{x}</b><br>Сходство: %{z:.2f}<extra></extra>',
-        showscale: true,
-        zmin: 0,
-        zmax: 1
-    };
-
-    const layout = {
-        xaxis: {
-            tickangle: -45,
-            side: 'bottom',
-            tickfont: { size: 9 },
-            showgrid: false
-        },
-        yaxis: {
-            tickfont: { size: 9 },
-            showgrid: false,
-            autorange: 'reversed'
-        },
-        margin: { l: 200, r: 100, t: 20, b: 200 },
-        plot_bgcolor: '#ffffff',
-        paper_bgcolor: '#ffffff',
-        font: { family: 'Arial, sans-serif' }
-    };
-
-    Plotly.newPlot('similarity-heatmap', [trace], layout, {
-        responsive: true,
-        displayModeBar: true,
-        modeBarButtonsToRemove: ['lasso2d', 'select2d'],
-        displaylogo: false
-    });
-}
-
 // ============================================
 // КЕЙС 2: Сетевой граф депутатов
 // ============================================
