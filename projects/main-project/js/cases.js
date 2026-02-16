@@ -393,15 +393,8 @@ function openCase1() {
                             <h5 style="color: #e74c3c; margin-bottom: 1rem;">
                                 <i class="fas fa-square" style="color: #e74c3c;"></i> Блок Петра Порошенко (БПП)
                             </h5>
-                            <div style="min-height: 400px;">
-                                <img src="/karasev_science/images/graphs/similarity_bpp.png"
-                                     style="max-width: 100%; height: auto; border-radius: 8px;"
-                                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-                                     alt="Матрица БПП">
-                                <div class="viz-placeholder" style="display: none;">
-                                    <i class="fas fa-image"></i>
-                                    <p>Вставьте: <strong>similarity_bpp.png</strong></p>
-                                </div>
+                            <div id="bpp-similarity-container" style="min-height: 600px;">
+                                <div id="bpp-similarity-plot" style="width: 100%; height: 600px;"></div>
                             </div>
                         </div>
 
@@ -410,15 +403,8 @@ function openCase1() {
                             <h5 style="color: #9b59b6; margin-bottom: 1rem;">
                                 <i class="fas fa-square" style="color: #9b59b6;"></i> Народный фронт (НФ)
                             </h5>
-                            <div style="min-height: 400px;">
-                                <img src="/karasev_science/images/graphs/similarity_nf.png"
-                                     style="max-width: 100%; height: auto; border-radius: 8px;"
-                                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-                                     alt="Матрица НФ">
-                                <div class="viz-placeholder" style="display: none;">
-                                    <i class="fas fa-image"></i>
-                                    <p>Вставьте: <strong>similarity_nf.png</strong></p>
-                                </div>
+                            <div id="nf-similarity-container" style="min-height: 600px;">
+                                <div id="nf-similarity-plot" style="width: 100%; height: 600px;"></div>
                             </div>
                         </div>
 
@@ -427,15 +413,8 @@ function openCase1() {
                             <h5 style="color: #f39c12; margin-bottom: 1rem;">
                                 <i class="fas fa-square" style="color: #f39c12;"></i> Самопомощь (СмПм)
                             </h5>
-                            <div style="min-height: 400px;">
-                                <img src="/karasev_science/images/graphs/similarity_smpm.png"
-                                     style="max-width: 100%; height: auto; border-radius: 8px;"
-                                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-                                     alt="Матрица Самопомощь">
-                                <div class="viz-placeholder" style="display: none;">
-                                    <i class="fas fa-image"></i>
-                                    <p>Вставьте: <strong>similarity_smpm.png</strong></p>
-                                </div>
+                            <div id="smpm-similarity-container" style="min-height: 600px;">
+                                <div id="smpm-similarity-plot" style="width: 100%; height: 600px;"></div>
                             </div>
                         </div>
 
@@ -444,15 +423,8 @@ function openCase1() {
                             <h5 style="color: #3498db; margin-bottom: 1rem;">
                                 <i class="fas fa-square" style="color: #3498db;"></i> Радикальная партия Олега Ляшко (РпОЛ)
                             </h5>
-                            <div style="min-height: 400px;">
-                                <img src="/karasev_science/images/graphs/similarity_rpol.png"
-                                     style="max-width: 100%; height: auto; border-radius: 8px;"
-                                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-                                     alt="Матрица РпОЛ">
-                                <div class="viz-placeholder" style="display: none;">
-                                    <i class="fas fa-image"></i>
-                                    <p>Вставьте: <strong>similarity_rpol.png</strong></p>
-                                </div>
+                            <div id="rpol-similarity-container" style="min-height: 600px;">
+                                <div id="rpol-similarity-plot" style="width: 100%; height: 600px;"></div>
                             </div>
                         </div>
 
@@ -461,15 +433,8 @@ function openCase1() {
                             <h5 style="color: #27ae60; margin-bottom: 1rem;">
                                 <i class="fas fa-square" style="color: #27ae60;"></i> ВО Батькивщина (Бтк)
                             </h5>
-                            <div style="min-height: 400px;">
-                                <img src="/karasev_science/images/graphs/similarity_batk.png"
-                                     style="max-width: 100%; height: auto; border-radius: 8px;"
-                                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-                                     alt="Матрица Батькивщина">
-                                <div class="viz-placeholder" style="display: none;">
-                                    <i class="fas fa-image"></i>
-                                    <p>Вставьте: <strong>similarity_batk.png</strong></p>
-                                </div>
+                            <div id="batk-similarity-container" style="min-height: 600px;">
+                                <div id="batk-similarity-plot" style="width: 100%; height: 600px;"></div>
                             </div>
                         </div>
 
@@ -478,15 +443,8 @@ function openCase1() {
                             <h5 style="color: #34495e; margin-bottom: 1rem;">
                                 <i class="fas fa-square" style="color: #34495e;"></i> Оппозиционный блок (ОпБл)
                             </h5>
-                            <div style="min-height: 400px;">
-                                <img src="/karasev_science/images/graphs/similarity_opbl.png"
-                                     style="max-width: 100%; height: auto; border-radius: 8px;"
-                                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-                                     alt="Матрица Оппозиционный блок">
-                                <div class="viz-placeholder" style="display: none;">
-                                    <i class="fas fa-image"></i>
-                                    <p>Вставьте: <strong>similarity_opbl.png</strong></p>
-                                </div>
+                            <div id="opbl-similarity-container" style="min-height: 600px;">
+                                <div id="opbl-similarity-plot" style="width: 100%; height: 600px;"></div>
                             </div>
                         </div>
 
@@ -495,15 +453,8 @@ function openCase1() {
                             <h5 style="color: #1abc9c; margin-bottom: 1rem;">
                                 <i class="fas fa-square" style="color: #1abc9c;"></i> Воля народу (ВлНр)
                             </h5>
-                            <div style="min-height: 400px;">
-                                <img src="/karasev_science/images/graphs/similarity_vlnr.png"
-                                     style="max-width: 100%; height: auto; border-radius: 8px;"
-                                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-                                     alt="Матрица Воля народу">
-                                <div class="viz-placeholder" style="display: none;">
-                                    <i class="fas fa-image"></i>
-                                    <p>Вставьте: <strong>similarity_vlnr.png</strong></p>
-                                </div>
+                            <div id="vlnr-similarity-container" style="min-height: 600px;">
+                                <div id="vlnr-similarity-plot" style="width: 100%; height: 600px;"></div>
                             </div>
                         </div>
 
@@ -512,15 +463,8 @@ function openCase1() {
                             <h5 style="color: #e67e22; margin-bottom: 1rem;">
                                 <i class="fas fa-square" style="color: #e67e22;"></i> Відродження (Взржд)
                             </h5>
-                            <div style="min-height: 400px;">
-                                <img src="/karasev_science/images/graphs/similarity_vidr.png"
-                                     style="max-width: 100%; height: auto; border-radius: 8px;"
-                                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-                                     alt="Матрица Відродження">
-                                <div class="viz-placeholder" style="display: none;">
-                                    <i class="fas fa-image"></i>
-                                    <p>Вставьте: <strong>similarity_vidr.png</strong></p>
-                                </div>
+                            <div id="vidr-similarity-container" style="min-height: 600px;">
+                                <div id="vidr-similarity-plot" style="width: 100%; height: 600px;"></div>
                             </div>
                         </div>
 
@@ -663,6 +607,15 @@ function switchCase1Section(section) {
     setTimeout(() => {
         if (section === 'deputies') {
             generateFactionChart();
+            // Генерируем все матрицы сходства
+            generateBPPSimilarityMatrix();
+            generateNFSimilarityMatrix();
+            generateSMPMSimilarityMatrix();
+            generateRPOLSimilarityMatrix();
+            generateBATKSimilarityMatrix();
+            generateOPBLSimilarityMatrix();
+            generateVLNRSimilarityMatrix();
+            generateVIDRSimilarityMatrix();
         } else if (section === 'model') {
             generateTrainTestCharts();
             generateROCCurves();
@@ -1129,6 +1082,810 @@ function generateROCCurves() {
 
         Plotly.newPlot(divId, traces, layout, {responsive: true, displayModeBar: false});
     });
+}
+
+// ============= ВСПОМОГАТЕЛЬНАЯ ФУНКЦИЯ ДЛЯ КОРРЕЛЯЦИИ ПИРСОНА =============
+
+function pearsonCorrelation(x, y) {
+    const n = x.length;
+    let sumX = 0, sumY = 0, sumXY = 0, sumX2 = 0, sumY2 = 0;
+
+    for (let i = 0; i < n; i++) {
+        sumX += x[i];
+        sumY += y[i];
+        sumXY += x[i] * y[i];
+        sumX2 += x[i] * x[i];
+        sumY2 += y[i] * y[i];
+    }
+
+    const numerator = (n * sumXY) - (sumX * sumY);
+    const denominator = Math.sqrt(((n * sumX2) - (sumX * sumX)) * ((n * sumY2) - (sumY * sumY)));
+
+    return denominator === 0 ? 0 : numerator / denominator;
+}
+
+// ============= МАТРИЦА СХОДСТВА БПП =============
+
+async function generateBPPSimilarityMatrix() {
+    const plotDiv = document.getElementById('bpp-similarity-plot');
+    if (!plotDiv) return;
+
+    plotDiv.innerHTML = '<p style="text-align: center; color: #999;">Загрузка данных БПП...</p>';
+
+    try {
+        const response = await fetch('/karasev_science/data/block_petra_poroshenko.csv');
+        const csvText = await response.text();
+
+        const lines = csvText.trim().split('\n');
+        const headers = lines[0].split(',');
+        const deputies = headers.slice(1);
+        const numDeputies = deputies.length;
+
+        const votingMatrix = [];
+        for (let i = 1; i < lines.length; i++) {
+            const values = lines[i].split(',').slice(1).map(v => parseFloat(v));
+            votingMatrix.push(values);
+        }
+
+        const similarityMatrix = [];
+        for (let i = 0; i < numDeputies; i++) {
+            similarityMatrix[i] = [];
+            for (let j = 0; j < numDeputies; j++) {
+                if (i === j) {
+                    similarityMatrix[i][j] = 1.0;
+                } else {
+                    const vec1 = votingMatrix.map(row => row[i]);
+                    const vec2 = votingMatrix.map(row => row[j]);
+                    const correlation = pearsonCorrelation(vec1, vec2);
+                    similarityMatrix[i][j] = correlation;
+                }
+            }
+        }
+
+        const avgSimilarity = similarityMatrix.map((row, idx) => {
+            const sum = row.reduce((a, b) => a + b, 0);
+            return { idx, avg: sum / row.length };
+        });
+        avgSimilarity.sort((a, b) => b.avg - a.avg);
+
+        const sortedIndices = avgSimilarity.map(x => x.idx);
+        const sortedDeputies = sortedIndices.map(i => deputies[i]);
+        const sortedMatrix = sortedIndices.map(i =>
+            sortedIndices.map(j => similarityMatrix[i][j])
+        );
+
+        const trace = {
+            z: sortedMatrix,
+            x: sortedDeputies,
+            y: sortedDeputies,
+            type: 'heatmap',
+            colorscale: [
+                [0, '#d73027'],
+                [0.25, '#f46d43'],
+                [0.5, '#fee08b'],
+                [0.75, '#a6d96a'],
+                [1, '#1a9850']
+            ],
+            colorbar: {
+                title: 'Сходство<br>голосования',
+                titleside: 'right'
+            },
+            hovertemplate: '%{y}<br>↔<br>%{x}<br>Сходство: %{z:.2f}<extra></extra>'
+        };
+
+        const layout = {
+            title: {
+                text: 'Матрица сходства голосования депутатов БПП (132 депутата)',
+                font: { size: 14, color: '#2c3e50' }
+            },
+            xaxis: {
+                tickangle: 90,
+                tickfont: { size: 6 },
+                showticklabels: true,
+                side: 'bottom'
+            },
+            yaxis: {
+                tickfont: { size: 6 },
+                showticklabels: true,
+                autorange: 'reversed'
+            },
+            width: 1200,
+            height: 1200,
+            margin: { l: 150, r: 100, t: 80, b: 200 }
+        };
+
+        Plotly.newPlot('bpp-similarity-plot', [trace], layout, {responsive: true});
+
+    } catch (error) {
+        console.error('Ошибка загрузки данных БПП:', error);
+        plotDiv.innerHTML = '<p style="color: red; text-align: center;">Ошибка загрузки данных БПП</p>';
+    }
+}
+
+// ============= МАТРИЦА СХОДСТВА НАРОДНЫЙ ФРОНТ =============
+
+async function generateNFSimilarityMatrix() {
+    const plotDiv = document.getElementById('nf-similarity-plot');
+    if (!plotDiv) return;
+
+    plotDiv.innerHTML = '<p style="text-align: center; color: #999;">Загрузка данных НФ...</p>';
+
+    try {
+        const response = await fetch('/karasev_science/data/narodnuy_frond.csv');
+        const csvText = await response.text();
+
+        const lines = csvText.trim().split('\n');
+        const headers = lines[0].split(',');
+        const deputies = headers.slice(1);
+        const numDeputies = deputies.length;
+
+        const votingMatrix = [];
+        for (let i = 1; i < lines.length; i++) {
+            const values = lines[i].split(',').slice(1).map(v => parseFloat(v));
+            votingMatrix.push(values);
+        }
+
+        const similarityMatrix = [];
+        for (let i = 0; i < numDeputies; i++) {
+            similarityMatrix[i] = [];
+            for (let j = 0; j < numDeputies; j++) {
+                if (i === j) {
+                    similarityMatrix[i][j] = 1.0;
+                } else {
+                    const vec1 = votingMatrix.map(row => row[i]);
+                    const vec2 = votingMatrix.map(row => row[j]);
+                    const correlation = pearsonCorrelation(vec1, vec2);
+                    similarityMatrix[i][j] = correlation;
+                }
+            }
+        }
+
+        const avgSimilarity = similarityMatrix.map((row, idx) => {
+            const sum = row.reduce((a, b) => a + b, 0);
+            return { idx, avg: sum / row.length };
+        });
+        avgSimilarity.sort((a, b) => b.avg - a.avg);
+
+        const sortedIndices = avgSimilarity.map(x => x.idx);
+        const sortedDeputies = sortedIndices.map(i => deputies[i]);
+        const sortedMatrix = sortedIndices.map(i =>
+            sortedIndices.map(j => similarityMatrix[i][j])
+        );
+
+        const trace = {
+            z: sortedMatrix,
+            x: sortedDeputies,
+            y: sortedDeputies,
+            type: 'heatmap',
+            colorscale: [
+                [0, '#d73027'],
+                [0.25, '#f46d43'],
+                [0.5, '#fee08b'],
+                [0.75, '#a6d96a'],
+                [1, '#1a9850']
+            ],
+            colorbar: {
+                title: 'Сходство<br>голосования',
+                titleside: 'right'
+            },
+            hovertemplate: '%{y}<br>↔<br>%{x}<br>Сходство: %{z:.2f}<extra></extra>'
+        };
+
+        const layout = {
+            title: {
+                text: 'Матрица сходства голосования депутатов НФ (82 депутата)',
+                font: { size: 14, color: '#2c3e50' }
+            },
+            xaxis: {
+                tickangle: 90,
+                tickfont: { size: 7 },
+                showticklabels: true,
+                side: 'bottom'
+            },
+            yaxis: {
+                tickfont: { size: 7 },
+                showticklabels: true,
+                autorange: 'reversed'
+            },
+            width: 1000,
+            height: 1000,
+            margin: { l: 150, r: 100, t: 80, b: 200 }
+        };
+
+        Plotly.newPlot('nf-similarity-plot', [trace], layout, {responsive: true});
+
+    } catch (error) {
+        console.error('Ошибка загрузки данных НФ:', error);
+        plotDiv.innerHTML = '<p style="color: red; text-align: center;">Ошибка загрузки данных НФ</p>';
+    }
+}
+
+// ============= МАТРИЦА СХОДСТВА САМОПОМОЩЬ =============
+
+async function generateSMPMSimilarityMatrix() {
+    const plotDiv = document.getElementById('smpm-similarity-plot');
+    if (!plotDiv) return;
+
+    plotDiv.innerHTML = '<p style="text-align: center; color: #999;">Загрузка данных Самопомощь...</p>';
+
+    try {
+        const response = await fetch('/karasev_science/data/samo_pomosch.csv');
+        const csvText = await response.text();
+
+        const lines = csvText.trim().split('\n');
+        const headers = lines[0].split(',');
+        const deputies = headers.slice(1);
+        const numDeputies = deputies.length;
+
+        const votingMatrix = [];
+        for (let i = 1; i < lines.length; i++) {
+            const values = lines[i].split(',').slice(1).map(v => parseFloat(v));
+            votingMatrix.push(values);
+        }
+
+        const similarityMatrix = [];
+        for (let i = 0; i < numDeputies; i++) {
+            similarityMatrix[i] = [];
+            for (let j = 0; j < numDeputies; j++) {
+                if (i === j) {
+                    similarityMatrix[i][j] = 1.0;
+                } else {
+                    const vec1 = votingMatrix.map(row => row[i]);
+                    const vec2 = votingMatrix.map(row => row[j]);
+                    const correlation = pearsonCorrelation(vec1, vec2);
+                    similarityMatrix[i][j] = correlation;
+                }
+            }
+        }
+
+        const avgSimilarity = similarityMatrix.map((row, idx) => {
+            const sum = row.reduce((a, b) => a + b, 0);
+            return { idx, avg: sum / row.length };
+        });
+        avgSimilarity.sort((a, b) => b.avg - a.avg);
+
+        const sortedIndices = avgSimilarity.map(x => x.idx);
+        const sortedDeputies = sortedIndices.map(i => deputies[i]);
+        const sortedMatrix = sortedIndices.map(i =>
+            sortedIndices.map(j => similarityMatrix[i][j])
+        );
+
+        const trace = {
+            z: sortedMatrix,
+            x: sortedDeputies,
+            y: sortedDeputies,
+            type: 'heatmap',
+            colorscale: [
+                [0, '#d73027'],
+                [0.25, '#f46d43'],
+                [0.5, '#fee08b'],
+                [0.75, '#a6d96a'],
+                [1, '#1a9850']
+            ],
+            colorbar: {
+                title: 'Сходство<br>голосования',
+                titleside: 'right'
+            },
+            hovertemplate: '%{y}<br>↔<br>%{x}<br>Сходство: %{z:.2f}<extra></extra>'
+        };
+
+        const layout = {
+            title: {
+                text: 'Матрица сходства голосования депутатов Самопомощь (33 депутата)',
+                font: { size: 14, color: '#2c3e50' }
+            },
+            xaxis: {
+                tickangle: 90,
+                tickfont: { size: 9 },
+                showticklabels: true,
+                side: 'bottom'
+            },
+            yaxis: {
+                tickfont: { size: 9 },
+                showticklabels: true,
+                autorange: 'reversed'
+            },
+            width: 800,
+            height: 800,
+            margin: { l: 150, r: 100, t: 80, b: 200 }
+        };
+
+        Plotly.newPlot('smpm-similarity-plot', [trace], layout, {responsive: true});
+
+    } catch (error) {
+        console.error('Ошибка загрузки данных Самопомощь:', error);
+        plotDiv.innerHTML = '<p style="color: red; text-align: center;">Ошибка загрузки данных Самопомощь</p>';
+    }
+}
+
+// ============= МАТРИЦА СХОДСТВА РАДИКАЛЬНАЯ ПАРТИЯ ОЛЕГА ЛЯШКО =============
+
+async function generateRPOLSimilarityMatrix() {
+    const plotDiv = document.getElementById('rpol-similarity-plot');
+    if (!plotDiv) return;
+
+    plotDiv.innerHTML = '<p style="text-align: center; color: #999;">Загрузка данных РпОЛ...</p>';
+
+    try {
+        const response = await fetch('/karasev_science/data/radical_party_oleg_lyashko.csv');
+        const csvText = await response.text();
+
+        const lines = csvText.trim().split('\n');
+        const headers = lines[0].split(',');
+        const deputies = headers.slice(1);
+        const numDeputies = deputies.length;
+
+        const votingMatrix = [];
+        for (let i = 1; i < lines.length; i++) {
+            const values = lines[i].split(',').slice(1).map(v => parseFloat(v));
+            votingMatrix.push(values);
+        }
+
+        const similarityMatrix = [];
+        for (let i = 0; i < numDeputies; i++) {
+            similarityMatrix[i] = [];
+            for (let j = 0; j < numDeputies; j++) {
+                if (i === j) {
+                    similarityMatrix[i][j] = 1.0;
+                } else {
+                    const vec1 = votingMatrix.map(row => row[i]);
+                    const vec2 = votingMatrix.map(row => row[j]);
+                    const correlation = pearsonCorrelation(vec1, vec2);
+                    similarityMatrix[i][j] = correlation;
+                }
+            }
+        }
+
+        const avgSimilarity = similarityMatrix.map((row, idx) => {
+            const sum = row.reduce((a, b) => a + b, 0);
+            return { idx, avg: sum / row.length };
+        });
+        avgSimilarity.sort((a, b) => b.avg - a.avg);
+
+        const sortedIndices = avgSimilarity.map(x => x.idx);
+        const sortedDeputies = sortedIndices.map(i => deputies[i]);
+        const sortedMatrix = sortedIndices.map(i =>
+            sortedIndices.map(j => similarityMatrix[i][j])
+        );
+
+        const trace = {
+            z: sortedMatrix,
+            x: sortedDeputies,
+            y: sortedDeputies,
+            type: 'heatmap',
+            colorscale: [
+                [0, '#d73027'],
+                [0.25, '#f46d43'],
+                [0.5, '#fee08b'],
+                [0.75, '#a6d96a'],
+                [1, '#1a9850']
+            ],
+            colorbar: {
+                title: 'Сходство<br>голосования',
+                titleside: 'right'
+            },
+            hovertemplate: '%{y}<br>↔<br>%{x}<br>Сходство: %{z:.2f}<extra></extra>'
+        };
+
+        const layout = {
+            title: {
+                text: 'Матрица сходства голосования депутатов РпОЛ (43 депутата)',
+                font: { size: 14, color: '#2c3e50' }
+            },
+            xaxis: {
+                tickangle: 90,
+                tickfont: { size: 8 },
+                showticklabels: true,
+                side: 'bottom'
+            },
+            yaxis: {
+                tickfont: { size: 8 },
+                showticklabels: true,
+                autorange: 'reversed'
+            },
+            width: 850,
+            height: 850,
+            margin: { l: 150, r: 100, t: 80, b: 200 }
+        };
+
+        Plotly.newPlot('rpol-similarity-plot', [trace], layout, {responsive: true});
+
+    } catch (error) {
+        console.error('Ошибка загрузки данных РпОЛ:', error);
+        plotDiv.innerHTML = '<p style="color: red; text-align: center;">Ошибка загрузки данных РпОЛ</p>';
+    }
+}
+
+// ============= МАТРИЦА СХОДСТВА ВО БАТЬКИВЩИНА =============
+
+async function generateBATKSimilarityMatrix() {
+    const plotDiv = document.getElementById('batk-similarity-plot');
+    if (!plotDiv) return;
+
+    plotDiv.innerHTML = '<p style="text-align: center; color: #999;">Загрузка данных Батькивщина...</p>';
+
+    try {
+        const response = await fetch('/karasev_science/data/batkovshina.csv');
+        const csvText = await response.text();
+
+        const lines = csvText.trim().split('\n');
+        const headers = lines[0].split(',');
+        const deputies = headers.slice(1);
+        const numDeputies = deputies.length;
+
+        const votingMatrix = [];
+        for (let i = 1; i < lines.length; i++) {
+            const values = lines[i].split(',').slice(1).map(v => parseFloat(v));
+            votingMatrix.push(values);
+        }
+
+        const similarityMatrix = [];
+        for (let i = 0; i < numDeputies; i++) {
+            similarityMatrix[i] = [];
+            for (let j = 0; j < numDeputies; j++) {
+                if (i === j) {
+                    similarityMatrix[i][j] = 1.0;
+                } else {
+                    const vec1 = votingMatrix.map(row => row[i]);
+                    const vec2 = votingMatrix.map(row => row[j]);
+                    const correlation = pearsonCorrelation(vec1, vec2);
+                    similarityMatrix[i][j] = correlation;
+                }
+            }
+        }
+
+        const avgSimilarity = similarityMatrix.map((row, idx) => {
+            const sum = row.reduce((a, b) => a + b, 0);
+            return { idx, avg: sum / row.length };
+        });
+        avgSimilarity.sort((a, b) => b.avg - a.avg);
+
+        const sortedIndices = avgSimilarity.map(x => x.idx);
+        const sortedDeputies = sortedIndices.map(i => deputies[i]);
+        const sortedMatrix = sortedIndices.map(i =>
+            sortedIndices.map(j => similarityMatrix[i][j])
+        );
+
+        const trace = {
+            z: sortedMatrix,
+            x: sortedDeputies,
+            y: sortedDeputies,
+            type: 'heatmap',
+            colorscale: [
+                [0, '#d73027'],
+                [0.25, '#f46d43'],
+                [0.5, '#fee08b'],
+                [0.75, '#a6d96a'],
+                [1, '#1a9850']
+            ],
+            colorbar: {
+                title: 'Сходство<br>голосования',
+                titleside: 'right'
+            },
+            hovertemplate: '%{y}<br>↔<br>%{x}<br>Сходство: %{z:.2f}<extra></extra>'
+        };
+
+        const layout = {
+            title: {
+                text: 'Матрица сходства голосования депутатов ВО Батькивщина (19 депутатов)',
+                font: { size: 14, color: '#2c3e50' }
+            },
+            xaxis: {
+                tickangle: 90,
+                tickfont: { size: 10 },
+                showticklabels: true,
+                side: 'bottom'
+            },
+            yaxis: {
+                tickfont: { size: 10 },
+                showticklabels: true,
+                autorange: 'reversed'
+            },
+            width: 700,
+            height: 700,
+            margin: { l: 150, r: 100, t: 80, b: 200 }
+        };
+
+        Plotly.newPlot('batk-similarity-plot', [trace], layout, {responsive: true});
+
+    } catch (error) {
+        console.error('Ошибка загрузки данных Батькивщина:', error);
+        plotDiv.innerHTML = '<p style="color: red; text-align: center;">Ошибка загрузки данных Батькивщина</p>';
+    }
+}
+
+// ============= МАТРИЦА СХОДСТВА ОППОЗИЦИОННЫЙ БЛОК =============
+
+async function generateOPBLSimilarityMatrix() {
+    const plotDiv = document.getElementById('opbl-similarity-plot');
+    if (!plotDiv) return;
+
+    plotDiv.innerHTML = '<p style="text-align: center; color: #999;">Загрузка данных Опозиційний блок...</p>';
+
+    try {
+        const response = await fetch('/karasev_science/data/opposition_block.csv');
+        const csvText = await response.text();
+
+        const lines = csvText.trim().split('\n');
+        const headers = lines[0].split(',');
+        const deputies = headers.slice(1);
+        const numDeputies = deputies.length;
+
+        const votingMatrix = [];
+        for (let i = 1; i < lines.length; i++) {
+            const values = lines[i].split(',').slice(1).map(v => parseFloat(v));
+            votingMatrix.push(values);
+        }
+
+        const similarityMatrix = [];
+        for (let i = 0; i < numDeputies; i++) {
+            similarityMatrix[i] = [];
+            for (let j = 0; j < numDeputies; j++) {
+                if (i === j) {
+                    similarityMatrix[i][j] = 1.0;
+                } else {
+                    const vec1 = votingMatrix.map(row => row[i]);
+                    const vec2 = votingMatrix.map(row => row[j]);
+                    const correlation = pearsonCorrelation(vec1, vec2);
+                    similarityMatrix[i][j] = correlation;
+                }
+            }
+        }
+
+        const avgSimilarity = similarityMatrix.map((row, idx) => {
+            const sum = row.reduce((a, b) => a + b, 0);
+            return { idx, avg: sum / row.length };
+        });
+        avgSimilarity.sort((a, b) => b.avg - a.avg);
+
+        const sortedIndices = avgSimilarity.map(x => x.idx);
+        const sortedDeputies = sortedIndices.map(i => deputies[i]);
+        const sortedMatrix = sortedIndices.map(i =>
+            sortedIndices.map(j => similarityMatrix[i][j])
+        );
+
+        const trace = {
+            z: sortedMatrix,
+            x: sortedDeputies,
+            y: sortedDeputies,
+            type: 'heatmap',
+            colorscale: [
+                [0, '#d73027'],
+                [0.25, '#f46d43'],
+                [0.5, '#fee08b'],
+                [0.75, '#a6d96a'],
+                [1, '#1a9850']
+            ],
+            colorbar: {
+                title: 'Сходство<br>голосования',
+                titleside: 'right'
+            },
+            hovertemplate: '%{y}<br>↔<br>%{x}<br>Сходство: %{z:.2f}<extra></extra>'
+        };
+
+        const layout = {
+            title: {
+                text: 'Матрица сходства голосования депутатов Опозиційний блок (43 депутата)',
+                font: { size: 14, color: '#2c3e50' }
+            },
+            xaxis: {
+                tickangle: 90,
+                tickfont: { size: 8 },
+                showticklabels: true,
+                side: 'bottom'
+            },
+            yaxis: {
+                tickfont: { size: 8 },
+                showticklabels: true,
+                autorange: 'reversed'
+            },
+            width: 850,
+            height: 850,
+            margin: { l: 150, r: 100, t: 80, b: 200 }
+        };
+
+        Plotly.newPlot('opbl-similarity-plot', [trace], layout, {responsive: true});
+
+    } catch (error) {
+        console.error('Ошибка загрузки данных Опозиційний блок:', error);
+        plotDiv.innerHTML = '<p style="color: red; text-align: center;">Ошибка загрузки данных Опозиційний блок</p>';
+    }
+}
+
+// ============= МАТРИЦА СХОДСТВА ВОЛЯ НАРОДУ =============
+
+async function generateVLNRSimilarityMatrix() {
+    const plotDiv = document.getElementById('vlnr-similarity-plot');
+    if (!plotDiv) return;
+
+    plotDiv.innerHTML = '<p style="text-align: center; color: #999;">Загрузка данных Воля народу...</p>';
+
+    try {
+        const response = await fetch('/karasev_science/data/volya_naroda.csv');
+        const csvText = await response.text();
+
+        const lines = csvText.trim().split('\n');
+        const headers = lines[0].split(',');
+        const deputies = headers.slice(1);
+        const numDeputies = deputies.length;
+
+        const votingMatrix = [];
+        for (let i = 1; i < lines.length; i++) {
+            const values = lines[i].split(',').slice(1).map(v => parseFloat(v));
+            votingMatrix.push(values);
+        }
+
+        const similarityMatrix = [];
+        for (let i = 0; i < numDeputies; i++) {
+            similarityMatrix[i] = [];
+            for (let j = 0; j < numDeputies; j++) {
+                if (i === j) {
+                    similarityMatrix[i][j] = 1.0;
+                } else {
+                    const vec1 = votingMatrix.map(row => row[i]);
+                    const vec2 = votingMatrix.map(row => row[j]);
+                    const correlation = pearsonCorrelation(vec1, vec2);
+                    similarityMatrix[i][j] = correlation;
+                }
+            }
+        }
+
+        const avgSimilarity = similarityMatrix.map((row, idx) => {
+            const sum = row.reduce((a, b) => a + b, 0);
+            return { idx, avg: sum / row.length };
+        });
+        avgSimilarity.sort((a, b) => b.avg - a.avg);
+
+        const sortedIndices = avgSimilarity.map(x => x.idx);
+        const sortedDeputies = sortedIndices.map(i => deputies[i]);
+        const sortedMatrix = sortedIndices.map(i =>
+            sortedIndices.map(j => similarityMatrix[i][j])
+        );
+
+        const trace = {
+            z: sortedMatrix,
+            x: sortedDeputies,
+            y: sortedDeputies,
+            type: 'heatmap',
+            colorscale: [
+                [0, '#d73027'],
+                [0.25, '#f46d43'],
+                [0.5, '#fee08b'],
+                [0.75, '#a6d96a'],
+                [1, '#1a9850']
+            ],
+            colorbar: {
+                title: 'Сходство<br>голосования',
+                titleside: 'right'
+            },
+            hovertemplate: '%{y}<br>↔<br>%{x}<br>Сходство: %{z:.2f}<extra></extra>'
+        };
+
+        const layout = {
+            title: {
+                text: 'Матрица сходства голосования депутатов Воля народу (20 депутатов)',
+                font: { size: 14, color: '#2c3e50' }
+            },
+            xaxis: {
+                tickangle: 90,
+                tickfont: { size: 10 },
+                showticklabels: true,
+                side: 'bottom'
+            },
+            yaxis: {
+                tickfont: { size: 10 },
+                showticklabels: true,
+                autorange: 'reversed'
+            },
+            width: 700,
+            height: 700,
+            margin: { l: 150, r: 100, t: 80, b: 200 }
+        };
+
+        Plotly.newPlot('vlnr-similarity-plot', [trace], layout, {responsive: true});
+
+    } catch (error) {
+        console.error('Ошибка загрузки данных Воля народу:', error);
+        plotDiv.innerHTML = '<p style="color: red; text-align: center;">Ошибка загрузки данных Воля народу</p>';
+    }
+}
+
+// ============= МАТРИЦА СХОДСТВА ВІДРОДЖЕННЯ =============
+
+async function generateVIDRSimilarityMatrix() {
+    const plotDiv = document.getElementById('vidr-similarity-plot');
+    if (!plotDiv) return;
+
+    plotDiv.innerHTML = '<p style="text-align: center; color: #999;">Загрузка данных Відродження...</p>';
+
+    try {
+        const response = await fetch('/karasev_science/data/vozrojdenie.csv');
+        const csvText = await response.text();
+
+        const lines = csvText.trim().split('\n');
+        const headers = lines[0].split(',');
+        const deputies = headers.slice(1);
+        const numDeputies = deputies.length;
+
+        const votingMatrix = [];
+        for (let i = 1; i < lines.length; i++) {
+            const values = lines[i].split(',').slice(1).map(v => parseFloat(v));
+            votingMatrix.push(values);
+        }
+
+        const similarityMatrix = [];
+        for (let i = 0; i < numDeputies; i++) {
+            similarityMatrix[i] = [];
+            for (let j = 0; j < numDeputies; j++) {
+                if (i === j) {
+                    similarityMatrix[i][j] = 1.0;
+                } else {
+                    const vec1 = votingMatrix.map(row => row[i]);
+                    const vec2 = votingMatrix.map(row => row[j]);
+                    const correlation = pearsonCorrelation(vec1, vec2);
+                    similarityMatrix[i][j] = correlation;
+                }
+            }
+        }
+
+        const avgSimilarity = similarityMatrix.map((row, idx) => {
+            const sum = row.reduce((a, b) => a + b, 0);
+            return { idx, avg: sum / row.length };
+        });
+        avgSimilarity.sort((a, b) => b.avg - a.avg);
+
+        const sortedIndices = avgSimilarity.map(x => x.idx);
+        const sortedDeputies = sortedIndices.map(i => deputies[i]);
+        const sortedMatrix = sortedIndices.map(i =>
+            sortedIndices.map(j => similarityMatrix[i][j])
+        );
+
+        const trace = {
+            z: sortedMatrix,
+            x: sortedDeputies,
+            y: sortedDeputies,
+            type: 'heatmap',
+            colorscale: [
+                [0, '#d73027'],
+                [0.25, '#f46d43'],
+                [0.5, '#fee08b'],
+                [0.75, '#a6d96a'],
+                [1, '#1a9850']
+            ],
+            colorbar: {
+                title: 'Сходство<br>голосования',
+                titleside: 'right'
+            },
+            hovertemplate: '%{y}<br>↔<br>%{x}<br>Сходство: %{z:.2f}<extra></extra>'
+        };
+
+        const layout = {
+            title: {
+                text: 'Матрица сходства голосования депутатов Відродження (26 депутатов)',
+                font: { size: 14, color: '#2c3e50' }
+            },
+            xaxis: {
+                tickangle: 90,
+                tickfont: { size: 9 },
+                showticklabels: true,
+                side: 'bottom'
+            },
+            yaxis: {
+                tickfont: { size: 9 },
+                showticklabels: true,
+                autorange: 'reversed'
+            },
+            width: 750,
+            height: 750,
+            margin: { l: 150, r: 100, t: 80, b: 200 }
+        };
+
+        Plotly.newPlot('vidr-similarity-plot', [trace], layout, {responsive: true});
+
+    } catch (error) {
+        console.error('Ошибка загрузки данных Відродження:', error);
+        plotDiv.innerHTML = '<p style="color: red; text-align: center;">Ошибка загрузки данных Відродження</p>';
+    }
 }
 // ============================================
 // КЕЙС 2: Сетевой граф депутатов
