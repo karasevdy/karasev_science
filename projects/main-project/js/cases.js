@@ -383,113 +383,104 @@ function openCase1() {
                         </div>
                     </div>
 
-<!-- 5. Матрицы сходства голосования по фракциям -->
-<div class="viz-card">
-    <h4><i class="fas fa-th"></i> 5. Матрицы сходства голосования по всем фракциям</h4>
-    <p style="color: #666; margin-bottom: 1.5rem;">Матрицы показывают согласованность голосования депутатов внутри каждой фракции</p>
+                    <!-- 5. Матрицы сходства голосования по фракциям -->
+                    <div class="viz-card">
+                        <h4><i class="fas fa-th"></i> 5. Матрицы сходства голосования по всем фракциям</h4>
+                        <p style="color: #666; margin-bottom: 2rem;">Матрицы показывают согласованность голосования депутатов внутри каждой фракции</p>
 
-    <!-- Блок Петра Порошенко -->
-    <div style="margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 2px solid #e0e0e0;">
-        <h5 style="color: #e74c3c; margin-bottom: 1.5rem; font-size: 1.2rem;">
-            <i class="fas fa-square" style="color: #e74c3c;"></i> Блок Петра Порошенко (БПП)
-        </h5>
-        <div id="bpp-similarity-container" style="min-height: 600px;">
-            <div id="bpp-similarity-plot" style="width: 100%; height: 600px;"></div>
-        </div>
-    </div>
+                        <!-- Блок Петра Порошенко -->
+                        <div style="margin-bottom: 5rem; padding-bottom: 3rem; border-bottom: 3px solid #bdc3c7;">
+                            <h5 style="color: #e74c3c; margin-bottom: 2rem; font-size: 1.3rem; font-weight: 700;">
+                                <i class="fas fa-square" style="color: #e74c3c;"></i> Блок Петра Порошенко (БПП)
+                            </h5>
+                            <div id="bpp-similarity-container" style="min-height: 650px; margin-bottom: 2rem;">
+                                <div id="bpp-similarity-plot" style="width: 100%; height: 650px;"></div>
+                            </div>
+                        </div>
 
-    <!-- Народный фронт -->
-    <div style="margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 2px solid #e0e0e0;">
-        <h5 style="color: #9b59b6; margin-bottom: 1.5rem; font-size: 1.2rem;">
-            <i class="fas fa-square" style="color: #9b59b6;"></i> Народный фронт (НФ)
-        </h5>
-        <div id="nf-similarity-container" style="min-height: 600px;">
-            <div id="nf-similarity-plot" style="width: 100%; height: 600px;"></div>
-        </div>
-    </div>
+                        <!-- Народный фронт -->
+                        <div style="margin-bottom: 5rem; padding-bottom: 3rem; border-bottom: 3px solid #bdc3c7;">
+                            <h5 style="color: #9b59b6; margin-bottom: 2rem; font-size: 1.3rem; font-weight: 700;">
+                                <i class="fas fa-square" style="color: #9b59b6;"></i> Народный фронт (НФ)
+                            </h5>
+                            <div id="nf-similarity-container" style="min-height: 650px; margin-bottom: 2rem;">
+                                <div id="nf-similarity-plot" style="width: 100%; height: 650px;"></div>
+                            </div>
+                        </div>
 
-    <!-- Самопомощь -->
-    <div style="margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 2px solid #e0e0e0;">
-        <h5 style="color: #f39c12; margin-bottom: 1.5rem; font-size: 1.2rem;">
-            <i class="fas fa-square" style="color: #f39c12;"></i> Самопомощь (СмПм)
-        </h5>
-        <div id="smpm-similarity-container" style="min-height: 600px;">
-            <div id="smpm-similarity-plot" style="width: 100%; height: 600px;"></div>
-        </div>
-    </div>
+                        <!-- Самопомощь -->
+                        <div style="margin-bottom: 5rem; padding-bottom: 3rem; border-bottom: 3px solid #bdc3c7;">
+                            <h5 style="color: #f39c12; margin-bottom: 2rem; font-size: 1.3rem; font-weight: 700;">
+                                <i class="fas fa-square" style="color: #f39c12;"></i> Самопомощь (СмПм)
+                            </h5>
+                            <div id="smpm-similarity-container" style="min-height: 650px; margin-bottom: 2rem;">
+                                <div id="smpm-similarity-plot" style="width: 100%; height: 650px;"></div>
+                            </div>
+                        </div>
 
-    <!-- Радикальная партия Олега Ляшко -->
-    <div style="margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 2px solid #e0e0e0;">
-        <h5 style="color: #3498db; margin-bottom: 1.5rem; font-size: 1.2rem;">
-            <i class="fas fa-square" style="color: #3498db;"></i> Радикальная партия Олега Ляшко (РпОЛ)
-        </h5>
-        <div id="rpol-similarity-container" style="min-height: 600px;">
-            <div id="rpol-similarity-plot" style="width: 100%; height: 600px;"></div>
-        </div>
-    </div>
+                        <!-- Радикальная партия Олега Ляшко -->
+                        <div style="margin-bottom: 5rem; padding-bottom: 3rem; border-bottom: 3px solid #bdc3c7;">
+                            <h5 style="color: #3498db; margin-bottom: 2rem; font-size: 1.3rem; font-weight: 700;">
+                                <i class="fas fa-square" style="color: #3498db;"></i> Радикальная партия Олега Ляшко (РпОЛ)
+                            </h5>
+                            <div id="rpol-similarity-container" style="min-height: 650px; margin-bottom: 2rem;">
+                                <div id="rpol-similarity-plot" style="width: 100%; height: 650px;"></div>
+                            </div>
+                        </div>
 
-    <!-- ВО Батькивщина -->
-    <div style="margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 2px solid #e0e0e0;">
-        <h5 style="color: #27ae60; margin-bottom: 1.5rem; font-size: 1.2rem;">
-            <i class="fas fa-square" style="color: #27ae60;"></i> ВО Батькивщина (Бтк)
-        </h5>
-        <div id="batk-similarity-container" style="min-height: 600px;">
-            <div id="batk-similarity-plot" style="width: 100%; height: 600px;"></div>
-        </div>
-    </div>
+                        <!-- ВО Батькивщина -->
+                        <div style="margin-bottom: 5rem; padding-bottom: 3rem; border-bottom: 3px solid #bdc3c7;">
+                            <h5 style="color: #27ae60; margin-bottom: 2rem; font-size: 1.3rem; font-weight: 700;">
+                                <i class="fas fa-square" style="color: #27ae60;"></i> ВО Батькивщина (Бтк)
+                            </h5>
+                            <div id="batk-similarity-container" style="min-height: 650px; margin-bottom: 2rem;">
+                                <div id="batk-similarity-plot" style="width: 100%; height: 650px;"></div>
+                            </div>
+                        </div>
 
-    <!-- Оппозиционный блок -->
-    <div style="margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 2px solid #e0e0e0;">
-        <h5 style="color: #34495e; margin-bottom: 1.5rem; font-size: 1.2rem;">
-            <i class="fas fa-square" style="color: #34495e;"></i> Оппозиционный блок (ОпБл)
-        </h5>
-        <div id="opbl-similarity-container" style="min-height: 600px;">
-            <div id="opbl-similarity-plot" style="width: 100%; height: 600px;"></div>
-        </div>
-    </div>
+                        <!-- Оппозиционный блок -->
+                        <div style="margin-bottom: 5rem; padding-bottom: 3rem; border-bottom: 3px solid #bdc3c7;">
+                            <h5 style="color: #34495e; margin-bottom: 2rem; font-size: 1.3rem; font-weight: 700;">
+                                <i class="fas fa-square" style="color: #34495e;"></i> Оппозиционный блок (ОпБл)
+                            </h5>
+                            <div id="opbl-similarity-container" style="min-height: 650px; margin-bottom: 2rem;">
+                                <div id="opbl-similarity-plot" style="width: 100%; height: 650px;"></div>
+                            </div>
+                        </div>
 
-    <!-- Воля народу -->
-    <div style="margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 2px solid #e0e0e0;">
-        <h5 style="color: #1abc9c; margin-bottom: 1.5rem; font-size: 1.2rem;">
-            <i class="fas fa-square" style="color: #1abc9c;"></i> Воля народу (ВлНр)
-        </h5>
-        <div id="vlnr-similarity-container" style="min-height: 600px;">
-            <div id="vlnr-similarity-plot" style="width: 100%; height: 600px;"></div>
-        </div>
-    </div>
+                        <!-- Воля народу -->
+                        <div style="margin-bottom: 5rem; padding-bottom: 3rem; border-bottom: 3px solid #bdc3c7;">
+                            <h5 style="color: #1abc9c; margin-bottom: 2rem; font-size: 1.3rem; font-weight: 700;">
+                                <i class="fas fa-square" style="color: #1abc9c;"></i> Воля народу (ВлНр)
+                            </h5>
+                            <div id="vlnr-similarity-container" style="min-height: 650px; margin-bottom: 2rem;">
+                                <div id="vlnr-similarity-plot" style="width: 100%; height: 650px;"></div>
+                            </div>
+                        </div>
 
-    <!-- Відродження -->
-    <div style="margin-bottom: 3rem; padding-bottom: 2rem;">
-        <h5 style="color: #e67e22; margin-bottom: 1.5rem; font-size: 1.2rem;">
-            <i class="fas fa-square" style="color: #e67e22;"></i> Відродження (Взржд)
-        </h5>
-        <div id="vidr-similarity-container" style="min-height: 600px;">
-            <div id="vidr-similarity-plot" style="width: 100%; height: 600px;"></div>
-        </div>
-    </div>
+                        <!-- Відродження -->
+                        <div style="margin-bottom: 3rem; padding-bottom: 2rem;">
+                            <h5 style="color: #e67e22; margin-bottom: 2rem; font-size: 1.3rem; font-weight: 700;">
+                                <i class="fas fa-square" style="color: #e67e22;"></i> Відродження (Взржд)
+                            </h5>
+                            <div id="vidr-similarity-container" style="min-height: 650px; margin-bottom: 2rem;">
+                                <div id="vidr-similarity-plot" style="width: 100%; height: 650px;"></div>
+                            </div>
+                        </div>
 
-    <div class="explanation-box">
-        <p>
-            <i class="fas fa-info-circle" style="margin-right: 0.25rem;"></i>
-            <strong>Пояснение:</strong> [ВСТАВЬТЕ ТЕКСТ ПОЯСНЕНИЯ]
-            <a href="/karasev_science/projects/main-project/index.html#iii-11">→ Подробнее в разделе III.11</a>
-        </p>
-    </div>
-</div>
+                        <div class="explanation-box">
+                            <p>
+                                <i class="fas fa-info-circle" style="margin-right: 0.25rem;"></i>
+                                <strong>Пояснение:</strong> [ВСТАВЬТЕ ТЕКСТ ПОЯСНЕНИЯ]
+                                <a href="/karasev_science/projects/main-project/index.html#iii-11">→ Подробнее в разделе III.11</a>
+                            </p>
+                        </div>
+                    </div>
 
                     <!-- 6. Динамика сплоченности фракций (UNITY) -->
                     <div class="viz-card">
                         <h4><i class="fas fa-chart-line"></i> 6. Динамика сплоченности фракций по сессиям ВРУ-8 (UNITY)</h4>
-                        <div style="min-height: 400px;">
-                            <img src="/karasev_science/images/graphs/unity_dynamics.png"
-                                 style="max-width: 100%; height: auto; border-radius: 8px;"
-                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-                                 alt="UNITY">
-                            <div class="viz-placeholder" style="display: none;">
-                                <i class="fas fa-image"></i>
-                                <p>Вставьте: <strong>unity_dynamics.png</strong></p>
-                            </div>
-                        </div>
+                        <div id="unity-dynamics-plot" style="min-height: 500px; width: 100%;"></div>
                         <div class="explanation-box">
                             <p>
                                 <i class="fas fa-info-circle" style="margin-right: 0.25rem;"></i>
@@ -616,6 +607,7 @@ function switchCase1Section(section) {
             generateOPBLSimilarityMatrix();
             generateVLNRSimilarityMatrix();
             generateVIDRSimilarityMatrix();
+            generateUnityDynamics(); // <-- ДОБАВЛЕНО
         } else if (section === 'model') {
             generateTrainTestCharts();
             generateROCCurves();
@@ -926,7 +918,8 @@ function generateClassReportTable(containerId, data, title) {
             <td style="padding: 0.75rem; border: 1px solid #bdc3c7; font-weight: 600;">accuracy</td>
             <td colspan="2" style="border: 1px solid #bdc3c7;"></td>
             <td style="padding: 0.75rem; border: 1px solid #bdc3c7; text-align: center; font-weight: 600;">${data.accuracy.toFixed(2)}</td>
-            <td style="padding: 0.75rem; border: 1px solid #bdc3c7; text-align: center;">${data.macro_avg.support.toLocaleString()}</td>
+            <td style="padding: 0.75rem; border: 1px solid #bdc3c7; text-align: center;">${data.macro_avg.support.toLocaleString()
+            }</td>
         </tr>
         <tr style="background: #fff3cd;">
             <td style="padding: 0.75rem; border: 1px solid #bdc3c7; font-weight: 600;">macro avg</td>
@@ -1886,6 +1879,123 @@ async function generateVIDRSimilarityMatrix() {
         console.error('Ошибка загрузки данных Відродження:', error);
         plotDiv.innerHTML = '<p style="color: red; text-align: center;">Ошибка загрузки данных Відродження</p>';
     }
+}
+
+// ============= ГРАФИК ДИНАМИКИ СПЛОЧЕННОСТИ ФРАКЦИЙ (UNITY) =============
+
+function generateUnityDynamics() {
+    const plotDiv = document.getElementById('unity-dynamics-plot');
+    if (!plotDiv) return;
+
+    plotDiv.innerHTML = '<p style="text-align: center; color: #999;">Загрузка данных Unity...</p>';
+
+    // Данные из таблицы
+    const sessions = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+    const factions = {
+        'Блок Петра Порошенко': {
+            values: [0.55, 0.63, 0.20, 0.55, 0.56, 0.28, 0.39, 0.48, 0.50, 0.53],
+            color: '#e74c3c'
+        },
+        'Народный фронт': {
+            values: [0.59, 0.69, 0.21, 0.57, 0.59, 0.29, 0.39, 0.52, 0.57, 0.61],
+            color: '#9b59b6'
+        },
+        'Объединение Самопомощь': {
+            values: [0.47, 0.59, 0.22, 0.47, 0.45, 0.33, 0.38, 0.43, 0.30, 0.53],
+            color: '#f39c12'
+        },
+        'ВО Батькивщина': {
+            values: [0.09, -0.05, -0.67, -0.23, -0.15, -0.48, -0.48, -0.34, -0.45, -0.13],
+            color: '#27ae60'
+        },
+        'Радикальная Партия Олега Ляшко': {
+            values: [0.18, 0.29, -0.69, -0.28, -0.05, -0.54, -0.38, -0.13, -0.18, 0.25],
+            color: '#3498db'
+        },
+        'Вне фракции': {
+            values: [0.31, 0.28, 0.11, 0.29, 0.29, 0.15, 0.21, 0.26, 0.26, 0.42],
+            color: '#95a5a6'
+        },
+        'Воля народа': {
+            values: [-0.67, -0.58, -0.87, -0.60, -0.60, -0.80, -0.72, -0.68, -0.55, -0.65],
+            color: '#1abc9c'
+        },
+        'Возрождение': {
+            values: [-0.66, -0.65, -0.88, -0.65, -0.62, -0.81, -0.71, -0.65, -0.47, -0.71],
+            color: '#e67e22'
+        },
+        'Оппозиционный блок': {
+            values: [-0.80, -0.78, -0.89, -0.67, -0.75, -0.73, -0.74, -0.69, -0.64, -0.57],
+            color: '#34495e'
+        }
+    };
+
+    // Создаем traces для каждой фракции
+    const traces = Object.keys(factions).map(factionName => {
+        return {
+            x: sessions,
+            y: factions[factionName].values,
+            mode: 'lines+markers',
+            name: factionName,
+            line: {
+                color: factions[factionName].color,
+                width: 2.5
+            },
+            marker: {
+                size: 8,
+                color: factions[factionName].color
+            },
+            hovertemplate: '<b>' + factionName + '</b><br>Сессия: %{x}<br>Unity: %{y:.2f}<extra></extra>'
+        };
+    });
+
+    const layout = {
+        title: {
+            text: 'Динамика сплоченности фракций (Unity) по сессиям ВРУ-8',
+            font: { size: 16, color: '#2c3e50' }
+        },
+        xaxis: {
+            title: 'Сессия ВРУ-8',
+            tickmode: 'linear',
+            tick0: 1,
+            dtick: 1,
+            showgrid: true,
+            gridcolor: '#e0e0e0'
+        },
+        yaxis: {
+            title: 'Индекс сплоченности (Unity)',
+            range: [-1, 1],
+            showgrid: true,
+            gridcolor: '#e0e0e0',
+            zeroline: true,
+            zerolinecolor: '#666',
+            zerolinewidth: 2
+        },
+        hovermode: 'closest',
+        legend: {
+            orientation: 'v',
+            x: 1.02,
+            y: 1,
+            xanchor: 'left',
+            bgcolor: 'rgba(255, 255, 255, 0.9)',
+            bordercolor: '#e0e0e0',
+            borderwidth: 1
+        },
+        margin: { l: 80, r: 250, t: 80, b: 80 },
+        plot_bgcolor: '#ffffff',
+        paper_bgcolor: '#ffffff',
+        font: { family: 'Arial, sans-serif', size: 12 }
+    };
+
+    const config = {
+        responsive: true,
+        displayModeBar: true,
+        displaylogo: false,
+        modeBarButtonsToRemove: ['pan2d', 'lasso2d', 'select2d']
+    };
+
+    Plotly.newPlot('unity-dynamics-plot', traces, layout, config);
 }
 // ============================================
 // КЕЙС 2: Сетевой граф депутатов
