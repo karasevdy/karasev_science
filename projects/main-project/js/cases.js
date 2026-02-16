@@ -383,99 +383,99 @@ function openCase1() {
                         </div>
                     </div>
 
-                    <!-- 5. Матрицы сходства голосования по фракциям -->
-                    <div class="viz-card">
-                        <h4><i class="fas fa-th"></i> 5. Матрицы сходства голосования по всем фракциям</h4>
-                        <p style="color: #666; margin-bottom: 1.5rem;">Матрицы показывают согласованность голосования депутатов внутри каждой фракции</p>
+<!-- 5. Матрицы сходства голосования по фракциям -->
+<div class="viz-card">
+    <h4><i class="fas fa-th"></i> 5. Матрицы сходства голосования по всем фракциям</h4>
+    <p style="color: #666; margin-bottom: 1.5rem;">Матрицы показывают согласованность голосования депутатов внутри каждой фракции</p>
 
-                        <!-- Блок Петра Порошенко -->
-                        <div style="margin-bottom: 2rem;">
-                            <h5 style="color: #e74c3c; margin-bottom: 1rem;">
-                                <i class="fas fa-square" style="color: #e74c3c;"></i> Блок Петра Порошенко (БПП)
-                            </h5>
-                            <div id="bpp-similarity-container" style="min-height: 600px;">
-                                <div id="bpp-similarity-plot" style="width: 100%; height: 600px;"></div>
-                            </div>
-                        </div>
+    <!-- Блок Петра Порошенко -->
+    <div style="margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 2px solid #e0e0e0;">
+        <h5 style="color: #e74c3c; margin-bottom: 1.5rem; font-size: 1.2rem;">
+            <i class="fas fa-square" style="color: #e74c3c;"></i> Блок Петра Порошенко (БПП)
+        </h5>
+        <div id="bpp-similarity-container" style="min-height: 600px;">
+            <div id="bpp-similarity-plot" style="width: 100%; height: 600px;"></div>
+        </div>
+    </div>
 
-                        <!-- Народный фронт -->
-                        <div style="margin-bottom: 2rem;">
-                            <h5 style="color: #9b59b6; margin-bottom: 1rem;">
-                                <i class="fas fa-square" style="color: #9b59b6;"></i> Народный фронт (НФ)
-                            </h5>
-                            <div id="nf-similarity-container" style="min-height: 600px;">
-                                <div id="nf-similarity-plot" style="width: 100%; height: 600px;"></div>
-                            </div>
-                        </div>
+    <!-- Народный фронт -->
+    <div style="margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 2px solid #e0e0e0;">
+        <h5 style="color: #9b59b6; margin-bottom: 1.5rem; font-size: 1.2rem;">
+            <i class="fas fa-square" style="color: #9b59b6;"></i> Народный фронт (НФ)
+        </h5>
+        <div id="nf-similarity-container" style="min-height: 600px;">
+            <div id="nf-similarity-plot" style="width: 100%; height: 600px;"></div>
+        </div>
+    </div>
 
-                        <!-- Самопомощь -->
-                        <div style="margin-bottom: 2rem;">
-                            <h5 style="color: #f39c12; margin-bottom: 1rem;">
-                                <i class="fas fa-square" style="color: #f39c12;"></i> Самопомощь (СмПм)
-                            </h5>
-                            <div id="smpm-similarity-container" style="min-height: 600px;">
-                                <div id="smpm-similarity-plot" style="width: 100%; height: 600px;"></div>
-                            </div>
-                        </div>
+    <!-- Самопомощь -->
+    <div style="margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 2px solid #e0e0e0;">
+        <h5 style="color: #f39c12; margin-bottom: 1.5rem; font-size: 1.2rem;">
+            <i class="fas fa-square" style="color: #f39c12;"></i> Самопомощь (СмПм)
+        </h5>
+        <div id="smpm-similarity-container" style="min-height: 600px;">
+            <div id="smpm-similarity-plot" style="width: 100%; height: 600px;"></div>
+        </div>
+    </div>
 
-                        <!-- Радикальная партия Олега Ляшко -->
-                        <div style="margin-bottom: 2rem;">
-                            <h5 style="color: #3498db; margin-bottom: 1rem;">
-                                <i class="fas fa-square" style="color: #3498db;"></i> Радикальная партия Олега Ляшко (РпОЛ)
-                            </h5>
-                            <div id="rpol-similarity-container" style="min-height: 600px;">
-                                <div id="rpol-similarity-plot" style="width: 100%; height: 600px;"></div>
-                            </div>
-                        </div>
+    <!-- Радикальная партия Олега Ляшко -->
+    <div style="margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 2px solid #e0e0e0;">
+        <h5 style="color: #3498db; margin-bottom: 1.5rem; font-size: 1.2rem;">
+            <i class="fas fa-square" style="color: #3498db;"></i> Радикальная партия Олега Ляшко (РпОЛ)
+        </h5>
+        <div id="rpol-similarity-container" style="min-height: 600px;">
+            <div id="rpol-similarity-plot" style="width: 100%; height: 600px;"></div>
+        </div>
+    </div>
 
-                        <!-- ВО Батькивщина -->
-                        <div style="margin-bottom: 2rem;">
-                            <h5 style="color: #27ae60; margin-bottom: 1rem;">
-                                <i class="fas fa-square" style="color: #27ae60;"></i> ВО Батькивщина (Бтк)
-                            </h5>
-                            <div id="batk-similarity-container" style="min-height: 600px;">
-                                <div id="batk-similarity-plot" style="width: 100%; height: 600px;"></div>
-                            </div>
-                        </div>
+    <!-- ВО Батькивщина -->
+    <div style="margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 2px solid #e0e0e0;">
+        <h5 style="color: #27ae60; margin-bottom: 1.5rem; font-size: 1.2rem;">
+            <i class="fas fa-square" style="color: #27ae60;"></i> ВО Батькивщина (Бтк)
+        </h5>
+        <div id="batk-similarity-container" style="min-height: 600px;">
+            <div id="batk-similarity-plot" style="width: 100%; height: 600px;"></div>
+        </div>
+    </div>
 
-                        <!-- Оппозиционный блок -->
-                        <div style="margin-bottom: 2rem;">
-                            <h5 style="color: #34495e; margin-bottom: 1rem;">
-                                <i class="fas fa-square" style="color: #34495e;"></i> Оппозиционный блок (ОпБл)
-                            </h5>
-                            <div id="opbl-similarity-container" style="min-height: 600px;">
-                                <div id="opbl-similarity-plot" style="width: 100%; height: 600px;"></div>
-                            </div>
-                        </div>
+    <!-- Оппозиционный блок -->
+    <div style="margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 2px solid #e0e0e0;">
+        <h5 style="color: #34495e; margin-bottom: 1.5rem; font-size: 1.2rem;">
+            <i class="fas fa-square" style="color: #34495e;"></i> Оппозиционный блок (ОпБл)
+        </h5>
+        <div id="opbl-similarity-container" style="min-height: 600px;">
+            <div id="opbl-similarity-plot" style="width: 100%; height: 600px;"></div>
+        </div>
+    </div>
 
-                        <!-- Воля народу -->
-                        <div style="margin-bottom: 2rem;">
-                            <h5 style="color: #1abc9c; margin-bottom: 1rem;">
-                                <i class="fas fa-square" style="color: #1abc9c;"></i> Воля народу (ВлНр)
-                            </h5>
-                            <div id="vlnr-similarity-container" style="min-height: 600px;">
-                                <div id="vlnr-similarity-plot" style="width: 100%; height: 600px;"></div>
-                            </div>
-                        </div>
+    <!-- Воля народу -->
+    <div style="margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 2px solid #e0e0e0;">
+        <h5 style="color: #1abc9c; margin-bottom: 1.5rem; font-size: 1.2rem;">
+            <i class="fas fa-square" style="color: #1abc9c;"></i> Воля народу (ВлНр)
+        </h5>
+        <div id="vlnr-similarity-container" style="min-height: 600px;">
+            <div id="vlnr-similarity-plot" style="width: 100%; height: 600px;"></div>
+        </div>
+    </div>
 
-                        <!-- Відродження -->
-                        <div style="margin-bottom: 2rem;">
-                            <h5 style="color: #e67e22; margin-bottom: 1rem;">
-                                <i class="fas fa-square" style="color: #e67e22;"></i> Відродження (Взржд)
-                            </h5>
-                            <div id="vidr-similarity-container" style="min-height: 600px;">
-                                <div id="vidr-similarity-plot" style="width: 100%; height: 600px;"></div>
-                            </div>
-                        </div>
+    <!-- Відродження -->
+    <div style="margin-bottom: 3rem; padding-bottom: 2rem;">
+        <h5 style="color: #e67e22; margin-bottom: 1.5rem; font-size: 1.2rem;">
+            <i class="fas fa-square" style="color: #e67e22;"></i> Відродження (Взржд)
+        </h5>
+        <div id="vidr-similarity-container" style="min-height: 600px;">
+            <div id="vidr-similarity-plot" style="width: 100%; height: 600px;"></div>
+        </div>
+    </div>
 
-                        <div class="explanation-box">
-                            <p>
-                                <i class="fas fa-info-circle" style="margin-right: 0.25rem;"></i>
-                                <strong>Пояснение:</strong> [ВСТАВЬТЕ ТЕКСТ ПОЯСНЕНИЯ]
-                                <a href="/karasev_science/projects/main-project/index.html#iii-11">→ Подробнее в разделе III.11</a>
-                            </p>
-                        </div>
-                    </div>
+    <div class="explanation-box">
+        <p>
+            <i class="fas fa-info-circle" style="margin-right: 0.25rem;"></i>
+            <strong>Пояснение:</strong> [ВСТАВЬТЕ ТЕКСТ ПОЯСНЕНИЯ]
+            <a href="/karasev_science/projects/main-project/index.html#iii-11">→ Подробнее в разделе III.11</a>
+        </p>
+    </div>
+</div>
 
                     <!-- 6. Динамика сплоченности фракций (UNITY) -->
                     <div class="viz-card">
