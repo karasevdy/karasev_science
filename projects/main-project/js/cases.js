@@ -23,8 +23,9 @@ window.onclick = function(event) {
 }
 
 // ============================================
-// КЕЙС 1: Вводные визуализации
+// КЕЙС 1: Вводные визуализации - ПОЛНЫЙ КОД
 // ============================================
+
 function openCase1() {
     const modal = document.getElementById('modal');
     modal.innerHTML = `
@@ -386,86 +387,70 @@ function openCase1() {
                     <!-- 5. Матрицы сходства голосования по фракциям -->
                     <div class="viz-card">
                         <h4><i class="fas fa-th"></i> 5. Матрицы сходства голосования по всем фракциям</h4>
-                        <p style="color: #666; margin-bottom: 2rem;">Матрицы показывают согласованность голосования депутатов внутри каждой фракции</p>
+                        <p style="color: #666; margin-bottom: 3rem;">Матрицы показывают согласованность голосования депутатов внутри каждой фракции</p>
 
                         <!-- Блок Петра Порошенко -->
-                        <div style="margin-bottom: 5rem; padding-bottom: 3rem; border-bottom: 3px solid #bdc3c7;">
-                            <h5 style="color: #e74c3c; margin-bottom: 2rem; font-size: 1.3rem; font-weight: 700;">
-                                <i class="fas fa-square" style="color: #e74c3c;"></i> Блок Петра Порошенко (БПП)
+                        <div style="margin-bottom: 12rem; padding-bottom: 8rem; border-bottom: 4px solid #95a5a6;">
+                            <h5 style="color: #e74c3c; margin-bottom: 2rem; font-size: 1.4rem; font-weight: 700;">
+                                <i class="fas fa-square" style="color: #e74c3c;"></i> Блок Петра Порошенко (БПП) - 132 депутата
                             </h5>
-                            <div id="bpp-similarity-container" style="min-height: 650px; margin-bottom: 2rem;">
-                                <div id="bpp-similarity-plot" style="width: 100%; height: 650px;"></div>
-                            </div>
+                            <div id="bpp-similarity-plot" style="width: 100%; min-height: 1300px;"></div>
                         </div>
 
                         <!-- Народный фронт -->
-                        <div style="margin-bottom: 5rem; padding-bottom: 3rem; border-bottom: 3px solid #bdc3c7;">
-                            <h5 style="color: #9b59b6; margin-bottom: 2rem; font-size: 1.3rem; font-weight: 700;">
-                                <i class="fas fa-square" style="color: #9b59b6;"></i> Народный фронт (НФ)
+                        <div style="margin-bottom: 12rem; padding-bottom: 8rem; border-bottom: 4px solid #95a5a6;">
+                            <h5 style="color: #9b59b6; margin-bottom: 2rem; font-size: 1.4rem; font-weight: 700;">
+                                <i class="fas fa-square" style="color: #9b59b6;"></i> Народный фронт (НФ) - 82 депутата
                             </h5>
-                            <div id="nf-similarity-container" style="min-height: 650px; margin-bottom: 2rem;">
-                                <div id="nf-similarity-plot" style="width: 100%; height: 650px;"></div>
-                            </div>
+                            <div id="nf-similarity-plot" style="width: 100%; min-height: 1100px;"></div>
                         </div>
 
                         <!-- Самопомощь -->
-                        <div style="margin-bottom: 5rem; padding-bottom: 3rem; border-bottom: 3px solid #bdc3c7;">
-                            <h5 style="color: #f39c12; margin-bottom: 2rem; font-size: 1.3rem; font-weight: 700;">
-                                <i class="fas fa-square" style="color: #f39c12;"></i> Самопомощь (СмПм)
+                        <div style="margin-bottom: 12rem; padding-bottom: 8rem; border-bottom: 4px solid #95a5a6;">
+                            <h5 style="color: #f39c12; margin-bottom: 2rem; font-size: 1.4rem; font-weight: 700;">
+                                <i class="fas fa-square" style="color: #f39c12;"></i> Самопомощь (СмПм) - 33 депутата
                             </h5>
-                            <div id="smpm-similarity-container" style="min-height: 650px; margin-bottom: 2rem;">
-                                <div id="smpm-similarity-plot" style="width: 100%; height: 650px;"></div>
-                            </div>
+                            <div id="smpm-similarity-plot" style="width: 100%; min-height: 900px;"></div>
                         </div>
 
                         <!-- Радикальная партия Олега Ляшко -->
-                        <div style="margin-bottom: 5rem; padding-bottom: 3rem; border-bottom: 3px solid #bdc3c7;">
-                            <h5 style="color: #3498db; margin-bottom: 2rem; font-size: 1.3rem; font-weight: 700;">
-                                <i class="fas fa-square" style="color: #3498db;"></i> Радикальная партия Олега Ляшко (РпОЛ)
+                        <div style="margin-bottom: 12rem; padding-bottom: 8rem; border-bottom: 4px solid #95a5a6;">
+                            <h5 style="color: #3498db; margin-bottom: 2rem; font-size: 1.4rem; font-weight: 700;">
+                                <i class="fas fa-square" style="color: #3498db;"></i> Радикальная партия Олега Ляшко (РпОЛ) - 43 депутата
                             </h5>
-                            <div id="rpol-similarity-container" style="min-height: 650px; margin-bottom: 2rem;">
-                                <div id="rpol-similarity-plot" style="width: 100%; height: 650px;"></div>
-                            </div>
+                            <div id="rpol-similarity-plot" style="width: 100%; min-height: 950px;"></div>
                         </div>
 
                         <!-- ВО Батькивщина -->
-                        <div style="margin-bottom: 5rem; padding-bottom: 3rem; border-bottom: 3px solid #bdc3c7;">
-                            <h5 style="color: #27ae60; margin-bottom: 2rem; font-size: 1.3rem; font-weight: 700;">
-                                <i class="fas fa-square" style="color: #27ae60;"></i> ВО Батькивщина (Бтк)
+                        <div style="margin-bottom: 12rem; padding-bottom: 8rem; border-bottom: 4px solid #95a5a6;">
+                            <h5 style="color: #27ae60; margin-bottom: 2rem; font-size: 1.4rem; font-weight: 700;">
+                                <i class="fas fa-square" style="color: #27ae60;"></i> ВО Батькивщина (Бтк) - 19 депутатов
                             </h5>
-                            <div id="batk-similarity-container" style="min-height: 650px; margin-bottom: 2rem;">
-                                <div id="batk-similarity-plot" style="width: 100%; height: 650px;"></div>
-                            </div>
+                            <div id="batk-similarity-plot" style="width: 100%; min-height: 800px;"></div>
                         </div>
 
                         <!-- Оппозиционный блок -->
-                        <div style="margin-bottom: 5rem; padding-bottom: 3rem; border-bottom: 3px solid #bdc3c7;">
-                            <h5 style="color: #34495e; margin-bottom: 2rem; font-size: 1.3rem; font-weight: 700;">
-                                <i class="fas fa-square" style="color: #34495e;"></i> Оппозиционный блок (ОпБл)
+                        <div style="margin-bottom: 12rem; padding-bottom: 8rem; border-bottom: 4px solid #95a5a6;">
+                            <h5 style="color: #34495e; margin-bottom: 2rem; font-size: 1.4rem; font-weight: 700;">
+                                <i class="fas fa-square" style="color: #34495e;"></i> Оппозиционный блок (ОпБл) - 43 депутата
                             </h5>
-                            <div id="opbl-similarity-container" style="min-height: 650px; margin-bottom: 2rem;">
-                                <div id="opbl-similarity-plot" style="width: 100%; height: 650px;"></div>
-                            </div>
+                            <div id="opbl-similarity-plot" style="width: 100%; min-height: 950px;"></div>
                         </div>
 
                         <!-- Воля народу -->
-                        <div style="margin-bottom: 5rem; padding-bottom: 3rem; border-bottom: 3px solid #bdc3c7;">
-                            <h5 style="color: #1abc9c; margin-bottom: 2rem; font-size: 1.3rem; font-weight: 700;">
-                                <i class="fas fa-square" style="color: #1abc9c;"></i> Воля народу (ВлНр)
+                        <div style="margin-bottom: 12rem; padding-bottom: 8rem; border-bottom: 4px solid #95a5a6;">
+                            <h5 style="color: #1abc9c; margin-bottom: 2rem; font-size: 1.4rem; font-weight: 700;">
+                                <i class="fas fa-square" style="color: #1abc9c;"></i> Воля народу (ВлНр) - 20 депутатов
                             </h5>
-                            <div id="vlnr-similarity-container" style="min-height: 650px; margin-bottom: 2rem;">
-                                <div id="vlnr-similarity-plot" style="width: 100%; height: 650px;"></div>
-                            </div>
+                            <div id="vlnr-similarity-plot" style="width: 100%; min-height: 800px;"></div>
                         </div>
 
                         <!-- Відродження -->
-                        <div style="margin-bottom: 3rem; padding-bottom: 2rem;">
-                            <h5 style="color: #e67e22; margin-bottom: 2rem; font-size: 1.3rem; font-weight: 700;">
-                                <i class="fas fa-square" style="color: #e67e22;"></i> Відродження (Взржд)
+                        <div style="margin-bottom: 6rem; padding-bottom: 4rem;">
+                            <h5 style="color: #e67e22; margin-bottom: 2rem; font-size: 1.4rem; font-weight: 700;">
+                                <i class="fas fa-square" style="color: #e67e22;"></i> Відродження (Взржд) - 26 депутатов
                             </h5>
-                            <div id="vidr-similarity-container" style="min-height: 650px; margin-bottom: 2rem;">
-                                <div id="vidr-similarity-plot" style="width: 100%; height: 650px;"></div>
-                            </div>
+                            <div id="vidr-similarity-plot" style="width: 100%; min-height: 850px;"></div>
                         </div>
 
                         <div class="explanation-box">
@@ -598,7 +583,6 @@ function switchCase1Section(section) {
     setTimeout(() => {
         if (section === 'deputies') {
             generateFactionChart();
-            // Генерируем все матрицы сходства
             generateBPPSimilarityMatrix();
             generateNFSimilarityMatrix();
             generateSMPMSimilarityMatrix();
@@ -607,7 +591,7 @@ function switchCase1Section(section) {
             generateOPBLSimilarityMatrix();
             generateVLNRSimilarityMatrix();
             generateVIDRSimilarityMatrix();
-            generateUnityDynamics(); // <-- ДОБАВЛЕНО
+            generateUnityDynamics();
         } else if (section === 'model') {
             generateTrainTestCharts();
             generateROCCurves();
@@ -616,7 +600,6 @@ function switchCase1Section(section) {
 }
 
 async function loadCase1Data() {
-    // Генерируем все таблицы
     generateBehaviorTable();
     generateVotingTypesTable();
     generateCoauthorsTable();
@@ -918,8 +901,7 @@ function generateClassReportTable(containerId, data, title) {
             <td style="padding: 0.75rem; border: 1px solid #bdc3c7; font-weight: 600;">accuracy</td>
             <td colspan="2" style="border: 1px solid #bdc3c7;"></td>
             <td style="padding: 0.75rem; border: 1px solid #bdc3c7; text-align: center; font-weight: 600;">${data.accuracy.toFixed(2)}</td>
-            <td style="padding: 0.75rem; border: 1px solid #bdc3c7; text-align: center;">${data.macro_avg.support.toLocaleString()
-            }</td>
+            <td style="padding: 0.75rem; border: 1px solid #bdc3c7; text-align: center;">${data.macro_avg.support.toLocaleString()}</td>
         </tr>
         <tr style="background: #fff3cd;">
             <td style="padding: 0.75rem; border: 1px solid #bdc3c7; font-weight: 600;">macro avg</td>
@@ -944,7 +926,6 @@ function generateROCCurves() {
     const container = document.getElementById('rocCurves');
     if (!container) return;
 
-    // Реальные данные для ROC-кривых
     const rocData = {
         'За': {
             train_auc: 0.88,
@@ -1006,13 +987,11 @@ function generateROCCurves() {
         </div>
     `;
 
-    // Рисуем каждую ROC-кривую
     Object.keys(rocData).forEach(voteType => {
         const data = rocData[voteType];
         const divId = `roc-${voteType.replace(/\s/g, '_')}`;
 
         const traces = [
-            // Диагональная линия (случайный классификатор)
             {
                 x: [0, 1],
                 y: [0, 1],
@@ -1021,7 +1000,6 @@ function generateROCCurves() {
                 showlegend: false,
                 hoverinfo: 'skip'
             },
-            // Train кривая
             {
                 x: data.train_fpr,
                 y: data.train_tpr,
@@ -1030,7 +1008,6 @@ function generateROCCurves() {
                 line: {color: data.color, width: 3},
                 hovertemplate: 'FPR: %{x:.3f}<br>TPR: %{y:.3f}<extra></extra>'
             },
-            // Test кривая
             {
                 x: data.test_fpr,
                 y: data.test_tpr,
@@ -1103,7 +1080,7 @@ async function generateBPPSimilarityMatrix() {
     const plotDiv = document.getElementById('bpp-similarity-plot');
     if (!plotDiv) return;
 
-    plotDiv.innerHTML = '<p style="text-align: center; color: #999;">Загрузка данных БПП...</p>';
+    plotDiv.innerHTML = '';
 
     try {
         const response = await fetch('/karasev_science/data/block_petra_poroshenko.csv');
@@ -1167,10 +1144,6 @@ async function generateBPPSimilarityMatrix() {
         };
 
         const layout = {
-            title: {
-                text: 'Матрица сходства голосования депутатов БПП (132 депутата)',
-                font: { size: 14, color: '#2c3e50' }
-            },
             xaxis: {
                 tickangle: 90,
                 tickfont: { size: 6 },
@@ -1184,14 +1157,14 @@ async function generateBPPSimilarityMatrix() {
             },
             width: 1200,
             height: 1200,
-            margin: { l: 150, r: 100, t: 80, b: 200 }
+            margin: { l: 150, r: 100, t: 20, b: 200 }
         };
 
         Plotly.newPlot('bpp-similarity-plot', [trace], layout, {responsive: true});
 
     } catch (error) {
         console.error('Ошибка загрузки данных БПП:', error);
-        plotDiv.innerHTML = '<p style="color: red; text-align: center;">Ошибка загрузки данных БПП</p>';
+        plotDiv.innerHTML = '<p style="color: red; text-align: center; padding: 2rem;">Ошибка загрузки данных БПП</p>';
     }
 }
 
@@ -1201,7 +1174,7 @@ async function generateNFSimilarityMatrix() {
     const plotDiv = document.getElementById('nf-similarity-plot');
     if (!plotDiv) return;
 
-    plotDiv.innerHTML = '<p style="text-align: center; color: #999;">Загрузка данных НФ...</p>';
+    plotDiv.innerHTML = '';
 
     try {
         const response = await fetch('/karasev_science/data/narodnuy_frond.csv');
@@ -1265,10 +1238,6 @@ async function generateNFSimilarityMatrix() {
         };
 
         const layout = {
-            title: {
-                text: 'Матрица сходства голосования депутатов НФ (82 депутата)',
-                font: { size: 14, color: '#2c3e50' }
-            },
             xaxis: {
                 tickangle: 90,
                 tickfont: { size: 7 },
@@ -1282,14 +1251,14 @@ async function generateNFSimilarityMatrix() {
             },
             width: 1000,
             height: 1000,
-            margin: { l: 150, r: 100, t: 80, b: 200 }
+            margin: { l: 150, r: 100, t: 20, b: 200 }
         };
 
         Plotly.newPlot('nf-similarity-plot', [trace], layout, {responsive: true});
 
     } catch (error) {
         console.error('Ошибка загрузки данных НФ:', error);
-        plotDiv.innerHTML = '<p style="color: red; text-align: center;">Ошибка загрузки данных НФ</p>';
+        plotDiv.innerHTML = '<p style="color: red; text-align: center; padding: 2rem;">Ошибка загрузки данных НФ</p>';
     }
 }
 
@@ -1299,7 +1268,7 @@ async function generateSMPMSimilarityMatrix() {
     const plotDiv = document.getElementById('smpm-similarity-plot');
     if (!plotDiv) return;
 
-    plotDiv.innerHTML = '<p style="text-align: center; color: #999;">Загрузка данных Самопомощь...</p>';
+    plotDiv.innerHTML = '';
 
     try {
         const response = await fetch('/karasev_science/data/samo_pomosch.csv');
@@ -1363,10 +1332,6 @@ async function generateSMPMSimilarityMatrix() {
         };
 
         const layout = {
-            title: {
-                text: 'Матрица сходства голосования депутатов Самопомощь (33 депутата)',
-                font: { size: 14, color: '#2c3e50' }
-            },
             xaxis: {
                 tickangle: 90,
                 tickfont: { size: 9 },
@@ -1380,14 +1345,14 @@ async function generateSMPMSimilarityMatrix() {
             },
             width: 800,
             height: 800,
-            margin: { l: 150, r: 100, t: 80, b: 200 }
+            margin: { l: 150, r: 100, t: 20, b: 200 }
         };
 
         Plotly.newPlot('smpm-similarity-plot', [trace], layout, {responsive: true});
 
     } catch (error) {
         console.error('Ошибка загрузки данных Самопомощь:', error);
-        plotDiv.innerHTML = '<p style="color: red; text-align: center;">Ошибка загрузки данных Самопомощь</p>';
+        plotDiv.innerHTML = '<p style="color: red; text-align: center; padding: 2rem;">Ошибка загрузки данных Самопомощь</p>';
     }
 }
 
@@ -1397,7 +1362,7 @@ async function generateRPOLSimilarityMatrix() {
     const plotDiv = document.getElementById('rpol-similarity-plot');
     if (!plotDiv) return;
 
-    plotDiv.innerHTML = '<p style="text-align: center; color: #999;">Загрузка данных РпОЛ...</p>';
+    plotDiv.innerHTML = '';
 
     try {
         const response = await fetch('/karasev_science/data/radical_party_oleg_lyashko.csv');
@@ -1461,10 +1426,6 @@ async function generateRPOLSimilarityMatrix() {
         };
 
         const layout = {
-            title: {
-                text: 'Матрица сходства голосования депутатов РпОЛ (43 депутата)',
-                font: { size: 14, color: '#2c3e50' }
-            },
             xaxis: {
                 tickangle: 90,
                 tickfont: { size: 8 },
@@ -1478,14 +1439,14 @@ async function generateRPOLSimilarityMatrix() {
             },
             width: 850,
             height: 850,
-            margin: { l: 150, r: 100, t: 80, b: 200 }
+            margin: { l: 150, r: 100, t: 20, b: 200 }
         };
 
         Plotly.newPlot('rpol-similarity-plot', [trace], layout, {responsive: true});
 
     } catch (error) {
         console.error('Ошибка загрузки данных РпОЛ:', error);
-        plotDiv.innerHTML = '<p style="color: red; text-align: center;">Ошибка загрузки данных РпОЛ</p>';
+        plotDiv.innerHTML = '<p style="color: red; text-align: center; padding: 2rem;">Ошибка загрузки данных РпОЛ</p>';
     }
 }
 
@@ -1495,7 +1456,7 @@ async function generateBATKSimilarityMatrix() {
     const plotDiv = document.getElementById('batk-similarity-plot');
     if (!plotDiv) return;
 
-    plotDiv.innerHTML = '<p style="text-align: center; color: #999;">Загрузка данных Батькивщина...</p>';
+    plotDiv.innerHTML = '';
 
     try {
         const response = await fetch('/karasev_science/data/batkovshina.csv');
@@ -1559,10 +1520,6 @@ async function generateBATKSimilarityMatrix() {
         };
 
         const layout = {
-            title: {
-                text: 'Матрица сходства голосования депутатов ВО Батькивщина (19 депутатов)',
-                font: { size: 14, color: '#2c3e50' }
-            },
             xaxis: {
                 tickangle: 90,
                 tickfont: { size: 10 },
@@ -1576,14 +1533,14 @@ async function generateBATKSimilarityMatrix() {
             },
             width: 700,
             height: 700,
-            margin: { l: 150, r: 100, t: 80, b: 200 }
+            margin: { l: 150, r: 100, t: 20, b: 200 }
         };
 
         Plotly.newPlot('batk-similarity-plot', [trace], layout, {responsive: true});
 
     } catch (error) {
         console.error('Ошибка загрузки данных Батькивщина:', error);
-        plotDiv.innerHTML = '<p style="color: red; text-align: center;">Ошибка загрузки данных Батькивщина</p>';
+        plotDiv.innerHTML = '<p style="color: red; text-align: center; padding: 2rem;">Ошибка загрузки данных Батькивщина</p>';
     }
 }
 
@@ -1593,7 +1550,7 @@ async function generateOPBLSimilarityMatrix() {
     const plotDiv = document.getElementById('opbl-similarity-plot');
     if (!plotDiv) return;
 
-    plotDiv.innerHTML = '<p style="text-align: center; color: #999;">Загрузка данных Опозиційний блок...</p>';
+    plotDiv.innerHTML = '';
 
     try {
         const response = await fetch('/karasev_science/data/opposition_block.csv');
@@ -1657,10 +1614,6 @@ async function generateOPBLSimilarityMatrix() {
         };
 
         const layout = {
-            title: {
-                text: 'Матрица сходства голосования депутатов Опозиційний блок (43 депутата)',
-                font: { size: 14, color: '#2c3e50' }
-            },
             xaxis: {
                 tickangle: 90,
                 tickfont: { size: 8 },
@@ -1674,14 +1627,14 @@ async function generateOPBLSimilarityMatrix() {
             },
             width: 850,
             height: 850,
-            margin: { l: 150, r: 100, t: 80, b: 200 }
+            margin: { l: 150, r: 100, t: 20, b: 200 }
         };
 
         Plotly.newPlot('opbl-similarity-plot', [trace], layout, {responsive: true});
 
     } catch (error) {
         console.error('Ошибка загрузки данных Опозиційний блок:', error);
-        plotDiv.innerHTML = '<p style="color: red; text-align: center;">Ошибка загрузки данных Опозиційний блок</p>';
+        plotDiv.innerHTML = '<p style="color: red; text-align: center; padding: 2rem;">Ошибка загрузки данных Опозиційний блок</p>';
     }
 }
 
@@ -1691,7 +1644,7 @@ async function generateVLNRSimilarityMatrix() {
     const plotDiv = document.getElementById('vlnr-similarity-plot');
     if (!plotDiv) return;
 
-    plotDiv.innerHTML = '<p style="text-align: center; color: #999;">Загрузка данных Воля народу...</p>';
+    plotDiv.innerHTML = '';
 
     try {
         const response = await fetch('/karasev_science/data/volya_naroda.csv');
@@ -1755,10 +1708,6 @@ async function generateVLNRSimilarityMatrix() {
         };
 
         const layout = {
-            title: {
-                text: 'Матрица сходства голосования депутатов Воля народу (20 депутатов)',
-                font: { size: 14, color: '#2c3e50' }
-            },
             xaxis: {
                 tickangle: 90,
                 tickfont: { size: 10 },
@@ -1772,14 +1721,14 @@ async function generateVLNRSimilarityMatrix() {
             },
             width: 700,
             height: 700,
-            margin: { l: 150, r: 100, t: 80, b: 200 }
+            margin: { l: 150, r: 100, t: 20, b: 200 }
         };
 
         Plotly.newPlot('vlnr-similarity-plot', [trace], layout, {responsive: true});
 
     } catch (error) {
         console.error('Ошибка загрузки данных Воля народу:', error);
-        plotDiv.innerHTML = '<p style="color: red; text-align: center;">Ошибка загрузки данных Воля народу</p>';
+        plotDiv.innerHTML = '<p style="color: red; text-align: center; padding: 2rem;">Ошибка загрузки данных Воля народу</p>';
     }
 }
 
@@ -1789,7 +1738,7 @@ async function generateVIDRSimilarityMatrix() {
     const plotDiv = document.getElementById('vidr-similarity-plot');
     if (!plotDiv) return;
 
-    plotDiv.innerHTML = '<p style="text-align: center; color: #999;">Загрузка данных Відродження...</p>';
+    plotDiv.innerHTML = '';
 
     try {
         const response = await fetch('/karasev_science/data/vozrojdenie.csv');
@@ -1853,10 +1802,6 @@ async function generateVIDRSimilarityMatrix() {
         };
 
         const layout = {
-            title: {
-                text: 'Матрица сходства голосования депутатов Відродження (26 депутатов)',
-                font: { size: 14, color: '#2c3e50' }
-            },
             xaxis: {
                 tickangle: 90,
                 tickfont: { size: 9 },
@@ -1870,14 +1815,14 @@ async function generateVIDRSimilarityMatrix() {
             },
             width: 750,
             height: 750,
-            margin: { l: 150, r: 100, t: 80, b: 200 }
+            margin: { l: 150, r: 100, t: 20, b: 200 }
         };
 
         Plotly.newPlot('vidr-similarity-plot', [trace], layout, {responsive: true});
 
     } catch (error) {
         console.error('Ошибка загрузки данных Відродження:', error);
-        plotDiv.innerHTML = '<p style="color: red; text-align: center;">Ошибка загрузки данных Відродження</p>';
+        plotDiv.innerHTML = '<p style="color: red; text-align: center; padding: 2rem;">Ошибка загрузки данных Відродження</p>';
     }
 }
 
@@ -1887,9 +1832,6 @@ function generateUnityDynamics() {
     const plotDiv = document.getElementById('unity-dynamics-plot');
     if (!plotDiv) return;
 
-    plotDiv.innerHTML = '<p style="text-align: center; color: #999;">Загрузка данных Unity...</p>';
-
-    // Данные из таблицы
     const sessions = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
     const factions = {
@@ -1931,7 +1873,6 @@ function generateUnityDynamics() {
         }
     };
 
-    // Создаем traces для каждой фракции
     const traces = Object.keys(factions).map(factionName => {
         return {
             x: sessions,
