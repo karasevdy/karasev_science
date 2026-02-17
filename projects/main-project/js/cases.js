@@ -10,20 +10,16 @@ let case2AllDeputies = [];
 
 function closeModal() {
     const modal = document.getElementById('modal');
-    if (modal) {
-        modal.style.display = 'none';
-    }
+    if (modal) { modal.style.display = 'none'; }
 }
 
 window.onclick = function(event) {
     const modal = document.getElementById('modal');
-    if (event.target === modal) {
-        closeModal();
-    }
+    if (event.target === modal) { closeModal(); }
 }
 
 // ============================================
-// КЕЙС 1: Вводные визуализации - ПОЛНЫЙ КОД
+// КЕЙС 1: Вводные визуализации
 // ============================================
 
 function openCase1() {
@@ -31,7 +27,6 @@ function openCase1() {
     modal.innerHTML = `
         <div class="modal-content" style="max-width: 1400px;">
             <span class="close-modal" onclick="closeModal()">&times;</span>
-
             <div class="modal-header" style="background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);">
                 <i class="fas fa-chart-pie"></i>
                 <div>
@@ -39,9 +34,7 @@ function openCase1() {
                     <p>Описательные статистики • Визуализация данных ВРУ-8</p>
                 </div>
             </div>
-
             <div class="modal-body">
-                <!-- Три кнопки переключения разделов -->
                 <div style="display: flex; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap; justify-content: center;">
                     <button onclick="switchCase1Section('bills')" id="btn-bills" class="case1-tab-btn active" style="flex: 1; min-width: 200px;">
                         <i class="fas fa-file-alt"></i><br>
@@ -56,254 +49,90 @@ function openCase1() {
                         <span style="font-size: 1.1rem; font-weight: 600;">Точность<br>ML-модели</span>
                     </button>
                 </div>
-
                 <style>
-                    .case1-tab-btn {
-                        padding: 1.5rem;
-                        border: 2px solid #dee2e6;
-                        border-radius: 12px;
-                        background: white;
-                        cursor: pointer;
-                        transition: all 0.3s ease;
-                        text-align: center;
-                    }
-                    .case1-tab-btn:hover {
-                        border-color: #3498db;
-                        box-shadow: 0 4px 12px rgba(52, 152, 219, 0.2);
-                    }
-                    .case1-tab-btn.active {
-                        background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
-                        color: white;
-                        border-color: #2980b9;
-                    }
-                    .case1-tab-btn i {
-                        font-size: 2rem;
-                        margin-bottom: 0.5rem;
-                        display: block;
-                    }
-                    .case1-section {
-                        display: none;
-                    }
-                    .case1-section.active {
-                        display: block;
-                    }
-                    .viz-card {
-                        background: white;
-                        border-radius: 12px;
-                        padding: 1.5rem;
-                        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-                        margin-bottom: 2rem;
-                    }
-                    .viz-card h4 {
-                        margin-top: 0;
-                        color: #2c3e50;
-                        margin-bottom: 1rem;
-                    }
-                    .viz-placeholder {
-                        min-height: 400px;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        flex-direction: column;
-                        color: #999;
-                        background: #f8f9fa;
-                        border-radius: 8px;
-                    }
-                    .viz-placeholder i {
-                        font-size: 3rem;
-                        margin-bottom: 1rem;
-                    }
-                    .explanation-box {
-                        margin-top: 1rem;
-                        padding: 0.75rem;
-                        background: #f8f9fa;
-                        border-radius: 6px;
-                        border-left: 3px solid #95a5a6;
-                    }
-                    .explanation-box p {
-                        margin: 0;
-                        font-size: 0.85rem;
-                        color: #666;
-                        line-height: 1.5;
-                    }
-                    .explanation-box a {
-                        color: #667eea;
-                        text-decoration: none;
-                        font-weight: 600;
-                    }
-                    .explanation-box a:hover {
-                        text-decoration: underline;
-                    }
+                    .case1-tab-btn { padding: 1.5rem; border: 2px solid #dee2e6; border-radius: 12px; background: white; cursor: pointer; transition: all 0.3s ease; text-align: center; }
+                    .case1-tab-btn:hover { border-color: #3498db; box-shadow: 0 4px 12px rgba(52,152,219,0.2); }
+                    .case1-tab-btn.active { background: linear-gradient(135deg, #3498db 0%, #2980b9 100%); color: white; border-color: #2980b9; }
+                    .case1-tab-btn i { font-size: 2rem; margin-bottom: 0.5rem; display: block; }
+                    .case1-section { display: none; }
+                    .case1-section.active { display: block; }
+                    .viz-card { background: white; border-radius: 12px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-bottom: 2rem; }
+                    .viz-card h4 { margin-top: 0; color: #2c3e50; margin-bottom: 1rem; }
+                    .viz-placeholder { min-height: 400px; display: flex; align-items: center; justify-content: center; flex-direction: column; color: #999; background: #f8f9fa; border-radius: 8px; }
+                    .viz-placeholder i { font-size: 3rem; margin-bottom: 1rem; }
+                    .explanation-box { margin-top: 1rem; padding: 0.75rem; background: #f8f9fa; border-radius: 6px; border-left: 3px solid #95a5a6; }
+                    .explanation-box p { margin: 0; font-size: 0.85rem; color: #666; line-height: 1.5; }
+                    .explanation-box a { color: #667eea; text-decoration: none; font-weight: 600; }
+                    .explanation-box a:hover { text-decoration: underline; }
                 </style>
 
-                <!-- ========== СЕКЦИЯ 1: Законопроекты и динамика ВРУ-8 ========== -->
+                <!-- СЕКЦИЯ 1: Законопроекты -->
                 <div id="section-bills" class="case1-section active">
                     <h3 style="color: #3498db; margin-bottom: 1.5rem; border-bottom: 2px solid #3498db; padding-bottom: 0.5rem;">
                         <i class="fas fa-file-alt"></i> Законопроекты и динамика ВРУ-8
                     </h3>
-
-                    <!-- 1. Доли типов поведения депутатов по сессиям -->
                     <div class="viz-card">
                         <h4><i class="fas fa-chart-line"></i> 1. Доли типов поведения депутатов по сессиям ВРУ-8</h4>
                         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
                             <div>
-                                <img src="/karasev_science/images/graphs/behavior_shares_by_session.png"
-                                     style="max-width: 100%; height: auto; border-radius: 8px;"
-                                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-                                     alt="Доли типов поведения">
-                                <div class="viz-placeholder" style="display: none;">
-                                    <i class="fas fa-image"></i>
-                                    <p>Вставьте: <strong>behavior_shares_by_session.png</strong></p>
-                                </div>
+                                <img src="/karasev_science/images/graphs/behavior_shares_by_session.png" style="max-width: 100%; height: auto; border-radius: 8px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" alt="Доли типов поведения">
+                                <div class="viz-placeholder" style="display: none;"><i class="fas fa-image"></i><p>Вставьте: <strong>behavior_shares_by_session.png</strong></p></div>
                             </div>
                             <div id="behaviorTable"></div>
                         </div>
-                        <div class="explanation-box">
-                            <p>
-                                <i class="fas fa-info-circle" style="margin-right: 0.25rem;"></i>
-                                <strong>Пояснение:</strong> [ВСТАВЬТЕ ТЕКСТ ПОЯСНЕНИЯ]
-                                <a href="/karasev_science/projects/main-project/index.html#iii-4">→ Подробнее в разделе III.4</a>
-                            </p>
-                        </div>
+                        <div class="explanation-box"><p><i class="fas fa-info-circle" style="margin-right: 0.25rem;"></i><strong>Пояснение:</strong> [ВСТАВЬТЕ ТЕКСТ ПОЯСНЕНИЯ] <a href="/karasev_science/projects/main-project/index.html#iii-4">→ Подробнее в разделе III.4</a></p></div>
                     </div>
-
-                    <!-- 2. Кол-во законопроектов поданных депутатами -->
                     <div class="viz-card">
                         <h4><i class="fas fa-chart-bar"></i> 2. Кол-во законопроектов, поданных депутатами по сессиям ВРУ-8</h4>
-                        <div style="min-height: 400px;">
-                            <img src="/karasev_science/images/graphs/bills_by_session.png"
-                                 style="max-width: 100%; height: auto; border-radius: 8px;"
-                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-                                 alt="Кол-во законопроектов">
-                            <div class="viz-placeholder" style="display: none;">
-                                <i class="fas fa-image"></i>
-                                <p>Вставьте: <strong>bills_by_session.png</strong></p>
-                            </div>
-                        </div>
-                        <div class="explanation-box">
-                            <p>
-                                <i class="fas fa-info-circle" style="margin-right: 0.25rem;"></i>
-                                <strong>Пояснение:</strong> [ВСТАВЬТЕ ТЕКСТ ПОЯСНЕНИЯ]
-                                <a href="/karasev_science/projects/main-project/index.html#ii-4">→ Подробнее в разделе II.4</a>
-                            </p>
-                        </div>
+                        <img src="/karasev_science/images/graphs/bills_by_session.png" style="max-width: 100%; height: auto; border-radius: 8px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" alt="Кол-во законопроектов">
+                        <div class="viz-placeholder" style="display: none;"><i class="fas fa-image"></i><p>Вставьте: <strong>bills_by_session.png</strong></p></div>
+                        <div class="explanation-box"><p><i class="fas fa-info-circle" style="margin-right: 0.25rem;"></i><strong>Пояснение:</strong> [ВСТАВЬТЕ ТЕКСТ ПОЯСНЕНИЯ] <a href="/karasev_science/projects/main-project/index.html#ii-4">→ Подробнее в разделе II.4</a></p></div>
                     </div>
-
-                    <!-- 3. Медианное количество соавторов -->
                     <div class="viz-card">
                         <h4><i class="fas fa-users"></i> 3. Медианное количество соавторов одного законопроекта по сессиям ВРУ-8</h4>
-                        <div style="min-height: 400px;">
-                            <img src="/karasev_science/images/graphs/median_coauthors.png"
-                                 style="max-width: 100%; height: auto; border-radius: 8px;"
-                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-                                 alt="Медианное кол-во соавторов">
-                            <div class="viz-placeholder" style="display: none;">
-                                <i class="fas fa-image"></i>
-                                <p>Вставьте: <strong>median_coauthors.png</strong></p>
-                            </div>
-                        </div>
-                        <div class="explanation-box">
-                            <p>
-                                <i class="fas fa-info-circle" style="margin-right: 0.25rem;"></i>
-                                <strong>Пояснение:</strong> [ВСТАВЬТЕ ТЕКСТ ПОЯСНЕНИЯ]
-                                <a href="/karasev_science/projects/main-project/index.html#iii-3">→ Подробнее в разделе III.3</a>
-                            </p>
-                        </div>
+                        <img src="/karasev_science/images/graphs/median_coauthors.png" style="max-width: 100%; height: auto; border-radius: 8px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" alt="Медианное кол-во соавторов">
+                        <div class="viz-placeholder" style="display: none;"><i class="fas fa-image"></i><p>Вставьте: <strong>median_coauthors.png</strong></p></div>
+                        <div class="explanation-box"><p><i class="fas fa-info-circle" style="margin-right: 0.25rem;"></i><strong>Пояснение:</strong> [ВСТАВЬТЕ ТЕКСТ ПОЯСНЕНИЯ] <a href="/karasev_science/projects/main-project/index.html#iii-3">→ Подробнее в разделе III.3</a></p></div>
                     </div>
-
-                    <!-- 4. Среднее кол-во голосований -->
                     <div class="viz-card">
                         <h4><i class="fas fa-vote-yea"></i> 4. Среднее кол-во голосований, приходящееся на один законопроект по сессиям ВРУ-8</h4>
-                        <div style="min-height: 400px;">
-                            <img src="/karasev_science/images/graphs/avg_votings.png"
-                                 style="max-width: 100%; height: auto; border-radius: 8px;"
-                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-                                 alt="Среднее кол-во голосований">
-                            <div class="viz-placeholder" style="display: none;">
-                                <i class="fas fa-image"></i>
-                                <p>Вставьте: <strong>avg_votings.png</strong></p>
-                            </div>
-                        </div>
-                        <div class="explanation-box">
-                            <p>
-                                <i class="fas fa-info-circle" style="margin-right: 0.25rem;"></i>
-                                <strong>Пояснение:</strong> [ВСТАВЬТЕ ТЕКСТ ПОЯСНЕНИЯ]
-                                <a href="/karasev_science/projects/main-project/index.html#iii-3">→ Подробнее в разделе III.3</a>
-                            </p>
-                        </div>
+                        <img src="/karasev_science/images/graphs/avg_votings.png" style="max-width: 100%; height: auto; border-radius: 8px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" alt="Среднее кол-во голосований">
+                        <div class="viz-placeholder" style="display: none;"><i class="fas fa-image"></i><p>Вставьте: <strong>avg_votings.png</strong></p></div>
+                        <div class="explanation-box"><p><i class="fas fa-info-circle" style="margin-right: 0.25rem;"></i><strong>Пояснение:</strong> [ВСТАВЬТЕ ТЕКСТ ПОЯСНЕНИЯ] <a href="/karasev_science/projects/main-project/index.html#iii-3">→ Подробнее в разделе III.3</a></p></div>
                     </div>
-
-                    <!-- 5. Распределение типов законодательных процедур -->
                     <div class="viz-card">
                         <h4><i class="fas fa-table"></i> 5. Распределение типов законодательных процедур по сессиям ВРУ-8</h4>
                         <div id="votingTypesTable" style="overflow-x: auto;"></div>
-                        <div class="explanation-box">
-                            <p>
-                                <i class="fas fa-info-circle" style="margin-right: 0.25rem;"></i>
-                                <strong>Пояснение:</strong> [ВСТАВЬТЕ ТЕКСТ ПОЯСНЕНИЯ]
-                                <a href="/karasev_science/projects/main-project/index.html#iii-3">→ Подробнее в разделе III.3</a>
-                            </p>
-                        </div>
+                        <div class="explanation-box"><p><i class="fas fa-info-circle" style="margin-right: 0.25rem;"></i><strong>Пояснение:</strong> [ВСТАВЬТЕ ТЕКСТ ПОЯСНЕНИЯ] <a href="/karasev_science/projects/main-project/index.html#iii-3">→ Подробнее в разделе III.3</a></p></div>
                     </div>
-
-                    <!-- 6. Доли законопроектов соавторов по фракциям -->
                     <div class="viz-card">
                         <h4><i class="fas fa-chart-area"></i> 6. Доли законопроектов соавторов, сгруппированных по фракциям по сессиям ВРУ-8</h4>
-                        <div style="min-height: 400px;">
-                            <img src="/karasev_science/images/graphs/coauthors_by_factions.png"
-                                 style="max-width: 100%; height: auto; border-radius: 8px;"
-                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-                                 alt="Доли соавторов по фракциям">
-                            <div class="viz-placeholder" style="display: none;">
-                                <i class="fas fa-image"></i>
-                                <p>Вставьте: <strong>coauthors_by_factions.png</strong></p>
-                            </div>
-                        </div>
+                        <img src="/karasev_science/images/graphs/coauthors_by_factions.png" style="max-width: 100%; height: auto; border-radius: 8px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" alt="Доли соавторов по фракциям">
+                        <div class="viz-placeholder" style="display: none;"><i class="fas fa-image"></i><p>Вставьте: <strong>coauthors_by_factions.png</strong></p></div>
                         <div id="coauthorsTable" style="margin-top: 1rem; overflow-x: auto;"></div>
-                        <div class="explanation-box">
-                            <p>
-                                <i class="fas fa-info-circle" style="margin-right: 0.25rem;"></i>
-                                <strong>Пояснение:</strong> [ВСТАВЬТЕ ТЕКСТ ПОЯСНЕНИЯ]
-                                <a href="/karasev_science/projects/main-project/index.html#iii-6">→ Подробнее в разделе III.6</a>
-                            </p>
-                        </div>
+                        <div class="explanation-box"><p><i class="fas fa-info-circle" style="margin-right: 0.25rem;"></i><strong>Пояснение:</strong> [ВСТАВЬТЕ ТЕКСТ ПОЯСНЕНИЯ] <a href="/karasev_science/projects/main-project/index.html#iii-6">→ Подробнее в разделе III.6</a></p></div>
                     </div>
                 </div>
 
-                <!-- ========== СЕКЦИЯ 2: Депутаты и фракции ========== -->
+                <!-- СЕКЦИЯ 2: Депутаты и фракции -->
                 <div id="section-deputies" class="case1-section">
                     <h3 style="color: #27ae60; margin-bottom: 1.5rem; border-bottom: 2px solid #27ae60; padding-bottom: 0.5rem;">
                         <i class="fas fa-users"></i> Депутаты и фракции
                     </h3>
-
-                    <!-- 1. Схема рассадки -->
                     <div class="viz-card">
                         <h4><i class="fas fa-chair"></i> 1. Схема рассадки и кол-во мест у фракций</h4>
                         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
                             <div>
                                 <h5 style="text-align: center;">Схема рассадки по фракциям</h5>
-                                <img src="/karasev_science/images/graphs/seating_grid.png"
-                                     style="max-width: 100%; height: auto; border-radius: 8px;"
-                                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-                                     alt="Схема рассадки">
-                                <div class="viz-placeholder" style="display: none; height: 300px;">
-                                    <i class="fas fa-image"></i>
-                                    <p>Вставьте: <strong>seating_grid.png</strong></p>
-                                </div>
+                                <img src="/karasev_science/images/graphs/seating_grid.png" style="max-width: 100%; height: auto; border-radius: 8px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" alt="Схема рассадки">
+                                <div class="viz-placeholder" style="display: none; height: 300px;"><i class="fas fa-image"></i><p>Вставьте: <strong>seating_grid.png</strong></p></div>
                             </div>
                             <div>
                                 <h5 style="text-align: center;">Распределение мест (450 мест)</h5>
-                                <img src="/karasev_science/images/graphs/seating_semicircle.png"
-                                     style="max-width: 100%; height: auto; border-radius: 8px;"
-                                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-                                     alt="Полукруг">
-                                <div class="viz-placeholder" style="display: none; height: 300px;">
-                                    <i class="fas fa-image"></i>
-                                    <p>Вставьте: <strong>seating_semicircle.png</strong></p>
-                                </div>
+                                <img src="/karasev_science/images/graphs/seating_semicircle.png" style="max-width: 100%; height: auto; border-radius: 8px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" alt="Полукруг">
+                                <div class="viz-placeholder" style="display: none; height: 300px;"><i class="fas fa-image"></i><p>Вставьте: <strong>seating_semicircle.png</strong></p></div>
                             </div>
                         </div>
-                        <!-- Легенда фракций -->
                         <div style="margin-top: 1.5rem; padding: 1rem; background: #f8f9fa; border-radius: 8px;">
                             <h5 style="margin-top: 0; text-align: center;">Легенда фракций</h5>
                             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0.75rem;">
@@ -318,171 +147,86 @@ function openCase1() {
                                 <div style="display: flex; align-items: center; gap: 0.5rem;"><div style="width: 20px; height: 20px; background: #95a5a6; border-radius: 3px;"></div><span>Позафракційні (25)</span></div>
                             </div>
                         </div>
-                        <div class="explanation-box">
-                            <p>
-                                <i class="fas fa-info-circle" style="margin-right: 0.25rem;"></i>
-                                <strong>Пояснение:</strong> [ВСТАВЬТЕ ТЕКСТ ПОЯСНЕНИЯ]
-                                <a href="/karasev_science/projects/main-project/index.html#ii-4">→ Подробнее в разделе II.4</a>
-                            </p>
-                        </div>
+                        <div class="explanation-box"><p><i class="fas fa-info-circle" style="margin-right: 0.25rem;"></i><strong>Пояснение:</strong> [ВСТАВЬТЕ ТЕКСТ ПОЯСНЕНИЯ] <a href="/karasev_science/projects/main-project/index.html#ii-4">→ Подробнее в разделе II.4</a></p></div>
                     </div>
-
-                    <!-- 2. Распределение депутатов по фракциям -->
                     <div class="viz-card">
                         <h4><i class="fas fa-chart-bar"></i> 2. Распределение депутатов по фракциям</h4>
                         <div id="factionChart" style="height: 400px;"></div>
-                        <div class="explanation-box">
-                            <p>
-                                <i class="fas fa-info-circle" style="margin-right: 0.25rem;"></i>
-                                <strong>Пояснение:</strong> [ВСТАВЬТЕ ТЕКСТ ПОЯСНЕНИЯ]
-                                <a href="/karasev_science/projects/main-project/index.html#ii-4">→ Подробнее в разделе II.4</a>
-                            </p>
-                        </div>
+                        <div class="explanation-box"><p><i class="fas fa-info-circle" style="margin-right: 0.25rem;"></i><strong>Пояснение:</strong> [ВСТАВЬТЕ ТЕКСТ ПОЯСНЕНИЯ] <a href="/karasev_science/projects/main-project/index.html#ii-4">→ Подробнее в разделе II.4</a></p></div>
                     </div>
-
-                    <!-- 3. Кластеры k=3 -->
                     <div class="viz-card">
                         <h4><i class="fas fa-project-diagram"></i> 3. Кластеры (k=3) депутатов в зависимости от их поведения</h4>
-                        <div style="min-height: 400px;">
-                            <img src="/karasev_science/images/graphs/clusters_k3.png"
-                                 style="max-width: 100%; height: auto; border-radius: 8px;"
-                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-                                 alt="Кластеры k=3">
-                            <div class="viz-placeholder" style="display: none;">
-                                <i class="fas fa-image"></i>
-                                <p>Вставьте: <strong>clusters_k3.png</strong></p>
-                            </div>
-                        </div>
-                        <div class="explanation-box">
-                            <p>
-                                <i class="fas fa-info-circle" style="margin-right: 0.25rem;"></i>
-                                <strong>Пояснение:</strong> [ВСТАВЬТЕ ТЕКСТ ПОЯСНЕНИЯ]
-                                <a href="/karasev_science/projects/main-project/index.html#iii-8">→ Подробнее в разделе III.8</a>
-                            </p>
-                        </div>
+                        <img src="/karasev_science/images/graphs/clusters_k3.png" style="max-width: 100%; height: auto; border-radius: 8px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" alt="Кластеры k=3">
+                        <div class="viz-placeholder" style="display: none;"><i class="fas fa-image"></i><p>Вставьте: <strong>clusters_k3.png</strong></p></div>
+                        <div class="explanation-box"><p><i class="fas fa-info-circle" style="margin-right: 0.25rem;"></i><strong>Пояснение:</strong> [ВСТАВЬТЕ ТЕКСТ ПОЯСНЕНИЯ] <a href="/karasev_science/projects/main-project/index.html#iii-8">→ Подробнее в разделе III.8</a></p></div>
                     </div>
-
-                    <!-- 4. Кластеры k=5 -->
                     <div class="viz-card">
                         <h4><i class="fas fa-project-diagram"></i> 4. Кластеры (k=5) депутатов в зависимости от их поведения</h4>
-                        <div style="min-height: 400px;">
-                            <img src="/karasev_science/images/graphs/clusters_k5.png"
-                                 style="max-width: 100%; height: auto; border-radius: 8px;"
-                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-                                 alt="Кластеры k=5">
-                            <div class="viz-placeholder" style="display: none;">
-                                <i class="fas fa-image"></i>
-                                <p>Вставьте: <strong>clusters_k5.png</strong></p>
-                            </div>
-                        </div>
-                        <div class="explanation-box">
-                            <p>
-                                <i class="fas fa-info-circle" style="margin-right: 0.25rem;"></i>
-                                <strong>Пояснение:</strong> [ВСТАВЬТЕ ТЕКСТ ПОЯСНЕНИЯ]
-                                <a href="/karasev_science/projects/main-project/index.html#iii-8">→ Подробнее в разделе III.8</a>
-                            </p>
-                        </div>
+                        <img src="/karasev_science/images/graphs/clusters_k5.png" style="max-width: 100%; height: auto; border-radius: 8px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" alt="Кластеры k=5">
+                        <div class="viz-placeholder" style="display: none;"><i class="fas fa-image"></i><p>Вставьте: <strong>clusters_k5.png</strong></p></div>
+                        <div class="explanation-box"><p><i class="fas fa-info-circle" style="margin-right: 0.25rem;"></i><strong>Пояснение:</strong> [ВСТАВЬТЕ ТЕКСТ ПОЯСНЕНИЯ] <a href="/karasev_science/projects/main-project/index.html#iii-8">→ Подробнее в разделе III.8</a></p></div>
                     </div>
 
-                    <!-- 5. Матрицы сходства голосования по фракциям -->
+                    <!-- 5. Матрицы сходства — СТАТИЧЕСКИЕ ИЗОБРАЖЕНИЯ -->
                     <div class="viz-card">
                         <h4><i class="fas fa-th"></i> 5. Матрицы сходства голосования по всем фракциям</h4>
                         <p style="color: #666; margin-bottom: 3rem;">Матрицы показывают согласованность голосования депутатов внутри каждой фракции</p>
-
-                        <!-- Блок Петра Порошенко -->
                         <div style="margin-bottom: 12rem; padding-bottom: 8rem; border-bottom: 4px solid #95a5a6;">
-                            <h5 style="color: #e74c3c; margin-bottom: 2rem; font-size: 1.4rem; font-weight: 700;">
-                                <i class="fas fa-square" style="color: #e74c3c;"></i> Блок Петра Порошенко (БПП) - 132 депутата
-                            </h5>
-                            <div id="bpp-similarity-plot" style="width: 100%; min-height: 1300px;"></div>
+                            <h5 style="color: #e74c3c; margin-bottom: 2rem; font-size: 1.4rem; font-weight: 700;"><i class="fas fa-square" style="color: #e74c3c;"></i> Блок Петра Порошенко (БПП) - 132 депутата</h5>
+                            <img src="/karasev_science/images/graphs/similarity_bpp.png" style="max-width: 100%; height: auto; border-radius: 8px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" alt="Матрица БПП">
+                            <div class="viz-placeholder" style="display: none;"><i class="fas fa-image"></i><p>Вставьте: <strong>similarity_bpp.png</strong></p></div>
                         </div>
-
-                        <!-- Народный фронт -->
                         <div style="margin-bottom: 12rem; padding-bottom: 8rem; border-bottom: 4px solid #95a5a6;">
-                            <h5 style="color: #9b59b6; margin-bottom: 2rem; font-size: 1.4rem; font-weight: 700;">
-                                <i class="fas fa-square" style="color: #9b59b6;"></i> Народный фронт (НФ) - 82 депутата
-                            </h5>
-                            <div id="nf-similarity-plot" style="width: 100%; min-height: 1100px;"></div>
+                            <h5 style="color: #9b59b6; margin-bottom: 2rem; font-size: 1.4rem; font-weight: 700;"><i class="fas fa-square" style="color: #9b59b6;"></i> Народный фронт (НФ) - 82 депутата</h5>
+                            <img src="/karasev_science/images/graphs/similarity_nf.png" style="max-width: 100%; height: auto; border-radius: 8px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" alt="Матрица НФ">
+                            <div class="viz-placeholder" style="display: none;"><i class="fas fa-image"></i><p>Вставьте: <strong>similarity_nf.png</strong></p></div>
                         </div>
-
-                        <!-- Самопомощь -->
                         <div style="margin-bottom: 12rem; padding-bottom: 8rem; border-bottom: 4px solid #95a5a6;">
-                            <h5 style="color: #f39c12; margin-bottom: 2rem; font-size: 1.4rem; font-weight: 700;">
-                                <i class="fas fa-square" style="color: #f39c12;"></i> Самопомощь (СмПм) - 33 депутата
-                            </h5>
-                            <div id="smpm-similarity-plot" style="width: 100%; min-height: 900px;"></div>
+                            <h5 style="color: #f39c12; margin-bottom: 2rem; font-size: 1.4rem; font-weight: 700;"><i class="fas fa-square" style="color: #f39c12;"></i> Самопомощь (СмПм) - 33 депутата</h5>
+                            <img src="/karasev_science/images/graphs/similarity_smpm.png" style="max-width: 100%; height: auto; border-radius: 8px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" alt="Матрица Самопомощь">
+                            <div class="viz-placeholder" style="display: none;"><i class="fas fa-image"></i><p>Вставьте: <strong>similarity_smpm.png</strong></p></div>
                         </div>
-
-                        <!-- Радикальная партия Олега Ляшко -->
                         <div style="margin-bottom: 12rem; padding-bottom: 8rem; border-bottom: 4px solid #95a5a6;">
-                            <h5 style="color: #3498db; margin-bottom: 2rem; font-size: 1.4rem; font-weight: 700;">
-                                <i class="fas fa-square" style="color: #3498db;"></i> Радикальная партия Олега Ляшко (РпОЛ) - 43 депутата
-                            </h5>
-                            <div id="rpol-similarity-plot" style="width: 100%; min-height: 950px;"></div>
+                            <h5 style="color: #3498db; margin-bottom: 2rem; font-size: 1.4rem; font-weight: 700;"><i class="fas fa-square" style="color: #3498db;"></i> Радикальная партия Олега Ляшко (РпОЛ) - 43 депутата</h5>
+                            <img src="/karasev_science/images/graphs/similarity_rpol.png" style="max-width: 100%; height: auto; border-radius: 8px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" alt="Матрица РпОЛ">
+                            <div class="viz-placeholder" style="display: none;"><i class="fas fa-image"></i><p>Вставьте: <strong>similarity_rpol.png</strong></p></div>
                         </div>
-
-                        <!-- ВО Батькивщина -->
                         <div style="margin-bottom: 12rem; padding-bottom: 8rem; border-bottom: 4px solid #95a5a6;">
-                            <h5 style="color: #27ae60; margin-bottom: 2rem; font-size: 1.4rem; font-weight: 700;">
-                                <i class="fas fa-square" style="color: #27ae60;"></i> ВО Батькивщина (Бтк) - 19 депутатов
-                            </h5>
-                            <div id="batk-similarity-plot" style="width: 100%; min-height: 800px;"></div>
+                            <h5 style="color: #27ae60; margin-bottom: 2rem; font-size: 1.4rem; font-weight: 700;"><i class="fas fa-square" style="color: #27ae60;"></i> ВО Батькивщина (Бтк) - 19 депутатов</h5>
+                            <img src="/karasev_science/images/graphs/similarity_batk.png" style="max-width: 100%; height: auto; border-radius: 8px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" alt="Матрица Батькивщина">
+                            <div class="viz-placeholder" style="display: none;"><i class="fas fa-image"></i><p>Вставьте: <strong>similarity_batk.png</strong></p></div>
                         </div>
-
-                        <!-- Оппозиционный блок -->
                         <div style="margin-bottom: 12rem; padding-bottom: 8rem; border-bottom: 4px solid #95a5a6;">
-                            <h5 style="color: #34495e; margin-bottom: 2rem; font-size: 1.4rem; font-weight: 700;">
-                                <i class="fas fa-square" style="color: #34495e;"></i> Оппозиционный блок (ОпБл) - 43 депутата
-                            </h5>
-                            <div id="opbl-similarity-plot" style="width: 100%; min-height: 950px;"></div>
+                            <h5 style="color: #34495e; margin-bottom: 2rem; font-size: 1.4rem; font-weight: 700;"><i class="fas fa-square" style="color: #34495e;"></i> Оппозиционный блок (ОпБл) - 43 депутата</h5>
+                            <img src="/karasev_science/images/graphs/similarity_opbl.png" style="max-width: 100%; height: auto; border-radius: 8px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" alt="Матрица Оппозиционный блок">
+                            <div class="viz-placeholder" style="display: none;"><i class="fas fa-image"></i><p>Вставьте: <strong>similarity_opbl.png</strong></p></div>
                         </div>
-
-                        <!-- Воля народу -->
                         <div style="margin-bottom: 12rem; padding-bottom: 8rem; border-bottom: 4px solid #95a5a6;">
-                            <h5 style="color: #1abc9c; margin-bottom: 2rem; font-size: 1.4rem; font-weight: 700;">
-                                <i class="fas fa-square" style="color: #1abc9c;"></i> Воля народу (ВлНр) - 20 депутатов
-                            </h5>
-                            <div id="vlnr-similarity-plot" style="width: 100%; min-height: 800px;"></div>
+                            <h5 style="color: #1abc9c; margin-bottom: 2rem; font-size: 1.4rem; font-weight: 700;"><i class="fas fa-square" style="color: #1abc9c;"></i> Воля народу (ВлНр) - 20 депутатов</h5>
+                            <img src="/karasev_science/images/graphs/similarity_vlnr.png" style="max-width: 100%; height: auto; border-radius: 8px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" alt="Матрица Воля народу">
+                            <div class="viz-placeholder" style="display: none;"><i class="fas fa-image"></i><p>Вставьте: <strong>similarity_vlnr.png</strong></p></div>
                         </div>
-
-                        <!-- Відродження -->
                         <div style="margin-bottom: 6rem; padding-bottom: 4rem;">
-                            <h5 style="color: #e67e22; margin-bottom: 2rem; font-size: 1.4rem; font-weight: 700;">
-                                <i class="fas fa-square" style="color: #e67e22;"></i> Відродження (Взржд) - 26 депутатов
-                            </h5>
-                            <div id="vidr-similarity-plot" style="width: 100%; min-height: 850px;"></div>
+                            <h5 style="color: #e67e22; margin-bottom: 2rem; font-size: 1.4rem; font-weight: 700;"><i class="fas fa-square" style="color: #e67e22;"></i> Відродження (Взржд) - 26 депутатов</h5>
+                            <img src="/karasev_science/images/graphs/similarity_vidr.png" style="max-width: 100%; height: auto; border-radius: 8px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" alt="Матрица Відродження">
+                            <div class="viz-placeholder" style="display: none;"><i class="fas fa-image"></i><p>Вставьте: <strong>similarity_vidr.png</strong></p></div>
                         </div>
-
-                        <div class="explanation-box">
-                            <p>
-                                <i class="fas fa-info-circle" style="margin-right: 0.25rem;"></i>
-                                <strong>Пояснение:</strong> [ВСТАВЬТЕ ТЕКСТ ПОЯСНЕНИЯ]
-                                <a href="/karasev_science/projects/main-project/index.html#iii-11">→ Подробнее в разделе III.11</a>
-                            </p>
-                        </div>
+                        <div class="explanation-box"><p><i class="fas fa-info-circle" style="margin-right: 0.25rem;"></i><strong>Пояснение:</strong> [ВСТАВЬТЕ ТЕКСТ ПОЯСНЕНИЯ] <a href="/karasev_science/projects/main-project/index.html#iii-11">→ Подробнее в разделе III.11</a></p></div>
                     </div>
 
-                    <!-- 6. Динамика сплоченности фракций (UNITY) -->
+                    <!-- 6. Unity — ИНТЕРАКТИВНЫЙ PLOTLY -->
                     <div class="viz-card">
                         <h4><i class="fas fa-chart-line"></i> 6. Динамика сплоченности фракций по сессиям ВРУ-8 (UNITY)</h4>
                         <div id="unity-dynamics-plot" style="min-height: 500px; width: 100%;"></div>
-                        <div class="explanation-box">
-                            <p>
-                                <i class="fas fa-info-circle" style="margin-right: 0.25rem;"></i>
-                                <strong>Пояснение:</strong> [ВСТАВЬТЕ ТЕКСТ ПОЯСНЕНИЯ]
-                                <a href="/karasev_science/projects/main-project/index.html#iii-11">→ Подробнее в разделе III.11</a>
-                            </p>
-                        </div>
+                        <div class="explanation-box"><p><i class="fas fa-info-circle" style="margin-right: 0.25rem;"></i><strong>Пояснение:</strong> [ВСТАВЬТЕ ТЕКСТ ПОЯСНЕНИЯ] <a href="/karasev_science/projects/main-project/index.html#iii-11">→ Подробнее в разделе III.11</a></p></div>
                     </div>
                 </div>
 
-                <!-- ========== СЕКЦИЯ 3: Точность ML-модели ========== -->
+                <!-- СЕКЦИЯ 3: ML-модель -->
                 <div id="section-model" class="case1-section">
                     <h3 style="color: #9b59b6; margin-bottom: 1.5rem; border-bottom: 2px solid #9b59b6; padding-bottom: 0.5rem;">
                         <i class="fas fa-brain"></i> Точность ML-модели
                     </h3>
-
-                    <!-- 1. Доли типов поведения train и test -->
                     <div class="viz-card">
                         <h4><i class="fas fa-chart-pie"></i> 1. Доли типов поведения train и test</h4>
                         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
@@ -497,84 +241,38 @@ function openCase1() {
                                 <div id="testTable" style="margin-top: 1rem;"></div>
                             </div>
                         </div>
-                        <div class="explanation-box">
-                            <p>
-                                <i class="fas fa-info-circle" style="margin-right: 0.25rem;"></i>
-                                <strong>Пояснение:</strong> [ВСТАВЬТЕ ТЕКСТ ПОЯСНЕНИЯ]
-                                <a href="/karasev_science/projects/main-project/index.html#iii-13">→ Подробнее в разделе III.13</a>
-                            </p>
-                        </div>
+                        <div class="explanation-box"><p><i class="fas fa-info-circle" style="margin-right: 0.25rem;"></i><strong>Пояснение:</strong> [ВСТАВЬТЕ ТЕКСТ ПОЯСНЕНИЯ] <a href="/karasev_science/projects/main-project/index.html#iii-13">→ Подробнее в разделе III.13</a></p></div>
                     </div>
-
-                    <!-- 2. Classification Report - Train -->
                     <div class="viz-card">
                         <h4><i class="fas fa-table"></i> 2. Classification report - train</h4>
                         <div id="classReportTrain" style="overflow-x: auto;"></div>
-                        <div class="explanation-box">
-                            <p>
-                                <i class="fas fa-info-circle" style="margin-right: 0.25rem;"></i>
-                                <strong>Пояснение:</strong> [ВСТАВЬТЕ ТЕКСТ ПОЯСНЕНИЯ]
-                                <a href="/karasev_science/projects/main-project/index.html#iii-13">→ Подробнее в разделе III.13</a>
-                            </p>
-                        </div>
+                        <div class="explanation-box"><p><i class="fas fa-info-circle" style="margin-right: 0.25rem;"></i><strong>Пояснение:</strong> [ВСТАВЬТЕ ТЕКСТ ПОЯСНЕНИЯ] <a href="/karasev_science/projects/main-project/index.html#iii-13">→ Подробнее в разделе III.13</a></p></div>
                     </div>
-
-                    <!-- 3. Classification Report - Test -->
                     <div class="viz-card">
                         <h4><i class="fas fa-table"></i> 3. Classification report - test</h4>
                         <div id="classReportTest" style="overflow-x: auto;"></div>
-                        <div class="explanation-box">
-                            <p>
-                                <i class="fas fa-info-circle" style="margin-right: 0.25rem;"></i>
-                                <strong>Пояснение:</strong> [ВСТАВЬТЕ ТЕКСТ ПОЯСНЕНИЯ]
-                                <a href="/karasev_science/projects/main-project/index.html#iii-13">→ Подробнее в разделе III.13</a>
-                            </p>
-                        </div>
+                        <div class="explanation-box"><p><i class="fas fa-info-circle" style="margin-right: 0.25rem;"></i><strong>Пояснение:</strong> [ВСТАВЬТЕ ТЕКСТ ПОЯСНЕНИЯ] <a href="/karasev_science/projects/main-project/index.html#iii-13">→ Подробнее в разделе III.13</a></p></div>
                     </div>
-
-                    <!-- 4. ROC кривые -->
                     <div class="viz-card">
                         <h4><i class="fas fa-chart-area"></i> 4. ROC-кривые</h4>
                         <div id="rocCurves"></div>
-                        <div class="explanation-box">
-                            <p>
-                                <i class="fas fa-info-circle" style="margin-right: 0.25rem;"></i>
-                                <strong>Пояснение:</strong> [ВСТАВЬТЕ ТЕКСТ ПОЯСНЕНИЯ]
-                                <a href="/karasev_science/projects/main-project/index.html#iii-13">→ Подробнее в разделе III.13</a>
-                            </p>
-                        </div>
+                        <div class="explanation-box"><p><i class="fas fa-info-circle" style="margin-right: 0.25rem;"></i><strong>Пояснение:</strong> [ВСТАВЬТЕ ТЕКСТ ПОЯСНЕНИЯ] <a href="/karasev_science/projects/main-project/index.html#iii-13">→ Подробнее в разделе III.13</a></p></div>
                     </div>
-
-                    <!-- 5. Матрица неточностей -->
                     <div class="viz-card">
                         <h4><i class="fas fa-th"></i> 5. Матрица неточностей (Confusion Matrix)</h4>
-                        <div style="min-height: 400px;">
-                            <img src="/karasev_science/images/graphs/confusion_matrix.png"
-                                 style="max-width: 100%; height: auto; border-radius: 8px;"
-                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-                                 alt="Confusion Matrix">
-                            <div class="viz-placeholder" style="display: none;">
-                                <i class="fas fa-image"></i>
-                                <p>Вставьте: <strong>confusion_matrix.png</strong></p>
-                            </div>
-                        </div>
-                        <div class="explanation-box">
-                            <p>
-                                <i class="fas fa-info-circle" style="margin-right: 0.25rem;"></i>
-                                <strong>Пояснение:</strong> [ВСТАВЬТЕ ТЕКСТ ПОЯСНЕНИЯ]
-                                <a href="/karasev_science/projects/main-project/index.html#iii-13">→ Подробнее в разделе III.13</a>
-                            </p>
-                        </div>
+                        <img src="/karasev_science/images/graphs/confusion_matrix.png" style="max-width: 100%; height: auto; border-radius: 8px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" alt="Confusion Matrix">
+                        <div class="viz-placeholder" style="display: none;"><i class="fas fa-image"></i><p>Вставьте: <strong>confusion_matrix.png</strong></p></div>
+                        <div class="explanation-box"><p><i class="fas fa-info-circle" style="margin-right: 0.25rem;"></i><strong>Пояснение:</strong> [ВСТАВЬТЕ ТЕКСТ ПОЯСНЕНИЯ] <a href="/karasev_science/projects/main-project/index.html#iii-13">→ Подробнее в разделе III.13</a></p></div>
                     </div>
                 </div>
             </div>
         </div>
     `;
-
     modal.style.display = 'flex';
     loadCase1Data();
 }
 
+// switchCase1Section — матрицы статичные, вызовы generate*SimilarityMatrix убраны
 function switchCase1Section(section) {
     document.querySelectorAll('.case1-tab-btn').forEach(btn => btn.classList.remove('active'));
     document.querySelectorAll('.case1-section').forEach(sec => sec.classList.remove('active'));
@@ -583,14 +281,6 @@ function switchCase1Section(section) {
     setTimeout(() => {
         if (section === 'deputies') {
             generateFactionChart();
-            generateBPPSimilarityMatrix();
-            generateNFSimilarityMatrix();
-            generateSMPMSimilarityMatrix();
-            generateRPOLSimilarityMatrix();
-            generateBATKSimilarityMatrix();
-            generateOPBLSimilarityMatrix();
-            generateVLNRSimilarityMatrix();
-            generateVIDRSimilarityMatrix();
             generateUnityDynamics();
         } else if (section === 'model') {
             generateTrainTestCharts();
@@ -605,141 +295,43 @@ async function loadCase1Data() {
     generateCoauthorsTable();
     generateClassificationReports();
     generateTrainTestTables();
-
     try {
         const response = await fetch(`${API_URL}/deputies`);
         const data = await response.json();
-        if (data.success) {
-            window.deputiesData = data.deputies;
-        }
-    } catch (error) {
-        console.error('Ошибка загрузки:', error);
-    }
-
+        if (data.success) { window.deputiesData = data.deputies; }
+    } catch (error) { console.error('Ошибка загрузки:', error); }
     generateFactionChart();
 }
 
 function generateFactionChart() {
-    const factionCounts = {
-        'БПП': 132, 'НФ': 82, 'Самопомощ': 33, 'РпОЛ': 43,
-        'ВО Батькивщина': 19, 'Опозиційний блок': 43, 'Воля народу': 20,
-        'Відродження': 26, 'Позафракційні': 25
-    };
-
-    const factionData = [{
-        x: Object.keys(factionCounts),
-        y: Object.values(factionCounts),
-        type: 'bar',
-        marker: {
-            color: ['#e74c3c', '#9b59b6', '#f39c12', '#3498db', '#27ae60', '#34495e', '#1abc9c', '#e67e22', '#95a5a6']
-        },
-        text: Object.values(factionCounts),
-        textposition: 'outside'
-    }];
-
-    const layout = {
-        yaxis: { title: 'Количество депутатов' },
-        margin: { t: 20, l: 60, r: 20, b: 100 },
-        font: { family: 'Arial, sans-serif' }
-    };
-
+    const factionCounts = { 'БПП': 132, 'НФ': 82, 'Самопомощ': 33, 'РпОЛ': 43, 'ВО Батькивщина': 19, 'Опозиційний блок': 43, 'Воля народу': 20, 'Відродження': 26, 'Позафракційні': 25 };
+    const factionData = [{ x: Object.keys(factionCounts), y: Object.values(factionCounts), type: 'bar', marker: { color: ['#e74c3c','#9b59b6','#f39c12','#3498db','#27ae60','#34495e','#1abc9c','#e67e22','#95a5a6'] }, text: Object.values(factionCounts), textposition: 'outside' }];
+    const layout = { yaxis: { title: 'Количество депутатов' }, margin: { t: 20, l: 60, r: 20, b: 100 }, font: { family: 'Arial, sans-serif' } };
     Plotly.newPlot('factionChart', factionData, layout, {responsive: true});
 }
 
 function generateBehaviorTable() {
-    const data = {
-        sessions: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-        vozderzhal: [0.06, 0.07, 0.05, 0.07, 0.07, 0.06, 0.08, 0.05, 0.05, 0.03],
-        za: [0.44, 0.48, 0.18, 0.41, 0.43, 0.22, 0.33, 0.37, 0.40, 0.48],
-        ne_golosoval: [0.26, 0.22, 0.45, 0.31, 0.29, 0.47, 0.42, 0.39, 0.32, 0.29],
-        otsutstvoval: [0.23, 0.21, 0.33, 0.20, 0.20, 0.21, 0.20, 0.21, 0.21, 0.21],
-        protiv: [0.01, 0.02, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.02, 0.01]
-    };
-
+    const data = { sessions: [1,2,3,4,5,6,7,8,9,10], vozderzhal: [0.06,0.07,0.05,0.07,0.07,0.06,0.08,0.05,0.05,0.03], za: [0.44,0.48,0.18,0.41,0.43,0.22,0.33,0.37,0.40,0.48], ne_golosoval: [0.26,0.22,0.45,0.31,0.29,0.47,0.42,0.39,0.32,0.29], otsutstvoval: [0.23,0.21,0.33,0.20,0.20,0.21,0.20,0.21,0.21,0.21], protiv: [0.01,0.02,0.01,0.01,0.01,0.01,0.01,0.01,0.02,0.01] };
     const container = document.getElementById('behaviorTable');
     if (!container) return;
-
-    let html = `
-        <table style="width: 100%; border-collapse: collapse; font-size: 0.85rem;">
-            <thead>
-                <tr style="background: #ecf0f1;">
-                    <th style="padding: 0.5rem; border: 1px solid #bdc3c7;">vote</th>
-                    <th style="padding: 0.5rem; border: 1px solid #bdc3c7;">Воздержался</th>
-                    <th style="padding: 0.5rem; border: 1px solid #bdc3c7;">За</th>
-                    <th style="padding: 0.5rem; border: 1px solid #bdc3c7;">Не голосовал</th>
-                    <th style="padding: 0.5rem; border: 1px solid #bdc3c7;">Отсутствовал</th>
-                    <th style="padding: 0.5rem; border: 1px solid #bdc3c7;">Против</th>
-                </tr>
-            </thead>
-            <tbody>
-    `;
-
+    let html = `<table style="width:100%;border-collapse:collapse;font-size:0.85rem;"><thead><tr style="background:#ecf0f1;"><th style="padding:0.5rem;border:1px solid #bdc3c7;">vote</th><th style="padding:0.5rem;border:1px solid #bdc3c7;">Воздержался</th><th style="padding:0.5rem;border:1px solid #bdc3c7;">За</th><th style="padding:0.5rem;border:1px solid #bdc3c7;">Не голосовал</th><th style="padding:0.5rem;border:1px solid #bdc3c7;">Отсутствовал</th><th style="padding:0.5rem;border:1px solid #bdc3c7;">Против</th></tr></thead><tbody>`;
     for (let i = 0; i < data.sessions.length; i++) {
         const bg = i % 2 === 0 ? '#f8f9fa' : 'white';
-        html += `
-            <tr style="background: ${bg};">
-                <td style="padding: 0.5rem; border: 1px solid #bdc3c7; font-weight: 600;">${data.sessions[i]}</td>
-                <td style="padding: 0.5rem; border: 1px solid #bdc3c7; text-align: center;">${data.vozderzhal[i].toFixed(2)}</td>
-                <td style="padding: 0.5rem; border: 1px solid #bdc3c7; text-align: center;">${data.za[i].toFixed(2)}</td>
-                <td style="padding: 0.5rem; border: 1px solid #bdc3c7; text-align: center;">${data.ne_golosoval[i].toFixed(2)}</td>
-                <td style="padding: 0.5rem; border: 1px solid #bdc3c7; text-align: center;">${data.otsutstvoval[i].toFixed(2)}</td>
-                <td style="padding: 0.5rem; border: 1px solid #bdc3c7; text-align: center;">${data.protiv[i].toFixed(2)}</td>
-            </tr>
-        `;
+        html += `<tr style="background:${bg};"><td style="padding:0.5rem;border:1px solid #bdc3c7;font-weight:600;">${data.sessions[i]}</td><td style="padding:0.5rem;border:1px solid #bdc3c7;text-align:center;">${data.vozderzhal[i].toFixed(2)}</td><td style="padding:0.5rem;border:1px solid #bdc3c7;text-align:center;">${data.za[i].toFixed(2)}</td><td style="padding:0.5rem;border:1px solid #bdc3c7;text-align:center;">${data.ne_golosoval[i].toFixed(2)}</td><td style="padding:0.5rem;border:1px solid #bdc3c7;text-align:center;">${data.otsutstvoval[i].toFixed(2)}</td><td style="padding:0.5rem;border:1px solid #bdc3c7;text-align:center;">${data.protiv[i].toFixed(2)}</td></tr>`;
     }
-
     html += '</tbody></table>';
     container.innerHTML = html;
 }
 
 function generateVotingTypesTable() {
-    const data = {
-        sessions: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-        agenda: [0.04, 0.32, 0.04, 0.14, 0.09, 0.06, 0.10, 0.18, 0.23, 0.52],
-        ammendments: [0.29, 0.12, 0.75, 0.34, 0.28, 0.68, 0.53, 0.31, 0.23, 0.02],
-        cancel: [0.09, 0.07, 0.02, 0.06, 0.07, 0.06, 0.06, 0.13, 0.09, 0.08],
-        final_voting: [0.31, 0.22, 0.09, 0.22, 0.24, 0.09, 0.12, 0.18, 0.21, 0.22],
-        second_voting: [0.06, 0.03, 0.01, 0.04, 0.03, 0.02, 0.04, 0.03, 0.01, 0.01],
-        short_procedure: [0.17, 0.16, 0.05, 0.17, 0.14, 0.07, 0.11, 0.13, 0.17, 0.14],
-        signal_voting: [0.05, 0.07, 0.05, 0.03, 0.16, 0.02, 0.04, 0.04, 0.05, 0.02]
-    };
-
+    const data = { sessions: [1,2,3,4,5,6,7,8,9,10], agenda: [0.04,0.32,0.04,0.14,0.09,0.06,0.10,0.18,0.23,0.52], ammendments: [0.29,0.12,0.75,0.34,0.28,0.68,0.53,0.31,0.23,0.02], cancel: [0.09,0.07,0.02,0.06,0.07,0.06,0.06,0.13,0.09,0.08], final_voting: [0.31,0.22,0.09,0.22,0.24,0.09,0.12,0.18,0.21,0.22], second_voting: [0.06,0.03,0.01,0.04,0.03,0.02,0.04,0.03,0.01,0.01], short_procedure: [0.17,0.16,0.05,0.17,0.14,0.07,0.11,0.13,0.17,0.14], signal_voting: [0.05,0.07,0.05,0.03,0.16,0.02,0.04,0.04,0.05,0.02] };
     const container = document.getElementById('votingTypesTable');
     if (!container) return;
-
-    let html = `
-        <table style="width: 100%; border-collapse: collapse; font-size: 0.9rem;">
-            <thead>
-                <tr style="background: #ecf0f1;">
-                    <th style="padding: 0.75rem; border: 1px solid #bdc3c7;">Session</th>
-                    <th style="padding: 0.75rem; border: 1px solid #bdc3c7;">agenda</th>
-                    <th style="padding: 0.75rem; border: 1px solid #bdc3c7;">ammendments</th>
-                    <th style="padding: 0.75rem; border: 1px solid #bdc3c7;">cancel</th>
-                    <th style="padding: 0.75rem; border: 1px solid #bdc3c7;">final_voting</th>
-                    <th style="padding: 0.75rem; border: 1px solid #bdc3c7;">second_voting</th>
-                    <th style="padding: 0.75rem; border: 1px solid #bdc3c7;">short_procedure</th>
-                    <th style="padding: 0.75rem; border: 1px solid #bdc3c7;">signal_voting</th>
-                </tr>
-            </thead>
-            <tbody>
-    `;
-
+    let html = `<table style="width:100%;border-collapse:collapse;font-size:0.9rem;"><thead><tr style="background:#ecf0f1;"><th style="padding:0.75rem;border:1px solid #bdc3c7;">Session</th><th style="padding:0.75rem;border:1px solid #bdc3c7;">agenda</th><th style="padding:0.75rem;border:1px solid #bdc3c7;">ammendments</th><th style="padding:0.75rem;border:1px solid #bdc3c7;">cancel</th><th style="padding:0.75rem;border:1px solid #bdc3c7;">final_voting</th><th style="padding:0.75rem;border:1px solid #bdc3c7;">second_voting</th><th style="padding:0.75rem;border:1px solid #bdc3c7;">short_procedure</th><th style="padding:0.75rem;border:1px solid #bdc3c7;">signal_voting</th></tr></thead><tbody>`;
     for (let i = 0; i < data.sessions.length; i++) {
         const bg = i % 2 === 0 ? '#f8f9fa' : 'white';
-        html += `
-            <tr style="background: ${bg};">
-                <td style="padding: 0.75rem; border: 1px solid #bdc3c7; font-weight: 600; text-align: center;">${data.sessions[i]}</td>
-                <td style="padding: 0.75rem; border: 1px solid #bdc3c7; text-align: center;">${data.agenda[i].toFixed(2)}</td>
-                <td style="padding: 0.75rem; border: 1px solid #bdc3c7; text-align: center;">${data.ammendments[i].toFixed(2)}</td>
-                <td style="padding: 0.75rem; border: 1px solid #bdc3c7; text-align: center;">${data.cancel[i].toFixed(2)}</td>
-                <td style="padding: 0.75rem; border: 1px solid #bdc3c7; text-align: center;">${data.final_voting[i].toFixed(2)}</td>
-                <td style="padding: 0.75rem; border: 1px solid #bdc3c7; text-align: center;">${data.second_voting[i].toFixed(2)}</td>
-                <td style="padding: 0.75rem; border: 1px solid #bdc3c7; text-align: center;">${data.short_procedure[i].toFixed(2)}</td>
-                <td style="padding: 0.75rem; border: 1px solid #bdc3c7; text-align: center;">${data.signal_voting[i].toFixed(2)}</td>
-            </tr>
-        `;
+        html += `<tr style="background:${bg};"><td style="padding:0.75rem;border:1px solid #bdc3c7;font-weight:600;text-align:center;">${data.sessions[i]}</td><td style="padding:0.75rem;border:1px solid #bdc3c7;text-align:center;">${data.agenda[i].toFixed(2)}</td><td style="padding:0.75rem;border:1px solid #bdc3c7;text-align:center;">${data.ammendments[i].toFixed(2)}</td><td style="padding:0.75rem;border:1px solid #bdc3c7;text-align:center;">${data.cancel[i].toFixed(2)}</td><td style="padding:0.75rem;border:1px solid #bdc3c7;text-align:center;">${data.final_voting[i].toFixed(2)}</td><td style="padding:0.75rem;border:1px solid #bdc3c7;text-align:center;">${data.second_voting[i].toFixed(2)}</td><td style="padding:0.75rem;border:1px solid #bdc3c7;text-align:center;">${data.short_procedure[i].toFixed(2)}</td><td style="padding:0.75rem;border:1px solid #bdc3c7;text-align:center;">${data.signal_voting[i].toFixed(2)}</td></tr>`;
     }
-
     html += '</tbody></table>';
     container.innerHTML = html;
 }
@@ -751,112 +343,35 @@ function generateCoauthorsTable() {
 }
 
 function generateTrainTestTables() {
-    const trainData = [
-        {behavior: 'Не голосовал', count: 3410921, share: 0.37},
-        {behavior: 'За', count: 2816714, share: 0.31},
-        {behavior: 'Отсутствовал', count: 2236131, share: 0.24},
-        {behavior: 'Воздержался', count: 599716, share: 0.07},
-        {behavior: 'Против', count: 90475, share: 0.01}
-    ];
-
-    const testData = [
-        {behavior: 'За', count: 408976, share: 0.39},
-        {behavior: 'Не голосовал', count: 348072, share: 0.33},
-        {behavior: 'Отсутствовал', count: 219677, share: 0.21},
-        {behavior: 'Воздержался', count: 49557, share: 0.05},
-        {behavior: 'Против', count: 11524, share: 0.01}
-    ];
-
+    const trainData = [{behavior:'Не голосовал',share:0.37},{behavior:'За',share:0.31},{behavior:'Отсутствовал',share:0.24},{behavior:'Воздержался',share:0.07},{behavior:'Против',share:0.01}];
+    const testData = [{behavior:'За',share:0.39},{behavior:'Не голосовал',share:0.33},{behavior:'Отсутствовал',share:0.21},{behavior:'Воздержался',share:0.05},{behavior:'Против',share:0.01}];
     const trainContainer = document.getElementById('trainTable');
     const testContainer = document.getElementById('testTable');
-
-    if (trainContainer) {
-        trainContainer.innerHTML = generateSmallTable(trainData, 'Обучающая выборка');
-    }
-    if (testContainer) {
-        testContainer.innerHTML = generateSmallTable(testData, 'Тестовая выборка');
-    }
+    if (trainContainer) trainContainer.innerHTML = generateSmallTable(trainData);
+    if (testContainer) testContainer.innerHTML = generateSmallTable(testData);
 }
 
-function generateSmallTable(data, title) {
-    let html = `
-        <table style="width: 100%; border-collapse: collapse; font-size: 0.85rem;">
-            <thead>
-                <tr style="background: #ecf0f1;">
-                    <th style="padding: 0.5rem; border: 1px solid #bdc3c7;">#</th>
-                    <th style="padding: 0.5rem; border: 1px solid #bdc3c7;">behavior</th>
-                    <th style="padding: 0.5rem; border: 1px solid #bdc3c7;">vote_percent</th>
-                </tr>
-            </thead>
-            <tbody>
-    `;
-
+function generateSmallTable(data) {
+    let html = `<table style="width:100%;border-collapse:collapse;font-size:0.85rem;"><thead><tr style="background:#ecf0f1;"><th style="padding:0.5rem;border:1px solid #bdc3c7;">#</th><th style="padding:0.5rem;border:1px solid #bdc3c7;">behavior</th><th style="padding:0.5rem;border:1px solid #bdc3c7;">vote_percent</th></tr></thead><tbody>`;
     data.forEach((row, i) => {
         const bg = i % 2 === 0 ? '#f8f9fa' : 'white';
-        html += `
-            <tr style="background: ${bg};">
-                <td style="padding: 0.5rem; border: 1px solid #bdc3c7; text-align: center;">${i}</td>
-                <td style="padding: 0.5rem; border: 1px solid #bdc3c7;">${row.behavior}</td>
-                <td style="padding: 0.5rem; border: 1px solid #bdc3c7; text-align: center;">${row.share.toFixed(2)}</td>
-            </tr>
-        `;
+        html += `<tr style="background:${bg};"><td style="padding:0.5rem;border:1px solid #bdc3c7;text-align:center;">${i}</td><td style="padding:0.5rem;border:1px solid #bdc3c7;">${row.behavior}</td><td style="padding:0.5rem;border:1px solid #bdc3c7;text-align:center;">${row.share.toFixed(2)}</td></tr>`;
     });
-
     html += '</tbody></table>';
     return html;
 }
 
 function generateTrainTestCharts() {
-    const trainColors = ['#95a5a6', '#27ae60', '#34495e', '#f39c12', '#e74c3c'];
-    const testColors = ['#27ae60', '#95a5a6', '#34495e', '#f39c12', '#e74c3c'];
-
-    const trainData = [{
-        values: [0.37, 0.31, 0.24, 0.07, 0.01],
-        labels: ['Не голосовал', 'За', 'Отсутствовал', 'Воздержался', 'Против'],
-        type: 'pie',
-        marker: { colors: trainColors },
-        textinfo: 'percent',
-        textposition: 'inside'
-    }];
-
-    const testData = [{
-        values: [0.39, 0.33, 0.21, 0.05, 0.01],
-        labels: ['За', 'Не голосовал', 'Отсутствовал', 'Воздержался', 'Против'],
-        type: 'pie',
-        marker: { colors: testColors },
-        textinfo: 'percent',
-        textposition: 'inside'
-    }];
-
-    const layout = { margin: { t: 10, l: 10, r: 10, b: 10 }, showlegend: true, legend: { orientation: 'h', y: -0.1 } };
-
+    const trainData = [{ values: [0.37,0.31,0.24,0.07,0.01], labels: ['Не голосовал','За','Отсутствовал','Воздержался','Против'], type: 'pie', marker: { colors: ['#95a5a6','#27ae60','#34495e','#f39c12','#e74c3c'] }, textinfo: 'percent', textposition: 'inside' }];
+    const testData = [{ values: [0.39,0.33,0.21,0.05,0.01], labels: ['За','Не голосовал','Отсутствовал','Воздержался','Против'], type: 'pie', marker: { colors: ['#27ae60','#95a5a6','#34495e','#f39c12','#e74c3c'] }, textinfo: 'percent', textposition: 'inside' }];
+    const layout = { margin: { t:10,l:10,r:10,b:10 }, showlegend: true, legend: { orientation: 'h', y: -0.1 } };
     Plotly.newPlot('trainPieChart', trainData, layout, {responsive: true});
     Plotly.newPlot('testPieChart', testData, layout, {responsive: true});
 }
 
 function generateClassificationReports() {
-    const trainData = {
-        classes: ['Воздержался', 'За', 'Не голосовал', 'Отсутствовал', 'Против'],
-        precision: [0.27, 0.70, 0.77, 0.68, 0.09],
-        recall: [0.58, 0.68, 0.55, 0.59, 0.73],
-        f1score: [0.37, 0.69, 0.64, 0.63, 0.16],
-        support: [599389, 2815396, 3409493, 2235135, 90500],
-        accuracy: 0.60,
-        macro_avg: {precision: 0.50, recall: 0.63, f1score: 0.50, support: 9149913},
-        weighted_avg: {precision: 0.69, recall: 0.60, f1score: 0.63, support: 9149913}
-    };
-
-    const testData = {
-        classes: ['Воздержался', 'За', 'Не голосовал', 'Отсутствовал', 'Против'],
-        precision: [0.21, 0.66, 0.58, 0.44, 0.07],
-        recall: [0.20, 0.62, 0.39, 0.59, 0.49],
-        f1score: [0.21, 0.64, 0.47, 0.51, 0.12],
-        support: [48976, 414294, 350803, 219973, 11610],
-        accuracy: 0.52,
-        macro_avg: {precision: 0.39, recall: 0.46, f1score: 0.39, support: 1045656},
-        weighted_avg: {precision: 0.56, recall: 0.52, f1score: 0.53, support: 1045656}
-    };
-
+    const trainData = { classes: ['Воздержался','За','Не голосовал','Отсутствовал','Против'], precision: [0.27,0.70,0.77,0.68,0.09], recall: [0.58,0.68,0.55,0.59,0.73], f1score: [0.37,0.69,0.64,0.63,0.16], support: [599389,2815396,3409493,2235135,90500], accuracy: 0.60, macro_avg: {precision:0.50,recall:0.63,f1score:0.50,support:9149913}, weighted_avg: {precision:0.69,recall:0.60,f1score:0.63,support:9149913} };
+    const testData = { classes: ['Воздержался','За','Не голосовал','Отсутствовал','Против'], precision: [0.21,0.66,0.58,0.44,0.07], recall: [0.20,0.62,0.39,0.59,0.49], f1score: [0.21,0.64,0.47,0.51,0.12], support: [48976,414294,350803,219973,11610], accuracy: 0.52, macro_avg: {precision:0.39,recall:0.46,f1score:0.39,support:1045656}, weighted_avg: {precision:0.56,recall:0.52,f1score:0.53,support:1045656} };
     generateClassReportTable('classReportTrain', trainData, 'CatBoostClassifier - Train');
     generateClassReportTable('classReportTest', testData, 'CatBoostClassifier - Test');
 }
@@ -864,1079 +379,80 @@ function generateClassificationReports() {
 function generateClassReportTable(containerId, data, title) {
     const container = document.getElementById(containerId);
     if (!container) return;
-
-    let html = `
-        <div style="text-align: center; margin-bottom: 1rem;">
-            <h5 style="margin: 0; color: #2c3e50;">${title}</h5>
-        </div>
-        <table style="width: 100%; border-collapse: collapse; font-size: 0.9rem;">
-            <thead>
-                <tr style="background: #ecf0f1;">
-                    <th style="padding: 0.75rem; border: 1px solid #bdc3c7;"></th>
-                    <th style="padding: 0.75rem; border: 1px solid #bdc3c7;">precision</th>
-                    <th style="padding: 0.75rem; border: 1px solid #bdc3c7;">recall</th>
-                    <th style="padding: 0.75rem; border: 1px solid #bdc3c7;">f1-score</th>
-                    <th style="padding: 0.75rem; border: 1px solid #bdc3c7;">кейсов</th>
-                </tr>
-            </thead>
-            <tbody>
-    `;
-
+    let html = `<div style="text-align:center;margin-bottom:1rem;"><h5 style="margin:0;color:#2c3e50;">${title}</h5></div><table style="width:100%;border-collapse:collapse;font-size:0.9rem;"><thead><tr style="background:#ecf0f1;"><th style="padding:0.75rem;border:1px solid #bdc3c7;"></th><th style="padding:0.75rem;border:1px solid #bdc3c7;">precision</th><th style="padding:0.75rem;border:1px solid #bdc3c7;">recall</th><th style="padding:0.75rem;border:1px solid #bdc3c7;">f1-score</th><th style="padding:0.75rem;border:1px solid #bdc3c7;">кейсов</th></tr></thead><tbody>`;
     for (let i = 0; i < data.classes.length; i++) {
         const bg = i % 2 === 0 ? '#f8f9fa' : 'white';
-        html += `
-            <tr style="background: ${bg};">
-                <td style="padding: 0.75rem; border: 1px solid #bdc3c7; font-weight: 600;">${data.classes[i]}</td>
-                <td style="padding: 0.75rem; border: 1px solid #bdc3c7; text-align: center;">${data.precision[i].toFixed(2)}</td>
-                <td style="padding: 0.75rem; border: 1px solid #bdc3c7; text-align: center;">${data.recall[i].toFixed(2)}</td>
-                <td style="padding: 0.75rem; border: 1px solid #bdc3c7; text-align: center;">${data.f1score[i].toFixed(2)}</td>
-                <td style="padding: 0.75rem; border: 1px solid #bdc3c7; text-align: center;">${data.support[i].toLocaleString()}</td>
-            </tr>
-        `;
+        html += `<tr style="background:${bg};"><td style="padding:0.75rem;border:1px solid #bdc3c7;font-weight:600;">${data.classes[i]}</td><td style="padding:0.75rem;border:1px solid #bdc3c7;text-align:center;">${data.precision[i].toFixed(2)}</td><td style="padding:0.75rem;border:1px solid #bdc3c7;text-align:center;">${data.recall[i].toFixed(2)}</td><td style="padding:0.75rem;border:1px solid #bdc3c7;text-align:center;">${data.f1score[i].toFixed(2)}</td><td style="padding:0.75rem;border:1px solid #bdc3c7;text-align:center;">${data.support[i].toLocaleString()}</td></tr>`;
     }
-
-    html += `
-        <tr style="background: white;"><td colspan="5" style="padding: 0.25rem; border: none;"></td></tr>
-        <tr style="background: #e8f5e9;">
-            <td style="padding: 0.75rem; border: 1px solid #bdc3c7; font-weight: 600;">accuracy</td>
-            <td colspan="2" style="border: 1px solid #bdc3c7;"></td>
-            <td style="padding: 0.75rem; border: 1px solid #bdc3c7; text-align: center; font-weight: 600;">${data.accuracy.toFixed(2)}</td>
-            <td style="padding: 0.75rem; border: 1px solid #bdc3c7; text-align: center;">${data.macro_avg.support.toLocaleString()}</td>
-        </tr>
-        <tr style="background: #fff3cd;">
-            <td style="padding: 0.75rem; border: 1px solid #bdc3c7; font-weight: 600;">macro avg</td>
-            <td style="padding: 0.75rem; border: 1px solid #bdc3c7; text-align: center;">${data.macro_avg.precision.toFixed(2)}</td>
-            <td style="padding: 0.75rem; border: 1px solid #bdc3c7; text-align: center;">${data.macro_avg.recall.toFixed(2)}</td>
-            <td style="padding: 0.75rem; border: 1px solid #bdc3c7; text-align: center;">${data.macro_avg.f1score.toFixed(2)}</td>
-            <td style="padding: 0.75rem; border: 1px solid #bdc3c7; text-align: center;">${data.macro_avg.support.toLocaleString()}</td>
-        </tr>
-        <tr style="background: #d1ecf1;">
-            <td style="padding: 0.75rem; border: 1px solid #bdc3c7; font-weight: 600;">weighted avg</td>
-            <td style="padding: 0.75rem; border: 1px solid #bdc3c7; text-align: center;">${data.weighted_avg.precision.toFixed(2)}</td>
-            <td style="padding: 0.75rem; border: 1px solid #bdc3c7; text-align: center;">${data.weighted_avg.recall.toFixed(2)}</td>
-            <td style="padding: 0.75rem; border: 1px solid #bdc3c7; text-align: center;">${data.weighted_avg.f1score.toFixed(2)}</td>
-            <td style="padding: 0.75rem; border: 1px solid #bdc3c7; text-align: center;">${data.weighted_avg.support.toLocaleString()}</td>
-        </tr>
+    html += `<tr style="background:white;"><td colspan="5" style="padding:0.25rem;border:none;"></td></tr>
+    <tr style="background:#e8f5e9;"><td style="padding:0.75rem;border:1px solid #bdc3c7;font-weight:600;">accuracy</td><td colspan="2" style="border:1px solid #bdc3c7;"></td><td style="padding:0.75rem;border:1px solid #bdc3c7;text-align:center;font-weight:600;">${data.accuracy.toFixed(2)}</td><td style="padding:0.75rem;border:1px solid #bdc3c7;text-align:center;">${data.macro_avg.support.toLocaleString()}</td></tr>
+    <tr style="background:#fff3cd;"><td style="padding:0.75rem;border:1px solid #bdc3c7;font-weight:600;">macro avg</td><td style="padding:0.75rem;border:1px solid #bdc3c7;text-align:center;">${data.macro_avg.precision.toFixed(2)}</td><td style="padding:0.75rem;border:1px solid #bdc3c7;text-align:center;">${data.macro_avg.recall.toFixed(2)}</td><td style="padding:0.75rem;border:1px solid #bdc3c7;text-align:center;">${data.macro_avg.f1score.toFixed(2)}</td><td style="padding:0.75rem;border:1px solid #bdc3c7;text-align:center;">${data.macro_avg.support.toLocaleString()}</td></tr>
+    <tr style="background:#d1ecf1;"><td style="padding:0.75rem;border:1px solid #bdc3c7;font-weight:600;">weighted avg</td><td style="padding:0.75rem;border:1px solid #bdc3c7;text-align:center;">${data.weighted_avg.precision.toFixed(2)}</td><td style="padding:0.75rem;border:1px solid #bdc3c7;text-align:center;">${data.weighted_avg.recall.toFixed(2)}</td><td style="padding:0.75rem;border:1px solid #bdc3c7;text-align:center;">${data.weighted_avg.f1score.toFixed(2)}</td><td style="padding:0.75rem;border:1px solid #bdc3c7;text-align:center;">${data.weighted_avg.support.toLocaleString()}</td></tr>
     </tbody></table>`;
-
     container.innerHTML = html;
 }
 
 function generateROCCurves() {
     const container = document.getElementById('rocCurves');
     if (!container) return;
-
     const rocData = {
-        'За': {
-            train_auc: 0.88,
-            test_auc: 0.79,
-            color: '#27ae60',
-            train_fpr: [0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
-            train_tpr: [0, 0.5, 0.65, 0.75, 0.82, 0.86, 0.89, 0.93, 0.95, 0.97, 0.98, 0.99, 0.995, 1.0],
-            test_fpr: [0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
-            test_tpr: [0, 0.4, 0.55, 0.65, 0.72, 0.77, 0.81, 0.86, 0.90, 0.93, 0.95, 0.97, 0.985, 1.0]
-        },
-        'Воздержался': {
-            train_auc: 0.86,
-            test_auc: 0.78,
-            color: '#f39c12',
-            train_fpr: [0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
-            train_tpr: [0, 0.45, 0.62, 0.72, 0.79, 0.84, 0.87, 0.91, 0.94, 0.96, 0.97, 0.985, 0.995, 1.0],
-            test_fpr: [0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
-            test_tpr: [0, 0.35, 0.52, 0.63, 0.71, 0.76, 0.81, 0.86, 0.90, 0.93, 0.95, 0.97, 0.99, 1.0]
-        },
-        'Не голосовал': {
-            train_auc: 0.83,
-            test_auc: 0.72,
-            color: '#95a5a6',
-            train_fpr: [0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
-            train_tpr: [0, 0.42, 0.58, 0.68, 0.76, 0.81, 0.85, 0.90, 0.93, 0.95, 0.97, 0.985, 0.995, 1.0],
-            test_fpr: [0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
-            test_tpr: [0, 0.3, 0.45, 0.56, 0.64, 0.70, 0.75, 0.82, 0.87, 0.91, 0.94, 0.96, 0.985, 1.0]
-        },
-        'Отсутствовал': {
-            train_auc: 0.85,
-            test_auc: 0.77,
-            color: '#34495e',
-            train_fpr: [0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
-            train_tpr: [0, 0.44, 0.60, 0.70, 0.77, 0.82, 0.86, 0.91, 0.94, 0.96, 0.97, 0.985, 0.995, 1.0],
-            test_fpr: [0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
-            test_tpr: [0, 0.33, 0.48, 0.59, 0.67, 0.73, 0.78, 0.85, 0.89, 0.92, 0.95, 0.97, 0.99, 1.0]
-        },
-        'Против': {
-            train_auc: 0.93,
-            test_auc: 0.83,
-            color: '#e74c3c',
-            train_fpr: [0, 0.02, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
-            train_tpr: [0, 0.5, 0.70, 0.82, 0.88, 0.92, 0.94, 0.96, 0.97, 0.98, 0.99, 0.995, 0.998, 0.999, 1.0],
-            test_fpr: [0, 0.02, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
-            test_tpr: [0, 0.4, 0.60, 0.72, 0.79, 0.84, 0.87, 0.90, 0.93, 0.95, 0.97, 0.98, 0.99, 0.995, 1.0]
-        }
+        'За': { train_auc:0.88, test_auc:0.79, color:'#27ae60', train_fpr:[0,0.05,0.1,0.15,0.2,0.25,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1.0], train_tpr:[0,0.5,0.65,0.75,0.82,0.86,0.89,0.93,0.95,0.97,0.98,0.99,0.995,1.0], test_fpr:[0,0.05,0.1,0.15,0.2,0.25,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1.0], test_tpr:[0,0.4,0.55,0.65,0.72,0.77,0.81,0.86,0.90,0.93,0.95,0.97,0.985,1.0] },
+        'Воздержался': { train_auc:0.86, test_auc:0.78, color:'#f39c12', train_fpr:[0,0.05,0.1,0.15,0.2,0.25,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1.0], train_tpr:[0,0.45,0.62,0.72,0.79,0.84,0.87,0.91,0.94,0.96,0.97,0.985,0.995,1.0], test_fpr:[0,0.05,0.1,0.15,0.2,0.25,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1.0], test_tpr:[0,0.35,0.52,0.63,0.71,0.76,0.81,0.86,0.90,0.93,0.95,0.97,0.99,1.0] },
+        'Не голосовал': { train_auc:0.83, test_auc:0.72, color:'#95a5a6', train_fpr:[0,0.05,0.1,0.15,0.2,0.25,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1.0], train_tpr:[0,0.42,0.58,0.68,0.76,0.81,0.85,0.90,0.93,0.95,0.97,0.985,0.995,1.0], test_fpr:[0,0.05,0.1,0.15,0.2,0.25,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1.0], test_tpr:[0,0.3,0.45,0.56,0.64,0.70,0.75,0.82,0.87,0.91,0.94,0.96,0.985,1.0] },
+        'Отсутствовал': { train_auc:0.85, test_auc:0.77, color:'#34495e', train_fpr:[0,0.05,0.1,0.15,0.2,0.25,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1.0], train_tpr:[0,0.44,0.60,0.70,0.77,0.82,0.86,0.91,0.94,0.96,0.97,0.985,0.995,1.0], test_fpr:[0,0.05,0.1,0.15,0.2,0.25,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1.0], test_tpr:[0,0.33,0.48,0.59,0.67,0.73,0.78,0.85,0.89,0.92,0.95,0.97,0.99,1.0] },
+        'Против': { train_auc:0.93, test_auc:0.83, color:'#e74c3c', train_fpr:[0,0.02,0.05,0.1,0.15,0.2,0.25,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1.0], train_tpr:[0,0.5,0.70,0.82,0.88,0.92,0.94,0.96,0.97,0.98,0.99,0.995,0.998,0.999,1.0], test_fpr:[0,0.02,0.05,0.1,0.15,0.2,0.25,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1.0], test_tpr:[0,0.4,0.60,0.72,0.79,0.84,0.87,0.90,0.93,0.95,0.97,0.98,0.99,0.995,1.0] }
     };
-
-    container.innerHTML = `
-        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem;">
-            ${Object.keys(rocData).map(voteType => `
-                <div>
-                    <h5 style="text-align: center; margin-bottom: 0.5rem; font-size: 0.9rem;">
-                        One-vs-Rest ROC curve: '${voteType}' vs (Остальные типы поведения)
-                    </h5>
-                    <div id="roc-${voteType.replace(/\s/g, '_')}" style="height: 350px;"></div>
-                </div>
-            `).join('')}
-        </div>
-    `;
-
+    container.innerHTML = `<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:2rem;">${Object.keys(rocData).map(voteType => `<div><h5 style="text-align:center;margin-bottom:0.5rem;font-size:0.9rem;">One-vs-Rest ROC curve: '${voteType}' vs (Остальные типы поведения)</h5><div id="roc-${voteType.replace(/\s/g,'_')}" style="height:350px;"></div></div>`).join('')}</div>`;
     Object.keys(rocData).forEach(voteType => {
         const data = rocData[voteType];
-        const divId = `roc-${voteType.replace(/\s/g, '_')}`;
-
+        const divId = `roc-${voteType.replace(/\s/g,'_')}`;
         const traces = [
-            {
-                x: [0, 1],
-                y: [0, 1],
-                mode: 'lines',
-                line: {dash: 'dash', color: '#95a5a6', width: 1.5},
-                showlegend: false,
-                hoverinfo: 'skip'
-            },
-            {
-                x: data.train_fpr,
-                y: data.train_tpr,
-                mode: 'lines',
-                name: `'${voteType}' vs rest| train (AUC = ${data.train_auc})`,
-                line: {color: data.color, width: 3},
-                hovertemplate: 'FPR: %{x:.3f}<br>TPR: %{y:.3f}<extra></extra>'
-            },
-            {
-                x: data.test_fpr,
-                y: data.test_tpr,
-                mode: 'lines',
-                name: `'${voteType}' vs rest| test (AUC = ${data.test_auc})`,
-                line: {color: data.color, width: 2.5, dash: 'dot'},
-                hovertemplate: 'FPR: %{x:.3f}<br>TPR: %{y:.3f}<extra></extra>'
-            }
+            { x:[0,1], y:[0,1], mode:'lines', line:{dash:'dash',color:'#95a5a6',width:1.5}, showlegend:false, hoverinfo:'skip' },
+            { x:data.train_fpr, y:data.train_tpr, mode:'lines', name:`'${voteType}' vs rest| train (AUC = ${data.train_auc})`, line:{color:data.color,width:3}, hovertemplate:'FPR: %{x:.3f}<br>TPR: %{y:.3f}<extra></extra>' },
+            { x:data.test_fpr, y:data.test_tpr, mode:'lines', name:`'${voteType}' vs rest| test (AUC = ${data.test_auc})`, line:{color:data.color,width:2.5,dash:'dot'}, hovertemplate:'FPR: %{x:.3f}<br>TPR: %{y:.3f}<extra></extra>' }
         ];
-
         const layout = {
-            xaxis: {
-                title: {
-                    text: `Доля ошибочно спрогнозированных '${voteType}'<br>от общего количества остальных типов (FPR)`,
-                    font: {size: 9}
-                },
-                range: [0, 1],
-                showgrid: true,
-                gridcolor: '#e0e0e0'
-            },
-            yaxis: {
-                title: {
-                    text: `Доля верно спрогнозированных '${voteType}'<br>от общего количества '${voteType}' (TPR)`,
-                    font: {size: 9}
-                },
-                range: [0, 1],
-                showgrid: true,
-                gridcolor: '#e0e0e0'
-            },
-            margin: {t: 10, l: 80, r: 20, b: 80},
-            legend: {
-                x: 0.5,
-                y: -0.35,
-                xanchor: 'center',
-                orientation: 'v',
-                font: {size: 8}
-            },
-            font: {size: 10},
-            plot_bgcolor: '#ffffff',
-            paper_bgcolor: '#ffffff'
+            xaxis: { title:{text:`Доля ошибочно спрогнозированных '${voteType}'<br>от общего количества остальных типов (FPR)`,font:{size:9}}, range:[0,1], showgrid:true, gridcolor:'#e0e0e0' },
+            yaxis: { title:{text:`Доля верно спрогнозированных '${voteType}'<br>от общего количества '${voteType}' (TPR)`,font:{size:9}}, range:[0,1], showgrid:true, gridcolor:'#e0e0e0' },
+            margin:{t:10,l:80,r:20,b:80}, legend:{x:0.5,y:-0.35,xanchor:'center',orientation:'v',font:{size:8}}, font:{size:10}, plot_bgcolor:'#ffffff', paper_bgcolor:'#ffffff'
         };
-
-        Plotly.newPlot(divId, traces, layout, {responsive: true, displayModeBar: false});
+        Plotly.newPlot(divId, traces, layout, {responsive:true, displayModeBar:false});
     });
 }
 
-// ============= ВСПОМОГАТЕЛЬНАЯ ФУНКЦИЯ ДЛЯ КОРРЕЛЯЦИИ ПИРСОНА =============
-
-function pearsonCorrelation(x, y) {
-    const n = x.length;
-    let sumX = 0, sumY = 0, sumXY = 0, sumX2 = 0, sumY2 = 0;
-
-    for (let i = 0; i < n; i++) {
-        sumX += x[i];
-        sumY += y[i];
-        sumXY += x[i] * y[i];
-        sumX2 += x[i] * x[i];
-        sumY2 += y[i] * y[i];
-    }
-
-    const numerator = (n * sumXY) - (sumX * sumY);
-    const denominator = Math.sqrt(((n * sumX2) - (sumX * sumX)) * ((n * sumY2) - (sumY * sumY)));
-
-    return denominator === 0 ? 0 : numerator / denominator;
-}
-
-// ============= МАТРИЦА СХОДСТВА БПП =============
-
-async function generateBPPSimilarityMatrix() {
-    const plotDiv = document.getElementById('bpp-similarity-plot');
-    if (!plotDiv) return;
-
-    plotDiv.innerHTML = '';
-
-    try {
-        const response = await fetch('/karasev_science/data/block_petra_poroshenko.csv');
-        const csvText = await response.text();
-
-        const lines = csvText.trim().split('\n');
-        const headers = lines[0].split(',');
-        const deputies = headers.slice(1);
-        const numDeputies = deputies.length;
-
-        const votingMatrix = [];
-        for (let i = 1; i < lines.length; i++) {
-            const values = lines[i].split(',').slice(1).map(v => parseFloat(v));
-            votingMatrix.push(values);
-        }
-
-        const similarityMatrix = [];
-        for (let i = 0; i < numDeputies; i++) {
-            similarityMatrix[i] = [];
-            for (let j = 0; j < numDeputies; j++) {
-                if (i === j) {
-                    similarityMatrix[i][j] = 1.0;
-                } else {
-                    const vec1 = votingMatrix.map(row => row[i]);
-                    const vec2 = votingMatrix.map(row => row[j]);
-                    const correlation = pearsonCorrelation(vec1, vec2);
-                    similarityMatrix[i][j] = correlation;
-                }
-            }
-        }
-
-        const avgSimilarity = similarityMatrix.map((row, idx) => {
-            const sum = row.reduce((a, b) => a + b, 0);
-            return { idx, avg: sum / row.length };
-        });
-        avgSimilarity.sort((a, b) => b.avg - a.avg);
-
-        const sortedIndices = avgSimilarity.map(x => x.idx);
-        const sortedDeputies = sortedIndices.map(i => deputies[i]);
-        const sortedMatrix = sortedIndices.map(i =>
-            sortedIndices.map(j => similarityMatrix[i][j])
-        );
-
-        const trace = {
-            z: sortedMatrix,
-            x: sortedDeputies,
-            y: sortedDeputies,
-            type: 'heatmap',
-            colorscale: [
-                [0, '#d73027'],
-                [0.25, '#f46d43'],
-                [0.5, '#fee08b'],
-                [0.75, '#a6d96a'],
-                [1, '#1a9850']
-            ],
-            colorbar: {
-                title: 'Сходство<br>голосования',
-                titleside: 'right'
-            },
-            hovertemplate: '%{y}<br>↔<br>%{x}<br>Сходство: %{z:.2f}<extra></extra>'
-        };
-
-        const layout = {
-            xaxis: {
-                tickangle: 90,
-                tickfont: { size: 6 },
-                showticklabels: true,
-                side: 'bottom'
-            },
-            yaxis: {
-                tickfont: { size: 6 },
-                showticklabels: true,
-                autorange: 'reversed'
-            },
-            width: 1200,
-            height: 1200,
-            margin: { l: 150, r: 100, t: 20, b: 200 }
-        };
-
-        Plotly.newPlot('bpp-similarity-plot', [trace], layout, {responsive: true});
-
-    } catch (error) {
-        console.error('Ошибка загрузки данных БПП:', error);
-        plotDiv.innerHTML = '<p style="color: red; text-align: center; padding: 2rem;">Ошибка загрузки данных БПП</p>';
-    }
-}
-
-// ============= МАТРИЦА СХОДСТВА НАРОДНЫЙ ФРОНТ =============
-
-async function generateNFSimilarityMatrix() {
-    const plotDiv = document.getElementById('nf-similarity-plot');
-    if (!plotDiv) return;
-
-    plotDiv.innerHTML = '';
-
-    try {
-        const response = await fetch('/karasev_science/data/narodnuy_frond.csv');
-        const csvText = await response.text();
-
-        const lines = csvText.trim().split('\n');
-        const headers = lines[0].split(',');
-        const deputies = headers.slice(1);
-        const numDeputies = deputies.length;
-
-        const votingMatrix = [];
-        for (let i = 1; i < lines.length; i++) {
-            const values = lines[i].split(',').slice(1).map(v => parseFloat(v));
-            votingMatrix.push(values);
-        }
-
-        const similarityMatrix = [];
-        for (let i = 0; i < numDeputies; i++) {
-            similarityMatrix[i] = [];
-            for (let j = 0; j < numDeputies; j++) {
-                if (i === j) {
-                    similarityMatrix[i][j] = 1.0;
-                } else {
-                    const vec1 = votingMatrix.map(row => row[i]);
-                    const vec2 = votingMatrix.map(row => row[j]);
-                    const correlation = pearsonCorrelation(vec1, vec2);
-                    similarityMatrix[i][j] = correlation;
-                }
-            }
-        }
-
-        const avgSimilarity = similarityMatrix.map((row, idx) => {
-            const sum = row.reduce((a, b) => a + b, 0);
-            return { idx, avg: sum / row.length };
-        });
-        avgSimilarity.sort((a, b) => b.avg - a.avg);
-
-        const sortedIndices = avgSimilarity.map(x => x.idx);
-        const sortedDeputies = sortedIndices.map(i => deputies[i]);
-        const sortedMatrix = sortedIndices.map(i =>
-            sortedIndices.map(j => similarityMatrix[i][j])
-        );
-
-        const trace = {
-            z: sortedMatrix,
-            x: sortedDeputies,
-            y: sortedDeputies,
-            type: 'heatmap',
-            colorscale: [
-                [0, '#d73027'],
-                [0.25, '#f46d43'],
-                [0.5, '#fee08b'],
-                [0.75, '#a6d96a'],
-                [1, '#1a9850']
-            ],
-            colorbar: {
-                title: 'Сходство<br>голосования',
-                titleside: 'right'
-            },
-            hovertemplate: '%{y}<br>↔<br>%{x}<br>Сходство: %{z:.2f}<extra></extra>'
-        };
-
-        const layout = {
-            xaxis: {
-                tickangle: 90,
-                tickfont: { size: 7 },
-                showticklabels: true,
-                side: 'bottom'
-            },
-            yaxis: {
-                tickfont: { size: 7 },
-                showticklabels: true,
-                autorange: 'reversed'
-            },
-            width: 1000,
-            height: 1000,
-            margin: { l: 150, r: 100, t: 20, b: 200 }
-        };
-
-        Plotly.newPlot('nf-similarity-plot', [trace], layout, {responsive: true});
-
-    } catch (error) {
-        console.error('Ошибка загрузки данных НФ:', error);
-        plotDiv.innerHTML = '<p style="color: red; text-align: center; padding: 2rem;">Ошибка загрузки данных НФ</p>';
-    }
-}
-
-// ============= МАТРИЦА СХОДСТВА САМОПОМОЩЬ =============
-
-async function generateSMPMSimilarityMatrix() {
-    const plotDiv = document.getElementById('smpm-similarity-plot');
-    if (!plotDiv) return;
-
-    plotDiv.innerHTML = '';
-
-    try {
-        const response = await fetch('/karasev_science/data/samo_pomosch.csv');
-        const csvText = await response.text();
-
-        const lines = csvText.trim().split('\n');
-        const headers = lines[0].split(',');
-        const deputies = headers.slice(1);
-        const numDeputies = deputies.length;
-
-        const votingMatrix = [];
-        for (let i = 1; i < lines.length; i++) {
-            const values = lines[i].split(',').slice(1).map(v => parseFloat(v));
-            votingMatrix.push(values);
-        }
-
-        const similarityMatrix = [];
-        for (let i = 0; i < numDeputies; i++) {
-            similarityMatrix[i] = [];
-            for (let j = 0; j < numDeputies; j++) {
-                if (i === j) {
-                    similarityMatrix[i][j] = 1.0;
-                } else {
-                    const vec1 = votingMatrix.map(row => row[i]);
-                    const vec2 = votingMatrix.map(row => row[j]);
-                    const correlation = pearsonCorrelation(vec1, vec2);
-                    similarityMatrix[i][j] = correlation;
-                }
-            }
-        }
-
-        const avgSimilarity = similarityMatrix.map((row, idx) => {
-            const sum = row.reduce((a, b) => a + b, 0);
-            return { idx, avg: sum / row.length };
-        });
-        avgSimilarity.sort((a, b) => b.avg - a.avg);
-
-        const sortedIndices = avgSimilarity.map(x => x.idx);
-        const sortedDeputies = sortedIndices.map(i => deputies[i]);
-        const sortedMatrix = sortedIndices.map(i =>
-            sortedIndices.map(j => similarityMatrix[i][j])
-        );
-
-        const trace = {
-            z: sortedMatrix,
-            x: sortedDeputies,
-            y: sortedDeputies,
-            type: 'heatmap',
-            colorscale: [
-                [0, '#d73027'],
-                [0.25, '#f46d43'],
-                [0.5, '#fee08b'],
-                [0.75, '#a6d96a'],
-                [1, '#1a9850']
-            ],
-            colorbar: {
-                title: 'Сходство<br>голосования',
-                titleside: 'right'
-            },
-            hovertemplate: '%{y}<br>↔<br>%{x}<br>Сходство: %{z:.2f}<extra></extra>'
-        };
-
-        const layout = {
-            xaxis: {
-                tickangle: 90,
-                tickfont: { size: 9 },
-                showticklabels: true,
-                side: 'bottom'
-            },
-            yaxis: {
-                tickfont: { size: 9 },
-                showticklabels: true,
-                autorange: 'reversed'
-            },
-            width: 800,
-            height: 800,
-            margin: { l: 150, r: 100, t: 20, b: 200 }
-        };
-
-        Plotly.newPlot('smpm-similarity-plot', [trace], layout, {responsive: true});
-
-    } catch (error) {
-        console.error('Ошибка загрузки данных Самопомощь:', error);
-        plotDiv.innerHTML = '<p style="color: red; text-align: center; padding: 2rem;">Ошибка загрузки данных Самопомощь</p>';
-    }
-}
-
-// ============= МАТРИЦА СХОДСТВА РАДИКАЛЬНАЯ ПАРТИЯ ОЛЕГА ЛЯШКО =============
-
-async function generateRPOLSimilarityMatrix() {
-    const plotDiv = document.getElementById('rpol-similarity-plot');
-    if (!plotDiv) return;
-
-    plotDiv.innerHTML = '';
-
-    try {
-        const response = await fetch('/karasev_science/data/radical_party_oleg_lyashko.csv');
-        const csvText = await response.text();
-
-        const lines = csvText.trim().split('\n');
-        const headers = lines[0].split(',');
-        const deputies = headers.slice(1);
-        const numDeputies = deputies.length;
-
-        const votingMatrix = [];
-        for (let i = 1; i < lines.length; i++) {
-            const values = lines[i].split(',').slice(1).map(v => parseFloat(v));
-            votingMatrix.push(values);
-        }
-
-        const similarityMatrix = [];
-        for (let i = 0; i < numDeputies; i++) {
-            similarityMatrix[i] = [];
-            for (let j = 0; j < numDeputies; j++) {
-                if (i === j) {
-                    similarityMatrix[i][j] = 1.0;
-                } else {
-                    const vec1 = votingMatrix.map(row => row[i]);
-                    const vec2 = votingMatrix.map(row => row[j]);
-                    const correlation = pearsonCorrelation(vec1, vec2);
-                    similarityMatrix[i][j] = correlation;
-                }
-            }
-        }
-
-        const avgSimilarity = similarityMatrix.map((row, idx) => {
-            const sum = row.reduce((a, b) => a + b, 0);
-            return { idx, avg: sum / row.length };
-        });
-        avgSimilarity.sort((a, b) => b.avg - a.avg);
-
-        const sortedIndices = avgSimilarity.map(x => x.idx);
-        const sortedDeputies = sortedIndices.map(i => deputies[i]);
-        const sortedMatrix = sortedIndices.map(i =>
-            sortedIndices.map(j => similarityMatrix[i][j])
-        );
-
-        const trace = {
-            z: sortedMatrix,
-            x: sortedDeputies,
-            y: sortedDeputies,
-            type: 'heatmap',
-            colorscale: [
-                [0, '#d73027'],
-                [0.25, '#f46d43'],
-                [0.5, '#fee08b'],
-                [0.75, '#a6d96a'],
-                [1, '#1a9850']
-            ],
-            colorbar: {
-                title: 'Сходство<br>голосования',
-                titleside: 'right'
-            },
-            hovertemplate: '%{y}<br>↔<br>%{x}<br>Сходство: %{z:.2f}<extra></extra>'
-        };
-
-        const layout = {
-            xaxis: {
-                tickangle: 90,
-                tickfont: { size: 8 },
-                showticklabels: true,
-                side: 'bottom'
-            },
-            yaxis: {
-                tickfont: { size: 8 },
-                showticklabels: true,
-                autorange: 'reversed'
-            },
-            width: 850,
-            height: 850,
-            margin: { l: 150, r: 100, t: 20, b: 200 }
-        };
-
-        Plotly.newPlot('rpol-similarity-plot', [trace], layout, {responsive: true});
-
-    } catch (error) {
-        console.error('Ошибка загрузки данных РпОЛ:', error);
-        plotDiv.innerHTML = '<p style="color: red; text-align: center; padding: 2rem;">Ошибка загрузки данных РпОЛ</p>';
-    }
-}
-
-// ============= МАТРИЦА СХОДСТВА ВО БАТЬКИВЩИНА =============
-
-async function generateBATKSimilarityMatrix() {
-    const plotDiv = document.getElementById('batk-similarity-plot');
-    if (!plotDiv) return;
-
-    plotDiv.innerHTML = '';
-
-    try {
-        const response = await fetch('/karasev_science/data/batkovshina.csv');
-        const csvText = await response.text();
-
-        const lines = csvText.trim().split('\n');
-        const headers = lines[0].split(',');
-        const deputies = headers.slice(1);
-        const numDeputies = deputies.length;
-
-        const votingMatrix = [];
-        for (let i = 1; i < lines.length; i++) {
-            const values = lines[i].split(',').slice(1).map(v => parseFloat(v));
-            votingMatrix.push(values);
-        }
-
-        const similarityMatrix = [];
-        for (let i = 0; i < numDeputies; i++) {
-            similarityMatrix[i] = [];
-            for (let j = 0; j < numDeputies; j++) {
-                if (i === j) {
-                    similarityMatrix[i][j] = 1.0;
-                } else {
-                    const vec1 = votingMatrix.map(row => row[i]);
-                    const vec2 = votingMatrix.map(row => row[j]);
-                    const correlation = pearsonCorrelation(vec1, vec2);
-                    similarityMatrix[i][j] = correlation;
-                }
-            }
-        }
-
-        const avgSimilarity = similarityMatrix.map((row, idx) => {
-            const sum = row.reduce((a, b) => a + b, 0);
-            return { idx, avg: sum / row.length };
-        });
-        avgSimilarity.sort((a, b) => b.avg - a.avg);
-
-        const sortedIndices = avgSimilarity.map(x => x.idx);
-        const sortedDeputies = sortedIndices.map(i => deputies[i]);
-        const sortedMatrix = sortedIndices.map(i =>
-            sortedIndices.map(j => similarityMatrix[i][j])
-        );
-
-        const trace = {
-            z: sortedMatrix,
-            x: sortedDeputies,
-            y: sortedDeputies,
-            type: 'heatmap',
-            colorscale: [
-                [0, '#d73027'],
-                [0.25, '#f46d43'],
-                [0.5, '#fee08b'],
-                [0.75, '#a6d96a'],
-                [1, '#1a9850']
-            ],
-            colorbar: {
-                title: 'Сходство<br>голосования',
-                titleside: 'right'
-            },
-            hovertemplate: '%{y}<br>↔<br>%{x}<br>Сходство: %{z:.2f}<extra></extra>'
-        };
-
-        const layout = {
-            xaxis: {
-                tickangle: 90,
-                tickfont: { size: 10 },
-                showticklabels: true,
-                side: 'bottom'
-            },
-            yaxis: {
-                tickfont: { size: 10 },
-                showticklabels: true,
-                autorange: 'reversed'
-            },
-            width: 700,
-            height: 700,
-            margin: { l: 150, r: 100, t: 20, b: 200 }
-        };
-
-        Plotly.newPlot('batk-similarity-plot', [trace], layout, {responsive: true});
-
-    } catch (error) {
-        console.error('Ошибка загрузки данных Батькивщина:', error);
-        plotDiv.innerHTML = '<p style="color: red; text-align: center; padding: 2rem;">Ошибка загрузки данных Батькивщина</p>';
-    }
-}
-
-// ============= МАТРИЦА СХОДСТВА ОППОЗИЦИОННЫЙ БЛОК =============
-
-async function generateOPBLSimilarityMatrix() {
-    const plotDiv = document.getElementById('opbl-similarity-plot');
-    if (!plotDiv) return;
-
-    plotDiv.innerHTML = '';
-
-    try {
-        const response = await fetch('/karasev_science/data/opposition_block.csv');
-        const csvText = await response.text();
-
-        const lines = csvText.trim().split('\n');
-        const headers = lines[0].split(',');
-        const deputies = headers.slice(1);
-        const numDeputies = deputies.length;
-
-        const votingMatrix = [];
-        for (let i = 1; i < lines.length; i++) {
-            const values = lines[i].split(',').slice(1).map(v => parseFloat(v));
-            votingMatrix.push(values);
-        }
-
-        const similarityMatrix = [];
-        for (let i = 0; i < numDeputies; i++) {
-            similarityMatrix[i] = [];
-            for (let j = 0; j < numDeputies; j++) {
-                if (i === j) {
-                    similarityMatrix[i][j] = 1.0;
-                } else {
-                    const vec1 = votingMatrix.map(row => row[i]);
-                    const vec2 = votingMatrix.map(row => row[j]);
-                    const correlation = pearsonCorrelation(vec1, vec2);
-                    similarityMatrix[i][j] = correlation;
-                }
-            }
-        }
-
-        const avgSimilarity = similarityMatrix.map((row, idx) => {
-            const sum = row.reduce((a, b) => a + b, 0);
-            return { idx, avg: sum / row.length };
-        });
-        avgSimilarity.sort((a, b) => b.avg - a.avg);
-
-        const sortedIndices = avgSimilarity.map(x => x.idx);
-        const sortedDeputies = sortedIndices.map(i => deputies[i]);
-        const sortedMatrix = sortedIndices.map(i =>
-            sortedIndices.map(j => similarityMatrix[i][j])
-        );
-
-        const trace = {
-            z: sortedMatrix,
-            x: sortedDeputies,
-            y: sortedDeputies,
-            type: 'heatmap',
-            colorscale: [
-                [0, '#d73027'],
-                [0.25, '#f46d43'],
-                [0.5, '#fee08b'],
-                [0.75, '#a6d96a'],
-                [1, '#1a9850']
-            ],
-            colorbar: {
-                title: 'Сходство<br>голосования',
-                titleside: 'right'
-            },
-            hovertemplate: '%{y}<br>↔<br>%{x}<br>Сходство: %{z:.2f}<extra></extra>'
-        };
-
-        const layout = {
-            xaxis: {
-                tickangle: 90,
-                tickfont: { size: 8 },
-                showticklabels: true,
-                side: 'bottom'
-            },
-            yaxis: {
-                tickfont: { size: 8 },
-                showticklabels: true,
-                autorange: 'reversed'
-            },
-            width: 850,
-            height: 850,
-            margin: { l: 150, r: 100, t: 20, b: 200 }
-        };
-
-        Plotly.newPlot('opbl-similarity-plot', [trace], layout, {responsive: true});
-
-    } catch (error) {
-        console.error('Ошибка загрузки данных Опозиційний блок:', error);
-        plotDiv.innerHTML = '<p style="color: red; text-align: center; padding: 2rem;">Ошибка загрузки данных Опозиційний блок</p>';
-    }
-}
-
-// ============= МАТРИЦА СХОДСТВА ВОЛЯ НАРОДУ =============
-
-async function generateVLNRSimilarityMatrix() {
-    const plotDiv = document.getElementById('vlnr-similarity-plot');
-    if (!plotDiv) return;
-
-    plotDiv.innerHTML = '';
-
-    try {
-        const response = await fetch('/karasev_science/data/volya_naroda.csv');
-        const csvText = await response.text();
-
-        const lines = csvText.trim().split('\n');
-        const headers = lines[0].split(',');
-        const deputies = headers.slice(1);
-        const numDeputies = deputies.length;
-
-        const votingMatrix = [];
-        for (let i = 1; i < lines.length; i++) {
-            const values = lines[i].split(',').slice(1).map(v => parseFloat(v));
-            votingMatrix.push(values);
-        }
-
-        const similarityMatrix = [];
-        for (let i = 0; i < numDeputies; i++) {
-            similarityMatrix[i] = [];
-            for (let j = 0; j < numDeputies; j++) {
-                if (i === j) {
-                    similarityMatrix[i][j] = 1.0;
-                } else {
-                    const vec1 = votingMatrix.map(row => row[i]);
-                    const vec2 = votingMatrix.map(row => row[j]);
-                    const correlation = pearsonCorrelation(vec1, vec2);
-                    similarityMatrix[i][j] = correlation;
-                }
-            }
-        }
-
-        const avgSimilarity = similarityMatrix.map((row, idx) => {
-            const sum = row.reduce((a, b) => a + b, 0);
-            return { idx, avg: sum / row.length };
-        });
-        avgSimilarity.sort((a, b) => b.avg - a.avg);
-
-        const sortedIndices = avgSimilarity.map(x => x.idx);
-        const sortedDeputies = sortedIndices.map(i => deputies[i]);
-        const sortedMatrix = sortedIndices.map(i =>
-            sortedIndices.map(j => similarityMatrix[i][j])
-        );
-
-        const trace = {
-            z: sortedMatrix,
-            x: sortedDeputies,
-            y: sortedDeputies,
-            type: 'heatmap',
-            colorscale: [
-                [0, '#d73027'],
-                [0.25, '#f46d43'],
-                [0.5, '#fee08b'],
-                [0.75, '#a6d96a'],
-                [1, '#1a9850']
-            ],
-            colorbar: {
-                title: 'Сходство<br>голосования',
-                titleside: 'right'
-            },
-            hovertemplate: '%{y}<br>↔<br>%{x}<br>Сходство: %{z:.2f}<extra></extra>'
-        };
-
-        const layout = {
-            xaxis: {
-                tickangle: 90,
-                tickfont: { size: 10 },
-                showticklabels: true,
-                side: 'bottom'
-            },
-            yaxis: {
-                tickfont: { size: 10 },
-                showticklabels: true,
-                autorange: 'reversed'
-            },
-            width: 700,
-            height: 700,
-            margin: { l: 150, r: 100, t: 20, b: 200 }
-        };
-
-        Plotly.newPlot('vlnr-similarity-plot', [trace], layout, {responsive: true});
-
-    } catch (error) {
-        console.error('Ошибка загрузки данных Воля народу:', error);
-        plotDiv.innerHTML = '<p style="color: red; text-align: center; padding: 2rem;">Ошибка загрузки данных Воля народу</p>';
-    }
-}
-
-// ============= МАТРИЦА СХОДСТВА ВІДРОДЖЕННЯ =============
-
-async function generateVIDRSimilarityMatrix() {
-    const plotDiv = document.getElementById('vidr-similarity-plot');
-    if (!plotDiv) return;
-
-    plotDiv.innerHTML = '';
-
-    try {
-        const response = await fetch('/karasev_science/data/vozrojdenie.csv');
-        const csvText = await response.text();
-
-        const lines = csvText.trim().split('\n');
-        const headers = lines[0].split(',');
-        const deputies = headers.slice(1);
-        const numDeputies = deputies.length;
-
-        const votingMatrix = [];
-        for (let i = 1; i < lines.length; i++) {
-            const values = lines[i].split(',').slice(1).map(v => parseFloat(v));
-            votingMatrix.push(values);
-        }
-
-        const similarityMatrix = [];
-        for (let i = 0; i < numDeputies; i++) {
-            similarityMatrix[i] = [];
-            for (let j = 0; j < numDeputies; j++) {
-                if (i === j) {
-                    similarityMatrix[i][j] = 1.0;
-                } else {
-                    const vec1 = votingMatrix.map(row => row[i]);
-                    const vec2 = votingMatrix.map(row => row[j]);
-                    const correlation = pearsonCorrelation(vec1, vec2);
-                    similarityMatrix[i][j] = correlation;
-                }
-            }
-        }
-
-        const avgSimilarity = similarityMatrix.map((row, idx) => {
-            const sum = row.reduce((a, b) => a + b, 0);
-            return { idx, avg: sum / row.length };
-        });
-        avgSimilarity.sort((a, b) => b.avg - a.avg);
-
-        const sortedIndices = avgSimilarity.map(x => x.idx);
-        const sortedDeputies = sortedIndices.map(i => deputies[i]);
-        const sortedMatrix = sortedIndices.map(i =>
-            sortedIndices.map(j => similarityMatrix[i][j])
-        );
-
-        const trace = {
-            z: sortedMatrix,
-            x: sortedDeputies,
-            y: sortedDeputies,
-            type: 'heatmap',
-            colorscale: [
-                [0, '#d73027'],
-                [0.25, '#f46d43'],
-                [0.5, '#fee08b'],
-                [0.75, '#a6d96a'],
-                [1, '#1a9850']
-            ],
-            colorbar: {
-                title: 'Сходство<br>голосования',
-                titleside: 'right'
-            },
-            hovertemplate: '%{y}<br>↔<br>%{x}<br>Сходство: %{z:.2f}<extra></extra>'
-        };
-
-        const layout = {
-            xaxis: {
-                tickangle: 90,
-                tickfont: { size: 9 },
-                showticklabels: true,
-                side: 'bottom'
-            },
-            yaxis: {
-                tickfont: { size: 9 },
-                showticklabels: true,
-                autorange: 'reversed'
-            },
-            width: 750,
-            height: 750,
-            margin: { l: 150, r: 100, t: 20, b: 200 }
-        };
-
-        Plotly.newPlot('vidr-similarity-plot', [trace], layout, {responsive: true});
-
-    } catch (error) {
-        console.error('Ошибка загрузки данных Відродження:', error);
-        plotDiv.innerHTML = '<p style="color: red; text-align: center; padding: 2rem;">Ошибка загрузки данных Відродження</p>';
-    }
-}
-
-// ============= ГРАФИК ДИНАМИКИ СПЛОЧЕННОСТИ ФРАКЦИЙ (UNITY) =============
-
+// ============= UNITY — ИНТЕРАКТИВНЫЙ ГРАФИК PLOTLY =============
 function generateUnityDynamics() {
     const plotDiv = document.getElementById('unity-dynamics-plot');
     if (!plotDiv) return;
-
-    const sessions = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-
+    const sessions = [1,2,3,4,5,6,7,8,9,10];
     const factions = {
-        'Блок Петра Порошенко': {
-            values: [0.55, 0.63, 0.20, 0.55, 0.56, 0.28, 0.39, 0.48, 0.50, 0.53],
-            color: '#e74c3c'
-        },
-        'Народный фронт': {
-            values: [0.59, 0.69, 0.21, 0.57, 0.59, 0.29, 0.39, 0.52, 0.57, 0.61],
-            color: '#9b59b6'
-        },
-        'Объединение Самопомощь': {
-            values: [0.47, 0.59, 0.22, 0.47, 0.45, 0.33, 0.38, 0.43, 0.30, 0.53],
-            color: '#f39c12'
-        },
-        'ВО Батькивщина': {
-            values: [0.09, -0.05, -0.67, -0.23, -0.15, -0.48, -0.48, -0.34, -0.45, -0.13],
-            color: '#27ae60'
-        },
-        'Радикальная Партия Олега Ляшко': {
-            values: [0.18, 0.29, -0.69, -0.28, -0.05, -0.54, -0.38, -0.13, -0.18, 0.25],
-            color: '#3498db'
-        },
-        'Вне фракции': {
-            values: [0.31, 0.28, 0.11, 0.29, 0.29, 0.15, 0.21, 0.26, 0.26, 0.42],
-            color: '#95a5a6'
-        },
-        'Воля народа': {
-            values: [-0.67, -0.58, -0.87, -0.60, -0.60, -0.80, -0.72, -0.68, -0.55, -0.65],
-            color: '#1abc9c'
-        },
-        'Возрождение': {
-            values: [-0.66, -0.65, -0.88, -0.65, -0.62, -0.81, -0.71, -0.65, -0.47, -0.71],
-            color: '#e67e22'
-        },
-        'Оппозиционный блок': {
-            values: [-0.80, -0.78, -0.89, -0.67, -0.75, -0.73, -0.74, -0.69, -0.64, -0.57],
-            color: '#34495e'
-        }
+        'Блок Петра Порошенко':           { values:[0.55,0.63,0.20,0.55,0.56,0.28,0.39,0.48,0.50,0.53], color:'#e74c3c' },
+        'Народный фронт':                 { values:[0.59,0.69,0.21,0.57,0.59,0.29,0.39,0.52,0.57,0.61], color:'#9b59b6' },
+        'Объединение Самопомощь':         { values:[0.47,0.59,0.22,0.47,0.45,0.33,0.38,0.43,0.30,0.53], color:'#f39c12' },
+        'ВО Батькивщина':                 { values:[0.09,-0.05,-0.67,-0.23,-0.15,-0.48,-0.48,-0.34,-0.45,-0.13], color:'#27ae60' },
+        'Радикальная Партия Олега Ляшко': { values:[0.18,0.29,-0.69,-0.28,-0.05,-0.54,-0.38,-0.13,-0.18,0.25], color:'#3498db' },
+        'Вне фракции':                    { values:[0.31,0.28,0.11,0.29,0.29,0.15,0.21,0.26,0.26,0.42], color:'#95a5a6' },
+        'Воля народа':                    { values:[-0.67,-0.58,-0.87,-0.60,-0.60,-0.80,-0.72,-0.68,-0.55,-0.65], color:'#1abc9c' },
+        'Возрождение':                    { values:[-0.66,-0.65,-0.88,-0.65,-0.62,-0.81,-0.71,-0.65,-0.47,-0.71], color:'#e67e22' },
+        'Оппозиционный блок':             { values:[-0.80,-0.78,-0.89,-0.67,-0.75,-0.73,-0.74,-0.69,-0.64,-0.57], color:'#34495e' }
     };
-
-    const traces = Object.keys(factions).map(factionName => {
-        return {
-            x: sessions,
-            y: factions[factionName].values,
-            mode: 'lines+markers',
-            name: factionName,
-            line: {
-                color: factions[factionName].color,
-                width: 2.5
-            },
-            marker: {
-                size: 8,
-                color: factions[factionName].color
-            },
-            hovertemplate: '<b>' + factionName + '</b><br>Сессия: %{x}<br>Unity: %{y:.2f}<extra></extra>'
-        };
-    });
-
+    const traces = Object.keys(factions).map(name => ({
+        x: sessions, y: factions[name].values, mode: 'lines+markers', name: name,
+        line: { color: factions[name].color, width: 2.5 },
+        marker: { size: 8, color: factions[name].color },
+        hovertemplate: '<b>' + name + '</b><br>Сессия: %{x}<br>Unity: %{y:.2f}<extra></extra>'
+    }));
     const layout = {
-        title: {
-            text: 'Динамика сплоченности фракций (Unity) по сессиям ВРУ-8',
-            font: { size: 16, color: '#2c3e50' }
-        },
-        xaxis: {
-            title: 'Сессия ВРУ-8',
-            tickmode: 'linear',
-            tick0: 1,
-            dtick: 1,
-            showgrid: true,
-            gridcolor: '#e0e0e0'
-        },
-        yaxis: {
-            title: 'Индекс сплоченности (Unity)',
-            range: [-1, 1],
-            showgrid: true,
-            gridcolor: '#e0e0e0',
-            zeroline: true,
-            zerolinecolor: '#666',
-            zerolinewidth: 2
-        },
+        title: { text: 'Динамика сплоченности фракций (Unity) по сессиям ВРУ-8', font: { size: 16, color: '#2c3e50' } },
+        xaxis: { title: 'Сессия ВРУ-8', tickmode: 'linear', tick0: 1, dtick: 1, showgrid: true, gridcolor: '#e0e0e0' },
+        yaxis: { title: 'Индекс сплоченности (Unity)', range: [-1,1], showgrid: true, gridcolor: '#e0e0e0', zeroline: true, zerolinecolor: '#666', zerolinewidth: 2 },
         hovermode: 'closest',
-        legend: {
-            orientation: 'v',
-            x: 1.02,
-            y: 1,
-            xanchor: 'left',
-            bgcolor: 'rgba(255, 255, 255, 0.9)',
-            bordercolor: '#e0e0e0',
-            borderwidth: 1
-        },
+        legend: { orientation: 'v', x: 1.02, y: 1, xanchor: 'left', bgcolor: 'rgba(255,255,255,0.9)', bordercolor: '#e0e0e0', borderwidth: 1 },
         margin: { l: 80, r: 250, t: 80, b: 80 },
-        plot_bgcolor: '#ffffff',
-        paper_bgcolor: '#ffffff',
+        plot_bgcolor: '#ffffff', paper_bgcolor: '#ffffff',
         font: { family: 'Arial, sans-serif', size: 12 }
     };
-
-    const config = {
-        responsive: true,
-        displayModeBar: true,
-        displaylogo: false,
-        modeBarButtonsToRemove: ['pan2d', 'lasso2d', 'select2d']
-    };
-
-    Plotly.newPlot('unity-dynamics-plot', traces, layout, config);
+    Plotly.newPlot('unity-dynamics-plot', traces, layout, { responsive: true, displayModeBar: true, displaylogo: false, modeBarButtonsToRemove: ['pan2d','lasso2d','select2d'] });
 }
 // ============================================
 // КЕЙС 2: Сетевой граф депутатов
