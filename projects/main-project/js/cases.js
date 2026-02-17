@@ -100,19 +100,36 @@ function openCase1() {
                         <div class="viz-placeholder" style="display: none;"><i class="fas fa-image"></i><p>Вставьте: <strong>avg_votings.png</strong></p></div>
                         <div class="explanation-box"><p><i class="fas fa-info-circle" style="margin-right: 0.25rem;"></i><strong>Пояснение:</strong> [ВСТАВЬТЕ ТЕКСТ ПОЯСНЕНИЯ] <a href="/karasev_science/projects/main-project/index.html#iii-3">→ Подробнее в разделе III.3</a></p></div>
                     </div>
+                    <!-- НОВЫЕ ГРАФИКИ после карточки 4 -->
+                    <div class="viz-card">
+                        <h4><i class="fas fa-chart-bar"></i> 4а. Кол-во законопроектов с указанным кол-вом соавторов</h4>
+                        <img src="/karasev_science/images/graphs/bills_by_coauthors_hist.png" style="max-width: 100%; height: auto; border-radius: 8px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" alt="Гистограмма соавторов">
+                        <div class="viz-placeholder" style="display: none;"><i class="fas fa-image"></i><p>Вставьте: <strong>bills_by_coauthors_hist.png</strong></p></div>
+                        <div class="explanation-box"><p><i class="fas fa-info-circle" style="margin-right: 0.25rem;"></i><strong>Пояснение:</strong> [ВСТАВЬТЕ ТЕКСТ ПОЯСНЕНИЯ] <a href="/karasev_science/projects/main-project/index.html#iii-3">→ Подробнее в разделе III.3</a></p></div>
+                    </div>
+                    <div class="viz-card">
+                        <h4><i class="fas fa-chart-bar"></i> 4б. Кол-во законопроектов с указанным кол-вом голосований по ним</h4>
+                        <img src="/karasev_science/images/graphs/bills_by_votings_hist.png" style="max-width: 100%; height: auto; border-radius: 8px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" alt="Гистограмма голосований">
+                        <div class="viz-placeholder" style="display: none;"><i class="fas fa-image"></i><p>Вставьте: <strong>bills_by_votings_hist.png</strong></p></div>
+                        <div class="explanation-box"><p><i class="fas fa-info-circle" style="margin-right: 0.25rem;"></i><strong>Пояснение:</strong> [ВСТАВЬТЕ ТЕКСТ ПОЯСНЕНИЯ] <a href="/karasev_science/projects/main-project/index.html#iii-3">→ Подробнее в разделе III.3</a></p></div>
+                    </div>
+                    <div class="viz-card">
+                        <h4><i class="fas fa-chart-bar"></i> 4в. Разброс кол-ва голосований по законопроектам, сгруппированным по рубрикам</h4>
+                        <img src="/karasev_science/images/graphs/votings_by_rubrics_boxplot.png" style="max-width: 100%; height: auto; border-radius: 8px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" alt="Боксплот голосований по рубрикам">
+                        <div class="viz-placeholder" style="display: none;"><i class="fas fa-image"></i><p>Вставьте: <strong>votings_by_rubrics_boxplot.png</strong></p></div>
+                        <div class="explanation-box"><p><i class="fas fa-info-circle" style="margin-right: 0.25rem;"></i><strong>Пояснение:</strong> [ВСТАВЬТЕ ТЕКСТ ПОЯСНЕНИЯ] <a href="/karasev_science/projects/main-project/index.html#iii-3">→ Подробнее в разделе III.3</a></p></div>
+                    </div>
+                    <div class="viz-card">
+                        <h4><i class="fas fa-chart-bar"></i> 4г. Разброс кол-ва соавторов законопроектов, сгруппированных по рубрикам</h4>
+                        <img src="/karasev_science/images/graphs/coauthors_by_rubrics_boxplot.png" style="max-width: 100%; height: auto; border-radius: 8px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" alt="Боксплот соавторов по рубрикам">
+                        <div class="viz-placeholder" style="display: none;"><i class="fas fa-image"></i><p>Вставьте: <strong>coauthors_by_rubrics_boxplot.png</strong></p></div>
+                        <div class="explanation-box"><p><i class="fas fa-info-circle" style="margin-right: 0.25rem;"></i><strong>Пояснение:</strong> [ВСТАВЬТЕ ТЕКСТ ПОЯСНЕНИЯ] <a href="/karasev_science/projects/main-project/index.html#iii-3">→ Подробнее в разделе III.3</a></p></div>
+                    </div>
                     <div class="viz-card">
                         <h4><i class="fas fa-table"></i> 5. Распределение типов законодательных процедур по сессиям ВРУ-8</h4>
                         <div id="votingTypesTable" style="overflow-x: auto;"></div>
                         <div class="explanation-box"><p><i class="fas fa-info-circle" style="margin-right: 0.25rem;"></i><strong>Пояснение:</strong> [ВСТАВЬТЕ ТЕКСТ ПОЯСНЕНИЯ] <a href="/karasev_science/projects/main-project/index.html#iii-3">→ Подробнее в разделе III.3</a></p></div>
                     </div>
-                    <div class="viz-card">
-                        <h4><i class="fas fa-chart-area"></i> 6. Доли законопроектов соавторов, сгруппированных по фракциям по сессиям ВРУ-8</h4>
-                        <img src="/karasev_science/images/graphs/coauthors_by_factions.png" style="max-width: 100%; height: auto; border-radius: 8px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" alt="Доли соавторов по фракциям">
-                        <div class="viz-placeholder" style="display: none;"><i class="fas fa-image"></i><p>Вставьте: <strong>coauthors_by_factions.png</strong></p></div>
-                        <div id="coauthorsTable" style="margin-top: 1rem; overflow-x: auto;"></div>
-                        <div class="explanation-box"><p><i class="fas fa-info-circle" style="margin-right: 0.25rem;"></i><strong>Пояснение:</strong> [ВСТАВЬТЕ ТЕКСТ ПОЯСНЕНИЯ] <a href="/karasev_science/projects/main-project/index.html#iii-6">→ Подробнее в разделе III.6</a></p></div>
-                    </div>
-                </div>
 
                 <!-- СЕКЦИЯ 2: Депутаты и фракции -->
                 <div id="section-deputies" class="case1-section">
@@ -314,7 +331,7 @@ function generateBehaviorTable() {
     const data = { sessions: [1,2,3,4,5,6,7,8,9,10], vozderzhal: [0.06,0.07,0.05,0.07,0.07,0.06,0.08,0.05,0.05,0.03], za: [0.44,0.48,0.18,0.41,0.43,0.22,0.33,0.37,0.40,0.48], ne_golosoval: [0.26,0.22,0.45,0.31,0.29,0.47,0.42,0.39,0.32,0.29], otsutstvoval: [0.23,0.21,0.33,0.20,0.20,0.21,0.20,0.21,0.21,0.21], protiv: [0.01,0.02,0.01,0.01,0.01,0.01,0.01,0.01,0.02,0.01] };
     const container = document.getElementById('behaviorTable');
     if (!container) return;
-    let html = `<table style="width:100%;border-collapse:collapse;font-size:0.85rem;"><thead><tr style="background:#ecf0f1;"><th style="padding:0.5rem;border:1px solid #bdc3c7;">vote</th><th style="padding:0.5rem;border:1px solid #bdc3c7;">Воздержался</th><th style="padding:0.5rem;border:1px solid #bdc3c7;">За</th><th style="padding:0.5rem;border:1px solid #bdc3c7;">Не голосовал</th><th style="padding:0.5rem;border:1px solid #bdc3c7;">Отсутствовал</th><th style="padding:0.5rem;border:1px solid #bdc3c7;">Против</th></tr></thead><tbody>`;
+    let html = `<table style="width:100%;border-collapse:collapse;font-size:0.85rem;"><thead><tr style="background:#ecf0f1;"><th style="padding:0.5rem;border:1px solid #bdc3c7;">Сессия</th><th style="padding:0.5rem;border:1px solid #bdc3c7;">Воздержался</th><th style="padding:0.5rem;border:1px solid #bdc3c7;">За</th><th style="padding:0.5rem;border:1px solid #bdc3c7;">Не голосовал</th><th style="padding:0.5rem;border:1px solid #bdc3c7;">Отсутствовал</th><th style="padding:0.5rem;border:1px solid #bdc3c7;">Против</th></tr></thead><tbody>`;
     for (let i = 0; i < data.sessions.length; i++) {
         const bg = i % 2 === 0 ? '#f8f9fa' : 'white';
         html += `<tr style="background:${bg};"><td style="padding:0.5rem;border:1px solid #bdc3c7;font-weight:600;">${data.sessions[i]}</td><td style="padding:0.5rem;border:1px solid #bdc3c7;text-align:center;">${data.vozderzhal[i].toFixed(2)}</td><td style="padding:0.5rem;border:1px solid #bdc3c7;text-align:center;">${data.za[i].toFixed(2)}</td><td style="padding:0.5rem;border:1px solid #bdc3c7;text-align:center;">${data.ne_golosoval[i].toFixed(2)}</td><td style="padding:0.5rem;border:1px solid #bdc3c7;text-align:center;">${data.otsutstvoval[i].toFixed(2)}</td><td style="padding:0.5rem;border:1px solid #bdc3c7;text-align:center;">${data.protiv[i].toFixed(2)}</td></tr>`;
@@ -339,9 +356,46 @@ function generateVotingTypesTable() {
 function generateCoauthorsTable() {
     const container = document.getElementById('coauthorsTable');
     if (!container) return;
-    container.innerHTML = '<p style="color: #999; text-align: center;">Таблица генерируется из данных</p>';
-}
 
+    const columns = ['БПП', 'БПП,Бтк,Вне_Фр,НФ', 'НФ,РпОЛ,СмПм', 'БПП,Вне_Фр,НФ', 'БПП,НФ', 'Бтк', 'Взрдж', 'КабМин', 'НФ', 'ОпБл', 'Президент'];
+    const rows = [
+        [1,  0.17, null, 0.07, 0.01, 0.13, 0.09, 0.02, 0.25, 0.17, 0.04, 0.05],
+        [2,  0.14, null, 0.03, 0.02, 0.08, 0.01, null, 0.50, 0.07, 0.02, 0.13],
+        [3,  0.05, null, 0.01, 0.01, 0.00, 0.00, null, 0.00, null, null, 0.01],
+        [4,  0.06, null, 0.03, 0.01, 0.11, 0.01, 0.01, 0.54, 0.06, 0.03, 0.14],
+        [5,  0.13, null, 0.04, 0.02, 0.04, 0.02, 0.01, 0.59, 0.05, 0.02, 0.08],
+        [6,  0.02, null, 0.38, 0.01, 0.03, 0.01, 0.00, 0.18, 0.02, 0.00, 0.35],
+        [7,  0.07, null, 0.00, 0.01, 0.03, 0.01, null, 0.20, 0.01, 0.00, 0.88],
+        [8,  0.16, null, 0.04, null, 0.03, 0.02, 0.00, 0.28, 0.04, 0.02, 0.41],
+        [9,  0.17, null, 0.02, 0.01, 0.03, 0.01, 0.00, 0.56, 0.08, 0.03, 0.07],
+        [10, 0.10, null, 0.16, 0.01, 0.15, 0.02, 0.01, 0.22, 0.07, 0.02, 0.25],
+    ];
+
+    let html = `<div style="overflow-x:auto;"><table style="width:100%;border-collapse:collapse;font-size:0.8rem;">
+        <thead>
+            <tr style="background:#ecf0f1;">
+                <th style="padding:0.5rem;border:1px solid #bdc3c7;">Session</th>
+                ${columns.map(col => `<th style="padding:0.5rem;border:1px solid #bdc3c7;white-space:nowrap;font-size:0.75rem;">${col}</th>`).join('')}
+            </tr>
+        </thead>
+        <tbody>`;
+
+    rows.forEach((row, i) => {
+        const bg = i % 2 === 0 ? '#f8f9fa' : 'white';
+        html += `<tr style="background:${bg};">`;
+        row.forEach((val, j) => {
+            if (j === 0) {
+                html += `<td style="padding:0.5rem;border:1px solid #bdc3c7;font-weight:600;text-align:center;">${val}</td>`;
+            } else {
+                html += `<td style="padding:0.5rem;border:1px solid #bdc3c7;text-align:center;">${val === null ? '<span style="color:#bdc3c7;">NaN</span>' : val.toFixed(2)}</td>`;
+            }
+        });
+        html += `</tr>`;
+    });
+
+    html += '</tbody></table></div>';
+    container.innerHTML = html;
+}
 function generateTrainTestTables() {
     const trainData = [{behavior:'Не голосовал',share:0.37},{behavior:'За',share:0.31},{behavior:'Отсутствовал',share:0.24},{behavior:'Воздержался',share:0.07},{behavior:'Против',share:0.01}];
     const testData = [{behavior:'За',share:0.39},{behavior:'Не голосовал',share:0.33},{behavior:'Отсутствовал',share:0.21},{behavior:'Воздержался',share:0.05},{behavior:'Против',share:0.01}];
