@@ -130,6 +130,7 @@ function openCase1() {
                         <div id="votingTypesTable" style="overflow-x: auto;"></div>
                         <div class="explanation-box"><p><i class="fas fa-info-circle" style="margin-right: 0.25rem;"></i><strong>Пояснение:</strong> [ВСТАВЬТЕ ТЕКСТ ПОЯСНЕНИЯ] <a href="/karasev_science/projects/main-project/index.html#iii-3">→ Подробнее в разделе III.3</a></p></div>
                     </div>
+                 </div>
 
                 <!-- СЕКЦИЯ 2: Депутаты и фракции -->
                 <div id="section-deputies" class="case1-section">
