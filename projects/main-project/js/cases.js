@@ -286,7 +286,7 @@ function switchCase1Section(section) {
             generateTrainTestCharts();
             generateROCCurves();
         }
-    }, 100);
+    }, 300);
 }
 
 async function loadCase1Data() {
