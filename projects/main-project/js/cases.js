@@ -629,7 +629,9 @@ function openCase2() {
 
                         <div id="case2-node-info" style="display: none; background: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);"></div>
                     </div>
-
+                    <div id="case2-industry-explanation" style="display:none; margin-top:1rem;" class="explanation-box">
+                        <p><i class="fas fa-info-circle" style="margin-right:0.25rem;"></i><strong>Пояснение:</strong> [ВСТАВЬТЕ ТЕКСТ ПОЯСНЕНИЯ] <a href="/karasev_science/projects/main-project/index.html#отраслевые-лобби">→ Подробнее в разделе «Отраслевые лобби»</a></p>
+                    </div>
                     <div id="case2-static-image" style="display: none;">
                         <div style="background: white; border-radius: 8px; padding: 2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); min-height: 600px; display: flex; align-items: center; justify-content: center;">
                             <img id="case2-graph-image" style="max-width: 100%; height: auto;" alt="График">
@@ -672,7 +674,7 @@ function loadCase2GraphType(type) {
                 </div>
             `;
         };
-        caption.textContent = 'Граф соавторства депутатов Верховной Рады VIII созыва (448 депутатов). Связи показывают совместное авторство законопроектов.';
+        caption.innerHTML = 'Граф соавторства депутатов Верховной Рады VIII созыва (448 депутатов). Связи показывают совместное авторство законопроектов.<br><br><div class="explanation-box" style="text-align:left;"><p><i class="fas fa-info-circle" style="margin-right:0.25rem;"></i><strong>Пояснение:</strong> [ВСТАВЬТЕ ТЕКСТ ПОЯСНЕНИЯ] <a href="/karasev_science/projects/main-project/index.html#iii-9b">→ Подробнее в разделе «Сети соавторства законопроектов»</a></p></div>';
     } else if (type === 'industry') {
         deputySelector.style.display = 'block';
     } else if (type === 'voting') {
@@ -688,7 +690,7 @@ function loadCase2GraphType(type) {
                 </div>
             `;
         };
-        caption.textContent = 'Граф соголосования депутатов. Связи показывают частоту совместного голосования депутатов.';
+        caption.innerHTML = 'Граф соголосования депутатов по законопроекту № 1310. <strong>Важно:</strong> граф построен только по одному законопроекту № 1310, а не по всем голосованиям ВРУ-8 за 5 лет.<br><br><div class="explanation-box" style="text-align:left;"><p><i class="fas fa-info-circle" style="margin-right:0.25rem;"></i><strong>Пояснение:</strong> [ВСТАВЬТЕ ТЕКСТ ПОЯСНЕНИЯ] <a href="/karasev_science/projects/main-project/index.html#кейс-коломойского">→ Подробнее в разделе «Кейс «людей Коломойского» в ВРУ-VIII»</a></p></div>';
     }
 }
 
@@ -752,6 +754,7 @@ async function loadCase2DeputyGraph() {
 
         case2CreateGraph(data.nodes, data.edges);
         case2DisplayStats(data.stats);
+        document.getElementById('case2-industry-explanation').style.display = 'block';
 
     } catch (error) {
         console.error('Ошибка:', error);
