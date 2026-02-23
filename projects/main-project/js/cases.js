@@ -176,13 +176,13 @@ function openCase1() {
                         <h4><i class="fas fa-project-diagram"></i> 3. Кластеры (k=3) депутатов в зависимости от их поведения</h4>
                         <img src="/karasev_science/images/graphs/clusters_k3.png" style="max-width: 100%; height: auto; border-radius: 8px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" alt="Кластеры k=3">
                         <div class="viz-placeholder" style="display: none;"><i class="fas fa-image"></i><p>Вставьте: <strong>clusters_k3.png</strong></p></div>
-                        <div class="explanation-box"><p><i class="fas fa-info-circle" style="margin-right: 0.25rem;"></i><strong>Пояснение:</strong> [ВСТАВЬТЕ ТЕКСТ ПОЯСНЕНИЯ] <a href="/karasev_science/projects/main-project/index.html#iii-8">→ Подробнее в разделе III.8</a></p></div>
+                        <div class="explanation-box"><p><i class="fas fa-info-circle" style="margin-right: 0.25rem;"></i><strong>Пояснение:</strong> [ВСТАВЬТЕ ТЕКСТ ПОЯСНЕНИЯ] <a href="/karasev_science/projects/main-project/index.html#iii-8">→ Подробнее в разделе III.8</a> &nbsp;|&nbsp; <a href="https://colab.research.google.com/drive/1T5GzcmK3F9_SlFOa4cB9Jut6iKI9ooIS?usp=sharing" target="_blank"><i class="fab fa-google"></i> Открыть в Google Colab</a></p></div>
                     </div>
                     <div class="viz-card">
                         <h4><i class="fas fa-project-diagram"></i> 4. Кластеры (k=5) депутатов в зависимости от их поведения</h4>
                         <img src="/karasev_science/images/graphs/clusters_k5.png" style="max-width: 100%; height: auto; border-radius: 8px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" alt="Кластеры k=5">
                         <div class="viz-placeholder" style="display: none;"><i class="fas fa-image"></i><p>Вставьте: <strong>clusters_k5.png</strong></p></div>
-                        <div class="explanation-box"><p><i class="fas fa-info-circle" style="margin-right: 0.25rem;"></i><strong>Пояснение:</strong> [ВСТАВЬТЕ ТЕКСТ ПОЯСНЕНИЯ] <a href="/karasev_science/projects/main-project/index.html#iii-8">→ Подробнее в разделе III.8</a></p></div>
+                        <div class="explanation-box"><p><i class="fas fa-info-circle" style="margin-right: 0.25rem;"></i><strong>Пояснение:</strong> [ВСТАВЬТЕ ТЕКСТ ПОЯСНЕНИЯ] <a href="/karasev_science/projects/main-project/index.html#iii-8">→ Подробнее в разделе III.8</a> &nbsp;|&nbsp; <a href="https://colab.research.google.com/drive/1T5GzcmK3F9_SlFOa4cB9Jut6iKI9ooIS?usp=sharing" target="_blank"><i class="fab fa-google"></i> Открыть в Google Colab</a></p></div>
                     </div>
 
                     <!-- 5. Матрицы сходства — СТАТИЧЕСКИЕ ИЗОБРАЖЕНИЯ -->
@@ -249,13 +249,11 @@ function openCase1() {
                         <h4><i class="fas fa-chart-pie"></i> 1. Доли типов поведения train и test</h4>
                         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
                             <div>
-                                <h5 style="text-align: center;">Обучающая выборка (7-9 сессии)</h5>
-                                <div id="trainPieChart" style="height: 300px;"></div>
+                                <div id="trainPieChart" style="height: 350px;"></div>
                                 <div id="trainTable" style="margin-top: 1rem;"></div>
                             </div>
                             <div>
-                                <h5 style="text-align: center;">Тестовая выборка (9-10 сессии)</h5>
-                                <div id="testPieChart" style="height: 300px;"></div>
+                                <div id="testPieChart" style="height: 350px;"></div>
                                 <div id="testTable" style="margin-top: 1rem;"></div>
                             </div>
                         </div>
@@ -419,9 +417,20 @@ function generateSmallTable(data) {
 function generateTrainTestCharts() {
     const trainData = [{ values: [0.37,0.31,0.24,0.07,0.01], labels: ['Не голосовал','За','Отсутствовал','Воздержался','Против'], type: 'pie', marker: { colors: ['#95a5a6','#27ae60','#34495e','#f39c12','#e74c3c'] }, textinfo: 'percent', textposition: 'inside' }];
     const testData = [{ values: [0.39,0.33,0.21,0.05,0.01], labels: ['За','Не голосовал','Отсутствовал','Воздержался','Против'], type: 'pie', marker: { colors: ['#27ae60','#95a5a6','#34495e','#f39c12','#e74c3c'] }, textinfo: 'percent', textposition: 'inside' }];
-    const layout = { margin: { t:10,l:10,r:10,b:10 }, showlegend: true, legend: { orientation: 'h', y: -0.1 } };
-    Plotly.newPlot('trainPieChart', trainData, layout, {responsive: true});
-    Plotly.newPlot('testPieChart', testData, layout, {responsive: true});
+    const trainLayout = {
+        title: { text: 'Обучающая выборка (1-7 сессии)', font: { size: 13 } },
+        margin: { t: 40, l: 10, r: 10, b: 10 },
+        showlegend: true,
+        legend: { orientation: 'h', y: -0.15, x: 0.5, xanchor: 'center' }
+    };
+    const testLayout = {
+        title: { text: 'Тестовая выборка (8-10 сессии)', font: { size: 13 } },
+        margin: { t: 40, l: 10, r: 10, b: 10 },
+        showlegend: true,
+        legend: { orientation: 'h', y: -0.15, x: 0.5, xanchor: 'center' }
+    };
+    Plotly.newPlot('trainPieChart', trainData, trainLayout, {responsive: true});
+    Plotly.newPlot('testPieChart', testData, testLayout, {responsive: true});
 }
 
 function generateClassificationReports() {
