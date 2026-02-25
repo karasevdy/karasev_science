@@ -396,7 +396,7 @@ function generateCoauthorsTable() {
     container.innerHTML = html;
 }
 function generateTrainTestTables() {
-    const trainData = [{behavior:'Не голосовал',share:0.37},{behavior:'За',share:0.31},{behavior:'Отсутствовал',share:0.24},{behavior:'Воздержался',share:0.07},{behavior:'Против',share:0.01}];
+    const trainData = [{behavior:'За',share:0.31},{behavior:'Не голосовал',share:0.37},{behavior:'Отсутствовал',share:0.24},{behavior:'Воздержался',share:0.07},{behavior:'Против',share:0.01}];
     const testData = [{behavior:'За',share:0.39},{behavior:'Не голосовал',share:0.33},{behavior:'Отсутствовал',share:0.21},{behavior:'Воздержался',share:0.05},{behavior:'Против',share:0.01}];
     const trainContainer = document.getElementById('trainTable');
     const testContainer = document.getElementById('testTable');
@@ -415,7 +415,7 @@ function generateSmallTable(data) {
 }
 
 function generateTrainTestCharts() {
-    const trainData = [{ values: [0.37,0.31,0.24,0.07,0.01], labels: ['Не голосовал','За','Отсутствовал','Воздержался','Против'], type: 'pie', marker: { colors: ['#95a5a6','#27ae60','#34495e','#f39c12','#e74c3c'] }, textinfo: 'percent', textposition: 'inside' }];
+    const trainData = [{ values: [0.31,0.37,0.24,0.07,0.01], labels: ['За','Не голосовал','Отсутствовал','Воздержался','Против'], type: 'pie', marker: { colors: ['#95a5a6','#27ae60','#34495e','#f39c12','#e74c3c'] }, textinfo: 'percent', textposition: 'inside' }];
     const testData = [{ values: [0.39,0.33,0.21,0.05,0.01], labels: ['За','Не голосовал','Отсутствовал','Воздержался','Против'], type: 'pie', marker: { colors: ['#27ae60','#95a5a6','#34495e','#f39c12','#e74c3c'] }, textinfo: 'percent', textposition: 'inside' }];
     const trainLayout = {
         title: { text: 'Обучающая выборка (1-7 сессии)', font: { size: 13 } },
