@@ -633,7 +633,20 @@ function openCase2() {
                                     <div style="width: 25px; height: 25px; background: #FF6B6B; border-radius: 4px;"></div>
                                     <span>Отрасль</span>
                                 </div>
+                                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                    <div style="width: 30px; height: 4px; background: #4A90E2; border-radius: 2px;"></div>
+                                    <span>Депутат ↔ Регион</span>
+                                </div>
+                                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                    <div style="width: 30px; height: 4px; background: #7B68EE; border-radius: 2px;"></div>
+                                    <span>Регион ↔ Отрасль</span>
+                                </div>
+                                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                    <div style="width: 30px; height: 4px; background: #FF6B6B; border-radius: 2px;"></div>
+                                    <span>Депутат ↔ Отрасль</span>
+                                </div>
                             </div>
+
                         </div>
 
                         <div id="case2-node-info" style="display: none; background: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);"></div>
@@ -962,6 +975,33 @@ function case2CreateGraph(nodes, edges) {
                     'text-outline-color': '#000',
                     'text-wrap': 'wrap',
                     'text-max-width': 90
+                }
+            },
+            {
+                selector: 'edge[source ^= "dep_"][target ^= "reg_"], edge[source ^= "reg_"][target ^= "dep_"]',
+                style: {
+                    'width': edge => Math.max(1, Math.min(edge.data('weight') * 0.8, 10)),
+                    'line-color': '#4A90E2',
+                    'curve-style': 'bezier',
+                    'opacity': 0.6
+                }
+            },
+            {
+                selector: 'edge[source ^= "reg_"][target ^= "act_"], edge[source ^= "act_"][target ^= "reg_"]',
+                style: {
+                    'width': edge => Math.max(1, Math.min(edge.data('weight') * 0.8, 10)),
+                    'line-color': '#7B68EE',
+                    'curve-style': 'bezier',
+                    'opacity': 0.6
+                }
+            },
+            {
+                selector: 'edge[source ^= "dep_"][target ^= "act_"], edge[source ^= "act_"][target ^= "dep_"]',
+                style: {
+                    'width': edge => Math.max(1, Math.min(edge.data('weight') * 0.8, 10)),
+                    'line-color': '#FF6B6B',
+                    'curve-style': 'bezier',
+                    'opacity': 0.6
                 }
             },
             {
