@@ -690,7 +690,7 @@ def build_graph_from_dataframe(df):
     region_activity_count = defaultdict(lambda: defaultdict(int))
 
     for idx, row in df.iterrows():
-        deputy = row['full_name']
+        deputy = row['full_name.1']
         region = row['obl']
         activity = row['activity']
 
@@ -811,11 +811,11 @@ def get_deputies_list():
         current_dir = os.path.dirname(os.path.abspath(__file__))
 
         possible_paths = [
-            os.path.join(current_dir, 'data', 'example_Skr_Khom__3_.csv'),
-            os.path.join(current_dir, '..', 'data', 'example_Skr_Khom__3_.csv'),
-            'data/example_Skr_Khom__3_.csv',
-            '../data/example_Skr_Khom__3_.csv',
-            'example_Skr_Khom__3_.csv'
+            os.path.join(current_dir, 'data', 'proprty_srez_138_dep_25_02_26.csv'),
+            os.path.join(current_dir, '..', 'data', 'proprty_srez_138_dep_25_02_26.csv'),
+            'data/proprty_srez_138_dep_25_02_26.csv',
+            '../data/proprty_srez_138_dep_25_02_26.csv',
+            'proprty_srez_138_dep_25_02_26.csv'
         ]
 
         csv_path = None
@@ -836,13 +836,13 @@ def get_deputies_list():
 
         df = pd.read_csv(csv_path)
 
-        if 'full_name' not in df.columns:
+        if 'full_name.1' not in df.columns:
             return jsonify({
                 'success': False,
-                'error': f'В CSV файле нет колонки "full_name". Доступные колонки: {list(df.columns)}'
+                'error': f'В CSV файле нет колонки "full_name.1". Доступные колонки: {list(df.columns)}'
             }), 400
 
-        deputies = df['full_name'].dropna().unique().tolist()
+        deputies = df['full_name.1'].dropna().unique().tolist()
 
         print(f"✅ Найдено {len(deputies)} депутатов")
 
@@ -867,11 +867,11 @@ def get_real_graph(deputy_name):
         current_dir = os.path.dirname(os.path.abspath(__file__))
 
         possible_paths = [
-            os.path.join(current_dir, 'data', 'example_Skr_Khom__3_.csv'),
-            os.path.join(current_dir, '..', 'data', 'example_Skr_Khom__3_.csv'),
-            'data/example_Skr_Khom__3_.csv',
-            '../data/example_Skr_Khom__3_.csv',
-            'example_Skr_Khom__3_.csv'
+            os.path.join(current_dir, 'data', 'proprty_srez_138_dep_25_02_26.csv'),
+            os.path.join(current_dir, '..', 'data', 'proprty_srez_138_dep_25_02_26.csv'),
+            'data/proprty_srez_138_dep_25_02_26.csv',
+            '../data/proprty_srez_138_dep_25_02_26.csv',
+            'proprty_srez_138_dep_25_02_26.csv'
         ]
 
         csv_path = None
@@ -889,7 +889,7 @@ def get_real_graph(deputy_name):
         if deputy_name == 'all':
             deputy_df = df
         else:
-            deputy_df = df[df['full_name'].str.contains(deputy_name, na=False, case=False)]
+            deputy_df = df[df['full_name.1'].str.contains(deputy_name, na=False, case=False)]
 
         if deputy_df.empty:
             return jsonify({'success': False, 'error': f'Депутат {deputy_name} не найден'}), 404
@@ -922,11 +922,11 @@ def get_coauthorship_graph():
         current_dir = os.path.dirname(os.path.abspath(__file__))
 
         possible_paths = [
-            os.path.join(current_dir, 'data', 'example_Skr_Khom__3_.csv'),
-            os.path.join(current_dir, '..', 'data', 'example_Skr_Khom__3_.csv'),
-            'data/example_Skr_Khom__3_.csv',
-            '../data/example_Skr_Khom__3_.csv',
-            'example_Skr_Khom__3_.csv'
+            os.path.join(current_dir, 'data', 'proprty_srez_138_dep_25_02_26.csv'),
+            os.path.join(current_dir, '..', 'data', 'proprty_srez_138_dep_25_02_26.csv'),
+            'data/proprty_srez_138_dep_25_02_26.csv',
+            '../data/proprty_srez_138_dep_25_02_26.csv',
+            'proprty_srez_138_dep_25_02_26.csv'
         ]
 
         csv_path = None
@@ -944,8 +944,9 @@ def get_coauthorship_graph():
         deputy_activities = defaultdict(set)
 
         for idx, row in df.iterrows():
-            deputy = row['full_name']
-            activity = map_activity(row['activity'])
+            deputy = row['full_name.1']
+            region = row['obl']
+            activity = row['activity']
 
             if pd.notna(deputy) and activity != 'Не указана':
                 deputy_activities[deputy].add(activity)
