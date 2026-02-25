@@ -190,42 +190,42 @@ function openCase1() {
                         <h4><i class="fas fa-th"></i> 5. Матрицы сходства голосования по всем фракциям</h4>
                         <p style="color: #666; margin-bottom: 3rem;">Матрицы показывают согласованность голосования депутатов внутри каждой фракции</p>
                         <div style="margin-bottom: 12rem; padding-bottom: 8rem; border-bottom: 4px solid #95a5a6;">
-                            <h5 style="color: #e74c3c; margin-bottom: 2rem; font-size: 1.4rem; font-weight: 700;"><i class="fas fa-square" style="color: #e74c3c;"></i> Блок Петра Порошенко (БПП) - 132 депутата</h5>
+                            <h5 style="color: #e74c3c; margin-bottom: 2rem; font-size: 1.4rem; font-weight: 700;"><i class="fas fa-square" style="color: #cf2034;"></i> Блок Петра Порошенко (БПП) - 127 депутата</h5>
                             <img src="/karasev_science/images/graphs/similarity_bpp.png" style="max-width: 100%; height: auto; border-radius: 8px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" alt="Матрица БПП">
                             <div class="viz-placeholder" style="display: none;"><i class="fas fa-image"></i><p>Вставьте: <strong>similarity_bpp.png</strong></p></div>
                         </div>
                         <div style="margin-bottom: 12rem; padding-bottom: 8rem; border-bottom: 4px solid #95a5a6;">
-                            <h5 style="color: #9b59b6; margin-bottom: 2rem; font-size: 1.4rem; font-weight: 700;"><i class="fas fa-square" style="color: #9b59b6;"></i> Народный фронт (НФ) - 82 депутата</h5>
+                            <h5 style="color: #9b59b6; margin-bottom: 2rem; font-size: 1.4rem; font-weight: 700;"><i class="fas fa-square" style="color: #f97000;"></i> Народный фронт (НФ) - 79 депутата</h5>
                             <img src="/karasev_science/images/graphs/similarity_nf.png" style="max-width: 100%; height: auto; border-radius: 8px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" alt="Матрица НФ">
                             <div class="viz-placeholder" style="display: none;"><i class="fas fa-image"></i><p>Вставьте: <strong>similarity_nf.png</strong></p></div>
                         </div>
                         <div style="margin-bottom: 12rem; padding-bottom: 8rem; border-bottom: 4px solid #95a5a6;">
-                            <h5 style="color: #f39c12; margin-bottom: 2rem; font-size: 1.4rem; font-weight: 700;"><i class="fas fa-square" style="color: #f39c12;"></i> Самопомощь (СмПм) - 33 депутата</h5>
+                            <h5 style="color: #f39c12; margin-bottom: 2rem; font-size: 1.4rem; font-weight: 700;"><i class="fas fa-square" style="color: #159100;"></i> Самопомощь (СмПм) - 25 депутата</h5>
                             <img src="/karasev_science/images/graphs/similarity_smpm.png" style="max-width: 100%; height: auto; border-radius: 8px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" alt="Матрица Самопомощь">
                             <div class="viz-placeholder" style="display: none;"><i class="fas fa-image"></i><p>Вставьте: <strong>similarity_smpm.png</strong></p></div>
                         </div>
                         <div style="margin-bottom: 12rem; padding-bottom: 8rem; border-bottom: 4px solid #95a5a6;">
-                            <h5 style="color: #3498db; margin-bottom: 2rem; font-size: 1.4rem; font-weight: 700;"><i class="fas fa-square" style="color: #3498db;"></i> Радикальная партия Олега Ляшко (РпОЛ) - 43 депутата</h5>
+                            <h5 style="color: #3498db; margin-bottom: 2rem; font-size: 1.4rem; font-weight: 700;"><i class="fas fa-square" style="color: #e1e200;"></i> Радикальная партия Олега Ляшко (РпОЛ) - 21 депутата</h5>
                             <img src="/karasev_science/images/graphs/similarity_rpol.png" style="max-width: 100%; height: auto; border-radius: 8px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" alt="Матрица РпОЛ">
                             <div class="viz-placeholder" style="display: none;"><i class="fas fa-image"></i><p>Вставьте: <strong>similarity_rpol.png</strong></p></div>
                         </div>
                         <div style="margin-bottom: 12rem; padding-bottom: 8rem; border-bottom: 4px solid #95a5a6;">
-                            <h5 style="color: #27ae60; margin-bottom: 2rem; font-size: 1.4rem; font-weight: 700;"><i class="fas fa-square" style="color: #27ae60;"></i> ВО Батькивщина (Бтк) - 19 депутатов</h5>
+                            <h5 style="color: #27ae60; margin-bottom: 2rem; font-size: 1.4rem; font-weight: 700;"><i class="fas fa-square" style="color: #8f0072;"></i> ВО Батьковщина (Бтк) - 21 депутатов</h5>
                             <img src="/karasev_science/images/graphs/similarity_batk.png" style="max-width: 100%; height: auto; border-radius: 8px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" alt="Матрица Батькивщина">
                             <div class="viz-placeholder" style="display: none;"><i class="fas fa-image"></i><p>Вставьте: <strong>similarity_batk.png</strong></p></div>
                         </div>
                         <div style="margin-bottom: 12rem; padding-bottom: 8rem; border-bottom: 4px solid #95a5a6;">
-                            <h5 style="color: #34495e; margin-bottom: 2rem; font-size: 1.4rem; font-weight: 700;"><i class="fas fa-square" style="color: #34495e;"></i> Оппозиционный блок (ОпБл) - 43 депутата</h5>
+                            <h5 style="color: #34495e; margin-bottom: 2rem; font-size: 1.4rem; font-weight: 700;"><i class="fas fa-square" style="color: #0000ff;"></i> Оппозиционный блок (ОпБл) - 39 депутата</h5>
                             <img src="/karasev_science/images/graphs/similarity_opbl.png" style="max-width: 100%; height: auto; border-radius: 8px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" alt="Матрица Оппозиционный блок">
                             <div class="viz-placeholder" style="display: none;"><i class="fas fa-image"></i><p>Вставьте: <strong>similarity_opbl.png</strong></p></div>
                         </div>
                         <div style="margin-bottom: 12rem; padding-bottom: 8rem; border-bottom: 4px solid #95a5a6;">
-                            <h5 style="color: #1abc9c; margin-bottom: 2rem; font-size: 1.4rem; font-weight: 700;"><i class="fas fa-square" style="color: #1abc9c;"></i> Воля народу (ВлНр) - 20 депутатов</h5>
+                            <h5 style="color: #1abc9c; margin-bottom: 2rem; font-size: 1.4rem; font-weight: 700;"><i class="fas fa-square" style="color: #9ba500;"></i> Воля народа (ВлНр) - 17 депутатов</h5>
                             <img src="/karasev_science/images/graphs/similarity_vlnr.png" style="max-width: 100%; height: auto; border-radius: 8px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" alt="Матрица Воля народу">
                             <div class="viz-placeholder" style="display: none;"><i class="fas fa-image"></i><p>Вставьте: <strong>similarity_vlnr.png</strong></p></div>
                         </div>
                         <div style="margin-bottom: 6rem; padding-bottom: 4rem;">
-                            <h5 style="color: #e67e22; margin-bottom: 2rem; font-size: 1.4rem; font-weight: 700;"><i class="fas fa-square" style="color: #e67e22;"></i> Відродження (Взржд) - 26 депутатов</h5>
+                            <h5 style="color: #e67e22; margin-bottom: 2rem; font-size: 1.4rem; font-weight: 700;"><i class="fas fa-square" style="color: #1494a6;"></i> Возроджение (Взржд) - 25 депутатов</h5>
                             <img src="/karasev_science/images/graphs/similarity_vidr.png" style="max-width: 100%; height: auto; border-radius: 8px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" alt="Матрица Відродження">
                             <div class="viz-placeholder" style="display: none;"><i class="fas fa-image"></i><p>Вставьте: <strong>similarity_vidr.png</strong></p></div>
                         </div>
