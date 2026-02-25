@@ -154,15 +154,15 @@ function openCase1() {
                         <div style="margin-top: 1.5rem; padding: 1rem; background: #f8f9fa; border-radius: 8px;">
                             <h5 style="margin-top: 0; text-align: center;">Легенда фракций</h5>
                             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0.75rem;">
-                                <div style="display: flex; align-items: center; gap: 0.5rem;"><div style="width: 20px; height: 20px; background: #e74c3c; border-radius: 3px;"></div><span>БПП (132)</span></div>
-                                <div style="display: flex; align-items: center; gap: 0.5rem;"><div style="width: 20px; height: 20px; background: #9b59b6; border-radius: 3px;"></div><span>НФ (82)</span></div>
-                                <div style="display: flex; align-items: center; gap: 0.5rem;"><div style="width: 20px; height: 20px; background: #f39c12; border-radius: 3px;"></div><span>Самопомощ (33)</span></div>
-                                <div style="display: flex; align-items: center; gap: 0.5rem;"><div style="width: 20px; height: 20px; background: #3498db; border-radius: 3px;"></div><span>РпОЛ (43)</span></div>
-                                <div style="display: flex; align-items: center; gap: 0.5rem;"><div style="width: 20px; height: 20px; background: #27ae60; border-radius: 3px;"></div><span>ВО Батькивщина (19)</span></div>
-                                <div style="display: flex; align-items: center; gap: 0.5rem;"><div style="width: 20px; height: 20px; background: #34495e; border-radius: 3px;"></div><span>Опозиційний блок (43)</span></div>
-                                <div style="display: flex; align-items: center; gap: 0.5rem;"><div style="width: 20px; height: 20px; background: #1abc9c; border-radius: 3px;"></div><span>Воля народу (20)</span></div>
-                                <div style="display: flex; align-items: center; gap: 0.5rem;"><div style="width: 20px; height: 20px; background: #e67e22; border-radius: 3px;"></div><span>Відродження (26)</span></div>
-                                <div style="display: flex; align-items: center; gap: 0.5rem;"><div style="width: 20px; height: 20px; background: #95a5a6; border-radius: 3px;"></div><span>Позафракційні (25)</span></div>
+                                <div style="display: flex; align-items: center; gap: 0.5rem;"><div style="width: 20px; height: 20px; background: #cf2034; border-radius: 3px;"></div><span>Блок Петра Порошенка «Солидарность» (БПП) 127</span></div>
+                                <div style="display: flex; align-items: center; gap: 0.5rem;"><div style="width: 20px; height: 20px; background: #f97000; border-radius: 3px;"></div><span>Народный фронта (НФ) 79</span></div>
+                                <div style="display: flex; align-items: center; gap: 0.5rem;"><div style="width: 20px; height: 20px; background: #0000ff; border-radius: 3px;"></div><span>Опозиционный блок (ОпБл) 39</span></div>
+                                <div style="display: flex; align-items: center; gap: 0.5rem;"><div style="width: 20px; height: 20px; background: #159100; border-radius: 3px;"></div><span>Самопомощь (СмПм) 25</span></div>
+                                <div style="display: flex; align-items: center; gap: 0.5rem;"><div style="width: 20px; height: 20px; background: #1494a6; border-radius: 3px;"></div><span>Возроджение (Взржд) 25</span></div>
+                                <div style="display: flex; align-items: center; gap: 0.5rem;"><div style="width: 20px; height: 20px; background: #8f0072; border-radius: 3px;"></div><span>ВО Батьковщина (Бтк) 21</span></div>
+                                <div style="display: flex; align-items: center; gap: 0.5rem;"><div style="width: 20px; height: 20px; background: #e1e200; border-radius: 3px;"></div><span>Радикальная партия Олега Ляшко (РпОЛ) 21</span></div>
+                                <div style="display: flex; align-items: center; gap: 0.5rem;"><div style="width: 20px; height: 20px; background: #9ba500; border-radius: 3px;"></div><span>Воля народу (ВлНр) 17</span></div>
+                                <div style="display: flex; align-items: center; gap: 0.5rem;"><div style="width: 20px; height: 20px; background: #bbbbbb; border-radius: 3px;"></div><span>вне фракции 68</span></div>
                             </div>
                         </div>
                         <div class="explanation-box"><p><i class="fas fa-info-circle" style="margin-right: 0.25rem;"></i><strong>Пояснение:</strong> [ВСТАВЬТЕ ТЕКСТ ПОЯСНЕНИЯ] <a href="/karasev_science/projects/main-project/index.html#ii-4">→ Подробнее в разделе II.4</a></p></div>
@@ -176,13 +176,13 @@ function openCase1() {
                         <h4><i class="fas fa-project-diagram"></i> 3. Кластеры (k=3) депутатов в зависимости от их поведения</h4>
                         <img src="/karasev_science/images/graphs/clusters_k3.png" style="max-width: 100%; height: auto; border-radius: 8px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" alt="Кластеры k=3">
                         <div class="viz-placeholder" style="display: none;"><i class="fas fa-image"></i><p>Вставьте: <strong>clusters_k3.png</strong></p></div>
-                        <div class="explanation-box"><p><i class="fas fa-info-circle" style="margin-right: 0.25rem;"></i><strong>Пояснение:</strong> [ВСТАВЬТЕ ТЕКСТ ПОЯСНЕНИЯ] <a href="/karasev_science/projects/main-project/index.html#iii-8">→ Подробнее в разделе III.8</a> &nbsp;|&nbsp; <a href="https://colab.research.google.com/drive/1T5GzcmK3F9_SlFOa4cB9Jut6iKI9ooIS?usp=sharing" target="_blank"><i class="fab fa-google"></i> Открыть в Google Colab</a></p></div>
+                        <div class="explanation-box"><p><i class="fas fa-info-circle" style="margin-right: 0.25rem;"></i><strong>Пояснение:</strong> Три выделенных кластера это 1. правящая коалиция; 2. оппозиция; и 3. колеблющиеся депутаты. (Существует множество разных методов кластеризации). Здесь кластеры были выделены методом агломерационной кластеризации (c критерием объединения в кластеры ‘ward’) на данных поименного голосования депутатов с 1 по 7 сессий (обучающая выборка). Типы поведения депутатов были приведены к порядковой шкале (от 1 =«за» до -1 =«против») по модифицированному (для 5 типов) методу «идеальной точки» (Poole, Rosenthal, 1985). В силу невысокой сплоченности правящей коалиции и внутрифракционной дисциплины составляющих ее фракций и проч. причин ВРУ-8 стала «подвешенным парламентом» с проблемой решающего меньшинства. (Для проведения законопроектов простым большинством (226 голосов) правящей коалиции очень часто не хватало незначительного числа голосов колеблющихся депутатов миноритарных фракций и/или внефракционных депутатов, которые и стали «решающим меньшинством»). <a href="/karasev_science/projects/main-project/index.html#iii-8">→ Подробнее в III ч. книги, раздел "Неформальная структура ВРУ-VIII"</a> &nbsp;|&nbsp; <a href="https://colab.research.google.com/drive/1T5GzcmK3F9_SlFOa4cB9Jut6iKI9ooIS?usp=sharing" target="_blank"><i class="fab fa-google"></i> Открыть интерактивный график в Google Colab</a></p></div>
                     </div>
                     <div class="viz-card">
                         <h4><i class="fas fa-project-diagram"></i> 4. Кластеры (k=5) депутатов в зависимости от их поведения</h4>
                         <img src="/karasev_science/images/graphs/clusters_k5.png" style="max-width: 100%; height: auto; border-radius: 8px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" alt="Кластеры k=5">
                         <div class="viz-placeholder" style="display: none;"><i class="fas fa-image"></i><p>Вставьте: <strong>clusters_k5.png</strong></p></div>
-                        <div class="explanation-box"><p><i class="fas fa-info-circle" style="margin-right: 0.25rem;"></i><strong>Пояснение:</strong> [ВСТАВЬТЕ ТЕКСТ ПОЯСНЕНИЯ] <a href="/karasev_science/projects/main-project/index.html#iii-8">→ Подробнее в разделе III.8</a> &nbsp;|&nbsp; <a href="https://colab.research.google.com/drive/1T5GzcmK3F9_SlFOa4cB9Jut6iKI9ooIS?usp=sharing" target="_blank"><i class="fab fa-google"></i> Открыть в Google Colab</a></p></div>
+                        <div class="explanation-box"><p><i class="fas fa-info-circle" style="margin-right: 0.25rem;"></i><strong>Пояснение:</strong> 5 кластеров (k=5) - не оптимальное количество. Судя по графику выше с тремя кластерами (k=3) ожидал, что метод агломерационной кластеризации (c критерием объединения в кластеры ‘complete’) на тех же данных, разделит колеблющихся депутатов на два субкластера - тех, кто ближе к правящей коалиции, и тех, кто ближе к оппозиции. В реальности же в отдельный субкластер колеблющихся выделилась лишь СмПм, депутаты которой часто «воздерживались». РпОл и Бтк остались в одном кластере колеблющихся. А вот оппозиция подразделяется в зависимости от предпочтений к типу сопротивления - в отдельный субкластер оппозиции выделились те, кто часто «отсутствовал». <a href="/karasev_science/projects/main-project/index.html#iii-8">→ Подробнее в III ч. книги, раздел "Неформальная структура ВРУ-VIII</a> &nbsp;|&nbsp; <a href="https://colab.research.google.com/drive/1T5GzcmK3F9_SlFOa4cB9Jut6iKI9ooIS?usp=sharing" target="_blank"><i class="fab fa-google"></i> Открыть интерактивный график в Google Colab</a></p></div>
                     </div>
 
                     <!-- 5. Матрицы сходства — СТАТИЧЕСКИЕ ИЗОБРАЖЕНИЯ -->
@@ -190,42 +190,42 @@ function openCase1() {
                         <h4><i class="fas fa-th"></i> 5. Матрицы сходства голосования по всем фракциям</h4>
                         <p style="color: #666; margin-bottom: 3rem;">Матрицы показывают согласованность голосования депутатов внутри каждой фракции</p>
                         <div style="margin-bottom: 12rem; padding-bottom: 8rem; border-bottom: 4px solid #95a5a6;">
-                            <h5 style="color: #e74c3c; margin-bottom: 2rem; font-size: 1.4rem; font-weight: 700;"><i class="fas fa-square" style="color: #e74c3c;"></i> Блок Петра Порошенко (БПП) - 132 депутата</h5>
+                            <h5 style="color: #e74c3c; margin-bottom: 2rem; font-size: 1.4rem; font-weight: 700;"><i class="fas fa-square" style="color: #cf2034;"></i> Блок Петра Порошенко (БПП) - 127 депутата</h5>
                             <img src="/karasev_science/images/graphs/similarity_bpp.png" style="max-width: 100%; height: auto; border-radius: 8px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" alt="Матрица БПП">
                             <div class="viz-placeholder" style="display: none;"><i class="fas fa-image"></i><p>Вставьте: <strong>similarity_bpp.png</strong></p></div>
                         </div>
                         <div style="margin-bottom: 12rem; padding-bottom: 8rem; border-bottom: 4px solid #95a5a6;">
-                            <h5 style="color: #9b59b6; margin-bottom: 2rem; font-size: 1.4rem; font-weight: 700;"><i class="fas fa-square" style="color: #9b59b6;"></i> Народный фронт (НФ) - 82 депутата</h5>
+                            <h5 style="color: #9b59b6; margin-bottom: 2rem; font-size: 1.4rem; font-weight: 700;"><i class="fas fa-square" style="color: #f97000;"></i> Народный фронт (НФ) - 79 депутата</h5>
                             <img src="/karasev_science/images/graphs/similarity_nf.png" style="max-width: 100%; height: auto; border-radius: 8px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" alt="Матрица НФ">
                             <div class="viz-placeholder" style="display: none;"><i class="fas fa-image"></i><p>Вставьте: <strong>similarity_nf.png</strong></p></div>
                         </div>
                         <div style="margin-bottom: 12rem; padding-bottom: 8rem; border-bottom: 4px solid #95a5a6;">
-                            <h5 style="color: #f39c12; margin-bottom: 2rem; font-size: 1.4rem; font-weight: 700;"><i class="fas fa-square" style="color: #f39c12;"></i> Самопомощь (СмПм) - 33 депутата</h5>
+                            <h5 style="color: #f39c12; margin-bottom: 2rem; font-size: 1.4rem; font-weight: 700;"><i class="fas fa-square" style="color: #159100;"></i> Самопомощь (СмПм) - 25 депутата</h5>
                             <img src="/karasev_science/images/graphs/similarity_smpm.png" style="max-width: 100%; height: auto; border-radius: 8px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" alt="Матрица Самопомощь">
                             <div class="viz-placeholder" style="display: none;"><i class="fas fa-image"></i><p>Вставьте: <strong>similarity_smpm.png</strong></p></div>
                         </div>
                         <div style="margin-bottom: 12rem; padding-bottom: 8rem; border-bottom: 4px solid #95a5a6;">
-                            <h5 style="color: #3498db; margin-bottom: 2rem; font-size: 1.4rem; font-weight: 700;"><i class="fas fa-square" style="color: #3498db;"></i> Радикальная партия Олега Ляшко (РпОЛ) - 43 депутата</h5>
+                            <h5 style="color: #3498db; margin-bottom: 2rem; font-size: 1.4rem; font-weight: 700;"><i class="fas fa-square" style="color: #e1e200;"></i> Радикальная партия Олега Ляшко (РпОЛ) - 21 депутата</h5>
                             <img src="/karasev_science/images/graphs/similarity_rpol.png" style="max-width: 100%; height: auto; border-radius: 8px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" alt="Матрица РпОЛ">
                             <div class="viz-placeholder" style="display: none;"><i class="fas fa-image"></i><p>Вставьте: <strong>similarity_rpol.png</strong></p></div>
                         </div>
                         <div style="margin-bottom: 12rem; padding-bottom: 8rem; border-bottom: 4px solid #95a5a6;">
-                            <h5 style="color: #27ae60; margin-bottom: 2rem; font-size: 1.4rem; font-weight: 700;"><i class="fas fa-square" style="color: #27ae60;"></i> ВО Батькивщина (Бтк) - 19 депутатов</h5>
+                            <h5 style="color: #27ae60; margin-bottom: 2rem; font-size: 1.4rem; font-weight: 700;"><i class="fas fa-square" style="color: #8f0072;"></i> ВО Батьковщина (Бтк) - 21 депутатов</h5>
                             <img src="/karasev_science/images/graphs/similarity_batk.png" style="max-width: 100%; height: auto; border-radius: 8px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" alt="Матрица Батькивщина">
                             <div class="viz-placeholder" style="display: none;"><i class="fas fa-image"></i><p>Вставьте: <strong>similarity_batk.png</strong></p></div>
                         </div>
                         <div style="margin-bottom: 12rem; padding-bottom: 8rem; border-bottom: 4px solid #95a5a6;">
-                            <h5 style="color: #34495e; margin-bottom: 2rem; font-size: 1.4rem; font-weight: 700;"><i class="fas fa-square" style="color: #34495e;"></i> Оппозиционный блок (ОпБл) - 43 депутата</h5>
+                            <h5 style="color: #34495e; margin-bottom: 2rem; font-size: 1.4rem; font-weight: 700;"><i class="fas fa-square" style="color: #0000ff;"></i> Оппозиционный блок (ОпБл) - 39 депутата</h5>
                             <img src="/karasev_science/images/graphs/similarity_opbl.png" style="max-width: 100%; height: auto; border-radius: 8px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" alt="Матрица Оппозиционный блок">
                             <div class="viz-placeholder" style="display: none;"><i class="fas fa-image"></i><p>Вставьте: <strong>similarity_opbl.png</strong></p></div>
                         </div>
                         <div style="margin-bottom: 12rem; padding-bottom: 8rem; border-bottom: 4px solid #95a5a6;">
-                            <h5 style="color: #1abc9c; margin-bottom: 2rem; font-size: 1.4rem; font-weight: 700;"><i class="fas fa-square" style="color: #1abc9c;"></i> Воля народу (ВлНр) - 20 депутатов</h5>
+                            <h5 style="color: #1abc9c; margin-bottom: 2rem; font-size: 1.4rem; font-weight: 700;"><i class="fas fa-square" style="color: #9ba500;"></i> Воля народа (ВлНр) - 17 депутатов</h5>
                             <img src="/karasev_science/images/graphs/similarity_vlnr.png" style="max-width: 100%; height: auto; border-radius: 8px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" alt="Матрица Воля народу">
                             <div class="viz-placeholder" style="display: none;"><i class="fas fa-image"></i><p>Вставьте: <strong>similarity_vlnr.png</strong></p></div>
                         </div>
                         <div style="margin-bottom: 6rem; padding-bottom: 4rem;">
-                            <h5 style="color: #e67e22; margin-bottom: 2rem; font-size: 1.4rem; font-weight: 700;"><i class="fas fa-square" style="color: #e67e22;"></i> Відродження (Взржд) - 26 депутатов</h5>
+                            <h5 style="color: #e67e22; margin-bottom: 2rem; font-size: 1.4rem; font-weight: 700;"><i class="fas fa-square" style="color: #1494a6;"></i> Возроджение (Взржд) - 25 депутатов</h5>
                             <img src="/karasev_science/images/graphs/similarity_vidr.png" style="max-width: 100%; height: auto; border-radius: 8px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" alt="Матрица Відродження">
                             <div class="viz-placeholder" style="display: none;"><i class="fas fa-image"></i><p>Вставьте: <strong>similarity_vidr.png</strong></p></div>
                         </div>
@@ -236,7 +236,7 @@ function openCase1() {
                     <div class="viz-card">
                         <h4><i class="fas fa-chart-line"></i> 6. Динамика сплоченности фракций по сессиям ВРУ-8 (UNITY)</h4>
                         <div id="unity-dynamics-plot" style="min-height: 500px; width: 100%;"></div>
-                        <div class="explanation-box"><p><i class="fas fa-info-circle" style="margin-right: 0.25rem;"></i><strong>Пояснение:</strong> [ВСТАВЬТЕ ТЕКСТ ПОЯСНЕНИЯ] <a href="/karasev_science/projects/main-project/index.html#iii-11">→ Подробнее в разделе III.11</a></p></div>
+                        <div class="explanation-box"><p><i class="fas fa-info-circle" style="margin-right: 0.25rem;"></i><strong>Пояснение:</strong> Сплоченность фракции показывает, насколько «единодушно», единогласно голосуют ее депутаты. (Существует несколько основных метрик сплоченности со своими особенностями). Здесь представлена UNITY (Carey 2000, 2007, 2008). В нашем случае она рассчитана по модифицированной формуле - отдельно для фракций правящей коалиции и оппозиции. Для первых абсентеизм депутатов учитывается как неэффективное использование голосов однопартийцев; для вторых, напротив, - как разновидность «против» и эффективное сопротивление. Отрицательная UNITY оппозиционных фракций это не отсутствие сплоченности, а, наоборот, сплоченное и эффективное сопротивление нормальной работе парламента разными способами без создания форс-мажорной ситуации кризиса, которая привела бы к роспуску и перевыборам. Протестная UNITY фракций оппозиции по модулю выше положительной UNITY фракций правящей коалиции, т.е. оппозиция более сплочена. UNITY фракций менялась от сессии к сессии. Примечательны спады в сплоченности фракций во время кризисов 3-ей и 6-ой сессий. <a href="/karasev_science/projects/main-project/index.html#iii-11">→ Подробнее см. в III ч. книги, раздел "Сплоченность фракций ВРУ-VIII".</a></p></div>
                     </div>
                 </div>
 
@@ -320,8 +320,8 @@ async function loadCase1Data() {
 }
 
 function generateFactionChart() {
-    const factionCounts = { 'БПП': 132, 'НФ': 82, 'Самопомощ': 33, 'РпОЛ': 43, 'ВО Батькивщина': 19, 'Опозиційний блок': 43, 'Воля народу': 20, 'Відродження': 26, 'Позафракційні': 25 };
-    const factionData = [{ x: Object.keys(factionCounts), y: Object.values(factionCounts), type: 'bar', marker: { color: ['#e74c3c','#9b59b6','#f39c12','#3498db','#27ae60','#34495e','#1abc9c','#e67e22','#95a5a6'] }, text: Object.values(factionCounts), textposition: 'outside' }];
+    const factionCounts = { 'БПП': 127, 'НФ': 79, 'Самопомощь': 25, 'РпОЛ': 21, 'Батькивщина': 21, 'Опозиционный блок': 39, 'Воля народа': 17, 'Возрождение': 25, 'вне фракциии': 68 };
+    const factionData = [{ x: Object.keys(factionCounts), y: Object.values(factionCounts), type: 'bar', marker: { color: ['#cf2034','#f97000','#159100','#e1e200','#8f0072','#0000ff','#9ba500','#1494a6','#bbbbbb'] }, text: Object.values(factionCounts), textposition: 'outside' }];
     const layout = { yaxis: { title: 'Количество депутатов' }, margin: { t: 20, l: 60, r: 20, b: 100 }, font: { family: 'Arial, sans-serif' } };
     Plotly.newPlot('factionChart', factionData, layout, {responsive: true});
 }
@@ -396,7 +396,7 @@ function generateCoauthorsTable() {
     container.innerHTML = html;
 }
 function generateTrainTestTables() {
-    const trainData = [{behavior:'Не голосовал',share:0.37},{behavior:'За',share:0.31},{behavior:'Отсутствовал',share:0.24},{behavior:'Воздержался',share:0.07},{behavior:'Против',share:0.01}];
+    const trainData = [{behavior:'За',share:0.31},{behavior:'Не голосовал',share:0.37},{behavior:'Отсутствовал',share:0.24},{behavior:'Воздержался',share:0.07},{behavior:'Против',share:0.01}];
     const testData = [{behavior:'За',share:0.39},{behavior:'Не голосовал',share:0.33},{behavior:'Отсутствовал',share:0.21},{behavior:'Воздержался',share:0.05},{behavior:'Против',share:0.01}];
     const trainContainer = document.getElementById('trainTable');
     const testContainer = document.getElementById('testTable');
@@ -415,7 +415,7 @@ function generateSmallTable(data) {
 }
 
 function generateTrainTestCharts() {
-    const trainData = [{ values: [0.37,0.31,0.24,0.07,0.01], labels: ['Не голосовал','За','Отсутствовал','Воздержался','Против'], type: 'pie', marker: { colors: ['#95a5a6','#27ae60','#34495e','#f39c12','#e74c3c'] }, textinfo: 'percent', textposition: 'inside' }];
+    const trainData = [{ values: [0.31,0.37,0.24,0.07,0.01], labels: ['За','Не голосовал','Отсутствовал','Воздержался','Против'], type: 'pie', marker: { colors: ['#27ae60','#95a5a6','#34495e','#f39c12','#e74c3c'] }, textinfo: 'percent', textposition: 'inside' }];
     const testData = [{ values: [0.39,0.33,0.21,0.05,0.01], labels: ['За','Не голосовал','Отсутствовал','Воздержался','Против'], type: 'pie', marker: { colors: ['#27ae60','#95a5a6','#34495e','#f39c12','#e74c3c'] }, textinfo: 'percent', textposition: 'inside' }];
     const trainLayout = {
         title: { text: 'Обучающая выборка (1-7 сессии)', font: { size: 13 } },
@@ -490,15 +490,15 @@ function generateUnityDynamics() {
     if (!plotDiv) return;
     const sessions = [1,2,3,4,5,6,7,8,9,10];
     const factions = {
-        'Блок Петра Порошенко':           { values:[0.55,0.63,0.20,0.55,0.56,0.28,0.39,0.48,0.50,0.53], color:'#e74c3c' },
-        'Народный фронт':                 { values:[0.59,0.69,0.21,0.57,0.59,0.29,0.39,0.52,0.57,0.61], color:'#9b59b6' },
-        'Объединение Самопомощь':         { values:[0.47,0.59,0.22,0.47,0.45,0.33,0.38,0.43,0.30,0.53], color:'#f39c12' },
-        'ВО Батькивщина':                 { values:[0.09,-0.05,-0.67,-0.23,-0.15,-0.48,-0.48,-0.34,-0.45,-0.13], color:'#27ae60' },
-        'Радикальная Партия Олега Ляшко': { values:[0.18,0.29,-0.69,-0.28,-0.05,-0.54,-0.38,-0.13,-0.18,0.25], color:'#3498db' },
-        'Вне фракции':                    { values:[0.31,0.28,0.11,0.29,0.29,0.15,0.21,0.26,0.26,0.42], color:'#95a5a6' },
-        'Воля народа':                    { values:[-0.67,-0.58,-0.87,-0.60,-0.60,-0.80,-0.72,-0.68,-0.55,-0.65], color:'#1abc9c' },
-        'Возрождение':                    { values:[-0.66,-0.65,-0.88,-0.65,-0.62,-0.81,-0.71,-0.65,-0.47,-0.71], color:'#e67e22' },
-        'Оппозиционный блок':             { values:[-0.80,-0.78,-0.89,-0.67,-0.75,-0.73,-0.74,-0.69,-0.64,-0.57], color:'#34495e' }
+        'Блок Петра Порошенко':           { values:[0.55,0.63,0.20,0.55,0.56,0.28,0.39,0.48,0.50,0.53], color:'#cf2034' },
+        'Народный фронт':                 { values:[0.59,0.69,0.21,0.57,0.59,0.29,0.39,0.52,0.57,0.61], color:'#f97000' },
+        'Самопомощь':                     { values:[0.47,0.59,0.22,0.47,0.45,0.33,0.38,0.43,0.30,0.53], color:'#159100' },
+        'Батьковщина':                    { values:[0.09,-0.05,-0.67,-0.23,-0.15,-0.48,-0.48,-0.34,-0.45,-0.13], color:'#8f0072' },
+        'Радикальная Партия Олега Ляшко': { values:[0.18,0.29,-0.69,-0.28,-0.05,-0.54,-0.38,-0.13,-0.18,0.25], color:'#e1e200' },
+        'вне фракции':                    { values:[0.31,0.28,0.11,0.29,0.29,0.15,0.21,0.26,0.26,0.42], color:'#bbbbbb' },
+        'Воля народа':                    { values:[-0.67,-0.58,-0.87,-0.60,-0.60,-0.80,-0.72,-0.68,-0.55,-0.65], color:'#9ba500' },
+        'Возрождение':                    { values:[-0.66,-0.65,-0.88,-0.65,-0.62,-0.81,-0.71,-0.65,-0.47,-0.71], color:'#1494a6' },
+        'Оппозиционный блок':             { values:[-0.80,-0.78,-0.89,-0.67,-0.75,-0.73,-0.74,-0.69,-0.64,-0.57], color:'#0000ff' }
     };
     const traces = Object.keys(factions).map(name => ({
         x: sessions, y: factions[name].values, mode: 'lines+markers', name: name,
