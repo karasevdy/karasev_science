@@ -154,15 +154,15 @@ function openCase1() {
                         <div style="margin-top: 1.5rem; padding: 1rem; background: #f8f9fa; border-radius: 8px;">
                             <h5 style="margin-top: 0; text-align: center;">Легенда фракций</h5>
                             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0.75rem;">
-                                <div style="display: flex; align-items: center; gap: 0.5rem;"><div style="width: 20px; height: 20px; background: #e74c3c; border-radius: 3px;"></div><span>БПП (132)</span></div>
-                                <div style="display: flex; align-items: center; gap: 0.5rem;"><div style="width: 20px; height: 20px; background: #9b59b6; border-radius: 3px;"></div><span>НФ (82)</span></div>
-                                <div style="display: flex; align-items: center; gap: 0.5rem;"><div style="width: 20px; height: 20px; background: #f39c12; border-radius: 3px;"></div><span>Самопомощ (33)</span></div>
-                                <div style="display: flex; align-items: center; gap: 0.5rem;"><div style="width: 20px; height: 20px; background: #3498db; border-radius: 3px;"></div><span>РпОЛ (43)</span></div>
-                                <div style="display: flex; align-items: center; gap: 0.5rem;"><div style="width: 20px; height: 20px; background: #27ae60; border-radius: 3px;"></div><span>ВО Батькивщина (19)</span></div>
-                                <div style="display: flex; align-items: center; gap: 0.5rem;"><div style="width: 20px; height: 20px; background: #34495e; border-radius: 3px;"></div><span>Опозиційний блок (43)</span></div>
-                                <div style="display: flex; align-items: center; gap: 0.5rem;"><div style="width: 20px; height: 20px; background: #1abc9c; border-radius: 3px;"></div><span>Воля народу (20)</span></div>
-                                <div style="display: flex; align-items: center; gap: 0.5rem;"><div style="width: 20px; height: 20px; background: #e67e22; border-radius: 3px;"></div><span>Відродження (26)</span></div>
-                                <div style="display: flex; align-items: center; gap: 0.5rem;"><div style="width: 20px; height: 20px; background: #95a5a6; border-radius: 3px;"></div><span>Позафракційні (25)</span></div>
+                                <div style="display: flex; align-items: center; gap: 0.5rem;"><div style="width: 20px; height: 20px; background: #cf2034; border-radius: 3px;"></div><span>Блок Петра Порошенка «Солидарность» (БПП) 127</span></div>
+                                <div style="display: flex; align-items: center; gap: 0.5rem;"><div style="width: 20px; height: 20px; background: #f97000; border-radius: 3px;"></div><span>Народный фронта (НФ) 79</span></div>
+                                <div style="display: flex; align-items: center; gap: 0.5rem;"><div style="width: 20px; height: 20px; background: #0000ff; border-radius: 3px;"></div><span>Опозиционный блок (ОпБл) 39</span></div>
+                                <div style="display: flex; align-items: center; gap: 0.5rem;"><div style="width: 20px; height: 20px; background: #159100; border-radius: 3px;"></div><span>Самопомощь (СмПм) 25</span></div>
+                                <div style="display: flex; align-items: center; gap: 0.5rem;"><div style="width: 20px; height: 20px; background: #1494a6; border-radius: 3px;"></div><span>Возроджение (Взржд) 25</span></div>
+                                <div style="display: flex; align-items: center; gap: 0.5rem;"><div style="width: 20px; height: 20px; background: #8f0072; border-radius: 3px;"></div><span>ВО Батьковщина (Бтк) 21</span></div>
+                                <div style="display: flex; align-items: center; gap: 0.5rem;"><div style="width: 20px; height: 20px; background: #e1e200; border-radius: 3px;"></div><span>Радикальная партия Олега Ляшко (РпОЛ) 21</span></div>
+                                <div style="display: flex; align-items: center; gap: 0.5rem;"><div style="width: 20px; height: 20px; background: #9ba500; border-radius: 3px;"></div><span>Воля народу (ВлНр) 17</span></div>
+                                <div style="display: flex; align-items: center; gap: 0.5rem;"><div style="width: 20px; height: 20px; background: #bbbbbb; border-radius: 3px;"></div><span>вне фракции 68</span></div>
                             </div>
                         </div>
                         <div class="explanation-box"><p><i class="fas fa-info-circle" style="margin-right: 0.25rem;"></i><strong>Пояснение:</strong> [ВСТАВЬТЕ ТЕКСТ ПОЯСНЕНИЯ] <a href="/karasev_science/projects/main-project/index.html#ii-4">→ Подробнее в разделе II.4</a></p></div>
