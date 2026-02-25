@@ -320,7 +320,7 @@ async function loadCase1Data() {
 }
 
 function generateFactionChart() {
-    const factionCounts = { 'БПП': 132, 'НФ': 82, 'Самопомощ': 33, 'РпОЛ': 43, 'ВО Батькивщина': 19, 'Опозиційний блок': 43, 'Воля народу': 20, 'Відродження': 26, 'Позафракційні': 25 };
+    const factionCounts = { 'БПП': 127, 'НФ': 79, 'Самопомощь': 25, 'РпОЛ': 21, 'Батькивщина': 21, 'Опозиционный блок': 39, 'Воля народа': 17, 'Возрождение': 25, 'вне фракциии': 68 };
     const factionData = [{ x: Object.keys(factionCounts), y: Object.values(factionCounts), type: 'bar', marker: { color: ['#e74c3c','#9b59b6','#f39c12','#3498db','#27ae60','#34495e','#1abc9c','#e67e22','#95a5a6'] }, text: Object.values(factionCounts), textposition: 'outside' }];
     const layout = { yaxis: { title: 'Количество депутатов' }, margin: { t: 20, l: 60, r: 20, b: 100 }, font: { family: 'Arial, sans-serif' } };
     Plotly.newPlot('factionChart', factionData, layout, {responsive: true});
